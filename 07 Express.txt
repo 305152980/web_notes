@@ -70,27 +70,56 @@ Express 路由
 			app.use('路径前缀', router);
 Express 中间件
 	中间件特指业务流程的中间处理环节。
-	当一个请求到达 Express 的服务器后，可以连续调用多个中间件，来对请求进行预处理。这期间，上一个中间件的输出是下一个中间件的输入。
+	当一个请求到达 Express 的服务器后，可以先连续调用多个中间件，来对请求进行预处理。这期间，上一个中间件的输出是下一个中间件的输入。然后再对该请求进行路由分发。
+	中间件的作用
+		多个中间件之间共享同一份 req 和 res 对象。基于这样的特性，可以在上游的中间件中，统一为 req 或 res 对象添加自定义的属性和方法，来供下游的中间件或路由进行使用。
 	Express 中间件本质上是一个 function 函数，格式举例如下：
 		const express = require('express');
 		const app = express();
-		app.METHOD(PATH, function(req, res, next) {
+		const mw = function(req, res, next) {
 			next();
-		});
+		}
+		app.METHOD(PATH, mw, HANDLER);
 		app.listen(8080, () => {
 			console.log('express server running at http://127.0.0.1');
 		});
 		注意：
 			1、中间件的形参列表中，必须包含 next 参数，路由处理函数中只包含 req 和 res；
-			2、next 函数是实现多个中间件连续调用的关键，它表示把流转关系转交给下一个中间件。
-	定义中间件
+			2、next() 方法是实现多个中间件连续调用的关键，它表示把流转关系转交给下一个中间件。
+	全局生效的中间件
+		客户端发起任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。
 		// 常量 mw 所指向的，就是一个中间件。
 		const mw = function(req, res, next) {
 			console.log('这是一个最简单的中间件。');
-			// 注意：在当前中间件的业务处理完毕后，必须调用 next() 函数，表示把流转关系交给下一个中间件。
+			// 注意：在当前中间件的业务处理完毕后，必须调用 next() 方法，表示把流转关系交给下一个中间件。
 			next();
 		}
-	全局生效的中间件
-		客户端发起任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。
-		通过调用 app.use(中间件)，即可定义一个全局生效的中间件。
+		// 通过调用 app.use(中间件) 方法，即可注册一个全局生效的中间件。
+		app.use(mw);
+	注册多个全局中间件
+		可以使用 app.use() 方法连续注册多个全局中间件。客户端请求到达服务器之后，会按照中间件定义的先后顺序依次进行调用。
+	局部生效的中间件
+		不使用 app.use() 方法注册的中间件，叫做局部生效的中间件。
+		const express = require('express');
+		const app = express();
+		const mw = function(req, res, next) {
+			console.log('这是局部中间件');
+			next();
+		}
+		// mw 这个中间件只在“当前路由中生效”，这种中间件属于局部生效的中间件。
+		app.get(PATH, mw, HANDLER);
+		app.post(PATH, HANDLER);
+		app.listen(8080, () => {
+			console.log('express server running at http://127.0.0.1');
+		});
+	注册多个局部中间件
+		// 以下两种写法是完全等价的。
+		app.get(PATH, mw1, mw2, HANDLER);
+		app.get(PATH, [mw1, mw2], HANDLER);
+	中间件的使用注意事项
+		1、一定要在路由之前注册中间件；
+		2、客户端发送过来的请求，可以连续调用多个中间件进行预处理；
+		3、执行完中间件的业务代码之后，不要忘记调用 next() 方法；
+		4、为了防止代码逻辑混乱，调用 next() 方法后，不要再写额外的代码；
+		5、连续调用多个中间件时，多个中间件之间共享 req 和 res 对象。
 Express 接口
