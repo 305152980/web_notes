@@ -1,0 +1,157 @@
+前端渲染方式
+	1、原生JS拼接字符串；
+	2、使用前端模板引擎，没有事件机制；
+	3、使用vue特有的模板语法，有事件机制。
+插值表达式
+	{{ value }}
+	有闪动的问题。
+指令
+	本质是自定义属性，指令的格式以v-开始。
+v-cloak
+	解决插值表达式的闪动问题。原理：先隐藏替换好值，之后再显示最终的值。
+	用法：
+		1、提供样式；
+			[v-cloak]{
+				display: none;
+			}
+		2、在插值表达式所在的标签中添加v-cloak指令。
+v-text
+	1、没有闪动问题；
+	2、相比于插值表达式更加简洁。
+	用法：v-text="value"
+v-html
+	1、存在XSS跨站脚本攻击安全问题；
+	2、本网站内部的数据可以使用，来自第三方的数据不可以使用。
+	用法：v-html="代码片段"
+v-pre
+	跳过编译过程，显示原始信息。例如显示插值表达式中的原始信息。
+	用法：在标签中添加v-pre指令。
+数据响应式
+	1、html5的响应式：屏幕尺寸的变化导致页面样式的变化；
+	2、数据的响应式：数据的变化导致页面内容的变化。
+数据绑定
+	将数据填充到标签中。
+v-once
+	只编译一次，显示内容后，不再具有响应式功能。
+	用法：在标签中添加v-once指令。
+v-model
+	双向数据绑定。
+	用法：v-model="value"
+MVVM设计思想
+	M：数据模型
+	V：DOM视图
+	VM：视图-模型
+	vue的作用：DOM监听和数据绑定。
+v-on
+	事件绑定。
+	用法：v-on:click="JS代码|函数名称"
+	简写：@click="JS代码|函数名称"
+函数调用方式
+	1、事件绑定函数名称；
+		v-on:click="say"
+	2、事件绑定函数调用。
+		v-on:click="say()"
+函数参数传递
+	1、如果事件绑定函数名称，那么默认携带事件对象，此时函数中的第一个形参接收的就是事件对象；
+	2、如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的实参名称必须是$event。
+		v-on:click="say("hi", $event)"
+		console.log(event.target.tagName)			// event是接收实参$event的形参。
+		console.log(event.target.innerHTML)
+事件修饰符
+	1、stop阻止冒泡；
+		例如：父元素有点击事件，子元素也有点击事件，默认情况下子元素的点击事件触发时，会一起触发父元素的点击事件，这种情况叫点击事件的冒泡。
+		用法：在子元素事件上组织冒泡。
+			<a v-on.click.stop="handle">跳转</a>
+			event.stopPropagation();
+	2、prevent阻止默认行为。
+		<a v-on.click.prevent="handle">跳转</a>
+		event.preventDefault();
+================================================================================================================================================================
+按键修饰符
+	1、enter回车键；
+		<input v-on:keyup.enter="submit">
+	2、delete删除键；
+		<input v-on:keyup.delete="handle">
+	3、自定义按键修饰符。
+		使用全局config.keyCodes对象来自定义按键修饰符。
+		用法：自定义按键修饰符的名字是自定义的，但是它对应的值必须是按键对应的event.keyCode值。
+			Vue.config.keyCodes.f1 = 112
+			<input v-on:keyup.f1|112="submit">
+			console.log(event.keyCode)
+属性绑定
+	1、v-bind；
+		<a v-bind:href="url">跳转</a>
+	2、缩写形式。
+		<a :href="url">跳转</a>
+
+全局组件注册
+	直接在script标签中注册全局组件。
+		Vue.component(组件名称, {
+			data: 组件数据,
+			template: 组件模板内容
+		})
+	注意：
+		1、data必须是一个函数；
+		2、组件模板内容必须是单根元素；
+		3、组件模板内容可以是模板字符串；
+		4、组件的命名方式。
+			1、my-component短横线方式；
+			2、MyComponent驼峰方式。
+			注意：如果使用驼峰式命名组件，那么在使用组件的时候，只能在字符串模板中使用驼峰名称，在普通标签模板中，必须转换为短横线式名称。
+		Vue.component('button-counter', {
+			data: function(){
+				return {
+					count: 0
+				}
+			},
+			// template: '<button @click="handle">点击了{{ count }}次</button>',
+			template: `<button @click="handle">点击了{{ count }}次</button>`,
+			methods: {
+				handle: function(){
+					this.count += 2
+				}
+			}
+		})
+局部组件注册
+	只能在注册此局部组件的父组件中使用。
+	var ComponentA = { /* ... */ }
+	var ComponentB = { /* ... */ }  
+	var ComponentC = { /* ... */ }
+	new Vue({
+		el: '#app'
+		components: {
+			'component-a': ComponentA,
+			'component-b': ComponentB,
+			'component-c': ComponentC
+		}
+	})
+父组件向子组件传值
+	1、子组件通过props接受传递过来的值；
+		Vue.component('menu-item', {
+			props: ['title'],
+			template: '<div>{{ title }}</div>'
+		})
+	2、父组件通过属性将值传递给子组件；
+		<menu-item title='来自父组件的数据'></menu-item>
+		<menu-item :title='title'></menu-item>
+	3、props属性名规则；
+		如果使用驼峰式命名属性，那么在传值的时候，只能在字符串模板中使用驼峰名称，在普通标签模板中，必须转换为短横线式名称。
+	4、传值的值类型。
+		String、Number、Boolean、Array、Object
+子组件向父组件传值
+	1、子组件通过自定义事件向父组件传递信息；
+		<button v-on:click='$emit("enlarge-text")'>扩大字体</button>
+		<button v-on:click='$emit("enlarge-text", 0.1)'>扩大字体</button>
+	2、父组件监听子组件的事件。
+		<menu-item v-on:enlarge-text="fontSize += 0.1"></menu-item>
+		<menu-item v-on:enlarge-text="fontSize += $event"></menu-item>
+		<menu-item v-on:enlarge-text="handle($event)"></menu-item>
+================================================================================================================================================================
+非父子组件间传值
+	1、单独的事件中心管理组件间的通信;
+		var eventHub = new Vue()
+	2、监听事件与销毁事件；
+		eventHub.$on('add-todo', addTodo)
+		eventHub.$off('add-todo')
+	3、触发事件。
+		eventHub.$emit('add-todo', id)
