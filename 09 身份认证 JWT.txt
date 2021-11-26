@@ -1,0 +1,93 @@
+Web 开发模式
+	服务端渲染模式
+		服务器发送给客户端的 HTML 页面，是在服务器通过字符串的拼接动态生成的，因此客户端不需要使用 Ajax 这样的技术额外请求页面的数据。
+		优点：
+			1、前端耗时少。因为服务器负责动态生成完整的 HTML 页面内容，浏览器只负责渲染页面，所以客户端，尤其是移动端，会更省电。
+			2、有利于 SEO。因为服务器响应的是完整的 HTML 页面内容，所以爬虫更容易爬取信息，更有利于 SEO。
+		缺点：
+			1、占用服务器资源。因为服务器负责动态生成完整的 HTML 页面内容，如果请求过多，会对服务器造成一定的访问压力。
+			2、不利于前后端分离，开发效率低。使用服务端渲染，无法进行分工合作，尤其对于前端复杂度高的项目，不利于项目高效开发。
+	前后端分离模式
+		前后端分离的开发模式，依赖与 Ajax 技术的广泛应用。简而言之，就是后端负责提供 API 接口，前端使用 Ajax 调用接口的开发模式。
+		优点：
+			1、开发体验好。前端专注于 UI 页面的开发，后端专注于 API 接口的开发，开发效率更高，前端会有更多的选择性。
+			2、用户体验好。Ajax 技术的广泛应用，可以轻松实现页面的局部刷新，提高了用户的使用体验。
+			3、减轻了服务端的渲染压力。因为页面最终是在每个用户的浏览器中生成的，所以相对减轻了服务器的渲染压力。
+		缺点：
+			不利于 SEO。因为完整的 HTML 页面需要在客户端动态拼接而成，所以爬虫无法爬取页面的有效信息。（解决方案：利用 Vue、React 等前端框架的 SSR 技术来解决。）
+	如何选择开发模式
+		企业级网站，主要功能是展示，没有复杂的交互，并且需要良好的 SEO，这时就需要服务器端渲染。
+		后台管理系统，交互性比较强，不需要考虑 SEO，这时就需要前后端分离。
+		有些网站为了兼顾首页的渲染速度和前后端分离的开发效率，会采用首页服务器渲染 + 其他页面前后端分离的开发模式。
+身份认证
+	服务器端渲染开发模式推荐使用 Session 认证机制，前后端分离开发模式推荐使用 JWT 认证机制。
+会话技术
+	会话：一次会话中包含多次请求和响应。客户端首次给服务器发送资源请求时，会话建立；客户端服务器任何一方断开连接时，会话终止。
+	功能：在一次会话范围内的多次请求，相互之间数据可以共享。
+	分类：
+		客户端会话技术：Cookie。
+		服务器端会话技术：Session。存储用户登录状态。
+	express-session 中间件
+		在 Express 项目中安装 express-session 中间件：
+			npm install express-session
+		通过 app.use() 方法注册 express-session 中间件：
+			const session = require('express-session');
+			app.use(session({
+				secret: 'keyboard cat',			// 负责对 session 进行加密的任意字符串
+				resave: false,				// 固定写法
+				saveUninitialized: true			// 固定写法
+			}))；
+			注意：当 express-session 中间件挂载成功后，req 对象中便有了 session 属性。
+		向 session 中存数据
+			可通过 req.session 来访问 session 对象，来存储用户的相关信息。
+		向 session 中取数据
+			可通过 req.session 来访问 session 对象，来获取用户的相关信息。
+		清空 session 数据
+			用户退出登录的时候可通过 req.session.destroy() 方法来清空用户的相关信息。
+	会话技术的局限性
+		Cookie 默认不支持跨域访问，当前端跨域请求后端接口的时候，需要做很多额外的配置，才能实现跨域。
+		注意：当前端请求后端接口不存在跨域问题的时候，推荐使用 Session 身份认证机制；当前端请求后端接口存在跨域问题的时候，推荐使用 JWT 身份认证机制。
+JWT
+	JWT 全称 JSON Web Token，是目前最流行的跨域认证解决方案。
+	组成：
+		JWT 通常由三部分组成，分别是：Header（头部）、Payload（有效荷载）、Signature（签名）。三者之间使用英文的点号链接。
+		Payload 存储的是真正的用户信息，它是用户信息经过加密之后生成的字符串；Header 和 Signature 是安全性相关的部分，只是为了保证 JWT 的安全性。
+	使用方式
+		服务器返回给客户端的 JWT 信息通常存储在浏览器的 LocalStorage 或 SessionStorage 中，此后客户端每次和浏览器通信，都要携带上这个 JWT 字符串，从而进行身份认证。
+		推荐的做法是把 JWT 信息放在 HTTP 请求头的 Authorization 字段中，传递给服务器。
+	Express 项目中使用 JWT
+		1、在 Express 项目中安装相关中间件；
+			npm install jsonwebtoken express-jwt
+			其中：jsonwebtoken 包用于生成 JWT 字符串，express-jwt 包用于将 JWT 字符串解析还原成 JSON 对象。
+		2、导入 jsonwebtoken express-jwt 包；
+			const jwt = require('jsonwebtoken');
+			const expressJWT = require('express-jwt');
+		3、定义 secret 密钥；
+			const secretKey = 'keyboard cat';
+			注意：secret 密钥是用于对 JWT 进行加解密的，它可以是任意字符串。
+		4、用户登录成功后，服务器生成 JWT 字符串，并在接口响应中将其返回给客户端；
+			const tokenStr = jwt.sign({ /*用户信息对象*/ }, secretKey, { expiresIn: '30s' });
+				expiresIn：tokenStr 的有效时间。
+			注意：实际项目中，建议 tokenStr 中的加密信息包含用户名和用户的登录状态等信息，而不要包含用户的密码信息，这样可以防止用户的密码被泄露。
+		5、在服务器挂载 express-jwt 中间件，来对客户端发来的请求进行身份鉴权；
+			app.use(expressJWT({ secret: secretKey }.unless({ path: [/^\/api\//] })));
+				expressJWT({ secret: secretKey }：用来解析 tokenStr 的中间件；
+				.unless({ path: [/^\/api\//] })：用来指定哪些接口不需要进行身份鉴权。
+			注意：如果请求的权限验证得到通过，则 req 对象上就会被挂载一个 user 对象，这个对象是用户登录时被 jwt 加密的用户登录信息。
+		6、使用 req.user 来获取用户的登录信息；
+		7、捕获解析 JWT 失败后产生的异常。
+			app.use((err, req, res, next) => {
+				if(err.name === 'UhauthorizedError') {
+					return res.send({ status: 401, message: '无效的 token。' })
+				}
+				// 其它异常的处理。
+				......
+			});
+
+
+
+
+
+
+
+

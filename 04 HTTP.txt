@@ -443,12 +443,12 @@ Axios
 		封装 JSONP
 			1、定义一个 success 回调函数；
 				<script>
-					function success(data) {
+					function jQueryxxx(data) {
 						console.log(data);
 					}
 				</script>
 			2、通过 <script> 标签，请求数据接口。
-				<script src="URL?callback=success&params=value"></script>
+				<script src="URL?callback=jQueryxxx&params=value"></script>
 		经 jQuery 封装后的 JSONP
 			jQuery 提供 的 $.ajax() 函数也可以发起 JSONP 数据请求。
 			$.ajax({
@@ -459,7 +459,8 @@ Axios
 				// 回调函数的名称，默认值为 jQueryxxx 格式。
 				jsonpCallback: 'abc',
 				success: function(res) {
-					console.log(res);
+					// res 就是 'jQueryxxx(params)'。params 就是客户端需要的 data 数据。
+					res;
 				}
 			});
 			默认情况下，使用 jQuery 发起 JSONP 请求时，会自动携带一个 callback=jQueryxxx 的函数，jQueryxxx 是随机生成的一个回调函数名称。

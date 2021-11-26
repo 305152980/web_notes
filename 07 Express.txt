@@ -229,34 +229,49 @@ Express 中间件
 				2、当请求体数据接收完毕后，会自动触发 req 对象的 end 事件，因此我们可以在 req 对象的 end 事件中，拿到并处理完整的请求体数据。
 				3、Node.js 内置了一个 querystring 模块，专门用来处理查询字符串。通过这个模块提供的 parse() 方法，可以将查询字符串解析为对象的格式。
 Express 接口
-	路由模块代码
-		// apiRouter.js
-		const express = require('express');
-		const router = express.Router();
-		router.get('请求 URL', function(req, res) {
-			const query = req.query;
-			res.send({
-				status: 0,
-				msg: 'GET 请求成功！',
-				data: query
+	代码示例
+		路由模块代码
+			// apiRouter.js
+			const express = require('express');
+			const router = express.Router();
+			router.get('请求 URL', function(req, res) {
+				const query = req.query;
+				res.send({
+					status: 0,
+					msg: 'GET 请求成功！',
+					data: query
+				});
 			});
-		});
-		router.post('请求 URL', function(req, res) {
-			const body = req.body;
-			res.send({
-				status: 0,
-				msg: 'POST 请求成功！',
-				data: body
+			router.post('请求 URL', function(req, res) {
+				const body = req.body;
+				res.send({
+					status: 0,
+					msg: 'POST 请求成功！',
+					data: body
+				});
 			});
-		});
-		module.exports = router;
-	服务器模块代码
-		// apiExpress.js
-		const express = require('express');
-		const router = require('./apiRouter.js');
-		const app = express();
-		app.use(express.urlencoded({ extended: false }));
-		app.use('路径前缀', router);	
-		app.listen(8080, () => {
-			console.log('Express server running at http://127.0.0.1');
-		});
+			module.exports = router;
+		服务器模块代码
+			// apiExpress.js
+			const express = require('express');
+			const router = require('./apiRouter.js');
+			const app = express();
+			app.use(express.urlencoded({ extended: false }));
+			app.use('路径前缀', router);	
+			app.listen(8080, () => {
+				console.log('Express server running at http://127.0.0.1');
+			});
+CORS 中间件
+	CORS 由一系列 HTTP 响应头组成，这些 HTTP 响应头决定了浏览器是否阻止前端 JS 跨域获取资源。
+	使用步骤：
+		1、运行 npm install cors 命令安装中间件；
+		2、使用 const cors = require('cors'); 方法导入中间件；
+		3、在路由之前使用 app.use(cors()) 方法注册中间件，解决跨域问题。
+	注意事项：
+		1、CORS 主要在服务器进行配置，客户端无需做任何额外的配置；
+		2、CORS 在浏览器中有兼容性，只有支持 XHRLevel2 的浏览器。（例如：IE10+、Chrome4+、FireFox3.5+ 等）
+	CORS 跨域资源共享详解见：http://www.ruanyifeng.com/blog/2016/04/cors.html	
+JSONP 接口注意事项
+	如果 Express 项目中配置了 CORS 跨域资源共享，为了防止冲突，必须在 CORS 中间件之前声明 JSONP 接口。因为 Express 项目中，配置了 CORS 中间件之后挂载的接口，都会被处理成是开启了 CORS 资源共享的接口。
+	
+	
