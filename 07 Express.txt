@@ -262,15 +262,26 @@ Express 接口
 				console.log('Express server running at http://127.0.0.1');
 			});
 CORS 中间件
-	CORS 由一系列 HTTP 响应头组成，这些 HTTP 响应头决定了浏览器是否阻止前端 JS 跨域获取资源。
+	CORS 由一系列 HTTP 响应头字段组成，这些 HTTP 响应头字段决定了浏览器是否阻止前端 JS 跨域获取资源。
 	使用步骤：
 		1、运行 npm install cors 命令安装中间件；
 		2、使用 const cors = require('cors'); 方法导入中间件；
 		3、在路由之前使用 app.use(cors()) 方法注册中间件，解决跨域问题。
-	注意事项：
-		1、CORS 主要在服务器进行配置，客户端无需做任何额外的配置；
-		2、CORS 在浏览器中有兼容性，只有支持 XHRLevel2 的浏览器。（例如：IE10+、Chrome4+、FireFox3.5+ 等）
-	CORS 跨域资源共享详解见：http://www.ruanyifeng.com/blog/2016/04/cors.html	
+		注意事项：
+			1、CORS 主要在服务器进行配置，客户端无需做任何额外的配置；
+			2、CORS 在浏览器中有兼容性，只有支持 XHRLevel2 的浏览器；（例如：IE10+、Chrome4+、FireFox3.5+ 等）
+			3、CORS 跨域资源共享详解见：http://www.ruanyifeng.com/blog/2016/04/cors.html 。
+	Access-Control-Allow-Origin
+		服务器可通过该字段的设置，告诉客户端浏览器，可以允许哪些外域 URL 跨域请求资源。
+		res.setHeader('Access-Control-Allow-Origin', 'URL' | '*');
+			URL：表示允许指定的外域 URL 可以跨域请求资源;
+			*：表示允许所有外域请求都可以跨域请求资源。
+	Access-Control-Request-Headers
+		服务器可通过该字段的设置，告诉客户端浏览器，此响应头部中包含了普通响应头字段之外的特殊响应头字段。
+		res.setHeader('Access-Control-Request-Headers', 'Content-Type, X-Custom-Header');
+	Access-Control-Request-Method
+		默认情况下，CORS 仅支持客户端发起的 GET、POST、HEAD 跨域请求，如果客户端有发起其他类型跨域请求的需求，则需要在服务器通过该字段进行设置。
+		res.setHeader('Access-Control-Request-Method', 'GET, POST, DELETE, HEAD' | '*');
 JSONP 接口注意事项
 	如果 Express 项目中配置了 CORS 跨域资源共享，为了防止冲突，必须在 CORS 中间件之前声明 JSONP 接口。因为 Express 项目中，配置了 CORS 中间件之后挂载的接口，都会被处理成是开启了 CORS 资源共享的接口。
 	

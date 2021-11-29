@@ -115,7 +115,7 @@ Node.js 模块化规范
 	在项目中安装最新版本的包
 		npm install 包的完整名称
 		npm i 包的完整名称
-		注意：初次安装包完成后，在项目文件夹下会生成一个 mode_modules 文件夹和 package_lock.json 配置文件。
+		注意：初次安装包完成后，在项目文件夹下会生成一个 mode_modules 文件夹和 package-lock.json 配置文件。
 			mode_modules：用来存放所有已安装到项目中的包，require() 导入第三方包的时候，就是从这个目录查找并加载包的；
 			package_lock.json：用来记录 mode_modules 目录下的每一个包的下载信息，例如：包的名字、版本号、下载地址等。
 	在项目中安装指定版本的包
