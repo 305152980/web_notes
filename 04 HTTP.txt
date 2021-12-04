@@ -136,7 +136,7 @@ Ajax 优化 Form 表单
 							var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
 							var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
 							var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-							return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss
+							return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss;
 						}
 
 				调用
@@ -151,7 +151,7 @@ Ajax 优化 Form 表单
 			while((pattResult = pattern.exec(str))) {
 				str = str.replace(pattResult[0], data[pattResult[1]])
 			}
-			return str
+			return str;
 		}
 Ajax 底层原理
 	XHR
@@ -222,7 +222,7 @@ Ajax 底层原理
 			for (let k in data) {
 				arr.push(k + '=' + data[k])
 			}
-			return arr.join('&')
+			return arr.join('&');
 		}
 		function myAjax(options) {
 			var xhr = new XMLHttpRequest();
@@ -301,7 +301,7 @@ XHL Level2
 				// 3、获取到选择的文件列表。
 				var files = document.querySelector('#file').files;
 				if(files.length <= 0) {
-					return alert('请选择要上传的文件！')
+					return alert('请选择要上传的文件！');
 				}
 				// 后续业务逻辑
 				...
@@ -368,7 +368,7 @@ XHL Level2
 			var files = $("#files")[0].files;
 			// 2、判断是否选中了文件。
 			if(files.length <= 0) {
-				return alert('请选择文件后再上传！')
+				return alert('请选择文件后再上传！');
 			}
 			// 3、创建 FormData 对象。
 			var fd = new FormData(form);

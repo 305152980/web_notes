@@ -54,12 +54,12 @@ Promise
 			return new Promise(function(resolve, reject) {
 				fs.readFile(fpath, 'utf8', (err, dataStr) => {
 					if(err) {
-						return reject(err)
+						return reject(err);
 					} else {
 						resolve(dataStr);
 					}
 				})
-			})
+			});
 		}
 		getFile(fpath).then(result => {}, error => {})
 		getFile(fpath).then(result => {}).catch(error => {})

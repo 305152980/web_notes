@@ -78,7 +78,7 @@ JWT
 		7、捕获解析 JWT 失败后产生的异常。
 			app.use((err, req, res, next) => {
 				if(err.name === 'UhauthorizedError') {
-					return res.send({ status: 401, message: '无效的 token。' })
+					return res.send({ status: 401, message: '无效的 token。' });
 				}
 				// 其它异常的处理。
 				......
