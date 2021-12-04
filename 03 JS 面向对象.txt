@@ -412,7 +412,7 @@ ES6 新增的语法
 			2、模板字符串可以换行；
 			3、在模板字符串中可以调用函数。
 				const sayHello = function() {
-					return 'hello, my name is zhangsan.'	
+					return 'hello, my name is zhangsan.';	
 				}
 				let greet = `${sayHello()}`;
 	Set 数据结构
