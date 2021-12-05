@@ -15,7 +15,7 @@ Vue 简介
 			2、vite（npm 全局包：一键生成工程化的 Vue 项目 - 小而巧）
 			3、vue-devtools（浏览器插件：辅助调试的工具）
 			4、vetur（vscode 插件：提供语法高亮和智能提示）
-	 Vue 的特性
+	Vue 的特性
 		Vue 框架的特性，主要体现在如下两方面：1、数据驱动视图；2、双向数据绑定。
 		数据驱动视图
 			在使用了 Vue 的页面中，Vue 会监听数据的变化，从而自动重新渲染页面的结构。
@@ -24,14 +24,14 @@ Vue 简介
 		双向数据绑定
 			在填写表单时，双向数据绑定可以辅助开发者在不操作 DOM 的前提下，自动把用户填写的内容同步到数据源中。
 			好处：开发者不再需要手动操作 DOM 元素，来获取表单元素最新的值。
-	 MVVM
+	MVVM
 		MVVM 是 Vue 实现数据驱动视图和双向数据绑定的核心原理。它把每个 HTML 页面都拆分成了如下三个部分：
 			1、View 表示当前页面所渲染的 DOM 结构；
 			2、Model 表示当前页面渲染时所依赖的数据源；
 			3、ViewModel 表示 vue 的实例，它是 MVVM 的核心。
 		ViewModel 作为 MVVM 的核心，是它把当前页面的数据源（Model）和页面的结构（View）连接在了一起。
 		当数据源发生变化时，会被 ViewModel 监听到，ViewModel 会根据最新的数据源自动更新页面的结构；当表单元素的值发生变化时，也会被 ViewModel 监听到，ViewModel 会把变化过后最新的值自动同步到 Model 数据源中。
-	 Vue 的版本
+	Vue 的版本
 		当前，Vue 共有 3 个大版本，其中：
 			2.x 版本的 Vue 是目前企业级项目开发中的主流版本。
 			3.x 版本的 Vue 于 2020-09-19 发布，生态还不完善，尚未在企业级项目开发中普及和推广。
@@ -260,13 +260,14 @@ Vue 的过滤器
 			Vue.filter('capitalize', (str) => {
 				return str.charAt(0).toUpperCase() + str.slice(1);
 			})
+		注意：如果全局过滤器与私有过滤器重名，则遵循就近原则。
 	连续调用多个过滤器
 		过滤器可以串联地进行调用，例如：
 			<p :title="info | capitalize">{{message | capitalize | maxLength}}</p>
 	过滤器传参
 		过滤器的本质是 JS 函数，因此可以接收参数，格式如下：
 			<p :title="info | capitalize">{{message | capitalize | maxLength(3)}}</p>
-			Vue.filter('maxLength', (str, len = 10) => {
+			Vue.filter('maxLength', (str, len = 10) => {		// 10 为 len 的默认值。
 				if(str.length <= len) {
 					return str;
 				} else {
@@ -276,4 +277,184 @@ Vue 的过滤器
 	过滤器的兼容性
 		过滤器仅在 Vue2.x 和 Vue1.x 中受支持，在 Vue3.x 的版本中剔除了过滤器相关的功能。
 		在企业级项目开发中，如果使用的是 Vue2.x 版本，则依然可以使用过滤器相关的功能。如果项目已经升级到了 Vue3.x 版本，官方建议使用计算属性或方法代替被剔除的过滤器功能。
-	
+SPA 单页面应用项目
+	什么是单页面应用程序？
+	 	单页面应用程序（英文名：Single Page Application）简称 SPA，顾名思义，指的是一个 Web 网站中只有唯一的一个 HTML 页面，所有的功能与交互都在这唯一的一个页面内完成。
+	单页面应用程序的特点
+		单页面应用程序将所有的功能局限于一个 Web 页面中，仅在该 Web 页面初始化时加载相应的资源（ HTML、CSS 和 JS）。
+		一旦页面加载完成了，SPA 不会因为用户的操作而进行页面的重新加载或跳转。而是利用 JS 动态地变换 HTML 的内容，从而实现页面与用户的交互。
+	单页面应用程序的优点
+		SPA 单页面应用程序最显著的 3 个优点如下：
+			1、良好的交互体验；
+				单页应用内容的改变不需要重新加载整个页面。
+				获取数据也是通过 Ajax 异步获取。
+				没有页面之间的跳转，不会出现“白屏现象”。
+			2、良好的前后端工作分离模式；
+				后端专注于提供 API 接口，更易实现 API 接口的复用。
+				前端专注于页面的渲染，更利于前端工程化的发展。
+			3、减轻服务器的压力。
+				服务器只提供数据，不负责页面的合成与逻辑的处理，吞吐能力会提高几倍。
+	单页面应用程序的缺点
+		任何一种技术都有自己的局限性，对于 SPA 单页面应用程序来说，主要的缺点有如下 2 个：
+			1、首屏加载慢；
+				解决方案：路由懒加载、代码压缩、CDN 加速、网络传输压缩。
+			2、不利于 SEO。
+				解决方案：SSR 服务器端渲染。
+	如何快速创建 Vue 的 SPA 项目
+		Vue 官方提供了两种快速创建工程化的 SPA 项目的方式：
+			1、基于 vite 创建 SPA 项目；
+			2、基于 vue-cli 创建 SPA 项目。
+		两者对比：
+							vite			vue-cli
+			支持的 vue 版本			仅支持 vue3.x		支持 3.x 和 2.x
+			是否基于 webpack		否			是
+			运行速度			快			较慢
+			功能完整度			小而巧（逐渐完善）	大而全
+			是否建议在企业级开发中使用	目前不建议		建议在企业级开发中使用
+	vite 的基本使用
+		 创建 vite 的项目
+		 	在命令行，按照顺序执行如下命令，即可基于 vite 创建 Vue3.x 的工程化项目：
+				npm init vite-app 项目名
+				cd 项目名
+				npm install
+				npm run dev
+		梳理项目的结构
+			使用 vite 创建的项目结构如下：
+				node_modules 目录用来存放第三方依赖包。
+				public 是公共的静态资源目录。
+				src 是项目的源代码目录（程序员写的所有代码都要放在此目录下）。
+				.gitignore 是 Git 的忽略文件。
+				index.html 是 SPA 单页面应用程序中唯一的 HTML 页面。
+				package.json 是项目的包管理配置文件。
+			在 src 这个项目源代码目录之下，包含了如下的文件和文件夹：
+				assets 目录用来存放项目中所有的静态资源文件（css、fonts等）。
+				components 目录用来存放项目中所有的自定义组件。
+				App.vue 是项目的根组件。
+				index.css 是项目的全局样式表文件。
+				main.js 是整个项目的打包入口文件。
+		vite 项目的运行流程
+			在工程化的项目中，Vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。其中：
+				1、App.vue 用来编写待渲染的模板结构；
+				2、index.html 中需要预留一个 el 区域；
+				3、main.js 把 App.vue 渲染到了 index.html 所预留的区域中。
+Vue 的组件
+	什么是组件化开发？
+		组件化开发指的是：根据封装的思想，把页面上可重用的部分封装为组件，从而方便项目的开发和维护。
+	组件化开发的好处
+		前端组件化开发的好处主要体现在以下两方面：
+			1、提高了前端代码的复用性和灵活性；
+			2、提升了开发效率和后期的可维护性。
+	Vue 中的组件化开发
+		Vue 是一个完全支持组件化开发的框架。Vue 中规定组件的后缀名是 .vue。之前接触到的 App.vue 文件本质上就是一个 Vue 的组件。
+	Vue 组件组成结构
+		每个 .vue 组件都由 3 部分构成，分别是：
+			template 组件的模板结构。
+			script 组件的 JS 行为。
+			style 组件的样式。
+		其中，每个组件中必须包含 template 模板结构，而 script 行为和 style 样式是可选的组成部分。
+		组件的 <template> 节点
+			Vue 规定：每个组件对应的模板结构，需要定义到 <template> 节点中。
+			注意：<template> 是 Vue 提供的容器标签，只起到包裹性质的作用，它不会被渲染为真正的 DOM 元素。
+			在 template 中使用指令
+				在组件的 <template> 节点中，支持使用前面所学的指令语法，来辅助开发者渲染当前组件的 DOM 结构。
+			在 template 中定义根节点
+				在 Vue2.x 的版本中，<template> 节点内的 DOM 结构仅支持单个根节点；但是，在 Vue3.x 的版本中，<template> 中支持定义多个根节点。
+		组件的 <script> 节点
+			Vue 规定：组件内的 <script> 节点是可选的，开发者可以在 <script> 节点中封装组件的 JS 业务逻辑。<script> 节点的基本结构如下：
+				<script>
+					// 今后，组件相关的 data 数据、methods 方法等，都需要定义到 export default 所导出的对象中。
+					export default {}
+				</script>
+			script 中的 name 节点
+				可以通过 name 节点为当前组件定义一个名称，名称采用大驼峰命名法。
+				在使用 vue-devtools 进行项目调试的时候，自定义的组件名称可以清晰的区分每个组件。
+			script 中的 data 节点
+				Vue 组件渲染期间需要用到的数据，必须定义到 data 节点中。
+				注意：Vue 规定：组件中的 data 是一个 return 页面数据的函数，data 不能直接指向一个数据对象。
+			script 中的 methods 节点
+				组件中的事件处理函数，必须定义到 methods 节点中。
+		组件的 <style> 节点
+			Vue 规定：组件内的 <style> 节点是可选的，开发者可以在 <style> 节点中编写样式美化当前组件的 UI 结构。
+			<style> 标签中的 lang 属性是可选的，它表示所使用的样式语言。默认只支持普通的 css 语法，可选值还有 less、scss 等。
+			让 <style> 节点支持 less 语法
+				如果希望使用 less 语法编写组件的 style 样式，可以按照如下两个步骤进行配置：
+					1、运行 npm install less -D 命令安装依赖包，从而提供 less 语法的编译支持；
+					2、在 <style> 标签上添加 lang="less" 属性，即可使用 less 语法编写组件的样式。
+	组件的基本使用
+		组件的注册
+			组件之间可以进行相互的引用，前提是被引用的组件必须先被注册。
+		注册组件的两种方式
+			Vue 中注册组件的方式分为“全局注册”和“局部注册”两种，其中：
+				1、被全局注册的组件，可以在全局任何组件内使用；
+				2、被局部注册的组件，只能在当前注册范围内使用。
+		全局注册组件
+			在 main.js 文件中对组件进行全局注册。
+				import { createApp } from "vue";
+				import App from "./App.vue";
+				// 1、导入 Swiper 组件。
+				import Swiper from "./components/MySwiper.js";
+				const app = createApp(App);
+				// 2、调用 app 实例的 component() 方法，在全局注册 my-swiper 组件。
+				app.component('my-swiper', Swiper);
+				app.mount("#app");
+		局部注册组件
+			在引用该组件的文件中对组件进行局部注册。
+				<script>
+					import Search from "./components/MySearch.js";
+					export default {
+						components: {
+							'my-Search': Search
+						}
+					}
+				</script>
+		使用被注册的组件
+			被注册的组件可以直接在模板结构中以标签的形式进行使用，例如：
+				<template>
+					<my-swiper></my-swiper>
+				</template>
+		全局注册和局部注册的区别
+			1、被全局注册的组件，可以在全局任何组件内使用。如果某些组件在项目中的使用频率很高，推荐进行全局注册。
+			2、被局部注册的组件，只能在当前注册范围内使用。如果某些组件只在特定的情况下被用到，推荐进行局部注册。
+		组件注册时名称的写法
+			在进行组件的注册时，定义组件注册名称的方式有两种：
+				1、使用 kebab-case 命名法（俗称短横线命名法。例如：my-swiper 和 my-search）
+				2、使用 PascalCase 命名法（俗称帕斯卡命名法或大驼峰命名法。例如：MySwiper 和 MySearch）
+			短横线命名法的特点：必须严格按照短横线名称进行使用。
+			帕斯卡命名法的特点：既可以按照帕斯卡名称进行使用，又可以转化为短横线名称进行使用。
+			注意：在实际开发中，推荐使用帕斯卡命名法，因为它的适用性更强。
+		组件之间的样式冲突问题
+			默认情况下，写在 .vue 组件中的样式会全局生效，因此很容易造成多个组件之间的样式冲突问题。导致组件之间样式冲突的根本原因是：
+				1、单页面应用程序中，所有组件的 DOM 结构，都是基于唯一的 index.html 页面进行呈现的；
+				2、每个组件中的样式，都会影响整个 index.html 页面中的 DOM 元素。
+			<style> 节点的 scoped 属性
+				Vue 为 <style> 节点提供了 scoped 属性，从而防止组件之间的样式冲突问题。
+				<style> 节点的 scoped 属性，用来自动为本组件的每个 DOM 元素分配唯一的“自定义属性”，并自动为当前组件的 style 样式应用这个自定义属性，这样就防止了组件的样式冲突问题。
+					<style lang="less" scoped>
+						.title {			// 加上 scoped 之后，生成的选择器格式为 .title[data-v-052242de]。
+							color: blue;
+						}
+					</style>
+			/deep/ 样式穿透
+				如果给当前组件的 <style> 节点添加了 scoped 属性，又想让当前组件内的部分样式对其子组件生效，那么可以使用 /deep/ 深度选择器。
+					<style lang="less" scoped>
+						.title {			// 不加 /deep/ 时，生成的选择器格式为 .title[data-v-052242de]。
+							color: blue;
+						}
+						/deep/ .title {			// Vue2.x。加了 /deep/ 时，生成的选择器格式为 [data-v-052242de] .title。
+							color: blue;
+						}
+						:deep(.title) {			// Vue3.x
+							color: blue;
+						}
+					</style>
+
+
+
+
+
+
+
+
+					
+			
+				
