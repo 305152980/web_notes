@@ -1,0 +1,119 @@
+Web 开发模式
+	服务端渲染模式
+		服务器发送给客户端的 HTML 页面是在服务器通过字符串拼接生成的，因此客户端不需要额外使用 Ajax 异步请求页面的数据。
+		优点：
+			1、前端耗时少。浏览器只负责渲染页面。
+			2、有利于 SEO。一次性渲染完整的 HTML 页面更有利于爬虫爬取信息。
+		缺点：
+			1、占用服务器资源。如果请求过多会对服务器造成一定的访问压力。
+			2、开发效率低。都是服务器在生成 HTML 页面，无法进行前后端分工合作。
+	前后端分离模式
+		后端负责提供 API 接口响应数据；前端使用 Ajax 技术异步获取数据，拼接生成页面后供浏览器渲染。
+		优点：
+			1、开发效率高。前后端分离开发效率高。
+			2、用户体验好。Ajax 技术的应用，轻松实现了页面的局部刷新，提高了用户的使用体验。
+			3、服务器的访问压力小。服务器只负责提供数据，不负责拼接页面。
+		缺点：
+			不利于 SEO。解决方案：利用 Vue、React 等前端框架的 SSR 技术来解决。
+	如何选择开发模式
+		企业级网站，主要功能是展示，没有复杂的交互，并且需要良好的 SEO，这时就需要服务端渲染模式。
+		后台管理系统，交互性比较强，不需要考虑 SEO，这时就需要前后端分离模式。
+		有些网站为了兼顾首页的渲染速度和前后端分离的开发效率会采用 首页服务器渲染 + 其他页面前后端分离 的开发模式。
+ES6 模块化规范
+	ES6 模块化规范是服务器端和浏览器端通用的模块化开发规范。
+	语法规范要求：
+		1、每个 JS 文件都是一个独立的模块；
+		2、导入其它模块成员使用 import 关键字；
+		3、向外共享模块成员使用 export 关键字。
+	在 Node.js 中使用 ES6 模块化规范
+		在项目的 package.json 文件中添加 "type": "module"。如果不添加的话，默认遵循 common.js 模块化规范。
+	ES6 模块化基本语法
+		默认导出与导入
+			export default { 默认导出的成员1, 默认导出的成员2 }
+			import 接收对象的名称 from '模块标识符'
+			注意：每个模块中只允许使用一次 export default，否则会报错。
+		按需导出与导入
+			export 按需导出的成员1, 按需导出的成员2
+			import { 按需导出成员1 as 别名1, 按需导出成员2 as 别名2 }  from '模块标识符'
+			注意：
+				1、每个模块中可以使用多次按需导出；
+				2、按需导入的成员名称必须和按需导出的成员名称保持一致；
+				3、按需导入时可以使用 as 关键字进行命别名；
+				4、按需导入可以和默认导入一起使用。
+		直接导入并执行模块中的代码
+			import '模块标识符'
+Promise
+	Promise 的基本概念：
+		1、Promise 是一个构造函数，它的每个实例对象，都代表一个异步操作；
+		2、Promise.prototype 上有一个 .then() 方法，用来预先指定异步操作结束后的回调函数；
+			.then(result => {}, error => {})		// 成功的回调函数必须有，失败的回调函数可以没有。
+		3、如果上一个 .then() 方法中返回了一个新的 Promise 实例对象，则可以通过链式调用执行下一个 .then() 方法；
+			.then(result => {}).then(result => {})
+		4、在 Promise 的链式操作中，如果发生了错误，可以使用 Promise.prototype.catch() 方法进行统一捕获和处理；
+			.then(result => {}).then(result => {}).catch(error => {})
+		5、如果不希望前面的错误导致后续的 .then() 方法无法执行，则可以将 .catch() 方法的提前调用。 
+			.then(result => {}).catch(error => {}).then(result => {})
+	Promise.all() 方法
+		Promise.all() 方法会发起并行的 Promise 异步操作，等所有的异步操作完全结束后才会执行下一步的 .then() 方法。（等待机制）
+		const promiseArr = [
+			thenFs.readFile('', 'utf8'),
+			thenFs.readFile('', 'utf8'),
+			thenFs.readFile('', 'utf8')
+		];
+		Promise.all(promiseArr).then(result => {});
+		注意：这个方法内的几个异步操作有没有执行顺序的规定还不知道。
+	Promise.race() 方法
+		Promise.race() 方法会发起并行的 Promise 异步操作，只要任何一个异步操作完成后就会执行下一步的 .then() 方法。（赛跑机制）
+		const promiseArr = [
+			thenFs.readFile('', 'utf8'),
+			thenFs.readFile('', 'utf8'),
+			thenFs.readFile('', 'utf8')
+		];
+		Promise.race(promiseArr).then(result => {});
+	基于 Promise 封装异步读文件的方法
+		function getFile(fpath) {
+			return new Promise(function(resolve, reject) {
+				fs.readFile(fpath, 'utf8', (err, dataStr) => {
+					if(err) {
+						return reject(err);
+					} else {
+						resolve(dataStr);
+					}
+				})
+			});
+		}
+		getFile(fpath).then(result => {}, error => {})
+		getFile(fpath).then(result => {}).catch(error => {})
+		注意：
+			1、result => {} 实参传递给了 resolve 形参，error => {} 实参传递给了 reject；
+			2、resolve 和 reject 函数需要额外定义。
+async 和 await
+	async 和 await 可以简化 Promise 异步操作。
+	async function getAllFile() {
+		const r1 = await thenFs.readFile('', 'utf8');
+		const r2 = await thenFs.readFile('', 'utf8');
+		const r3 = await thenFs.readFile('', 'utf8');
+	}
+	使用注意事项：
+		1、定义函数时，如果在函数体中使用了 await，则 function 必须被 async 修饰；
+		2、在 async 方法中，第一个 await 之前的代码会被同步执行，第一个 await 之后的代码会被异步执行。
+EventLoop
+	JS 是一门单线程执行的编程语言。如果有一个任务非常耗时，这样就很容易导致程序的假死问题。
+	为了防止某个耗时任务导致程序假死的问题，JS 把待执行的任务分为了两类：同步任务和异步任务。
+	同步任务；
+		又叫做非耗时任务，指的是在主线程上排队执行的那些任务。只有前一个任务执行完毕，才能执行后一个任务。
+	异步任务。
+		又叫做耗时任务，异步任务由 JS 委托给宿主环境进行执行。当异步任务执行完成后，会通知 JS 主线程执行异步任务的回调函数。
+宏任务和微任务
+	JS 把异步任务又做了进一步的划分。异步任务分为两类，分别是：宏任务和微任务。
+	宏任务
+		1、异步 Ajax 请求；
+		2、setTimeout、setInterval；
+		3、文件操作；
+		4、其它宏任务。
+	微任务
+		1、Promise.then、.catch 和 .finally；
+		2、process.nextTick；
+		3、其它微任务。
+	异步任务执行机制：
+		每一个宏任务执行完之后，都会检查是否存在待执行的微任务；如果有，则执行完所有的微任务之后，再执行下一个宏任务。
