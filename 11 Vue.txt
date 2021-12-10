@@ -436,6 +436,7 @@ Vue 组件之间的通信
 					props: ['title', 'author']
 				}
 			</script>
+			注意：props 节点中声明的变量是只读的，只能通过 v-bind 指令单向绑定到页面中，不能通过 v-model 指令双向绑定到页面中。
 		未声明的 props 自定义属性
 			如果父组件给子组件传递了未在子组件 props 节点中声明的自定义属性，则这些属性会被忽略，无法被子组件使用。
 		props 自定义属性的命名方式
@@ -539,6 +540,7 @@ Vue 组件之间的通信
 						}
 	父子组件的双向传值
 		v-model 是双向数据绑定指令，当需要使父子组件中的某些数据双向同步时，可以在组件上使用 v-model 指令。
+		本质：父组件通过 props 向子组件传值，子组件通过自定义事件向父组件传值，然后父组件的值再重新更新到子组件中。
 		在组件上使用 v-model 的代码示例，如下：
 			<!-- 父组件中的代码 -->
 			<my-counter v-model:activeNumber="activeNum"></my-counter>
@@ -559,6 +561,54 @@ Vue 组件之间的通信
 							this.$emit('update:activeNumber'[, 子向父的传参]);
 						}
 					}
+			}
+	EventBus 实现各组件间的单向传值
+		1、在项目中运行如下的命令，安装 mitt 依赖包：
+			npm install mitt
+		2、在项目中创建公共的 eventBus 模块。代码示例如下：
+			// 导入 mitt 包。
+			import mitt from 'mitt'
+			// 创建 EventBus 的实例对象。
+			const bus = mitt();
+			// 将 EventBus 的示例对象共享出去。
+			export default bus
+		3、在数据接收方，调用 bus.on('事件名称', 事件处理函数) 方法注册一个自定义事件。代码示例如下：
+			// 导入 eventBus.js 模块，得到共享的 bus 对象。
+			import bus from './eventBus.js'
+			export default {
+				data() { return { count: 0 } },
+				created() {
+					// 调用 bus.on() 方法注册自定义事件，接收数据。
+					bus.on('countChange', count => {
+						this.count = count;
+					});
+				}
+			}
+		4、在数据发送方，调用 bus.emit('事件名称', 要发送的数据) 方法触发自定义事件。代码示例如下：
+			// 导入 eventBus.js 模块，得到共享的 bus 对象。
+			import bus from './eventBus.js'
+			export default {
+				data() { return { count: 0 } },
+				methods: {
+					addCount() {
+						this.count++;
+						// 调用 bus.emit() 方法触发自定义事件，发送数据。
+						bus.emit('countChange', this.count);
+					}
+				}
+			}
+	前后代组件之间的单向传值（祖向孙传值）
+		祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
+			export default {
+				data() { return { color: 'red' } },
+				provide() { return { color: this.color } }
+			}
+		子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
+			<template>
+				<span>颜色：{{ color }}</span>
+			</template>
+			export default {
+				inject: ['color']
 			}
 Vue 的过滤器
 	过滤器（Filters）常用于文本的格式化。主要使用在两个地方：插值表达式和 v-bind 属性绑定。
@@ -620,8 +670,85 @@ Vue 的计算属性
 		4、计算属性必须当做普通属性使用。
 	计算属性 vs 方法
 		相对于方法来说，计算属性会缓存计算的结果，只有计算属性的依赖项发生变化时，才会重新进行运算。因此计算属性的性能更好，更适合用来监听依赖项数据的变化。
+Vue 的侦听器
+	Vue 的 watch 侦听器可以让开发者监听数据的变化。
+	watch 侦听器的基本用法
+		export default {
+			data() {
+			 	return { username: '' }
+			},
+			watch: {
+				username(newVal, oldVal) {
+					// 处理逻辑
+				}
+			}
+		}
+	侦听器的 immediate 属性
+		默认情况下，组件在初次加载完毕后不会调用 watch 侦听器。如果想让 watch 侦听器立即被调用，则需要使用 immediate 属性。代码示例如下：
+			export default {
+				data() {
+				 	return { username: '' }
+				},
+				watch: {
+					username: {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						immediate: true
+					}
+				}
+			}
+	侦听器的 deep 属性
+		watch 侦听器默认情况下无法监听到对象数据属性值的变化，此时需要为watch 侦听器添加 deep 属性。代码示例如下：
+			export default {
+				data() {
+				 	return { 
+						userInfo: { username: '' }
+					}
+				},
+				watch: {
+					userInfo: {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						deep: true
+					}
+				}
+			}
+	对象单个属性的监听
+		如果只想监听对象数据中单个属性值的变化，则可以按照如下方式定义 watch 侦听器：
+			export default {
+				data() {
+				 	return { 
+						userInfo: { username: '' }
+					}
+				},
+				watch: {
+					'userInfo.username': {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						deep: true
+					}
+				}
+			}
+	计算属性 vs 侦听器
+		计算属性侧重于监听多个数据值的变化，并最终计算并返回一个新值。
+		侦听器侧重于监听单个数据值的变化，并执行相应的业务处理，不需要有任何的返回值。
+Vue 组件的生命周期
+	组件的生命周期指的是：组件从创建 -> 运行（渲染） -> 销毁的整个过程。
+	组件的钩子函数
+		Vue 框架为组件内置了不同时刻的生命周期函数，不同的生命周期函数会伴随着组件的运行在相应的周期内自动被调用。例如：
+			生命周期函数	执行时机			所属阶段	执行次数	应用场景
+			beforeCreate	组件在内存中开始被创建之前	创建阶段	唯一 1 次	-
+			created		组件在内存中被创建完毕后	创建阶段	唯一 1 次	发 Ajax 请求数据
+			beforeMount	组件被初次渲染到页面之前	创建阶段	唯一 1 次	-
+			mounted		组件被初次渲染到页面之后	创建阶段	唯一 1 次	操作 DOM 元素
+			beforeUpdate	组件被重新渲染到页面之前	运行阶段	0 次或多次	-
+			updated		组件被重新渲染到页面之后	运行阶段	0 次或多次	-
+			beforeUnmount	组件被销毁之前			销毁阶段	唯一 1 次	-
+			unmounted	组件被销毁之后			销毁阶段	唯一 1 次	-
 	
-
 
 
 

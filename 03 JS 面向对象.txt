@@ -388,6 +388,7 @@ ES6 新增的语法
 		find()
 			作用：用于找出第一个符合条件的数组成员，如果没有找到，那么返回 undefined。
 			let tarItem = arr.find((item, index) => item.id === 2);
+			注意：返回的是只这个对象的地址值，而不是这个对象的拷贝对象。
 		findIndex()
 			作用：用于找到第一个符合条件的数组成员的位置，如果没有找到，那么返回 -1。
 			let index = arr.findIndex((item, index) => item.id === 2);
