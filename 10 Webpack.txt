@@ -94,6 +94,7 @@ Webpack 插件
 		devServer 节点
 			在 webpack.config.js 配置文件中，可以通过 devServer 节点对 webpack-dev-server 插件进行更多的配置。代码示例如下：
 				devServer: {
+					// 该配置只在当前项目的开发调试阶段起作用。
 					open: true,			// 初次打包完成后，自动打开浏览器。
 					host: '127.0.0.1',		// 实时打包所使用的主机地址。
 					port: 80			// 实时打包所使用的端口号。

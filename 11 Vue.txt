@@ -598,18 +598,39 @@ Vue 组件之间的通信
 				}
 			}
 	前后代组件之间的单向传值（祖向孙传值）
-		祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
-			export default {
-				data() { return { color: 'red' } },
-				provide() { return { color: this.color } }
-			}
-		子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
-			<template>
-				<span>颜色：{{ color }}</span>
-			</template>
-			export default {
-				inject: ['color']
-			}
+		非响应式传值（父变子不变）
+			祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
+				export default {
+					data() { return { color: 'red' } },
+					provide() { return { color: this.color } }
+				}
+			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
+				<template>
+					<span>颜色：{{ color }}</span>
+				</template>
+				export default {
+					inject: ['color']
+				}
+		响应式传值（父变子亦变）
+			祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
+				// 从 Vue 中按需导入 computed 函数。
+				import { computed } from 'vue'
+				export default {
+					data() { return { color: 'red' } },
+					// 使用 computed 函数，将共享的数据包装为响应式的数据。
+					provide() { return { color: computed(() => this.color) } }
+				}
+			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
+				<template>
+					<!-- 响应式的数据，必须以 .vaule 的形式进行使用。 -->
+					<span>颜色：{{ color.vaule }}</span>
+				</template>
+				export default {
+					inject: ['color']
+				}
+	vuex 状态管理
+		vuex 是终极的组件之间数据共享的方案。
+		在企业级的 Vue 项目开发中，vuex 可以让组件之间的数据共享变得高效、清晰、易于维护。
 Vue 的过滤器
 	过滤器（Filters）常用于文本的格式化。主要使用在两个地方：插值表达式和 v-bind 属性绑定。
 	过滤器（私有）的使用
@@ -648,7 +669,7 @@ Vue 的过滤器
 	过滤器的兼容性
 		过滤器仅在 Vue2.x 和 Vue1.x 中受支持，在 Vue3.x 的版本中剔除了过滤器相关的功能。
 		在企业级项目开发中，如果使用的是 Vue2.x 版本，则依然可以使用过滤器相关的功能。如果项目已经升级到了 Vue3.x 版本，官方建议使用计算属性代替被剔除的过滤器功能。
-Vue 的计算属性
+Vue 组件的计算属性
 	Vue 的计算属性本质上是  JS 函数，它可以实时监听自身所依赖的 data 数据的变化，并 return 一个计算后的新值供组件渲染 DOM 使用。
 	声明计算属性
 		计算属性需要以函数的形式声明到组件的 computed 节点中。示例代码如下：
@@ -670,7 +691,7 @@ Vue 的计算属性
 		4、计算属性必须当做普通属性使用。
 	计算属性 vs 方法
 		相对于方法来说，计算属性会缓存计算的结果，只有计算属性的依赖项发生变化时，才会重新进行运算。因此计算属性的性能更好，更适合用来监听依赖项数据的变化。
-Vue 的侦听器
+Vue 组件的侦听器
 	Vue 的 watch 侦听器可以让开发者监听数据的变化。
 	watch 侦听器的基本用法
 		export default {
@@ -748,8 +769,325 @@ Vue 组件的生命周期
 			updated		组件被重新渲染到页面之后	运行阶段	0 次或多次	-
 			beforeUnmount	组件被销毁之前			销毁阶段	唯一 1 次	-
 			unmounted	组件被销毁之后			销毁阶段	唯一 1 次	-
-	
-
+Vue 组件的插槽
+	在封装组件时，可以通过 <slot> 标签定义插槽，从而组件的调用者预留内容占位符。示例代码如下：
+		<!-- 封装的组件 -->
+		<template>
+			<!-- 在使用 my-com 组件时，如果组件调用者没有给定要渲染到组件插槽处的内容，则组件插槽处的默认内容会被渲染到组件插槽处的位置。 -->
+			<slot>插槽处默认的内容</slot>
+		</template>
+		<!-- 组件调用者 -->
+		<my-com>
+			<!-- 在使用 my-com 组件时，以下内容会被渲染到组件插槽处的位置。 -->
+			<p>......</p>
+		</my-com>
+	具名插槽
+		如果在封装组件时需要预留多个插槽，则需要为每个插槽指定具体的 name 名称。这种带有具体名称的插槽叫做具名插槽。代码示例如下：
+			<!-- 封装的组件 -->
+			<template>
+				<!-- 没有指定 name 名称的插槽，会有默认的名称叫做 “default”。 -->
+				<slot name="header"></slot>
+				<slot></slot>
+				<slot name="footer"></slot>
+			</template>
+			<!-- 组件调用者 -->
+			<my-com>
+				<!-- 在向具名插槽提供内容的时候，可以在一个 <template> 元素上使用 v-slot 指令，并以指令参数的形式提供其名称。 -->
+				<template v-slot:header>......</template>
+				<template v-slot:default>......</template>
+				<template v-slot:footer>......</template>
+			</my-com>
+		注意：跟 v-on 和 v-bind 一样，v-slot 也有缩写形式，即把参数之前的所有内容 (v-slot:) 替换为字符 #。例如 v-slot:header 可以被重写为 #header。
+	作用域插槽
+		在封装组件的过程中，可以为预留的 <slot> 插槽绑定 props 数据，这种带有 props 数据的插槽叫做作用域插槽。示例代码如下：
+			<!-- 封装的组件 -->
+			<template>
+				<slot :info="infomation"></slot>
+			</template>
+			<!-- 组件调用者 -->
+			<my-com>
+				<!-- 作用域插槽接收 props 数据的方法一 -->
+				<template v-slot:default="scope">{{ scope.info }}</template>
+				<!-- 作用域插槽接收 props 数据的方法二：结构表达式 -->
+				<template v-slot:default="{ info }">{{ info }}</template>
+			</my-com>
+Vue 组件的自定义指令
+	Vue 官方提供了 v-for、v-model、v-if 等常用的内置指令，除此之外 Vue 还允许开发者自定义指令。
+	私有自定义指令
+		在每个 Vue 组件中，可以在 directives 节点下声明私有自定义指令。代码示例如下：
+			<!-- 在使用自定义指令时，需要加上 v- 前缀。 -->
+			<input v-focus />
+			// 声明自定义指令，指令的名字是 focus。
+			directives: {
+				focus: {
+					// 当绑定指令的元素被插入到 DOM 中时，会自动触发 mounted 函数。
+					mounted(el) {
+						// el 是绑定指令的 DOM 元素。
+						el.focus();
+					}
+				}
+			}
+	全局自定义指令
+		全局共享的自定义指令需要通过“单页面应用程序的实例对象”进行声明，示例代码如下：
+			app.directive('focus', {
+				mounted(el) {
+					el.focus();
+				}
+			});
+	updated 函数
+		mounted 函数只在“绑定指令的元素”第一次被插入 DOM 时被调用，updated 函数会在每次 DOM 更新完成后再次被调用。示例代码如下：
+			app.directive('focus', {
+				mounted(el) {
+					el.focus();
+				},
+				updated(el) {
+					el.focus();
+				}
+			});
+		注意：
+			1、在 vue2.x 的项目中使用自定义指令时: mounted 应改为 bind、updated 应改为 update；
+			2、如果 mounted 和 updated 函数中的逻辑完全相同，则自定义指令可以简写成如下格式：
+				app.directive('focus', {
+					(el) => {
+						el.focus();
+					}
+				});
+	自定义指令的参数值
+		在绑定自定义指令时，可以通过“等号”的形式为指令绑定具体的参数值。代码示例如下：
+			<!-- 使用自定义指令。 -->
+			<input v-color="'red'" />
+			// 定义自定义指令。
+			app.directive('color', {
+				(el, binding) => {
+					// binding.value 就是通过“等号”为自定义指令绑定的值。
+					el.style.coor = binding.value;
+				}
+			});
+Vue 路由
+	动态组件
+		Vue 提供了一个内置的 <component> 组件，专门用来实现组件的动态渲染。
+			1、<component> 是组件的占位符；
+			2、通过 is 属性动态指定要渲染的组件名称；
+			3、用法：<component is="要渲染的组件的名称"></component>
+		使用 keep-alive 保持状态
+			默认情况下，切换动态组件时无法保持组件的状态。此时可以使用 Vue 内置的 <keep-alive> 组件来保持动态组件的状态。代码示例如下：
+				<keep-alive>
+					<component is="要渲染的组件的名称"></component>
+				</keep-alive>
+	前端路由的工作方式：
+		1、用户点击了页面上的路由链接；
+		2、导致了 URL 地址栏中的 Hash 值发生了变化；
+		3、前端路由监听了到 Hash 地址的变化；
+		4、前端路由把当前 Hash 地址对应的组件渲染到浏览器中。
+		结论：前端路由指的是 Hash 地址与组件之间的对应关系！
+	实现简易的前端路由：
+		1、导入并注册 MyHome、MyMovie、MyAbout 三个组件；
+		2、通过 <component> 标签的 is 属性，动态切换要显示的组件；
+		3、在组件中声明 3 个 <a> 链接，通过点击不同的 <a> 链接，来切换浏览器地址栏中的 Hash 值；
+		4、在 created 生命周期函数中监听浏览器地址栏中 Hash 值的变化，以此动态切换要展示的组件的名称。
+			created() {
+				window.onhashchange = () => {
+					switch(location.hash) {
+						case '#/home':
+							this.comName = 'my-home';
+							break
+						case '#/movie':
+							this.comName = 'my-movie';
+							break
+						case '#/about':
+							this.comName = 'my-about';
+							break
+					}
+				}
+			}
+	vue-router
+		vue-router 是 vue.js 官方给出的路由解决方案。它只能结合 Vue 项目进行使用，能够轻松的管理 SPA 项目中组件的切换。
+		vue-router 的版本
+			vue-router 目前有 3.x 的版本和 4.x 的版本。其中：vue-router 3.x 只能结合 vue2.x 进行使用；vue-router 4.x 只能结合 vue3.x 进行使用。
+		vue-router 4.x 的基本使用步骤
+			1、在项目中安装 vue-router；
+				npm install vue-router@next -S
+			2、定义需要路由的组件；
+			3、声明路由链接和占位符；
+				<template>
+					<!-- 声明路由组件 -->
+					<router-link to="..."></router-link>
+					<router-link to="..."></router-link>
+					<router-link to="..."></router-link>
+					<!-- 声明路由占位符 -->
+					<router-view></router-view>
+				</template>
+			4、创建路由模块；
+				在项目中创建 router.js 路由模块，在模块中按照如下 4 个步骤创建并获得路由的实例对象：
+					1、从 vue-router 中按需导入两个方法；
+						// createRouter 方法用于创建路由实例对象。
+						// createWebHashHistory 方法用于指定路由的 hash 工作模式。
+						import { createRouter, createWebHashHistory } from 'vue-router'
+					2、导入需要使用路由控制的组件；
+					3、创建路由实例对象；
+						const router = createRouter({
+							history: createWebHashHistory(),
+							routes: []
+						});
+					4、向外共享路由实例对象；
+						export default router
+			5、在 main.js 中导入并挂载路由模块。
+				import router from './router'
+				app.use(router);
+	vue-router 的高级用法
+		路由重定向
+			路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C ，从而展示特定的组件页面。
+			通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向。
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [
+						{ path: '/', redirect: '/login' },
+						{ path: '/login', component: Login, name: 'login' }
+					]
+				});
+		路由高亮
+			可以通过如下的两种方式，将被激活的路由链接进行高亮显示：
+				1、使用默认的高亮 class 类；
+					被激活的路由链接，默认会应用一个叫做 router-link-active 的类名。开发者可以使用此类名选择器，为激活的路由链接设置高亮的样式。
+						// 在全局样式文件中定义此样式。
+						.router-link-active {
+							background-color: red;
+							color: white;
+							font-weight: bold;
+						}
+				2、自定义路由高亮的 class 类。
+					在创建路由的实例对象时，开发者可以基于 linkActiveClass 属性，自定义路由链接被激活时所应用的类名。
+						const router = createRouter({
+							history: createWebHashHistory(),
+							// 默认的路由激活类名会被覆盖。
+							linkActiveClass: 'router-active',
+							routes: []
+						});
+		嵌套路由
+			通过路由实现组件的嵌套展示，叫做嵌套路由，也叫做父子路由。用法如下：
+				1、声明子路由链接和子路由占位符；
+				2、在父路由规则中，通过 children 属性嵌套声明子路由规则。
+					const router = createRouter({
+						history: createWebHashHistory(),
+						routes: [
+							{
+							      path: "/home",
+							      redirect: "/home/users",
+							      component: Home,
+							      name: "home",
+							      children: [
+									{ path: "users", component: Users },
+									{ path: "rights", component: Rights },
+									{ path: "goods", component: Goods }
+							      ]
+							}
+						]
+					});
+			注意：子路由不能以斜线开头，因为开头的斜线代表的是根路径。
+		动态路由匹配
+			动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。在 vue-router 中使用英文的冒号来定义路由的参数项。代码示例如下：
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [{ path: "/users/:id", component: Users, name: "users" }]
+				});
+		动态路由的参数获取
+			$route.params 参数对象
+				通过动态路由匹配方式渲染出来的组件中，可以使用 $route.params 对象访问到动态路由匹配的参数。
+			使用 props 接收路由参数
+				为了简化路由参数的获取方式，vue-router 允许在路由规则中开启 props 传参。代码示例如下：
+					// 在定义路由规则时，声明 props: true 选项。
+					{ path: "/users/:id", component: Users, name: "users" props: true }
+					export default {
+						// 接收路由规则中匹配到的参数。
+						props: ['id']
+					}
+		编程式导航
+			通过调用 API 实现导航的方式，叫做编程式导航；通过点击链接实现导航的方式，叫做声明式导航。
+			this.$router.push('hash 地址')
+				调用 this.$router.push() 方法，可以跳转到指定的 hash 地址，从而展示对应的组件页面。
+			this.$router.go(数值 n)
+				调用 this.$router.go() 方法，可以在浏览历史中进行前进和后退。
+		命名路由
+			通过 name 属性为路由规则定义名称的方式，叫做命名路由。代码示例如下：
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [
+						{ path: '/login', component: Login, name: 'login' }
+					]
+				});
+			注意：命名路由的 name 值不能重复，必须保证唯一性！
+			使用命名路由实现声明式导航
+				为 <router-link> 标签动态绑定 to 属性的值，并通过 name 属性指定要跳转到的路由规则。期间还可以用 params 属性指定跳转期间要携带的路由参数。代码示例如下：
+					<router-link :to="{ name: 'mov', params: { id: 3 } }">go to movie</router-link>
+			使用命名路由实现编程式导航
+				调用 this.$router.push() 方法期间指定一个配置对象，name 是要跳转到的路由规则、params 是携带的路由参数。代码示例如下：
+					this.$router.push({ name: 'mov', params: { id: 3 } });
+	导航守卫
+		导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。可以按照如下的方式定义导航守卫：
+			// 创建路由实例对象。
+			const router = reateRouter({...});
+			// 调用路由实例对象的 beforeEach 函数，声明“全局前置守卫”。
+			router.beforeEach((to, from, next) => {
+				// 判断用户访问的是否为登录页。
+				if (to.path === "/login") return next();
+				// 如果用户访问的不是登录页，则需要用户提供 token 值。
+				const tokenStr = sessionStorage.getItem("token");
+				if (!tokenStr) {
+					next("/login");
+				} else {
+					next();
+				}
+			});
+		注意：
+			1、在守卫方法中如果不声明 next 形参，则默认允许用户访问每一个路由；
+			2、在守卫方法中如果声明了 next 形参，则必须调用 next() 函数，否则不允许用户访问任何一个路由。
+				next()：直接放行；
+				next(false)：强制停留在当前页面；
+				next('URL')：强制跳转到指定页面。	
+Vue 其它高级语法
+	ref 引用
+		每个 Vue 的组件实例上，都包含一个 $refs 对象，里面存储着对应的 DOM 元素或组件的引用。默认情况下，组件的 $refs 指向一个空对象。
+		使用 ref 引用 DOM 元素
+			<!-- 使用 ref 属性，为对应的 DOM 添加引用名称。 -->
+			<h3 ref="myh3">MyRef 组件</h3>
+			<button @click="getRef">获取 $refs 引用</button>
+			methods: {
+				getRef() {
+					// 获取 DOM 元素的引用。
+					console.log(this.$refs.myh3);
+					// 操作 DOM 元素，把文本颜色改为红色。
+					this.$refs.myh3.style.color = 'red';
+				}
+			}
+		使用 ref 引用组件实例
+			<!-- 使用 ref 属性，为对应的组件添加引用名称。 -->
+			<my-counter ref="counterRef"></my-counter>
+			<button @click="getRef">获取 $refs 引用</button>
+			methods: {
+				getRef() {
+					// 通过引用获取组件的实例。
+					console.log(this.$refs.counterRef);
+					// 调用组件上的 methods 方法。
+					this.$refs.counterRef.methods.add();
+				}
+			}
+		让文本框自动获得焦点
+			<input ref="ipt" name="name"></input>
+			this.$refs.ipt.focus();
+	this.$nextTick(cb)
+		组件的 $nextTick(cb) 方法，会把 cb 回调函数推迟到下一次 DOM 更新之后执行。通俗的理解是：等组件的 DOM 异步重新渲染完成后，再执行 cb 回调函数。
+	Vue3 中全局配置 Axios
+		在实际项目开发中，几乎每个组件中都会用到 Axios 发起数据请求。此时会遇到如下两个问题：
+			1、每个组件中都需要导入 Axios 模块；
+			2、每次发起请求都需要填写完整的请求路径。
+		全局配置 Axios
+			在 main.js 入口文件中全局挂载 Axios。示例代码如下：
+				// 为 axios 配置请求的路径。
+				axios.defaultsbaseURL = '统一 URL 前缀';
+				// 将 axios 挂载为 app 的全局自定义属性之后，每个组件都可以通过 this 直接访问到全局挂载的 $http 自定义属性。
+				// Vue 中 this 代表当前组件的对象。
+				app.config.globalProperties.$http = axios;
+	vue-cli中 @代表src目录
 
 
 
