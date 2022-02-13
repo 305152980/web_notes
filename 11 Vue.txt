@@ -628,6 +628,7 @@ Vue 组件之间的通信
 				export default {
 					inject: ['color']
 				}
+		注意：这种方法也可以让父组件向后代组件传递一个函数，这样后代组件通过调用这个函数可以实现后代组件向父组件的传值，具体用法见官网。
 	vuex 状态管理
 		vuex 是终极的组件之间数据共享的方案。
 		在企业级的 Vue 项目开发中，vuex 可以让组件之间的数据共享变得高效、清晰、易于维护。
@@ -1089,6 +1090,289 @@ Vue 其它高级语法
 				app.config.globalProperties.$http = axios;
 	vue-cli中 @代表src目录
 
+
+
+Vue 原理
+	数据响应式
+		JS 中的数据响应式一般有两种方案，分别对应着 vue2.x 和 vue3.x 的使用方式：
+			1、对象属性拦截（vue2.x）：
+				Object.defineProperty
+			2、对象整体代理（vue3.x）：
+				Proxy
+		Object.defineProperty
+			基础用法：
+				const dataName = {};
+				// 解决 set 和 get 方法的联动问题。
+				let _propName = dataName.propName;
+				Object.defineProperty(dataName, 'propName', {
+					// 当访问 dataName 的 propName 属性的时候自动调用的方法，并且此函数的返回值就是访问时获取到的值。
+					get(){
+						return _propName
+					}
+					// 当设置 dataName 的 propName 属性的时候自动调用的方法，并且此函数的形参值就是设置时被写入的值。
+					set(newValue){
+						if(newValue === _propName) { return }
+						_propName = newValue;
+						// 视图渲染逻辑。
+					}
+				}); 
+			通用用法：
+				const dataName = data();
+				// 引入发布订阅模式。
+				const Dep = {
+					eventMap: {},
+					collect(eventName, fn) {
+						if(!this.eventMap[eventName]) {
+							this.eventMap[eventName] = [];	
+						}
+						this.eventMap[eventName].push(fn);
+					},
+					trigger(eventName) {
+						this.eventMap[eventName].forEach(fn => fn())
+					}
+				};
+				// 初始化视图的数据和初始化 Dep 数据。
+				compile();
+				function compile() {
+					// 1、根据“v-”指令找到 DOM 结构，拿到 node 节点。
+					......
+					// 2、运用闭包保存响应式操作的逻辑。（提升效率）
+					// 3、发布订阅模式实现变量视图的一对多响应。（提升效率）
+					// nodeName 是“v-”指令的名字。
+					// nodeValue 是“v-”指令的属性值。
+					if(nodeName === 'v-text') {
+						node.innerText = dataName[nodeValue];
+						Dep.collect(dataName[nodeValue], () => {
+							node.innerText = dataName[nodeValue];
+						});
+					} eles(nodeName === 'v-model') {
+						node.innerText = dataName[nodeValue];
+						Dep.collect(dataName[nodeValue], () => {
+							node.value = dataName[nodeValue];
+						});
+						// 视图响应数据的逻辑。
+						node.addEventListener('input', (e) => {
+							let newValue = e.target.value;
+							dataName[nodeValue] = newValue;
+						});
+					}
+				}
+				// 将 data() 函数中的数据包装成响应式数据。
+				Object.keys(dataName).forEach((key) => {
+					defineReactive(dataName, key, dataName[key]);
+				});
+				function defineReactive(dataName, key, value) {
+					Object.defineProperty(dataName, key, {
+						get(){
+							return value
+						}
+						set(newValue){
+							if(newValue === value) { return }
+							value = newValue;
+							// 视图渲染逻辑。
+							Dep.trigger(key);
+						}
+					}); 
+				}
+				注意：
+					1、函数的形参相当于在函数内部申明的变量，其初始值为 undefined；
+					2、调用函数传入实参的时候相当于在给这些变量做赋值操作；
+					3、observe 函数调用完毕时，内部所有的变量本来应该都会被回收；
+					4、内部由于有其它方法引用了 value 变量，所以 defineReactive 函数执行的完毕并不会导致 value 变量的销毁；
+					5、value 变量没有被销毁，进而让 set 和 get 函数形成了联动。
+		总结：
+			1、数据的响应式；
+			2、数据变化影响视图；
+			3、视图变化影响数据；
+			4、指令是如何事项的（常规实现逻辑）。
+	组件开发
+		目标：
+			1、了解组件开发的整体流程；
+			2、掌握组件事件和标签事件的区别；
+			3、掌握在组件上使用 v-model 的实现方法。
+				组件上的 v-model 相当于一个名为 value 的自定义属性和一个名为 input 的自定义事件。
+
+
+
+Vuex
+	基本使用（vue2.x）
+		1、安装依赖包；
+			npm install vuex --save
+		2、导入 vuex 包；
+			import Vuex from 'vuex'
+			// 将 vuex 安装到 Vue 中。
+			Vue.use(Vuex);
+		3、创建 store 对象；
+			const store = new Vuex.store({
+				// state 中存放的是全局共享数据。
+				state: [ count: 0 ]
+			});
+		4、将 store 对象挂载到 Vue 实例中。
+			new Vue({
+				el: '#app',
+				render: h => h(app),
+				router,
+				store
+			});
+	......没写完
+
+
+
+Vue3
+	vite 的主要职责：创建一个 Vue 应用（根实例）。
+		1、从 vue 中导入 createApp 函数；
+			import { createApp } from 'vue'
+		2、创建一个根组件，并将其导入至 main.js 文件；
+			import App from './App.vue'
+		3、使用 createApp 函数创建应用实例；
+			const app = createApp(App)
+		4、将应用实例挂载到 #app 容器中；
+			app.mount('#app')
+	组合 API
+		setup 函数
+			1、组合 API 的起点；
+			2、可以理解为在 beforeCreate 钩子函数之前执行；
+			3、此函数中不能使用 this，因为此时组件实例还没创建；
+			4、模板结构中需要使用的数据和函数，需要在此函数中返回。
+			用法：
+				setup() { return }
+		生命周期
+			setup 创建组件实例前
+			onBeforeMount 挂载到 DOM 前
+			onMounted 挂载到 DOM 后
+			onBeforeUpdate 组件更新前
+			onUpdated 组件更新后
+			onBeforeUnmount 组件销毁前
+			onUnmounted 组件销毁后
+		reactive 函数
+			作用：包装一个复杂数据类型，让它成为响应式数据。
+			toRef 函数
+				作用：包装一个响应式对象中的某个属性，让它单独成为响应式数据。
+				用法：
+					const name = toRef(user, 'name');
+					// 修改响应式数据的方法一。
+					user.name = 'ls';
+					// 修改响应式数据的方法二。
+					name.value = 'zs';
+					return { name }
+				使用场景：
+					有一个响应式数据对象，但模板结构中只需要使用其中的一项属性数据。
+				注意：
+					1、从响应式数据对象中解构出来的属性数据，不再是响应式数据；
+					2、toRef 函数将数据包装成了响应式对象，value 是其存放值的地方。
+			toRefs 函数
+				作用：将某个响应式对象中的所有属性包装成单独的响应式数据。
+				用法：
+					const user_c = toRefs(user);
+					// 修改响应式数据的方法一。
+					user.name = 'ls';
+					// 修改响应式数据的方法二。
+					user_c.name.value = 'zs';
+					return { ...user_c }
+		ref 函数
+			作用：包装一个简单数据类型，让它成为响应式数据。
+			用法：
+				const name = ref('ls');
+				return { name }
+			使用场景：
+				当明确知道需要的是一个响应式数据对象的时候就使用 reactive 函数，其它情况一律使用 ref 函数。
+			注意：
+				1、在修改值获取值的时候，需要用到 .value；
+				2、在模板中使用响应式数据值的时候，可以直接使用，不需要用到 .value；
+				3、toRef、toRefs 函数的底层就是 ref 函数；
+				4、ref 函数常用来定义简单数据类型的响应式数据，其实也可以用来定义复杂数据类型的响应式数据，接收异步接口返回值的时候经常用到 ref 函数，因为接口返回的数据类型可能不确定。
+					const data = ref(null);
+					data.value = res.data;
+		computed 函数
+			用法：
+				const newValue = computed(() => { return });
+			高级用法：
+				 const newValue = computed({
+				 	// get 函数，当计算属性的依赖值改变时触发，返回计算后的结果。
+					get(){
+						return
+					}
+					// set 函数，当计算属性被设置值时触发，对计算属性所依赖的值进行处理，进而间接修改计算属性的值。
+					set(){
+						......
+					}
+				 });
+			注意：计算属性是不能被直接修改的，这种高级用法在 vue2.x 中也适用。
+		watch 函数（老师讲的有点问题）
+			用法：
+				1、普通数据的监听：
+					watch(value, () => {
+						......
+					})	
+				2、监听多个数据的改变：
+					watch([value1, value2], () => {
+						......
+					})
+				3、监听对象中某一个属性的变化：
+					watch(() => value.prop, () => {
+						......
+					})
+				4、数据的深度监听和初始化监听：
+					watch(value, () => {
+						......
+					}, { deep: true, immediate: true })		
+		ref 属性
+			作用：绑定 DOM 或组件实例。
+			用法：
+				1、绑定单个 DOM 元素：
+					<div ref="box"></div>
+					const box = ref(null);
+					return { box }
+				2、绑定 v-for 遍历的 DOM 元素：
+					<div v-for="" :key="" :ref="setDom"></div>
+					const domList = [];
+					const setDom = (el) => {
+						domList.push(el);
+					}
+					return { setDom }
+		父子通讯
+			1、父组件向子组件传值：
+				// 父组件中的代码。
+				<Son :valueName="val"></Son>
+				setup() {
+					const val = ref(value);
+					return { val }
+				}
+				// 子组件中的代码。
+				props: {
+					valueName: {
+						type: Number,
+						default: 0
+					}
+				}
+				setup(props) {
+					console.log(props.valueName);
+				}
+			2、子组件向父组件传值：
+				// 父组件中的代码。
+				<Son @eventName="eve"></Son>
+				setup() {
+					const eve = (subValue) => {
+						...
+					}
+					return { eve }
+				}
+				// 子组件中的代码。
+				setup(props, { emit }) {
+					......
+					emit('eventName', value);
+				}
+			3、v-model 语法糖：
+				老师讲的很菜，没学。
+		依赖注入
+			作用：provide 函数和 inject 函数实现了父组件和后代组件之间的通讯。
+			用法：去官网查询。https://www.javascriptc.com/vue3js/guide/component-provide-inject.html#%E5%A4%84%E7%90%86%E5%93%8D%E5%BA%94%E6%80%A7
+			
+				
+		
+			
+			
+		
 
 
 
