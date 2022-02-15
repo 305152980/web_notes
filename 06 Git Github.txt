@@ -116,7 +116,7 @@ SSH key
 		2、在浏览器中登录 Github，点击头像->Settings->SSH and GPG Keys->New SSH key；
 		3、将 id_rsa.pub 文件中的内容，粘贴到 Key 对应的文本框中；
 		4、在 Title 文本框中任意填写一个名称，来标识这个 Key 从何而来；
-		5、打开 Git Bash 输入 “$ ssh -T git@github.com” 命令，检测是否配置成功。
+		5、打开 Git Bash 输入 “ssh -T git@github.com” 命令，检测是否配置成功。
 
 基于 SSH 将本地仓库上传到 Github
 	步骤和 HTTPS 一样。
