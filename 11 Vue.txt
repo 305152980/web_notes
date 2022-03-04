@@ -1214,7 +1214,14 @@ Vuex
 				router,
 				store
 			});
-	......没写完
+	组件：
+		组件可以共享 state 中的数据，并且能够调用 actions 中的异步操作。
+	state
+		作用：存储共享状态数据。
+	mutaitions
+		作用：对 state 中的数据进行修改，只能执行同步代码。
+	actions
+		作用：异步操作获取数据，并将数据提交给 mutaitions 进行处理。
 
 
 
