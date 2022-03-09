@@ -69,15 +69,53 @@ ES6 模块化规范
 			import '模块标识符'
 Promise
 	Promise 的基本概念：
-		1、Promise 是一个构造函数，它的每个实例对象，都代表一个异步操作；
-		2、Promise.prototype 上有一个 .then() 方法，用来预先指定异步操作结束后的回调函数；
-			.then(result => {}, error => {})		// 成功的回调函数必须有，失败的回调函数可以没有。
+		1、Promise 是一个构造函数，它的每个实例对象，都代表着一个异步操作；
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {})
+			.catch(error => {})
+		2、Promise 的原型上有一个 .then() 方法，用来预先指定异步操作结束后的回调函数；
+			// 成功的回调函数必须有，失败的回调函数可以没有。
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {}, error => {})
 		3、如果上一个 .then() 方法中返回了一个新的 Promise 实例对象，则可以通过链式调用执行下一个 .then() 方法；
-			.then(result => {}).then(result => {})
-		4、在 Promise 的链式操作中，如果发生了错误，可以使用 Promise.prototype.catch() 方法进行统一捕获和处理；
-			.then(result => {}).then(result => {}).catch(error => {})
-		5、如果不希望前面的错误导致后续的 .then() 方法无法执行，则可以将 .catch() 方法的提前调用。 
-			.then(result => {}).catch(error => {}).then(result => {})
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {
+				return new Promise(function(resolve, reject) {
+					resolve(result)			
+				})
+			}).then(result => {})
+		4、在 Promise 的链式操作中，如果发生了错误，则可以使用 .catch() 方法进行异常的统一捕获和处理；
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {})
+			.then(result => {})
+			.catch(error => {})
+		5、如果不希望前面的错误导致后续的 .then() 方法无法继续执行，则可以将 .catch() 方法提前进行调用；
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {})
+			.catch(error => {})
+			.then(result => {})
+		6、如果想人为抛出异常，可以使用 "return Promise.reject(new Error('失败信息'))" 这行代码。
+			new Promise(function(resolve, reject) {
+				resolve(result)			
+			})
+			.then(result => {
+				return Promise.reject(new Error('失败信息'))
+			})
+			.then(result => {})
+			.catch(error => {
+				console.log(error)
+				return Promise.reject(error)
+			})
 	Promise.all() 方法
 		Promise.all() 方法会发起并行的 Promise 异步操作，等所有的异步操作完全结束后才会执行下一步的 .then() 方法。（等待机制）
 		const promiseArr = [
@@ -100,28 +138,27 @@ Promise
 			return new Promise(function(resolve, reject) {
 				fs.readFile(fpath, 'utf8', (err, dataStr) => {
 					if(err) {
-						return reject(err);
+						reject(err);
 					} else {
 						resolve(dataStr);
 					}
-				})
+				});
 			});
 		}
-		getFile(fpath).then(result => {}, error => {})
-		getFile(fpath).then(result => {}).catch(error => {})
-		注意：
-			1、result => {} 实参传递给了 resolve 形参，error => {} 实参传递给了 reject；
-			2、resolve 和 reject 函数需要额外定义。
+		getFile(fpath).then(result => {}, error => {});
+		getFile(fpath).then(result => {}).catch(error => {});
 async 和 await
 	async 和 await 可以简化 Promise 异步操作。
 	async function getAllFile() {
-		const r1 = await thenFs.readFile('', 'utf8');
-		const r2 = await thenFs.readFile('', 'utf8');
-		const r3 = await thenFs.readFile('', 'utf8');
+		try {
+			const r1 = await thenFs.readFile('', 'utf8');
+			const r2 = await thenFs.readFile('', 'utf8');
+			const r3 = await thenFs.readFile('', 'utf8');
+		}
+		catch (error) {}
+		finally {}
 	}
-	使用注意事项：
-		1、定义函数时，如果在函数体中使用了 await，则 function 必须被 async 修饰；
-		2、在 async 方法中，第一个 await 之前的代码会被同步执行，第一个 await 之后的代码会被异步执行。
+	使用注意事项：定义函数时，如果在函数体中使用了 await，则 function 必须被 async 修饰。
 EventLoop
 	JS 是一门单线程执行的编程语言。如果有一个任务非常耗时，这样就很容易导致程序的假死问题。
 	为了防止某个耗时任务导致程序假死的问题，JS 把待执行的任务分为了两类：同步任务和异步任务。

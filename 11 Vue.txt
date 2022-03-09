@@ -1198,16 +1198,18 @@ Vuex
 	基本使用（vue2.x）
 		1、安装依赖包；
 			npm install vuex --save
-		2、导入 vuex 包；
+		2、导入 Vuex 包；
 			import Vuex from 'vuex'
-			// 将 vuex 安装到 Vue 中。
+			// 将 Vuex 全局注册到 Vue 中。
 			Vue.use(Vuex);
-		3、创建 store 对象；
-			const store = new Vuex.store({
-				// state 中存放的是全局共享数据。
-				state: [ count: 0 ]
+		3、创建 Store 的实例对象；
+			const store = new Vuex.Store({
+				state: {}，
+				mutaitions: {}，
+				actions: {}，
+				getters: {}
 			});
-		4、将 store 对象挂载到 Vue 实例中。
+		4、将 Store 的实例对象挂载到 Vue 的实例对象中。
 			new Vue({
 				el: '#app',
 				render: h => h(app),
@@ -1218,10 +1220,120 @@ Vuex
 		组件可以共享 state 中的数据，并且能够调用 actions 中的异步操作。
 	state
 		作用：存储共享状态数据。
+		定义数据的格式：
+			state: {
+				XXX: 0	
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div>{{ $store.state.XXX }}</div>
+			2、在组件计算属性中使用；
+				computed: {
+					XXX () {
+						return this.$store.state.XXX
+					}
+				}
+			3、借助辅助函数来使用。
+				// mapState 是一个辅助函数，可以把 store 中的数据映射到组件的计算属性中。
+				
+				// 第一步：导入 mapState。
+				import { mapState } from 'Vuex'
+				// 第二步：采用数组形式引入 state 的属性。
+				mapState(['XXX'])
+				
+				// 上面的代码类似于：
+				// [
+				//	XXX () {
+				//		return this.$store.state.XXX
+				//	}
+				// ]
+				
+
+				// 第三步：利用延展运算符将导出的属性映射给计算属性。
+				computed: {
+					...mapState(['XXX'])
+				}
+				...接下来当作计算属性使用即可。
 	mutaitions
 		作用：对 state 中的数据进行修改，只能执行同步代码。
+		定义数据的格式：
+			// 第一个参数是 state 属性，
+			// 第二个参数 payload 载荷，是调用 mutaitions 方法时传进来的参数。
+			mutaitions: {
+				addXXX(state, payload) {
+					state.XXX += payload
+				}
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div @click='$store.commit('addXXX', 1)'>同步 +1</div>
+			2、在组件脚本中使用；
+				this.$store.commit('addXXX', 1)
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapMutaitions。
+				import { mapMutaitions } from 'Vuex'
+				// 第二步：采用数组形式引入 mutaitions 的方法。
+				mapMutaitions(['addXXX'])
+				// 第三步：利用延展运算符将导出的方法映射给方法属性。
+				methods: {
+					...mapMutaitions(['addXXX'])
+				}
+				...接下来当作同步方法使用即可。
 	actions
-		作用：异步操作获取数据，并将数据提交给 mutaitions 进行处理。
+		作用：异步操作获取数据，并将数据提交给 mutaitions 方法进行处理。
+		定义数据的格式：
+			// 参数 context 就是 Store 的实例对象 store 对象，
+			// 可以通过 context.commit('name', value) 来调用 mutaitions 的方法，
+			// 也可以通过 context.dispatch('name', value) 来调  actions 的方法。
+			actions: {
+				addAsyncXXX(context, params) {
+					setTimeout(function() {
+						context.commit('addXXX', params)
+					}, 1000)
+				}
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div @click='$store.dispatch('addAsyncXXX', 1)'>异步 +1</div>
+			2、在组件脚本中使用；
+				this.$store.dispatch('addAsyncXXX', 1)
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapActions。
+				import { mapActions } from 'Vuex'
+				// 第二步：采用数组形式引入 actions 的方法。
+				mapActions(['addAsyncXXX'])
+				// 第三步：利用延展运算符将导出的方法映射给方法属性。
+				methods: {
+					...mapActions(['addAsyncXXX'])
+				}
+				...接下来当作异步方法使用即可。
+	getters
+		作用：依赖于 state 属性的一种计算属性。
+		定义数据的格式：
+			// 第一个参数是 state 属性。
+			// 必须要有返回值。
+			getters: {
+				filterXXX: state => state.XXX += 100
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div>{{ $store.getters.filterXXX }}</div>
+			2、在组件计算属性中使用；
+				computed: {
+					filterXXX () {
+						return this.getters.filterXXX
+					}
+				}
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapGetters。
+				import { mapGetters } from 'Vuex'
+				// 第二步：采用数组形式引入 getters 的属性。
+				mapGetters(['filterXXX'])
+				// 第三步：利用延展运算符将导出的属性映射给计算属性。
+				computed: {
+					...mapGetters(['filterXXX'])
+				}
+				...接下来当作计算属性使用即可。
 
 
 
