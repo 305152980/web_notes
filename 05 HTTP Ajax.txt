@@ -416,7 +416,7 @@ Axios
 			var result = res.data;
 			console.log(result);
 		});
-跨域和 JSONP
+同源和跨域
 	跨域
 		同源
 			如果两个页面的协议、域名和端口都相同，则两个页面具有相同的源。
@@ -464,6 +464,34 @@ Axios
 				}
 			});
 			默认情况下，使用 jQuery 发起 JSONP 请求时，会自动携带一个 callback=jQueryxxx 的函数，jQueryxxx 是随机生成的一个回调函数名称。
+	CORS 技术（从 Express 笔记文档复制而来）
+		CORS 由一系列 HTTP 响应头字段组成，这些 HTTP 响应头字段决定了浏览器是否阻止前端 JS 的跨域获取资源。
+		使用步骤：
+			1、运行命令安装中间件；
+				npm install cors
+			2、使用 require() 方法导入中间件；
+				const cors = require('cors');
+			3、在路由之前使用 app.use() 方法注册中间件。
+				app.use(cors());
+			注意事项：
+				1、CORS 主要在服务器进行配置，客户端无需做任何额外的配置；
+				2、CORS 在浏览器中有兼容性，只有支持 XHRLevel2 的浏览器；（例如：IE10+、Chrome4+、FireFox3.5+ 等）
+				3、CORS 跨域资源共享详解见：http://www.ruanyifeng.com/blog/2016/04/cors.html 。
+		HTTP 响应头字
+			Access-Control-Allow-Origin
+				服务器可通过该字段的设置告诉客户端浏览器，可以允许哪些外域 URL 跨域请求资源。
+				res.setHeader('Access-Control-Allow-Origin', 'URL' | '*');
+					URL：表示允许指定的外域 URL 可以跨域请求资源;
+					*：表示允许所有外域  URL 都可以跨域请求资源。
+			Access-Control-Request-Headers
+				服务器可通过该字段的设置告诉客户端浏览器，此响应头部中包含了普通响应头字段之外的特殊响应头字段。
+				res.setHeader('Access-Control-Request-Headers', 'Content-Type, X-Custom-Header');
+			Access-Control-Request-Method
+				默认情况下 CORS 仅支持客户端发起的 GET、POST、HEAD 跨域请求。如果客户端有发起其他类型跨域请求的需要，则需要在服务器通过该字段进行设置。
+				res.setHeader('Access-Control-Request-Method', 'GET, POST, DELETE, HEAD' | '*');
+		注意：如果 Express 项目中配置了 CORS 中间件，为了防止冲突必须在 CORS 中间件之前声明 JSONP 接口。因为 Express 项目中配置了 CORS 中间件之后挂载的接口，都会被处理成是开启了 CORS 资源共享的接口。
+	代理服务器
+		前端项目中配置服务代理也可以解决跨域问题。这种方法不会出现 CORS 中的浏览器兼容问题。
 防抖和节流
 	防抖
 		防抖策略（debounce）是当事件被触发后，延迟 n 秒再执行回调函数，如果在这 n 秒内事件又被触发，则重新计时。
