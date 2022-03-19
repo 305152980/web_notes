@@ -79,6 +79,9 @@ http 请求模块
 				res.setHeader('Content-Type', 'text/html; charset=utf-8');
 				res.end(data);
 			})
+
+			
+
 Node.js 模块化规范
 	CommonJS 模块化规范
 		1、每个模块内部的 module 变量代表当前的模块；
@@ -148,6 +151,9 @@ ES6 模块化规范
 				4、按需导入可以和默认导入一起使用。
 		直接导入并执行模块中的代码
 			import '模块标识符'
+
+
+
 包
 	Node.js 中的第三方模块又叫做包。Node.js 中的包都是免费开源的。
 	包的查询与下载

@@ -259,6 +259,9 @@ Express 中间件
 					3、调用 app.use() 注册中间件。
 						app.use(parser.urlencoded({ extended: false }));
 				注意：Express 内置的 express.urlencoded() 中间件，是基于 body-parser 第三方中间件封装出来的。
+
+
+
 CORS 技术
 	CORS 由一系列 HTTP 响应头字段组成，这些 HTTP 响应头字段决定了浏览器是否阻止前端 JS 的跨域获取资源。
 	使用步骤：
@@ -285,6 +288,9 @@ CORS 技术
 			默认情况下 CORS 仅支持客户端发起的 GET、POST、HEAD 跨域请求。如果客户端有发起其他类型跨域请求的需要，则需要在服务器通过该字段进行设置。
 			res.setHeader('Access-Control-Request-Method', 'GET, POST, DELETE, HEAD' | '*');
 	注意：如果 Express 项目中配置了 CORS 中间件，为了防止冲突必须在 CORS 中间件之前声明 JSONP 接口。因为 Express 项目中配置了 CORS 中间件之后挂载的接口，都会被处理成是开启了 CORS 资源共享的接口。
+
+
+
 身份认证技术
 	会话技术
 		会话：

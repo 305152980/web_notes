@@ -1,4 +1,4 @@
-对象
+对象（从 JS基础 复制而来）
 	创建对象
 		1、利用字面量创建对象；
 			var obj = {
@@ -36,6 +36,16 @@
 			console.log(k);					// k 接收的是属性名。
 			console.log(obj[k]);
 		}
+
+
+
+类的本质（类就是对象，对象就是类。）
+	类的本质就是一个构造函数，是构造函数的另外一种写法。
+	特点：
+		1、类里面有 prototype 指向它的原型；
+		2、它的原型里面有 constructor 指向类本身；
+		3、可以在它的原型里面添加方法；
+		4、类创建的实例里面有 __proto__ 指向它的原型。
 ES6 之后的类和对象
 	创建类
 		 class Name { 
@@ -140,13 +150,9 @@ ES6 之前的类和对象
 					...
 				}
 			}
-类的本质
-	类的本质就是一个构造函数，是构造函数的另外一种写法。
-	特点：
-		1、类里面有 prototype 指向它的原型；
-		2、它的原型里面有 constructor 指向类本身；
-		3、可以在它的原型里面添加方法；
-		4、类创建的实例里面有 __proto__ 指向它的原型。
+
+
+
 ES5 新增的方法
 	数组方法
 		forEach()
@@ -197,130 +203,6 @@ ES5 新增的方法
 		delete
 			作用：删除对象中的某个属性。
 			delete obj.prop
-函数进阶
-	函数的定义和调用
-		定义
-			1、函数声明（命名函数）；
-				var fun = function() {};
-			2、函数表达式（匿名函数）；
-				function fun() {};
-			3、new Function()。
-				var fun =  new Function('parms1', 'parms2', ..., 'funBody')
-		调用
-			1、普通函数；
-				fun();
-				fun.call();
-			2、对象的方法；
-				obj.fun();
-			3、构造函数；
-				new Fun();
-			4、绑定事件函数事件触发的时候调用；
-			5、定时器函数定时器自动调用；
-			6、立即执行函数立即执行函数自动调用。
-	this 的指向
-		一般情况下 this 指向函数的调用者。
-			1、普通函数指向 window；
-			2、对象的方法指向该方法所属的对象；
-			3、构造函数指向实例对象，原型对象里的方法也指向实例对象；
-			4、绑定事件函数指向绑定事件的对象；
-			5、定时器函数指向 window；
-			6、立即执行函数指向 window；
-		this 指向的改变。
-			1、call()，见上；
-			2、bind()；
-				不调用函数，改变函数中的 this 指向，返回由指定 this 对象和初始化参数改造的原函数的拷贝。
-				应用：定时器回调函数中 this 指向的修改。
-				var newFun = fun.bind(thisParms, parms1, parms2, ...)
-					thisParms：fun 函数运行时的 this 对象；
-					parms1 / parms2：fun 函数需要的参数。
-			3、apply()。
-				调用函数并且改变函数中的 this 指向。
-				fun.apply(thisParms, parmsArr)
-					thisParms：当前函数中 this 指向的对象；
-					parmsArr：fun 函数需要的参数组成的数组。
-	严格模式
-		开启严格模式
-			1、为脚本开启严格模式；
-				<script>
-					"use strict";
-					...
-				</script>
-			2、为函数开启严格模式。
-				function Name() {
-					"use strict";
-					...
-				}
-		严格模式的变化
-			1、变量的规定；
-				1、变量必须先声明再使用；
-				2、不能用 delete 删除已经声明好的变量。
-			2、this 的指向；
-				1、全局作用域中的函数中的 this 指向的是 undefined，不再是从前的 window 对象；
-				2、定时器回调函数中的 this 指向的还是 window 对象。
-			3、函数的规定；
-				1、函数里不能有重名的形参；
-				2、不能在非函数代码块内声明函数。
-	高阶函数
-		 定义：高阶函数是对其他函数进行操作的函数，它接收函数作为参数或将函数作为返回值返回。
-	闭包
-		定义：闭包指，有权访问另一个函数作用域中变量，的函数。
-		通俗理解：函数内部调用函数，并且将父函数中的变量传递给了子函数，此时的子函数就是闭包函数。
-		作用：延伸了变量的作用范围和生存时间。
-		典型应用：回调函数就是闭包函数；3秒钟之后打印 li 的内容。
-	递归
-		定义：如果一个函数在内部可以调用其本身，那么这个函数就是递归函数。
-		注意：递归很容易发生栈溢出的错误。
-	深浅拷贝
-		浅拷贝
-			Object.assign(target, source1, source2, ...)
-				注意：该方法只能拷贝源对象中可枚举的属性。
-		深拷贝
-			var newObj = JSON.parse(JSON.stringify(obj));
-正则表达式
-	定义：正则表达式是用于匹配字符串组合的模式。
-	应用：
-		1、表单验证；
-		2、过滤敏感词汇；
-		3、提取字符串中的特定部分。
-	创建
-		1、通过 RegExp 对象的构造函数创建；
-			var regExp = new RegExp(/表达式/);
-		2、通过字面量创建。
-			var regExp = /表达式/;
-	test()
-		用于检测字符串是否符合正则表达式的规范，返回值为布尔值。
-		var flag = regExp.test(str);
-	特殊字符
-		1、边界符；
-			^：表示匹配行首的文本（以谁开始）；
-			$：表示匹配行尾的文本（以谁结束）。
-		2、字符类；
-			[...] / [...-...]：表示有一系列字符可供选择，只要匹配其中一个就可以了；
-			[^...]：表示有一系列字符不可供选择。
-		3、量词符；
-			用来设定某个模式出现的次数。
-			*：重复零次或更多次；
-			+：重复一次或更多次；
-			？：重复零次或一次；
-			{n}：重复 n 次；
-			{n,}：重复 n 次或更多次；
-			{n,m}：重复 n 到 m 次。
-		4、逻辑符。
-			|：逻辑或。
-	预定义类
-		\d：0-9；
-		\D：^0-9；
-		\w：A-Za-z0-9_；
-		\W：^A-Za-z0-9_；
-		\s：\t\r\n\v\f；
-		\S：^\t\r\n\v\f。
-	正则替换
-		var newSte = strObj.replace(regExp[switch]/subStr, replacement);
-			switch：正则表达式按什么模式来匹配。
-				g：全局匹配；
-				i：忽略大小写；
-				gi：全局匹配和忽略大小写。
-			eg：var newSte = strObj.replace(/傻逼|尼玛/g, '**');	
 ES6 新增的语法
 	关键字
 		let 关键字
@@ -431,3 +313,199 @@ ES6 新增的语法
 			clear()：清除 set 的所有元素，没有返回值。
 		遍历 Set
 			set.forEach(item => console.log(item));	
+
+
+
+函数进阶
+	函数的定义和调用
+		定义
+			1、函数声明（命名函数）；
+				var fun = function() {};
+			2、函数表达式（匿名函数）；
+				function fun() {};
+			3、new Function()。
+				var fun =  new Function('parms1', 'parms2', ..., 'funBody')
+		调用
+			1、普通函数；
+				fun();
+				fun.call();
+			2、对象的方法；
+				obj.fun();
+			3、构造函数；
+				new Fun();
+			4、绑定事件函数事件触发的时候调用；
+			5、定时器函数定时器自动调用；
+			6、立即执行函数立即执行函数自动调用。
+	this 的指向
+		一般情况下 this 指向函数的调用者。
+			1、普通函数指向 window；
+			2、对象的方法指向该方法所属的对象；
+			3、构造函数指向实例对象，原型对象里的方法也指向实例对象；
+			4、绑定事件函数指向绑定事件的对象；
+			5、定时器函数指向 window；
+			6、立即执行函数指向 window；
+		this 指向的改变。
+			1、call()，见上；
+			2、bind()；
+				不调用函数，改变函数中的 this 指向，返回由指定 this 对象和初始化参数改造的原函数的拷贝。
+				应用：定时器回调函数中 this 指向的修改。
+				var newFun = fun.bind(thisParms, parms1, parms2, ...)
+					thisParms：fun 函数运行时的 this 对象；
+					parms1 / parms2：fun 函数需要的参数。
+			3、apply()。
+				调用函数并且改变函数中的 this 指向。
+				fun.apply(thisParms, parmsArr)
+					thisParms：当前函数中 this 指向的对象；
+					parmsArr：fun 函数需要的参数组成的数组。
+	严格模式
+		开启严格模式
+			1、为脚本开启严格模式；
+				<script>
+					"use strict";
+					...
+				</script>
+			2、为函数开启严格模式。
+				function Name() {
+					"use strict";
+					...
+				}
+		严格模式的变化
+			1、变量的规定；
+				1、变量必须先声明再使用；
+				2、不能用 delete 删除已经声明好的变量。
+			2、this 的指向；
+				1、全局作用域中的函数中的 this 指向的是 undefined，不再是从前的 window 对象；
+				2、定时器回调函数中的 this 指向的还是 window 对象。
+			3、函数的规定；
+				1、函数里不能有重名的形参；
+				2、不能在非函数代码块内声明函数。
+	高阶函数
+		 定义：高阶函数是对其他函数进行操作的函数，它接收函数作为参数或将函数作为返回值返回。
+	闭包
+		定义：闭包指，有权访问另一个函数作用域中变量，的函数。
+		通俗理解：函数内部调用函数，并且将父函数中的变量传递给了子函数，此时的子函数就是闭包函数。
+		作用：延伸了变量的作用范围和生存时间。
+		典型应用：回调函数就是闭包函数；3秒钟之后打印 li 的内容。
+	递归
+		定义：如果一个函数在内部可以调用其本身，那么这个函数就是递归函数。
+		注意：递归很容易发生栈溢出的错误。
+	深浅拷贝
+		浅拷贝
+			Object.assign(target, source1, source2, ...)
+				注意：该方法只能拷贝源对象中可枚举的属性。
+		深拷贝
+			var newObj = JSON.parse(JSON.stringify(obj));
+
+
+
+正则表达式
+	定义：正则表达式是用于匹配字符串组合的模式。
+	应用：
+		1、表单验证；
+		2、过滤敏感词汇；
+		3、提取字符串中的特定部分。
+	创建
+		1、通过 RegExp 对象的构造函数创建；
+			var regExp = new RegExp(/表达式/);
+		2、通过字面量创建。
+			var regExp = /表达式/;
+	test()
+		用于检测字符串是否符合正则表达式的规范，返回值为布尔值。
+		var flag = regExp.test(str);
+	特殊字符
+		1、边界符；
+			^：表示匹配行首的文本（以谁开始）；
+			$：表示匹配行尾的文本（以谁结束）。
+		2、字符类；
+			[...] / [...-...]：表示有一系列字符可供选择，只要匹配其中一个就可以了；
+			[^...]：表示有一系列字符不可供选择。
+		3、量词符；
+			用来设定某个模式出现的次数。
+			*：重复零次或更多次；
+			+：重复一次或更多次；
+			？：重复零次或一次；
+			{n}：重复 n 次；
+			{n,}：重复 n 次或更多次；
+			{n,m}：重复 n 到 m 次。
+		4、逻辑符。
+			|：逻辑或。
+	预定义类
+		\d：0-9；
+		\D：^0-9；
+		\w：A-Za-z0-9_；
+		\W：^A-Za-z0-9_；
+		\s：\t\r\n\v\f；
+		\S：^\t\r\n\v\f。
+	正则替换
+		var newSte = strObj.replace(regExp[switch]/subStr, replacement);
+			switch：正则表达式按什么模式来匹配。
+				g：全局匹配；
+				i：忽略大小写；
+				gi：全局匹配和忽略大小写。
+			eg：var newSte = strObj.replace(/傻逼|尼玛/g, '**');
+正则的应用：模板引擎 
+	数据和模板结构在经过模板引擎的处理之后会生成 HTMI 页面。
+	优点：
+		1、减少了字符串的拼接操作；
+		2、使代码结构更加清晰；
+		3、使代码更易于阅读和维护。
+	art-template
+		使用步骤：
+			1、导入 art-template；
+			2、定义数据；
+				var data = { name: 'zhangsan', age: 20 };
+			3、定义模板；
+				<script type="text/html" id="tpl-user">
+					<h1>{{name}}{{age}}岁</h1>
+				</script>
+			4、调用 template 函数；
+				var htmlStr = template('tpl-user', data);
+			5、渲染 HTML 结构。
+				$('selector').html(htmlStr);
+		标准语法
+			在 {{}} 内可以进行变量输出或循环数组等操作。
+			输出
+				{{value}}
+				{{obj.key}}
+				{{obj['key']}}
+				{{a ? b : c}}
+				{{a || b}}
+				{{a + b}}
+			原文输出
+				如果输出的 value 值中包含了 HTML 结构标签，则需要使用原文输出语法，才能保证 HTML 标签被正常渲染。
+				{{@ value}}
+			条件输出
+				{{if 条件}}...{{/if}}
+				{{if 条件1}}...{{else if 条件2}}...{{/if}}
+			循环输出
+				{{each arr}}
+					{{$index}} {{$value}}
+				{{/each}}
+			过滤器
+				定义
+					template.defaults.imports.filterName = function(value) { // return 处理的结果 }
+					应用：
+						template.defaults.imports.dateFormat = function(date) {
+							var y = date.getFullYear();
+							var m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1;
+							var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+							var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+							var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+							var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+							return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss;
+						}
+
+				调用
+					调用过滤器的语法类似管道操作符，它的上一个输出作为下一个输入。
+					{{value | filterName}}
+	模板引擎原理
+		本质：用正则表达式语法实现字符串的替换操作。
+		function template(id, data) {
+			var str = document.getElementById(id).innerHTML;
+			var pattern = /{{\s*[a-zA-Z]+\s*}}/;
+			var pattResult = null;
+			while((pattResult = pattern.exec(str))) {
+				str = str.replace(pattResult[0], data[pattResult[1]])
+			}
+			return str;
+		}
