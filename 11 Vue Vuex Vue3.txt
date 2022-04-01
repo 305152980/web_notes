@@ -1,0 +1,1398 @@
+SPA 单页面应用
+	什么是单页面应用
+	 	单页面应用（英文名：Single Page Application）简称 SPA，指的是一个 Web 网站中只有唯一的一个 HTML 页面，所有的功能与交互都在这一个页面内完成。
+	单页面应用的特点
+		单页面应用将所有的功能局限于一个 Web 页面中，仅在该 Web 页面初始化的时候加载相应的资源（ HTML、CSS 和 JS）。
+		一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转，而是利用 JS 动态地变换 HTML 的内容，从而实现页面与用户的交互。
+	单页面应用的优点
+		SPA 单页面应用最显著的 3 个优点如下：
+			1、良好的交互体验；
+				单页面应用内容的改变不需要重新加载整个页面。
+				获取数据是通过 Ajax 异步获取。
+				没有页面之间的跳转，不会出现“白屏现象”。
+			2、良好的前后端工作分离模式；
+				后端专注于提供 API 接口，更利于实现 API 接口的复用。
+				前端专注于页面的渲染，更利于前端工程化的发展。
+			3、减轻服务器的压力。
+				服务器只提供数据，不负责页面的合成与逻辑的处理，吞吐能力会提高几倍。
+	单页面应用的缺点
+		任何一种技术都有自己的局限性，对于 SPA 单页面应用程序来说，主要的缺点有如下 2 个：
+			1、首屏加载速度慢；
+				解决方案：路由懒加载、代码压缩、CDN 加速、网络传输压缩。
+			2、不利于 SEO 搜索。
+				解决方案：SSR 服务器端渲染。
+	如何快速创建 Vue 的 SPA 项目
+		Vue 官方提供了两种快速创建工程化的 SPA 项目的方式：
+			1、基于 vite 创建 SPA 项目；
+			2、基于 vue-cli 创建 SPA 项目。
+		两者的对比：
+			比较的分类			vite			vue-cli
+			支持的 Vue 版本			仅支持 vue3.x		支持 vue3.x 和 vue2.x
+			是否基于 Webpack		否			是
+			运行速度			快			较慢
+			功能完整度			小而巧（逐渐完善）	大而全
+			是否建议在企业级开发中使用	目前不建议		建议在企业级开发中使用
+	vite 的基本使用
+		创建 vite 的项目
+		 	在命令行，按照如下顺序执行命令，即可基于 vite 创建 vue3.x 的工程化项目：
+				npm init vite-app 项目名
+				cd 项目名
+				npm install
+				npm run dev
+		梳理项目的结构
+			使用 vite 创建的项目结构如下：
+				node_modules	目录用来存放第三方依赖包。
+				public		是公共的静态资源目录。
+				src		是项目的源代码目录（程序员写的所有代码都要放在此目录下）。
+				.gitignore	是 Git 的配置文件。
+				index.html	是 SPA 单页面应用程序中唯一的 HTML 页面。
+				package.json	是配置项目的包管理文件。
+			在 src 这个项目源代码目录之下，包含了如下的文件和文件夹：
+				assets 目录	用来存放项目中所有的静态资源文件（css、fonts等）。
+				components 目录	用来存放项目中所有的自定义组件。
+				App.vue		是项目的根组件。
+				index.css	是项目的全局样式表文件。
+				main.js		是整个项目的打包入口文件。
+		vite 项目的运行流程
+			在工程化的项目中，Vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。其中：
+				1、App.vue	用来编写待渲染的模板结构；
+				2、index.html	中需要预留一个 el 区域；
+				3、main.js	把 App.vue 渲染到了 index.html 所预留的区域中。
+Vue 简介
+	什么是 Vue
+		官方给出的概念：Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的前端框架。
+		构建用户界面
+			在传统的 Web 前端开发中，是基于 jQuery + 模板引擎 的方式来构建用户界面的。
+			使用 Vue 构建用户界面，解决了 jQuery + 模板引擎 方式的诸多痛点，极大的提高了前端开发的效率和体验。
+		框架
+			官方给 Vue 的定位是前端框架，因为它提供了构建用户界面的一整套解决方案（俗称 Vue 全家桶）：
+				1、vue（核心库）
+				2、vue-router（路由方案）
+				3、vuex（状态管理方案）
+				4、vue 组件库（快速搭建页面 UI 效果的方案）
+			以及辅助 vue 项目开发的一系列工具：
+				1、vue-cli（npm 全局包：一键生成工程化的 Vue 项目 - 基于 webpack、大而全。）
+				2、vite（npm 全局包：一键生成工程化的 Vue 项目 - 小而巧。）
+				3、vue-devtools（浏览器插件：辅助调试的工具。）
+				4、vetur（VSCode 插件：提供语法高亮和智能提示。）
+	Vue 的特性
+		Vue 框架的特性，主要体现在如下两方面：
+			1、数据驱动视图；
+				在使用了 Vue 的页面中，Vue 会监听数据的变化，从而自动重新渲染页面的结构。
+				好处：当页面数据发生变化时，页面会自动重新渲染。
+				注意：数据驱动视图是单向的数据绑定。
+			2、双向数据绑定。
+				在填写表单时，双向数据绑定可以辅助开发者在不操作 DOM 的前提下，自动把用户填写的内容同步到数据源中。
+				好处：开发者不再需要手动操作 DOM 元素，来获取表单元素最新的值。
+		MVVM 模式
+			MVVM 模式是 Vue 实现数据驱动视图和双向数据绑定的核心原理，它把每个 HTML 页面拆分成了如下三个部分：
+				1、View 表示当前页面所渲染的 DOM 结构；
+				2、Model 表示当前页面渲染时所依赖的数据源；
+				3、ViewModel 表示 Vue 的实例，它是 MVVM 的核心。
+			ViewModel 作为 MVVM 模式的核心，是它把当前页面的数据源（Model）和页面的结构（View）连接在了一起。
+			当数据源发生变化时，会被 ViewModel 监听到，ViewModel 根据最新的数据源自动更新页面的结构。
+			当表单元素值发生变化时，也会被 ViewModel 监听到，ViewModel 把变化过后最新的值自动同步更新到 Model 数据源中。
+	Vue 的版本
+		当前，Vue 共有 3 个大版本，其中：
+			2.x 版本的 Vue 是目前企业级项目开发中的主流版本。
+			3.x 版本的 Vue 于 2020-09-19 发布，生态还不完善，尚未在企业级项目开发中普及和推广。
+			1.x 版本的 Vue 几乎被淘汰，不再建议学习与使用。
+		总结：
+			3.x 版本的 Vue 是未来企业级项目开发的趋势。
+			2.x 版本的 Vue 在未来（1 ~ 2 年内）会被逐渐淘汰。
+		Vue3.x 和 Vue2.x 版本的对比
+			Vue2.x 中绝大多数的 API 与特性，在 Vue3.x 中同样支持。同时 Vue3.x 中还新增了 Vue3.x 所特有的功能，并废弃了某些 Vue2.x 中旧的功能。
+			新增的功能有：组合式 API、多根节点组件、更好的 TypeScript 支持等。
+			废弃的旧功能有：过滤器、不再支持 $on，$off 和 $once 实例方法等。
+	Vue 的基本使用：
+		使用步骤：
+			1、在页面中导入 vue.js 的 script 脚本文件；
+			2、在页面中声明一个将要被 Vue 所控制的 DOM 区域；
+			3、创建 vm 实例对象（Vue 实例对象）。
+		代码示例：
+			<body>
+				<!-- 2. 声明要被 Vue 所控制的 DOM 区域。 -->
+				<div id="app">{{ username }}</div>
+				<!-- 1. 导入 Vue 的脚本文件。 -->
+				<script src="./lib/vue-2.6.12.js"></script>
+				<!-- 3. 创建 Vue 的实例对象。 -->
+				<script>
+					const vm = new Vue({
+						el: '#app',
+						data: {
+							username: 'zs'
+						}
+					})
+				</script>
+			 </body>
+	Vue 的调试工具
+		Vue 官方提供的 vue-devtools 调试工具，能够方便开发者对 Vue 项目进行调试与开发。
+		Chrome 浏览器在线安装 vue-devtools 调试工具
+			Vue 2.x 调试工具：https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
+			Vue 3.x 调试工具：https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg
+			注意：Vue 2 和 Vue 3 的浏览器调试工具不能交叉使用。
+		配置 Chrome 浏览器中的 vue-devtools 调试工具
+			点击 Chrome 浏览器右上角的 ... 按钮，选择更多工具 -> 扩展程序 -> Vue.js devtools 详细信息，并勾选如下的两个选项：
+				见截图。
+			注意：修改完配置项，必须重启浏览器才能生效。
+		使用 vue-devtools 调试 Vue 页面
+			在浏览器中访问一个使用了 Vue 的页面，打开浏览器的开发者工具，切换到 Vue 面板，即可使用 vue-devtools 工具调试当前的页面。
+Vue 的指令
+	指令（Directives）是 Vue 为开发者提供的模板语法，用于辅助开发者渲染页面的基本结构。
+	Vue 中的指令按照不同的用途可以分为如下 6 大类：
+		1、内容渲染指令
+			内容渲染指令用来辅助开发者渲染 DOM 元素的文本内容。常用的内容渲染指令有如下 3 个：
+				1、v-text
+					<span v-text="'姓名：' + value"></span>
+					注意：v-text 指令会覆盖元素内默认的值。
+				2、{{  }}
+					<span>姓名：{{ name }}</span>
+					注意：{{  }} 指令不会覆盖元素内默认的值，但是会有有闪动的问题。
+				3、v-html
+					<span v-html="description"></span>
+					注意：如果要把包含 HTML 标签的字符串渲染为页面的 HTML 元素，则需要用到 v-html 这个指令。
+		2、属性绑定指令
+			如果需要为元素的属性动态绑定属性值，则需要用到 v-bind 属性绑定指令。
+				<input type="text" v-bind:placeholder="inputValue" />
+				data: {
+					inputValue: "请输入内容"
+				}
+			v-bind 的简写形式
+				由于 v-bind 指令在开发中使用的频率非常高，因此 Vue 官方为其提供了其简写形式（简写为英文的 : ）。
+					<input type="text" :placeholder="inputValue" />
+					data: {
+						inputValue: "请输入内容"
+					}
+			class 属性值与行内 style 样式的绑定
+				class 属性值
+					在实际开发中经常会遇到动态操作元素样式的需求。因此 Vue 允许开发者通过 v-bind 属性绑定指令，为元素动态绑定 class 属性值和行内 style 样式。
+					可以通过三元表达式，动态的为元素绑定 class 属性值。代码示例如下：
+						<span :class="classFlag ? 'className1' : 'className2'">{{ user.name }}</span>
+						注意：类名必须加引号。
+					如果元素需要动态绑定多个 class 属性值，此时可以使用数组的语法格式：
+						<span :class="[classFlag1 ? 'className11' : 'className12', classFlag2 ? 'className21' : 'className22']">{{ user.name }}</span>
+					使用数组语法动态绑定 class 属性值 会导致模板结构的臃肿，此时可以使用对象的语法对其进行简化：
+						<span :class="classObj">{{ user.name }}</span>
+						data() {
+							return {
+								classObj: {
+									// 值为 true 时类有效，为 false 时类无效。
+									className11: true,
+									className12: false,
+									className21: true,
+									className22: false
+								}
+							}
+					}
+				行内 style 样式
+					以对象语法绑定行内的 style 样式
+						:style 的对象语法十分直观————看着非常像 CSS，但其实是一个 JS 对象。
+							<div :style="{color:active, fontSize: fsize+'px', 'background-color: bgcolor}">{{ user.name }}</div>	
+						注意：CSS 属性名可以采用小驼峰式 (camelCase，不带引号) 或短横线分隔 (kebab-case，必须带引号) 的方式来命名。
+		3、事件绑定指令
+			Vue 提供了 v-on 事件绑定指令，用来辅助程序员为 DOM 元素绑定监听事件。
+			通过 v-on 绑定的事件处理函数，需要在 methods 节点中进行声明。
+				<div>count 的值为：{{count}}</div>
+				<button v-on:click="addCount">+1</button>
+				data: {
+					count: 0
+				},
+				methods: {
+					addCount() {
+						this.count += 1;
+					}
+				}
+			注意：原生 DOM 对象的 onclick、oninput、onkeyup 等原生事件，替换为 Vue 的事件绑定形式后，分别为：v-on:click、v-on:input、v-on:keyup。
+			v-on 的简写形式
+				1、由于 v-on 指令在开发中使用频率非常高。因此 Vue 官方为其提供了简写形式（简写为英文的 @ ）;
+				2、如果事件处理函数中的代码只有一行，那么这行代码可以简写到行内。
+					<button @click="count += 1">+1</button>
+			事件对象 event
+				在原生的 DOM 事件绑定中，可以在事件处理函数的形参处，接收事件对象 event。同理，在 v-on 指令（简写为 @ ）所绑定的事件处理函数中，也可以接收到事件对象 event。示例代码如下：
+					<div>count 的值为：{{count}}</div>
+					<button v-on:click="addCount">+1</button>
+					data: {
+						count: 0
+					},
+					methods: {
+						addCount(e) {
+							const nowBgColor = e.target.style.backgroundColor;
+							e.target.style.backgroundColor = nowBgColor === 'red' ? '' : 'red';
+							this.count += 1;
+						}
+					}
+			绑定事件并传参
+				在使用 v-on 指令绑定事件时，可以使用 () 进行传参。示例代码如下：
+					<div>count 的值为：{{count}}</div>
+					<button @click="addCount(2, $event)">+2</button>
+					data: {
+						count: 0
+					},
+					methods: {
+						addCount(step, e) {
+							const bgColor = e.target.style.backgroundColor;
+							e.target.style.backgroundColor = bgColor === 'red' ? '' : 'red';
+							this.count += step;
+						}
+					}
+				注意：$event 是 Vue 提供的特殊变量，用来表示原生的事件参数对象 event。$event 可以解决事件参数对象 event 被其它参数覆盖的问题。
+			事件修饰符
+				在事件处理函数中调用 preventDefault() 或 stopPropagation() 是非常常见的需求。因此 Vue 提供了事件修饰符的概念，来辅助程序员更方便的对事件的触发进行控制。常用的 5 个事件修饰符如下：
+					事件修饰符	说明
+					.prevent	阻止默认行为。（例如：阻止 <a> 连接的跳转、阻止表单的提交等。）
+					.stop		阻止事件冒泡。
+					.capture	以捕获模式触发当前的事件处理函数。
+					.once		绑定的事件只触发 1 次。
+					.self		只有在 event.target 是当前元素自身时触发事件处理函数。
+				语法格式如下：
+					<a href="https://www.baidu.com" @click.prevent="onLinkClick">百度首页</a>
+			按键修饰符
+				在监听键盘事件时，我们经常需要判断详细的按键信息。此时可以为与键盘相关的事件添加按键修饰符，例如：
+					<input type="text" @keyup.enter="submit" @keyup.esc="clearInput" />
+		4、双向绑定指令
+			Vue 提供了 v-model 双向数据绑定指令，用来辅助开发者在不操作 DOM 的前提下，快速获取表单的数据。
+				<input type="text" v-model="username" />
+				data: {
+					username: "zs"
+				}
+			注意：v-model 指令只能配合表单元素一起使用。
+			v-model 指令的修饰符
+				修饰符		作用					示例
+				.number		自动将用户的输入值转为数值类型。	<input v-model.number="age" />
+				.trim		自动过滤用户输入的首尾空白字符。	<input v-model.trim="msg" />
+				.lazy		在 “change” 时而非 “input” 时更新数据。	<input v-model.lazy="msg" />
+		5、条件渲染指令
+			条件渲染指令用来辅助开发者按需控制 DOM 的显示与隐藏。条件渲染指令有如下四个，分别是：v-if、v-show、v-else 和 v-else-if。
+			v-if VS v-show
+				实现原理不同：
+					v-if 指令会动态地创建或移除 DOM 元素，从而控制元素在页面上的显示与隐藏；
+					v-show 指令会动态地为元素添加或移除 style="display: none;" 样式，从而控制元素的显示与隐藏。
+				性能消耗不同：
+					v-if 有更高的切换开销， v-show 有更高的初始渲染开销。
+				如果需要非常频繁地切换元素在页面上的显示与隐藏，则使用 v-show 较好；如果在运行时元素在页面上的显示与隐藏很少改变，则使用 v-if 较好。
+		6、列表渲染指令
+			Vue 提供了 v-for 指令，用来辅助开发者基于一个数组，循环渲染相似的 UI 结构。
+			v-for 指令需要使用 item in items 的特殊语法，其中：items 是待循环的数组，item 是当前的循环项。
+				<ul>
+					<li v-for="user in userList">姓名是：{{ user.name }}。</li>
+				</ul>
+				data: {
+					userList: [
+						{ id: 1, name: 'zs' },
+						{ id: 2, name: 'ls' }
+					]
+				}
+			v-for 中的索引
+				v-for 指令还支持可选的第二个参数，即当前项的索引。语法格式为 (item, index) in items。代码示例如下：
+					<ul>
+						<li v-for="(user, index) in userList">索引是：{{ index }}，姓名是：{{ user.name }}。</li>
+					</ul>
+					data: {
+						userList: [
+							{ id: 1, name: 'zs' },
+							{ id: 2, name: 'ls' }
+						]
+					}
+				注意：v-for 指令中的 item 项和 index 索引都是形参，可以根据需要进行重命名。
+			使用 key 维护列表的状态
+				默认情况下，当列表的数据变化时，Vue 会尽可能的复用已存在的 DOM 元素，从而提升渲染的性能。但这种默认的性能优化策略，会导致有状态的列表无法被正确更新。
+				为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而在保证有状态的列表被正确更新的前提下，提升渲染的性能。此时，需要开发者为每项提供一个唯一的 key 属性。
+					<ul>
+						<li v-for="user in userList" :key="user.id">
+							<input type="checkbox" />姓名：{{user.name}}
+						</li>
+					</ul>
+					data: {
+						userList: [
+							{ id: 1, name: 'zs' },
+							{ id: 2, name: 'ls' }
+						]
+					}
+			key 属性的注意事项
+				1、key 的值只能是字符串或数字类型；
+				2、key 的值必须具有唯一性（即：key 的值不能重复）；
+				3、建议把数据项 id 属性的值作为 key 的值（因为 id 属性的值具有唯一性）；
+				4、使用 index 的值当作 key 的值没有任何意义（给了相当于没给）；
+				5、建议使用 v-for 指令时一定要指定 key 的值（既提升性能、又防止列表状态紊乱）。
+			注意：由于指令优先级顺序的问题，v-if 和 v-for 指令不能在同 DOM 一节点中使用。 
+	注意：在 Vue 提供的模板渲染语法中，除了支持绑定简单的数据值之外，还支持 JS 表达式的运算。例如：
+		<span>{{ number + 1 }}</span>
+		<span>{{ ok ? 'true' : 'false' }}</span>
+		<span>{{ message.split('').reverse().join('') }}</span>
+		<span :id="'list-' + id">xxx</span>
+Vue 的组件
+	什么是组件化开发
+		组件化开发指的是：根据封装的思想，把页面上可重用的部分封装为组件，从而方便项目的开发和维护。
+	组件化开发的好处
+		前端组件化开发的好处主要体现在以下两方面：
+			1、提高了前端代码的复用性和灵活性；
+			2、提升了开发效率和后期的可维护性。
+	Vue 中的组件化开发
+		Vue 是一个完全支持组件化开发的框架。Vue 中规定组件的后缀名是 .vue。
+	Vue 组件的组成结构
+		每个 .vue 组件都由 3 个部分组成，分别是：
+			template	组件的模板结构。
+			script		组件的 JS 行为。
+			style		组件的样式。
+		其中，每个组件中必须包含 template 模板结构，而 script 行为和 style 样式则是组件可选的部分。
+		组件的 <template> 节点
+			Vue 规定：每个组件对应的模板结构，需要定义到 <template> 节点中。
+			注意：<template> 是 Vue 提供的容器标签，只起到包裹性质的作用，它不会被渲染为真正的 DOM 元素。
+			在 template 中使用指令
+				在组件的 <template> 节点中，支持使用前面所学的指令语法，来辅助开发者渲染当前组件的 DOM 结构。
+			在 template 中定义根节点
+				在 Vue2.x 的版本中，<template> 节点内的 DOM 结构仅支持单个根节点；但是，在 Vue3.x 的版本中，<template> 中支持定义多个根节点。
+		组件的 <script> 节点
+			Vue 规定：组件内的 <script> 节点是可选的，开发者可以在 <script> 节点中定义组件的 JS 业务逻辑。<script> 节点的基本结构如下：
+				<script>
+					// 组件相关的 data 数据、methods 方法等，都需要定义到 export default 所导出的对象中。
+					export default {}
+				</script>
+			script 中的 name 节点
+				可以通过 name 节点为当前组件定义一个名称，名称采用大驼峰命名法或者短横线命名法。
+				在使用 vue-devtools 进行项目调试的时候，自定义组件的名称可以清晰的区分每个组件。
+			script 中的 data 节点
+				Vue 组件渲染期间需要用到的数据，必须定义到 data 节点中。
+				注意：Vue 规定：组件中的 data 必须是一个 return 页面数据的函数，而不能是一个直接指向数据的对象。
+			script 中的 methods 节点
+				组件中的事件处理函数，必须定义到 methods 节点中。
+		组件的 <style> 节点
+			Vue 规定：组件内的 <style> 节点是可选的，开发者可以在 <style> 节点中编写样式，美化当前组件的 UI 结构。
+			<style> 标签中的 lang 属性是可选的，它表示所使用的样式语言。默认只支持普通的 css 语法，可选值还有 less、scss 等。
+			让 <style> 节点支持 less 语法
+				如果希望使用 less 语法编写组件的 style 样式，可以按照如下两个步骤进行配置：
+					1、运行 npm install less -D 命令安装依赖包，从而让项目能够提供 less 语法的编译支持；
+					2、在 <style> 标签上添加 lang="less" 属性，即可以使用 less 语法编写组件的样式。
+	组件的基本使用
+		组件的注册
+			组件之间可以相互进行引用，前提是被引用的组件必须先被注册。
+		组件注册的方式
+			Vue 中组件注册的方式分为“全局注册”和“局部注册”两种，其中：
+				1、被全局注册的组件，可以在全局任何组件内使用；如果某些组件在项目中的使用频率很高，推荐进行全局注册；
+				2、被局部注册的组件，只能在当前注册范围内使用；如果某些组件只在特定的情况下被用到，推荐进行局部注册。
+			全局注册组件
+				在 main.js 文件中对组件进行全局注册。代码示例如下：
+					// 1、导入 Swiper 组件。
+					import Swiper from "./components/MySwiper.js";
+					const app = createApp(App);
+					// 2、调用 app 实例的 component() 方法，进行全局注册 MySearch 组件。
+					app.component('MySearch', Swiper);
+			局部注册组件
+				在引用该组件的文件中对该组件进行局部注册。代码示例如下：
+					<script>
+						// 1、导入 MySearch 组件。
+						import Search from "./components/MySearch.js";
+						export default {
+							// 2、在 components 节点中，进行局部注册 MySearch 组件。
+							components: {
+								'MySearch': Search
+							}
+						}
+					</script>
+		使用被注册的组件
+			被注册的组件可以直接在模板结构中以标签的形式进行使用，例如：
+				<template>
+					<my-swiper></my-swiper>
+				</template>
+		组件注册时名称的写法
+			在进行组件的注册时，定义组件名称的方式有两种：
+				1、使用 kebab-case 命名法（短横线命名法。例如：my-swiper 和 my-search）
+				2、使用 PascalCase 命名法（大驼峰命名法。例如：MySwiper 和 MySearch）
+			短横线命名法的特点：使用组件时，组件的名称只能是短横线名称。
+			大驼峰命名法的特点：使用组件时，组件的名称既可以是大驼峰名称，也可以是短横线名称。
+			注意：在实际开发中，推荐使用大驼峰命名法，因为它的适用性更强。
+		组件之间的样式冲突问题
+			默认情况下，写在 .vue 组件中的样式会全局生效，因此很容易造成多个组件之间的样式冲突问题。
+			导致组件之间样式冲突的根本原因是：
+				1、单页面应用程序中所有组件的 DOM 结构，都是基于唯一的 index.html 页面进行呈现的；
+				2、每个组件中的样式都会影响整个 index.html 页面中的 DOM 元素。
+			解决办法
+				<style> 节点的 scoped 属性
+					Vue 为 <style> 节点提供了 scoped 属性，从而可以防止组件之间的样式冲突问题。
+					<style> 节点的 scoped 属性，用来自动为本组件的每个 DOM 元素分配唯一的“自定义属性”，并且自动为当前组件的所有 style 样式应用了这个自定义属性。
+						<style lang="less" scoped>
+							.title {			// 加上 scoped 之后，生成的选择器格式为 .title[data-v-052242de]。
+								color: blue;
+							}
+						</style>
+				/deep/ 样式穿透
+					如果给当前组件的 <style> 节点添加了 scoped 属性，又想让当前组件内的部分样式对其子组件生效，那么可以使用 /deep/ 深度选择器。
+						<style lang="less" scoped>
+							.title {			// 不加 /deep/ 时，生成的选择器格式为 .title[data-v-052242de]。
+								color: blue;
+							}
+							/deep/ .title {			// Vue2.x。加了 /deep/ 时，生成的选择器格式为 [data-v-052242de] .title。
+								color: blue;
+							}
+							:deep(.title) {			// Vue3.x
+								color: blue;
+							}
+						</style>
+Vue 组件之间的通信
+	父组件向子组件单向传值
+		如果父组件想要往子组件传值，可以先在子组件的 props 节点中声明一个自定义属性，然后父节点通过这个自定义属性，将值传递给子组件。示例代码如下：
+			<script>
+				export default {
+					props: ['title', 'author']
+				}
+			</script>
+			注意：props 节点中声明的变量是只读的，只能通过 v-bind 指令单向绑定到页面中，不能通过 v-model 指令双向绑定到页面中。
+		未声明的 props 自定义属性
+			如果父组件给子组件传递了未在子组件 props 节点中声明的自定义属性，则这些属性会被忽略，无法被子组件使用。
+		props 自定义属性的命名方式
+			子组件中如果使用“短横线命名法”声明 props 自定义属性的名称，则父组件中必须使用“短横线命名”的方式为子组件传递属性值。
+			子组件中如果使用“小驼峰命名法”声明 props 自定义属性的名称，则父组件中有两种方式为子组件传递属性值：
+				<!-- 既可以直接使用"小驼峰命名”的方式为子组件传递属性值。 -->
+				<my-article pubTime="1989"></my-article>
+				<!-- 也可以使用等价的"短横线命名"的方式为子组件传递属性值。 -->
+				<my-article pub-time="1989"></my-article>
+		props 自定义属性的验证
+			什么是 props 验证
+				props 验证指的是：在封装组件时，对外界传递过来的 props 数据进行合法性的校验，从而防止数据不合法的问题。
+			使用数组类型的 props 节点的缺点：
+				无法为每个 prop 自定义属性指定具体的数据类型。
+			对象类型的 props 节点
+				使用对象类型的 props 节点，可以对每个 prop 自定义属性进行数据类型的校验。
+			对象类型的 props 节点提供了多种数据验证的方案，例如：
+				1、基础的类型检查；
+					可以直接为组件的 prop 自定义属性指定基础的校验类型，从而防止组件的使用者为其绑定错误类型的数据。示例代码如下：
+						export default {
+							 props: {
+								//支持的 8 种基础类型的校验
+								propA: String,		// 字符串类型
+								 propB: Number,		// 数字类型
+								propC: Boolean,		// 布尔类型
+								propD: Array,		// 数组类型
+								propE: 0bject,		// 对象类型
+								 propF: Date,		// 日期类型 
+								propG: Function,	// 函数类型
+								propH: Symbol		// 符号类型
+							}
+						}
+				2、多个可能的类型；
+					如果某个 prop 自定义属性的类型不唯一，此时可以通过数组的形式，为其指定多个可能的类型。示例代码如下：
+						export default {
+							 props: {
+								prop: [ String, Number ]
+							}
+						}
+				3、必填项校验；
+					如果组件的某个 prop 自定义属性是必填项，则可以通过如下的方式将其设置为必填项：
+						export default {
+							 props: {
+								prop: {
+									type: [ String, Number ],
+									required: true		// 当前属性的值是必填项，如果使用者没指定 prop 自定义属性的值，则在终端进行警告提示。
+								}
+							}
+						}
+				4、属性默认值；
+					在封装组件时，可以为某个 prop 自定义属性指定默认值。示例代码如下：
+						export default {
+							 props: {
+								prop: {
+									type: [ String, Number ],
+									required: true,
+									default: 100		// 如果使用者没有指定 prop 自定义属性的值，则 prop 自定义属性的默认值为 100。
+								}
+							}
+						}
+				5、自定义验证函数。
+					在封装组件时，可以为 prop 自定义属性指定自定义的验证函数，从而对 prop 自定义属性的值进行更加精确的控制。示例代码如下：
+						export default {
+							 props: {
+								prop: {
+									// 通过 validator 函数，对 prop 自定义属性的值进行校验，"属性的值"可以通过形参 value 进行接收。
+									validator(value) {
+										// 返回值为 true 表示验证通过，返回值为 false 表示验证失败。
+										return validFlag;
+									}
+								}
+							}
+						}
+	子组件向父组件单项传值
+		在封装组件时，为了让父组件可以监听到子组件内部状态的变化，则可以在父组件内部定义一个自定义事件。
+		父组件自定义事件的使用步骤
+			在封装组件时（子组件中）：
+				1、声明自定义事件；
+					开发者封装的自定义事件，必须先在子组件的 emits 节点中进行声明。示例代码如下：
+						export default {
+							emits: ['change']	
+						}
+				2、触发自定义事件。
+					父组件中的自定义事件，在子组件中可以通过以下形式，对其进行触发。
+						export default {
+							emits: ['change'],
+							methods: {
+								onBtnClick() {
+									this.$emit('change'[, 形参]);
+								}
+							}
+						}
+			在使用组件时：
+				监听自定义事件。
+					在父组件中使用子组件时，可以通过 v-on 的形式监听父组件中的自定义事件。示例代码如下：
+						<my-counter @change="getCount"></my-counter>
+						methods: {
+							getCount([形参]) {
+								// 处理逻辑
+							}
+						}
+	父子组件的双向传值
+		v-model 是双向数据绑定指令，当需要使父子组件中的某些数据双向同步时，可以在组件上使用 v-model 指令。
+		本质：父组件通过 props 向子组件传值，子组件通过自定义事件向父组件传值，然后父组件的值再重新更新到子组件中。
+		在组件上使用 v-model 的代码示例，如下：
+			<!-- 父组件中的代码 -->
+			<my-counter v-model:activeNumber="activeNum"></my-counter>
+			data() {
+		 		return { activeNum: 0 }
+			}
+			// 子组件中的代码
+			export default {
+					 props: {
+							activeNumber: {			// 必须现在子组件中定义 activeNumber 自定义属性。
+								type: String,
+								required: true
+							}
+						}
+					emits: ['update:activeNumber'],
+					methods: {
+						onBtnClick() {
+							this.$emit('update:activeNumber'[, 子向父的传参]);
+						}
+					}
+			}
+	EventBus 实现各组件间的单向传值
+		1、在项目中运行如下的命令，安装 mitt 依赖包：
+			npm install mitt
+		2、在项目中创建公共的 eventBus 模块。代码示例如下：
+			// 导入 mitt 包。
+			import mitt from 'mitt'
+			// 创建 EventBus 的实例对象。
+			const bus = mitt();
+			// 将 EventBus 的示例对象共享出去。
+			export default bus
+		3、在数据接收方，调用 bus.on('事件名称', 事件处理函数) 方法注册一个自定义事件。代码示例如下：
+			// 导入 eventBus.js 模块，得到共享的 bus 对象。
+			import bus from './eventBus.js'
+			export default {
+				data() { return { count: 0 } },
+				created() {
+					// 调用 bus.on() 方法注册自定义事件，接收数据。
+					bus.on('countChange', count => {
+						this.count = count;
+					});
+				}
+			}
+		4、在数据发送方，调用 bus.emit('事件名称', 要发送的数据) 方法触发自定义事件。代码示例如下：
+			// 导入 eventBus.js 模块，得到共享的 bus 对象。
+			import bus from './eventBus.js'
+			export default {
+				data() { return { count: 0 } },
+				methods: {
+					addCount() {
+						this.count++;
+						// 调用 bus.emit() 方法触发自定义事件，发送数据。
+						bus.emit('countChange', this.count);
+					}
+				}
+			}
+	前后代组件之间的单向传值（祖向孙传值）
+		非响应式传值（父变子不变）
+			祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
+				export default {
+					data() { return { color: 'red' } },
+					provide() { return { color: this.color } }
+				}
+			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
+				<template>
+					<span>颜色：{{ color }}</span>
+				</template>
+				export default {
+					inject: ['color']
+				}
+		响应式传值（父变子亦变）
+			祖父组件可以通过 provide 节点向其子孙组件共享数据。代码示例如下：
+				// 从 Vue 中按需导入 computed 函数。
+				import { computed } from 'vue'
+				export default {
+					data() { return { color: 'red' } },
+					// 使用 computed 函数，将共享的数据包装为响应式的数据。
+					provide() { return { color: computed(() => this.color) } }
+				}
+			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。代码示例如下：
+				<template>
+					<!-- 响应式的数据，必须以 .vaule 的形式进行使用。 -->
+					<span>颜色：{{ color.vaule }}</span>
+				</template>
+				export default {
+					inject: ['color']
+				}
+		注意：这种方法也可以让父组件向后代组件传递一个函数，这样后代组件通过调用这个函数可以实现后代组件向父组件的传值，具体用法见官网。
+	vuex 状态管理
+		vuex 是终极的组件之间数据共享的方案。
+		在企业级的 Vue 项目开发中，vuex 可以让组件之间的数据共享变得高效、清晰、易于维护。
+Vue 的过滤器
+	过滤器（Filters）常用于文本的格式化。主要使用在两个地方：插值表达式和 v-bind 属性绑定。
+	过滤器（私有）的使用
+		<p :title="info | capitalize">{{message | capitalize}}</p>
+		data: {
+			message: 'hello vue.js',
+			info: 'title info'
+		},
+		filters: {
+			capitalize(str) {
+				return str.charAt(0).toUpperCase() + str.slice(1);
+			}
+		}
+		注意：过滤器可以串联地进行调用，例如：
+			<p :title="info | capitalize">{{message | capitalize | maxLength}}</p>
+	过滤器的分类
+		私有过滤器
+			在 filters 节点下定义的过滤器，称为“私有过滤器”，因为它只能在当前 vm 实例所控制的 el 区域内使用。
+		全局过滤器
+			如果希望在多个 Vue 实例之间共享过滤器，则可以按照如下的格式定义全局过滤器：
+				Vue.filter('capitalize', (str) => {
+					return str.charAt(0).toUpperCase() + str.slice(1);
+				})
+			注意：如果全局过滤器与私有过滤器重名，则遵循就近原则，私有过滤器的权重高于全局过滤器。
+	
+	过滤器的传参
+		过滤器的本质是 JS 函数，因此可以接收参数，格式如下：
+			<p :title="info | capitalize">{{message | capitalize | maxLength(3)}}</p>
+			Vue.filter('maxLength', (str, len = 10) => {		// 10 为 len 的默认值。
+				if(str.length <= len) {
+					return str;
+				} else {
+					return str.slice(0, len);
+				}
+			})
+	过滤器的兼容性
+		过滤器仅在 Vue2.x 和 Vue1.x 中受支持，在 Vue3.x 的版本中剔除了过滤器相关的功能。
+		在企业级项目开发中，如果使用的是 Vue2.x 版本，则依然可以使用过滤器相关的功能。如果项目已经升级到了 Vue3.x 版本，官方建议使用计算属性代替被剔除的过滤器功能。
+Vue 组件的计算属性
+	Vue 的计算属性本质上是  JS 函数，它可以实时监听自身所依赖的 data 数据的变化，并 return 一个计算后的新值供组件渲染 DOM 使用。
+	声明计算属性
+		计算属性需要以函数的形式声明到组件的 computed 节点中。示例代码如下：
+			<input type="text" v-model.number="count" />
+			<p>{{ count }}乘以 2 的值为：{{ plus }}</p>
+			data() {
+			 	return { count: 1 }
+			},
+			computed: {
+				plus() {
+					return this.count * 2;
+				}
+			}
+		注意：计算属性侧重于得到一个计算的结果，因此计算属性中必须有 return 返回值。
+	计算属性的使用注意点：
+		1、计算属性必须定义在 computed 节点中；
+		2、计算属性必须是一个 function 函数；
+		3、计算属性必须有返回值；
+		4、计算属性必须当做普通属性使用。
+	计算属性 vs 方法
+		相对于方法来说，计算属性会缓存计算的结果，只有计算属性的依赖项发生变化时，才会重新进行运算。因此计算属性的性能更好，更适合用来监听依赖项数据的变化。
+Vue 组件的侦听器
+	Vue 的 watch 侦听器可以让开发者监听数据的变化。
+	watch 侦听器的基本用法
+		export default {
+			data() {
+			 	return { username: '' }
+			},
+			watch: {
+				username(newVal, oldVal) {
+					// 处理逻辑
+				}
+			}
+		}
+	侦听器的 immediate 属性
+		默认情况下，组件在初次加载完毕后不会调用 watch 侦听器。如果想让 watch 侦听器立即被调用，则需要使用 immediate 属性。代码示例如下：
+			export default {
+				data() {
+				 	return { username: '' }
+				},
+				watch: {
+					username: {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						immediate: true
+					}
+				}
+			}
+	侦听器的 deep 属性
+		watch 侦听器默认情况下无法监听到对象数据属性值的变化，此时需要为watch 侦听器添加 deep 属性。代码示例如下：
+			export default {
+				data() {
+				 	return { 
+						userInfo: { username: '' }
+					}
+				},
+				watch: {
+					userInfo: {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						deep: true
+					}
+				}
+			}
+	对象单个属性的监听
+		如果只想监听对象数据中单个属性值的变化，则可以按照如下方式定义 watch 侦听器：
+			export default {
+				data() {
+				 	return { 
+						userInfo: { username: '' }
+					}
+				},
+				watch: {
+					'userInfo.username': {
+						handler(newVal, oldVal) {
+							// 处理逻辑
+						},
+						deep: true
+					}
+				}
+			}
+	计算属性 vs 侦听器
+		计算属性侧重于监听多个数据值的变化，并最终计算并返回一个新值。
+		侦听器侧重于监听单个数据值的变化，并执行相应的业务处理，不需要有任何的返回值。
+Vue 组件的生命周期
+	组件的生命周期指的是：组件从创建 -> 运行（渲染） -> 销毁的整个过程。
+	组件的钩子函数
+		Vue 框架为组件内置了不同时刻的生命周期函数，不同的生命周期函数会伴随着组件的运行在相应的周期内自动被调用。例如：
+			生命周期函数	执行时机			所属阶段	执行次数	应用场景
+			beforeCreate	组件在内存中开始被创建之前	创建阶段	唯一 1 次	-
+			created		组件在内存中被创建完毕后	创建阶段	唯一 1 次	发 Ajax 请求数据
+			beforeMount	组件被初次渲染到页面之前	创建阶段	唯一 1 次	-
+			mounted		组件被初次渲染到页面之后	创建阶段	唯一 1 次	操作 DOM 元素
+			beforeUpdate	组件被重新渲染到页面之前	运行阶段	0 次或多次	-
+			updated		组件被重新渲染到页面之后	运行阶段	0 次或多次	-
+			beforeUnmount	组件被销毁之前			销毁阶段	唯一 1 次	-
+			unmounted	组件被销毁之后			销毁阶段	唯一 1 次	-
+Vue 组件的插槽
+	在封装组件时，可以通过 <slot> 标签定义插槽，从而组件的调用者预留内容占位符。示例代码如下：
+		<!-- 封装的组件 -->
+		<template>
+			<!-- 在使用 my-com 组件时，如果组件调用者没有给定要渲染到组件插槽处的内容，则组件插槽处的默认内容会被渲染到组件插槽处的位置。 -->
+			<slot>插槽处默认的内容</slot>
+		</template>
+		<!-- 组件调用者 -->
+		<my-com>
+			<!-- 在使用 my-com 组件时，以下内容会被渲染到组件插槽处的位置。 -->
+			<p>......</p>
+		</my-com>
+	具名插槽
+		如果在封装组件时需要预留多个插槽，则需要为每个插槽指定具体的 name 名称。这种带有具体名称的插槽叫做具名插槽。代码示例如下：
+			<!-- 封装的组件 -->
+			<template>
+				<!-- 没有指定 name 名称的插槽，会有默认的名称叫做 “default”。 -->
+				<slot name="header"></slot>
+				<slot></slot>
+				<slot name="footer"></slot>
+			</template>
+			<!-- 组件调用者 -->
+			<my-com>
+				<!-- 在向具名插槽提供内容的时候，可以在一个 <template> 元素上使用 v-slot 指令，并以指令参数的形式提供其名称。 -->
+				<template v-slot:header>......</template>
+				<template v-slot:default>......</template>
+				<template v-slot:footer>......</template>
+			</my-com>
+		注意：跟 v-on 和 v-bind 一样，v-slot 也有缩写形式，即把参数之前的所有内容 (v-slot:) 替换为字符 #。例如 v-slot:header 可以被重写为 #header。
+	作用域插槽
+		在封装组件的过程中，可以为预留的 <slot> 插槽绑定 props 数据，这种带有 props 数据的插槽叫做作用域插槽。示例代码如下：
+			<!-- 封装的组件 -->
+			<template>
+				<slot :info="infomation"></slot>
+			</template>
+			<!-- 组件调用者 -->
+			<my-com>
+				<!-- 作用域插槽接收 props 数据的方法一 -->
+				<template v-slot:default="scope">{{ scope.info }}</template>
+				<!-- 作用域插槽接收 props 数据的方法二：结构表达式 -->
+				<template v-slot:default="{ info }">{{ info }}</template>
+			</my-com>
+Vue 组件的自定义指令
+	Vue 官方提供了 v-for、v-model、v-if 等常用的内置指令，除此之外 Vue 还允许开发者自定义指令。
+	私有自定义指令
+		在每个 Vue 组件中，可以在 directives 节点下声明私有自定义指令。代码示例如下：
+			<!-- 在使用自定义指令时，需要加上 v- 前缀。 -->
+			<input v-focus />
+			// 声明自定义指令，指令的名字是 focus。
+			directives: {
+				focus: {
+					// 当绑定指令的元素被插入到 DOM 中时，会自动触发 mounted 函数。
+					mounted(el) {
+						// el 是绑定指令的 DOM 元素。
+						el.focus();
+					}
+				}
+			}
+	全局自定义指令
+		全局共享的自定义指令需要通过“单页面应用程序的实例对象”进行声明，示例代码如下：
+			app.directive('focus', {
+				mounted(el) {
+					el.focus();
+				}
+			});
+	updated 函数
+		mounted 函数只在“绑定指令的元素”第一次被插入 DOM 时被调用，updated 函数会在每次 DOM 更新完成后再次被调用。示例代码如下：
+			app.directive('focus', {
+				mounted(el) {
+					el.focus();
+				},
+				updated(el) {
+					el.focus();
+				}
+			});
+		注意：
+			1、在 vue2.x 的项目中使用自定义指令时: mounted 应改为 bind、updated 应改为 update；
+			2、如果 mounted 和 updated 函数中的逻辑完全相同，则自定义指令可以简写成如下格式：
+				app.directive('focus', {
+					(el) => {
+						el.focus();
+					}
+				});
+	自定义指令的参数值
+		在绑定自定义指令时，可以通过“等号”的形式为指令绑定具体的参数值。代码示例如下：
+			<!-- 使用自定义指令。 -->
+			<input v-color="'red'" />
+			// 定义自定义指令。
+			app.directive('color', {
+				(el, binding) => {
+					// binding.value 就是通过“等号”为自定义指令绑定的值。
+					el.style.coor = binding.value;
+				}
+			});
+Vue 路由
+	动态组件
+		Vue 提供了一个内置的 <component> 组件，专门用来实现组件的动态渲染。
+			1、<component> 是组件的占位符；
+			2、通过 is 属性动态指定要渲染的组件名称；
+			3、用法：<component is="要渲染的组件的名称"></component>
+		使用 keep-alive 保持状态
+			默认情况下，切换动态组件时无法保持组件的状态。此时可以使用 Vue 内置的 <keep-alive> 组件来保持动态组件的状态。代码示例如下：
+				<keep-alive>
+					<component is="要渲染的组件的名称"></component>
+				</keep-alive>
+	前端路由的工作方式：
+		1、用户点击了页面上的路由链接；
+		2、导致了 URL 地址栏中的 Hash 值发生了变化；
+		3、前端路由监听了到 Hash 地址的变化；
+		4、前端路由把当前 Hash 地址对应的组件渲染到浏览器中。
+		结论：前端路由指的是 Hash 地址与组件之间的对应关系！
+	实现简易的前端路由：
+		1、导入并注册 MyHome、MyMovie、MyAbout 三个组件；
+		2、通过 <component> 标签的 is 属性，动态切换要显示的组件；
+		3、在组件中声明 3 个 <a> 链接，通过点击不同的 <a> 链接，来切换浏览器地址栏中的 Hash 值；
+		4、在 created 生命周期函数中监听浏览器地址栏中 Hash 值的变化，以此动态切换要展示的组件的名称。
+			created() {
+				window.onhashchange = () => {
+					switch(location.hash) {
+						case '#/home':
+							this.comName = 'my-home';
+							break
+						case '#/movie':
+							this.comName = 'my-movie';
+							break
+						case '#/about':
+							this.comName = 'my-about';
+							break
+					}
+				}
+			}
+	vue-router
+		vue-router 是 vue.js 官方给出的路由解决方案。它只能结合 Vue 项目进行使用，能够轻松的管理 SPA 项目中组件的切换。
+		vue-router 的版本
+			vue-router 目前有 3.x 的版本和 4.x 的版本。其中：vue-router 3.x 只能结合 vue2.x 进行使用；vue-router 4.x 只能结合 vue3.x 进行使用。
+		vue-router 4.x 的基本使用步骤
+			1、在项目中安装 vue-router；
+				npm install vue-router@next -S
+			2、定义需要路由的组件；
+			3、声明路由链接和占位符；
+				<template>
+					<!-- 声明路由组件 -->
+					<router-link to="..."></router-link>
+					<router-link to="..."></router-link>
+					<router-link to="..."></router-link>
+					<!-- 声明路由占位符 -->
+					<router-view></router-view>
+				</template>
+			4、创建路由模块；
+				在项目中创建 router.js 路由模块，在模块中按照如下 4 个步骤创建并获得路由的实例对象：
+					1、从 vue-router 中按需导入两个方法；
+						// createRouter 方法用于创建路由实例对象。
+						// createWebHashHistory 方法用于指定路由的 hash 工作模式。
+						import { createRouter, createWebHashHistory } from 'vue-router'
+					2、导入需要使用路由控制的组件；
+					3、创建路由实例对象；
+						const router = createRouter({
+							history: createWebHashHistory(),
+							routes: []
+						});
+					4、向外共享路由实例对象；
+						export default router
+			5、在 main.js 中导入并挂载路由模块。
+				import router from './router'
+				app.use(router);
+	vue-router 的高级用法
+		路由重定向
+			路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C ，从而展示特定的组件页面。
+			通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向。
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [
+						{ path: '/', redirect: '/login' },
+						{ path: '/login', component: Login, name: 'login' }
+					]
+				});
+		路由高亮
+			可以通过如下的两种方式，将被激活的路由链接进行高亮显示：
+				1、使用默认的高亮 class 类；
+					被激活的路由链接，默认会应用一个叫做 router-link-active 的类名。开发者可以使用此类名选择器，为激活的路由链接设置高亮的样式。
+						// 在全局样式文件中定义此样式。
+						.router-link-active {
+							background-color: red;
+							color: white;
+							font-weight: bold;
+						}
+				2、自定义路由高亮的 class 类。
+					在创建路由的实例对象时，开发者可以基于 linkActiveClass 属性，自定义路由链接被激活时所应用的类名。
+						const router = createRouter({
+							history: createWebHashHistory(),
+							// 默认的路由激活类名会被覆盖。
+							linkActiveClass: 'router-active',
+							routes: []
+						});
+		嵌套路由
+			通过路由实现组件的嵌套展示，叫做嵌套路由，也叫做父子路由。用法如下：
+				1、声明子路由链接和子路由占位符；
+				2、在父路由规则中，通过 children 属性嵌套声明子路由规则。
+					const router = createRouter({
+						history: createWebHashHistory(),
+						routes: [
+							{
+							      path: "/home",
+							      redirect: "/home/users",
+							      component: Home,
+							      name: "home",
+							      children: [
+									{ path: "users", component: Users },
+									{ path: "rights", component: Rights },
+									{ path: "goods", component: Goods }
+							      ]
+							}
+						]
+					});
+			注意：子路由不能以斜线开头，因为开头的斜线代表的是根路径。
+		动态路由匹配
+			动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。在 vue-router 中使用英文的冒号来定义路由的参数项。代码示例如下：
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [{ path: "/users/:id", component: Users, name: "users" }]
+				});
+		动态路由的参数获取
+			$route.params 参数对象
+				通过动态路由匹配方式渲染出来的组件中，可以使用 $route.params 对象访问到动态路由匹配的参数。
+			使用 props 接收路由参数
+				为了简化路由参数的获取方式，vue-router 允许在路由规则中开启 props 传参。代码示例如下：
+					// 在定义路由规则时，声明 props: true 选项。
+					{ path: "/users/:id", component: Users, name: "users" props: true }
+					export default {
+						// 接收路由规则中匹配到的参数。
+						props: ['id']
+					}
+		编程式导航
+			通过调用 API 实现导航的方式，叫做编程式导航；通过点击链接实现导航的方式，叫做声明式导航。
+			this.$router.push('hash 地址')
+				调用 this.$router.push() 方法，可以跳转到指定的 hash 地址，从而展示对应的组件页面。
+			this.$router.go(数值 n)
+				调用 this.$router.go() 方法，可以在浏览历史中进行前进和后退。
+		命名路由
+			通过 name 属性为路由规则定义名称的方式，叫做命名路由。代码示例如下：
+				const router = createRouter({
+					history: createWebHashHistory(),
+					routes: [
+						{ path: '/login', component: Login, name: 'login' }
+					]
+				});
+			注意：命名路由的 name 值不能重复，必须保证唯一性！
+			使用命名路由实现声明式导航
+				为 <router-link> 标签动态绑定 to 属性的值，并通过 name 属性指定要跳转到的路由规则。期间还可以用 params 属性指定跳转期间要携带的路由参数。代码示例如下：
+					<router-link :to="{ name: 'mov', params: { id: 3 } }">go to movie</router-link>
+			使用命名路由实现编程式导航
+				调用 this.$router.push() 方法期间指定一个配置对象，name 是要跳转到的路由规则、params 是携带的路由参数。代码示例如下：
+					this.$router.push({ name: 'mov', params: { id: 3 } });
+	导航守卫
+		导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。可以按照如下的方式定义导航守卫：
+			// 创建路由实例对象。
+			const router = reateRouter({...});
+			// 调用路由实例对象的 beforeEach 函数，声明“全局前置守卫”。
+			router.beforeEach((to, from, next) => {
+				// 判断用户访问的是否为登录页。
+				if (to.path === "/login") return next();
+				// 如果用户访问的不是登录页，则需要用户提供 token 值。
+				const tokenStr = sessionStorage.getItem("token");
+				if (!tokenStr) {
+					next("/login");
+				} else {
+					next();
+				}
+			});
+		注意：
+			1、在守卫方法中如果不声明 next 形参，则默认允许用户访问每一个路由；
+			2、在守卫方法中如果声明了 next 形参，则必须调用 next() 函数，否则不允许用户访问任何一个路由。
+				next()：直接放行；
+				next(false)：强制停留在当前页面；
+				next('URL')：强制跳转到指定页面。	
+Vue 其它高级语法
+	ref 引用
+		每个 Vue 的组件实例上，都包含一个 $refs 对象，里面存储着对应的 DOM 元素或组件的引用。默认情况下，组件的 $refs 指向一个空对象。
+		使用 ref 引用 DOM 元素
+			<!-- 使用 ref 属性，为对应的 DOM 添加引用名称。 -->
+			<h3 ref="myh3">MyRef 组件</h3>
+			<button @click="getRef">获取 $refs 引用</button>
+			methods: {
+				getRef() {
+					// 获取 DOM 元素的引用。
+					console.log(this.$refs.myh3);
+					// 操作 DOM 元素，把文本颜色改为红色。
+					this.$refs.myh3.style.color = 'red';
+				}
+			}
+		使用 ref 引用组件实例
+			<!-- 使用 ref 属性，为对应的组件添加引用名称。 -->
+			<my-counter ref="counterRef"></my-counter>
+			<button @click="getRef">获取 $refs 引用</button>
+			methods: {
+				getRef() {
+					// 通过引用获取组件的实例。
+					console.log(this.$refs.counterRef);
+					// 调用组件上的 methods 方法。
+					this.$refs.counterRef.methods.add();
+				}
+			}
+		让文本框自动获得焦点
+			<input ref="ipt" name="name"></input>
+			this.$refs.ipt.focus();
+	this.$nextTick(cb)
+		组件的 $nextTick(cb) 方法，会把 cb 回调函数推迟到下一次 DOM 更新之后执行。通俗的理解是：等组件的 DOM 异步重新渲染完成后，再执行 cb 回调函数。
+	Vue3 中全局配置 Axios
+		在实际项目开发中，几乎每个组件中都会用到 Axios 发起数据请求。此时会遇到如下两个问题：
+			1、每个组件中都需要导入 Axios 模块；
+			2、每次发起请求都需要填写完整的请求路径。
+		全局配置 Axios
+			在 main.js 入口文件中全局挂载 Axios。示例代码如下：
+				// 为 axios 配置请求的路径。
+				axios.defaultsbaseURL = '统一 URL 前缀';
+				// 将 axios 挂载为 app 的全局自定义属性之后，每个组件都可以通过 this 直接访问到全局挂载的 $http 自定义属性。
+				// Vue 中 this 代表当前组件的对象。
+				app.config.globalProperties.$http = axios;
+	vue-cli中 @代表src目录
+
+
+
+Vuex
+	基本使用（vue2.x）
+		1、安装依赖包；
+			npm install vuex --save
+		2、导入 Vuex 包；
+			import Vuex from 'vuex'
+			// 将 Vuex 全局注册到 Vue 中。
+			Vue.use(Vuex);
+		3、创建 Store 的实例对象；
+			const store = new Vuex.Store({
+				state: {}，
+				mutaitions: {}，
+				actions: {}，
+				getters: {}
+			});
+		4、将 Store 的实例对象挂载到 Vue 的实例对象中。
+			new Vue({
+				el: '#app',
+				render: h => h(app),
+				router,
+				store
+			});
+	组件：
+		组件可以共享 state 中的数据，并且能够调用 actions 中的异步操作。
+	state
+		作用：存储共享状态数据。
+		定义数据的格式：
+			state: {
+				XXX: 0	
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div>{{ $store.state.XXX }}</div>
+			2、在组件计算属性中使用；
+				computed: {
+					XXX () {
+						return this.$store.state.XXX
+					}
+				}
+			3、借助辅助函数来使用。
+				// mapState 是一个辅助函数，可以把 store 中的数据映射到组件的计算属性中。
+				
+				// 第一步：导入 mapState。
+				import { mapState } from 'Vuex'
+				// 第二步：采用数组形式引入 state 的属性。
+				mapState(['XXX'])
+				
+				// 上面的代码类似于：
+				// [
+				//	XXX () {
+				//		return this.$store.state.XXX
+				//	}
+				// ]
+				
+
+				// 第三步：利用延展运算符将导出的属性映射给计算属性。
+				computed: {
+					...mapState(['XXX'])
+				}
+				...接下来当作计算属性使用即可。
+	mutaitions
+		作用：对 state 中的数据进行修改，只能执行同步代码。
+		定义数据的格式：
+			// 第一个参数是 state 属性，
+			// 第二个参数 payload 载荷，是调用 mutaitions 方法时传进来的参数。
+			mutaitions: {
+				addXXX(state, payload) {
+					state.XXX += payload
+				}
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div @click='$store.commit('addXXX', 1)'>同步 +1</div>
+			2、在组件脚本中使用；
+				this.$store.commit('addXXX', 1)
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapMutaitions。
+				import { mapMutaitions } from 'Vuex'
+				// 第二步：采用数组形式引入 mutaitions 的方法。
+				mapMutaitions(['addXXX'])
+				// 第三步：利用延展运算符将导出的方法映射给方法属性。
+				methods: {
+					...mapMutaitions(['addXXX'])
+				}
+				...接下来当作同步方法使用即可。
+	actions
+		作用：异步操作获取数据，并将数据提交给 mutaitions 方法进行处理。
+		定义数据的格式：
+			// 参数 context 就是 Store 的实例对象 store 对象，
+			// 可以通过 context.commit('name', value) 来调用 mutaitions 的方法，
+			// 也可以通过 context.dispatch('name', value) 来调  actions 的方法。
+			actions: {
+				addAsyncXXX(context, params) {
+					setTimeout(function() {
+						context.commit('addXXX', params)
+					}, 1000)
+				}
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div @click='$store.dispatch('addAsyncXXX', 1)'>异步 +1</div>
+			2、在组件脚本中使用；
+				this.$store.dispatch('addAsyncXXX', 1)
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapActions。
+				import { mapActions } from 'Vuex'
+				// 第二步：采用数组形式引入 actions 的方法。
+				mapActions(['addAsyncXXX'])
+				// 第三步：利用延展运算符将导出的方法映射给方法属性。
+				methods: {
+					...mapActions(['addAsyncXXX'])
+				}
+				...接下来当作异步方法使用即可。
+	getters
+		作用：依赖于 state 属性的一种计算属性。
+		定义数据的格式：
+			// 第一个参数是 state 属性。
+			// 必须要有返回值。
+			getters: {
+				filterXXX: state => state.XXX += 100
+			}
+		页面中的使用：
+			1、在组件模板中使用；
+				<div>{{ $store.getters.filterXXX }}</div>
+			2、在组件计算属性中使用；
+				computed: {
+					filterXXX () {
+						return this.getters.filterXXX
+					}
+				}
+			3、借助辅助函数来使用。
+				// 第一步：导入 mapGetters。
+				import { mapGetters } from 'Vuex'
+				// 第二步：采用数组形式引入 getters 的属性。
+				mapGetters(['filterXXX'])
+				// 第三步：利用延展运算符将导出的属性映射给计算属性。
+				computed: {
+					...mapGetters(['filterXXX'])
+				}
+				...接下来当作计算属性使用即可。
+
+
+
+Vue3
+	vite 的主要职责：创建一个 Vue 应用（根实例）。
+		1、从 vue 中导入 createApp 函数；
+			import { createApp } from 'vue'
+		2、创建一个根组件，并将其导入至 main.js 文件；
+			import App from './App.vue'
+		3、使用 createApp 函数创建应用实例；
+			const app = createApp(App)
+		4、将应用实例挂载到 #app 容器中；
+			app.mount('#app')
+	组合 API
+		setup 函数
+			1、组合 API 的起点；
+			2、可以理解为在 beforeCreate 钩子函数之前执行；
+			3、此函数中不能使用 this，因为此时组件实例还没创建；
+			4、模板结构中需要使用的数据和函数，需要在此函数中返回。
+			用法：
+				setup() { return }
+		生命周期
+			setup 创建组件实例前
+			onBeforeMount 挂载到 DOM 前
+			onMounted 挂载到 DOM 后
+			onBeforeUpdate 组件更新前
+			onUpdated 组件更新后
+			onBeforeUnmount 组件销毁前
+			onUnmounted 组件销毁后
+		reactive 函数
+			作用：包装一个复杂数据类型，让它成为响应式数据。
+			toRef 函数
+				作用：包装一个响应式对象中的某个属性，让它单独成为响应式数据。
+				用法：
+					const name = toRef(user, 'name');
+					// 修改响应式数据的方法一。
+					user.name = 'ls';
+					// 修改响应式数据的方法二。
+					name.value = 'zs';
+					return { name }
+				使用场景：
+					有一个响应式数据对象，但模板结构中只需要使用其中的一项属性数据。
+				注意：
+					1、从响应式数据对象中解构出来的属性数据，不再是响应式数据；
+					2、toRef 函数将数据包装成了响应式对象，value 是其存放值的地方。
+			toRefs 函数
+				作用：将某个响应式对象中的所有属性包装成单独的响应式数据。
+				用法：
+					const user_c = toRefs(user);
+					// 修改响应式数据的方法一。
+					user.name = 'ls';
+					// 修改响应式数据的方法二。
+					user_c.name.value = 'zs';
+					return { ...user_c }
+		ref 函数
+			作用：包装一个简单数据类型，让它成为响应式数据。
+			用法：
+				const name = ref('ls');
+				return { name }
+			使用场景：
+				当明确知道需要的是一个响应式数据对象的时候就使用 reactive 函数，其它情况一律使用 ref 函数。
+			注意：
+				1、在修改值获取值的时候，需要用到 .value；
+				2、在模板中使用响应式数据值的时候，可以直接使用，不需要用到 .value；
+				3、toRef、toRefs 函数的底层就是 ref 函数；
+				4、ref 函数常用来定义简单数据类型的响应式数据，其实也可以用来定义复杂数据类型的响应式数据，接收异步接口返回值的时候经常用到 ref 函数，因为接口返回的数据类型可能不确定。
+					const data = ref(null);
+					data.value = res.data;
+		computed 函数
+			用法：
+				const newValue = computed(() => { return });
+			高级用法：
+				 const newValue = computed({
+				 	// get 函数，当计算属性的依赖值改变时触发，返回计算后的结果。
+					get(){
+						return
+					}
+					// set 函数，当计算属性被设置值时触发，对计算属性所依赖的值进行处理，进而间接修改计算属性的值。
+					set(){
+						......
+					}
+				 });
+			注意：计算属性是不能被直接修改的，这种高级用法在 vue2.x 中也适用。
+		watch 函数（老师讲的有点问题）
+			用法：
+				1、普通数据的监听：
+					watch(value, () => {
+						......
+					})	
+				2、监听多个数据的改变：
+					watch([value1, value2], () => {
+						......
+					})
+				3、监听对象中某一个属性的变化：
+					watch(() => value.prop, () => {
+						......
+					})
+				4、数据的深度监听和初始化监听：
+					watch(value, () => {
+						......
+					}, { deep: true, immediate: true })		
+		ref 属性
+			作用：绑定 DOM 或组件实例。
+			用法：
+				1、绑定单个 DOM 元素：
+					<div ref="box"></div>
+					const box = ref(null);
+					return { box }
+				2、绑定 v-for 遍历的 DOM 元素：
+					<div v-for="" :key="" :ref="setDom"></div>
+					const domList = [];
+					const setDom = (el) => {
+						domList.push(el);
+					}
+					return { setDom }
+		父子通讯
+			1、父组件向子组件传值：
+				// 父组件中的代码。
+				<Son :valueName="val"></Son>
+				setup() {
+					const val = ref(value);
+					return { val }
+				}
+				// 子组件中的代码。
+				props: {
+					valueName: {
+						type: Number,
+						default: 0
+					}
+				}
+				setup(props) {
+					console.log(props.valueName);
+				}
+			2、子组件向父组件传值：
+				// 父组件中的代码。
+				<Son @eventName="eve"></Son>
+				setup() {
+					const eve = (subValue) => {
+						...
+					}
+					return { eve }
+				}
+				// 子组件中的代码。
+				setup(props, { emit }) {
+					......
+					emit('eventName', value);
+				}
+			3、v-model 语法糖：
+				老师讲的很菜，没学。
+		依赖注入
+			作用：provide 函数和 inject 函数实现了父组件和后代组件之间的通讯。
+			用法：去官网查询。https://www.javascriptc.com/vue3js/guide/component-provide-inject.html#%E5%A4%84%E7%90%86%E5%93%8D%E5%BA%94%E6%80%A7
+			
+				
+		
+			
+			
+		
+
+
+
+					
+			
+				

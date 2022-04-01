@@ -223,24 +223,26 @@ JS 引入方式
 对象
 	创建对象
 		1、利用字面量创建对象；
-			var obj = {
-				name: '张三',
-				sayHi: function () {
-					console.log('hi')
+			var star = {
+				name: '刘德华',
+				sing: function (songName) {
+					console.log(songName);
 				}
 			}
 		2、利用 new Object 创建对象；
-			var obj = new Object();
-			obj.name = '张三'；
-			obj.sayHi = function () { console.log('hi') }
+			var star = new Object();
+			star.name = '刘德华'；
+			star.sing = function (songName) {
+					console.log(songName);
+				}
 		3、利用构造函数来创建对象。
-			function Star (name, sing) {
+			function Star (name, songName) {
 				this.name = name；
-				this.sing = function (sing) {
-					console.log(sing);
+				this.sing = function (songName) {
+					console.log(songName);
 				}
 			}
-			var obj = new Star('刘德华', '冰雨');
+			var star = new Star('刘德华', '冰雨');
 			注意：
 				1、构造函数名字首个字母要大写；
 				2、构造函数不需要 return 就可以返回结果。
@@ -250,13 +252,13 @@ JS 引入方式
 				3、执行构造函数里面的代码；
 				4、返回这个对象（构造函数不需要 return）。
 	使用对象：
-		1、Star.name | Star.sing()
-		2、Star['name']
+		1、star.name | star.sing()
+		2、star['name']
 	遍历对象
 		for...in 语句用于对数组或者对象的属性进行循环操作。
-		for (var k in obj) {
+		for (var k in star) {
 			console.log(k);					// k 接收的是属性名。
-			console.log(obj[k]);
+			console.log(star[k]);
 		}
 内置对象
 	JS 中的对象分为三种：自定义对象、内置对象、浏览器对象。前两种对象是 JS 基础内容，属于 ECMAScript；第三个对象属于 JS 独有。

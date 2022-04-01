@@ -1,0 +1,14 @@
+项目生产打包命令 ：npm run build:prod
+查看项目性能面板命令：npm run preview -- --report
+服务器启动项目：node app
+
+版本回退之后，要用 git pull -f 命令，进行代码的提交操作。
+
+<style>
+#app {
+	width: 100%;
+	height: 100vh; // 高度为可视屏的 100%。
+}
+</style>
+
+v-slot 必须用到 template 标签上。
