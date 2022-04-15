@@ -495,12 +495,14 @@ DOM 文档对象模型
 			2、方法监听注册事件的解绑：
 				targetElement.removeEventListener('eventType', listener[, useCapture]);		// IE9 以上。
 				targetElement.detachEvent('eventType', listener);				// IE6 ~ 8使用。
-		3、DOM 事件流
+		3、DOM 事件流（事件传播）
 			三个阶段：
-				1、捕获阶段：事件由 DOM 顶层节点开始，逐级向下传播到具体元素的过程。
-				2、当前目标阶段。
+				1、捕获阶段：事件由 DOM 顶层节点开始，逐级向下传播到具体元素的过程；
+				2、当前目标阶段；
 				3、冒泡阶段：事件由具体元素开始，逐级向上传播到 DOM 顶层节点的过程。
-				注意：事件有捕获则没有冒泡，有冒泡则没有捕获。有些事件是没有冒泡的：onblur、onfocus、onmouseenter、onmouseleave。
+				注意：
+					1、事件有捕获则没有冒泡，有冒泡则没有捕获；
+					2、有些事件是没有冒泡的：onblur、onfocus、onmouseenter、onmouseleave。
 		4、事件对象
 			targetElement.eventType = function(e){
 				console.log(e || window.event);		// 兼容 IE6 ~ 8。

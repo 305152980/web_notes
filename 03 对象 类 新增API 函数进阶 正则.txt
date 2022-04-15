@@ -111,7 +111,7 @@ ES6 之前的类
 				}
 			}
 	类的继承
-		ES6 之前，通过构造函数和原型对象来模拟继承，称为组合继承。
+		组合继承：ES6 之前，通过构造函数和原型对象来模拟继承，称为组合继承。
 			function Father(parms1, parms2, ...) { 
 				this.parms1 = parms1;
 				this.parms2 = parms2;
@@ -134,25 +134,79 @@ ES6 之前的类
 			实例都会有一个 __proto__ 属性用来指向它的原型 prototype 。它们两者都是地址引用，是等价的。
 		constructor
 			__proto__ 和 prototype 里面都有 constructor 属性，用来指向该对象的构造函数。
-	实例/静态成员
-		1、实例成员定义在实例上，静态成员定义在构造函数上，公共方法定义在原型上。
-		2、静态成员只能通过构造函数来访问。
-			function ClassName(parms1, parms2, ...) {
-				this.parms1 = parms1;		// 实例成员
-				this.parms2 = parms2;
-				...
-			}
-			Name.prototype.funName = function(value1, value2, ...) {
-				...
-			}
-			ClassName.parmsN = value;		// 静态成员
-			console.log(ClassName.parmsN);		// 访问静态成员
 	JS 成员查找规则
 		当访问一个对象的属性或方法时，首先查找这个对象的自身；如果没有就查找他的原型；如果还没有，就查找原型的原型。
+		复杂数据类型的属性，它的读写都遵循 JS 成员的查找规则；简单数据类型的属性，它的读取遵循 JS 成员的查找规则，写入则遵循就近原则（即直接写入到对象实例中）。
 
 
 
 ES5 新增的语法
+	字符串方法
+		trim()
+			作用：去除字符串两端的空白字符。
+			var newStr = str.trim()
+	对象方法
+		Object.create(proto，[propertiesObject])
+			参数：
+				proto：新创建对象的原型对象。如果为 null，则原型对象为 undefined，因此也不会继承 Object.prototype 上的方法。
+				propertiesObject：属性描述符，其值如下：
+					{ 
+						属性名: {
+							enumerable: true,	// 当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。默认为 false。
+							configurable: true,	// 当且仅当该属性的 configurable 键值为 true 时，该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false。
+							writable: true,		// 当且仅当该属性的 writable 键值为 true 时，属性的值，也就是下面的 value，才能被赋值运算符改变。默认为 false。
+							value: ''		// 该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。
+						},
+						......
+					}
+			返回值：
+				一个新对象，带着指定的原型对象和属性。
+			方法实现原理：
+				Object.create = function(proto，propertiesObject) {
+					// 省去了其他的判断操作。
+					function F() {}
+					F.prototype = proto;
+					if(propertiesObject) {
+						// 添加或者修改对象的属性值。
+						Object.defineProperties(F, propertiesObject);
+					}
+					return new F();
+				}
+			方法应用场景：
+				实现类式继承。代码原理：
+					function Person(name, sex) {
+						this.name = name;
+						this.sex = sex;
+					}
+					Person.prototype.getInfo = function() {
+						console.log('name：' + this.name + '，sex：' + this.sex + '。');
+					}
+					function Student(name, sex, age) {
+						Person.call(this, name, sex);
+						this.age = age;
+					}
+					Student.prototype = Object.create(Person.prototype);
+					Student.prototype.constructor = Student;
+					var student = new Student('zhangsan', 'nan', '18');
+					console.log('student: ', student);
+		keys()
+			作用：获取对象自身所有的属性，返回一个由属性名组成的数组。
+			var propArr = Object.keys()
+		defineProperty()
+			作用：定义对象中的新属性或修改对象中的原有属性。
+			Object.defineProperty(obj, prop, descriptor)
+				obj：必须，目标对象；
+				prop：必须，需定义或修改的属性；
+				descriptor：必须，属性所拥有的特性，以对象的形式传参。
+					value：属性值，默认值 undefined；
+					writable：属性值是否可以被修改，取值 true | false，默认值 false；
+					enumerable：该属性是否可以被 for...in 遍历出来，取值 true | false，默认值 false；
+					configurable：该属性是否可以被删除或者该属性的 descriptor 是否可以被修改，取值 true | false，默认值 false；
+					get：该属性被访问时触发此函数，例如：get() { return this.prop; }；
+					set：该属性被写入时触发此函数，例如：set(newValue) { this.prop = newValue; }。
+		delete
+			作用：删除对象中的某个属性。
+			delete obj.prop
 	数组方法
 		array.forEach(function(currentValue, index, arr))
 			参数：
@@ -235,27 +289,6 @@ ES5 新增的语法
 				var flag = array.every(function(currentValue, index, arr) {
 					return currentValue >= 20;
 				});
-	字符串方法
-		trim()
-			作用：去除字符串两端的空白字符。
-			var newStr = str.trim()
-	对象方法
-		keys()
-			作用：获取对象自身所有的属性，返回一个由属性名组成的数组。
-			var propArr = Object.keys()
-		defineProperty()
-			作用：定义对象中的新属性或修改对象中的原有属性。
-			Object.defineProperty(obj, prop, descriptor)
-				obj：必须，目标对象；
-				prop：必须，需定义或修改的属性；
-				descriptor：必须，属性所拥有的特性，以对象的形式传参。
-					value：属性值，默认值 undefined；
-					writable：属性值是否可以被修改，取值 true | false，默认值 false；
-					enumerable：该属性是否可以被 for...in 遍历出来，取值 true | false，默认值 false；
-					configurable：该属性是否可以被删除或者该属性的 descriptor 是否可以被修改，取值 true | false，默认值 false。
-		delete
-			作用：删除对象中的某个属性。
-			delete obj.prop
 ES6 新增的语法
 	关键字
 		let 关键字
@@ -281,29 +314,7 @@ ES6 新增的语法
 		对象结构
 			let {name, age} = {name: 'zhangsan', age: 20};	// 同时定义两个变量。
 			let {name: myName, age: myAge} = {name: 'zhangsan', age: 20};	// myName、myAge 属于别名。
-	箭头函数
-		示例：
-			const fun = () => {}
-			fun();
-		特点：
-			1、如果函数体只有一句代码，且代码的执行结果就是返回值，则可以省略大括号；
-				const sum = (num1, num2) => num1 + num2;
-			2、如果形参只有一个，则形参外面的小括号可以省略；
-			2、箭头函数不绑定 this 关键字，箭头函数中的 this 指向的是函数定义位置“上下文（外一层）”的 this。
-	剩余参数
-		剩余参数语法允许我们将一个不定数量的参数表示为一个数组，主要应用于形参。
-		应用一：
-			function sum(parms, ...parmsArr) {
-				console.log(parms);	// 10
-				console.log(parmsArr);	// [20, 30]
-			}
-			sum(10, 20, 30);
-		应用二：
-			let students = ['wangwu', 'zhangsan', 'lisi'];
-			let [s1, ...s2] = students;
-			console.log(s1);	// 'wangwu'
-			console.log(s2);	// ['zhangsan', 'lisi']
-	扩展运算符
+	扩展运算
 		扩展运算符可以将数组或者对象转为用逗号分隔的参数序列，主要应用于实参。
 		let arr = [1, 2, 3];
 		...arr	// 1, 2, 3
@@ -317,6 +328,108 @@ ES6 新增的语法
 			let arr1.push(...arr2);
 		应用二：将伪数组转换为真数组。
 			let oDivs = [...document.getElementByTagName('div')];
+	剩余参数
+		剩余参数语法允许我们将一个不定数量的参数表示为一个数组，主要应用于形参。
+		应用一：
+			function sum(parms, ...parmsArr) {
+				console.log(parms);	// 10
+				console.log(parmsArr);	// [20, 30]
+			}
+			sum(10, 20, 30);
+		应用二：
+			let students = ['wangwu', 'zhangsan', 'lisi'];
+			let [s1, ...s2] = students;
+			console.log(s1);	// 'wangwu'
+			console.log(s2);	// ['zhangsan', 'lisi']
+	箭头函数
+		示例：
+			const fun = () => {}
+			fun();
+		特点：
+			1、如果函数体只有一句代码，且代码的执行结果就是返回值，则可以省略大括号；
+				const sum = (num1, num2) => num1 + num2;
+			2、如果形参只有一个，则形参外面的小括号可以省略；
+			2、箭头函数不绑定 this 关键字，箭头函数中的 this 指向的是函数定义位置“上下文（外一层）”的 this。
+	模板字符串
+		作用：
+			1、模板字符串中可以解析变量；
+				let name = `zhangsan`;
+				let sayHello = `hello, my name is ${name}.`;
+			2、模板字符串可以换行；
+			3、在模板字符串中可以调用函数。
+				const sayHello = function() {
+					return 'hello, my name is zhangsan.';	
+				}
+				let greet = `${sayHello()}`;
+	字符串方法
+		starsWith()
+			作用：表示参数是否在原字符串的头部，返回布尔值。
+			let flag = str.starsWith(subStr);
+		endsWith()
+			作用：表示参数是否在原字符串的尾部，返回布尔值。
+			let flag = str.endsWith(subStr);
+		repeat()
+			作用：将原字符串重复 n 次，返回一个新字符串。
+			let newStr = oldStr.repeat(n);
+	对象方法
+		let proxy = new Proxy(target, handler)
+			参数：
+				proxy：target 的代理对象；
+				target：需要被代理的对象；
+				handler：proxy 代理 target 的指定行为。
+			注意：
+				1、通过构造函数新建实例时其实是对目标对象进行了浅拷贝，因此目标对象与代理对象会互相影响；
+				2、handler 对象也可以为空，相当于不设置拦截操作，直接访问目标对象。
+			示例：
+				let target = {
+					name: 'Tom',
+					age: 24
+				};
+				let handler = {
+					get: function(target, key) {
+						console.log('getting ' + key);
+						return target[key];		// 不是 target.key
+					},
+					set: function(target, key, value) {
+						console.log('setting ' + key);
+						target[key] = value;
+					}
+				}
+				let proxy = new Proxy(target, handler);
+				proxy.name;					// 实际执行 handler.get
+				proxy.age = 25;					// 实际执行 handler.set
+			应用：
+				1、对象属性的校验。
+					class Person {
+						constructor() {
+							this.name = '';
+							this.age = 0;
+							return validator(this, personValidators);
+						}
+					}
+					const personValidators = {
+						name: function(value) { return typeof value === 'string'; },
+						age: function(value) { return typeof value === 'number' }
+					}
+					funcrion validator(target, validator) {
+						return new Proxy(target, {
+							_validator: validator,
+							set: function(target, key, value) {
+								if(target.hasOwnProperty(key)) {
+									let valid = this._validator[key];
+									if(!valid || valid(value)) {
+										return Reflect.set(target, key, value);
+									} else {
+										throw new Error(`不能给属性 ${key} 设置 ${value} 值。`);
+									}	
+								} else {
+									trow new Error(`${key} 属性不存在。`);
+								}
+							}
+						});
+					}
+				2、实现 Vue3 的数据响应式。
+				3、实现属性的私有。
 	数组方法
 		Array.from()
 			作用：用于将伪数组或可遍历对象转换为真数组。
@@ -332,43 +445,22 @@ ES6 新增的语法
 		includes()
 			作用：检测数组是否包含给定的值，返回布尔值。
 			let flag = arr.includes(2);
-	字符串方法
-		starsWith()
-			作用：表示参数是否在原字符串的头部，返回布尔值。
-			let flag = str.starsWith(subStr);
-		endsWith()
-			作用：表示参数是否在原字符串的尾部，返回布尔值。
-			let flag = str.endsWith(subStr);
-		repeat()
-			作用：将原字符串重复 n 次，返回一个新字符串。
-			let newStr = oldStr.repeat(n);
-	模板字符串
-		作用：
-			1、模板字符串中可以解析变量；
-				let name = `zhangsan`;
-				let sayHello = `hello, my name is ${name}.`;
-			2、模板字符串可以换行；
-			3、在模板字符串中可以调用函数。
-				const sayHello = function() {
-					return 'hello, my name is zhangsan.';	
-				}
-				let greet = `${sayHello()}`;
 	Set 数据结构
 		类似于数组，但是其元素都是唯一的。
 			const set = new Set();
 			const set = new Set([1, 2, 3]);
-			console.log(set.size);	// set 的大小。
+		方法：
+			set.add(value)：添加某个值，返回 Set 结构本身。
+			set.delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+			set.has(value)：判断某个值是否为 set 的元素，返回一个布尔值。
+			set.clear()：清除 set 的所有元素，没有返回值。
+		遍历
+			set.forEach(item => console.log(item));	
 		应用：数组去重。
 			const newArr = [...new Set(oldArr)];
-		实例方法
-			add(value)：添加某个值，返回 Set 结构本身。
-			delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
-			has(value)：判断某个值是否为 set 的元素，返回一个布尔值。
-			clear()：清除 set 的所有元素，没有返回值。
-		遍历 Set
-			set.forEach(item => console.log(item));	
-
-
+			const newArr = Array.from(new Set(oldArr));
+	
+		
 
 函数进阶
 	函数的定义
@@ -398,21 +490,55 @@ ES6 新增的语法
 		4、立即执行函数内部的 this 指向 window 对象；
 		5、箭头函数内部的 this 继承自函数定义位置 “上下文（外一层）”。
 	this 指向的改变
-		call()
+		fun.call(thisParms, parms1, parms2, ...)
 			作用：调用函数并且改变函数中的 this 指向。
-			fun.call(thisParms, parms1, parms2, ...)
+			参数：
 				thisParms：当前函数中 this 指向的对象；
 				parms1 / parms2：fun 函数需要的参数。
-		apply()
+			返回值：
+				原函数被调用执行后的返回值。
+			代码实现：
+				Function.prototype.myCall = function (context) {
+					var args = [...arguments].slice(1);
+					context = context || window;
+					context.fn = this;
+					var result = context.fn(...args);
+					return result;
+				};
+		fun.apply(thisParms, parmsArr)
 			作用：调用函数并且改变函数中的 this 指向。
-			fun.apply(thisParms, parmsArr)
+			参数：
 				thisParms：当前函数中 this 指向的对象；
 				parmsArr：fun 函数需要的参数组成的数组。
-		bind()
-			不调用函数，只改变函数中的 this 指向。返回值是原函数的拷贝。
-			var newFun = fun.bind(thisParms, parms1, parms2, ...)
+			返回值：
+				原函数被调用执行后的返回值。
+			代码实现：
+				Function.prototype.myApply = function (context) {
+					context = context || window;
+					context.fn = this;
+					var result = null;
+					if (arguments[1]) {
+						result = context.fn(...arguments[1]);
+					} else {
+						result = context.fn();
+					}
+					return result;
+				};
+		fun.bind(thisParms, parms1, parms2, ...)
+			作用：不调用函数，只改变函数中的 this 指向。
+			参数：
 				thisParms：当前函数中 this 指向的对象；
 				parms1 / parms2：fun 函数需要的参数。
+			返回值：
+				原函数的拷贝。
+			代码实现：
+				Function.prototype.myBind = function (context) {
+					var args = [...arguments].slice(1);
+					fn = this;
+					return function Fn() {
+						return fn.apply(context, args);
+					};
+				};
 	闭包
 		定义：在一个函数作用域中可以访问另一个函数作用域中的数据，的代码段。
 		本质：是将两个函数连接起来的桥梁。
@@ -480,6 +606,26 @@ ES6 新增的语法
 				console.log(stack.size());	// 2
 				console.log(stack.pop());	// def
 				console.log(stack.size());	// 1
+	深浅拷贝
+		浅拷贝
+			Object.assign(target, sources);
+				参数：
+					target：目标对象。
+					sources：源对象。
+				返回值：目标对象。
+				作用：用于将源对象的所有可枚举属性值浅拷贝到目标对象。
+				注意：
+					1、无法实现对函数的拷贝；
+					2、如果对象中出现循环引用，会抛出异常；
+					3、对象中的构造函数会指向 Object，原有的原型链关系被破坏。
+				示例：
+					const target = { a: 1, b: 2 };
+					const source = { b: 4, c: 5 };
+					const returnedTarget = Object.assign(target, source);
+					console.log(target);			// { a: 1, b: 4, c: 5 }
+					console.log(returnedTarget);		// { a: 1, b: 4, c: 5 }
+		深拷贝
+			var newObj = JSON.parse(JSON.stringify(obj));
 	严格模式
 		开启严格模式
 			1、为脚本开启严格模式；
@@ -502,16 +648,6 @@ ES6 新增的语法
 			3、函数的规定；
 				1、函数里不能有重名的形参；（不懂）
 				2、不能在非函数代码块内声明函数。
-	深浅拷贝
-		浅拷贝
-			Object.assign(target, ...sources);
-				参数：
-					target：目标对象。
-					sources：源对象。
-				返回值：目标对象。
-				详细：用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。它将返回目标对象。
-		深拷贝
-			var newObj = JSON.parse(JSON.stringify(obj));
 
 
 

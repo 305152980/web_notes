@@ -407,8 +407,7 @@ JS
 					return new F();
 				}
 			方法应用场景：
-				实现类式继承。
-				代码原理：
+				实现类式继承。代码原理：
 					function Person(name, sex) {
 						this.name = name;
 						this.sex = sex;
@@ -496,21 +495,22 @@ JS
 			3、在使用构造函数的时候，必须与 new 操作符配合使用；
 			4、构造函数的执行过程与普通函数是不一样的。
 				new 操作符的作用。（见上）
+	DOM 与事件
+		DOM 性能问题。
+			1、对 DOM 查询操作进行数据缓存；
+				const length = document.getElementsByTagName("p").length;
+				for (let i = 0; i < length; i++) {}
+			2、利用文档片段将多次 DOM 操作合并为一次性 DOM 操作。
+				<ul id="list"></ul>
+				const listNode = document.getElementById("list");
+				const frag = document.createDocumentFragment();
+				for (let i = 0; i < 10; i++) {
+					const li = document.createElement("li");
+					li.innerHTML = `item${i}`;
+					frag.appendChild(li);
+				}
+				listNode.appendChild(frag);
 
-			
-				
-				
-			
-			
-		
-
-	Object.assign(target, ...sources)
-		参数：
-			target：目标对象。
-			sources：源对象。
-		返回值：目标对象。
-		详细：用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。它将返回目标对象。（浅拷贝）
-		
 
 
 Vue
@@ -569,36 +569,45 @@ Vue
 				Object.defineProperty
 			2、对象整体代理（vue3.x）：
 				Proxy
+			注意：vue3.x 解决了 vue2.x 中对于数据响应式处理的无端新能消耗。
 		Object.defineProperty
 			基础用法：
 				const dataName = {};
 				// 解决 set 和 get 方法的联动问题。
-				let _propName = dataName.propName;
+				let _propName = undefined;
 				Object.defineProperty(dataName, 'propName', {
 					// 当访问 dataName 的 propName 属性的时候自动调用的方法，并且此函数的返回值就是访问时获取到的值。
 					get(){
-						return _propName
-					}
+						console.log('get');
+						// dataName 对象中的 propName 属性值就是这里的返回值。
+						return _propName;
+					},
 					// 当设置 dataName 的 propName 属性的时候自动调用的方法，并且此函数的形参值就是设置时被写入的值。
 					set(newValue){
-						if(newValue === _propName) { return }
+						console.log('set');
+						if(newValue === _propName) { return }·
 						_propName = newValue;
 						// 视图渲染逻辑。
+						......
 					}
 				}); 
+				dataName.propName = 'name';
+				console.log(dataName.propName);
+				console.log(dataName);
+				注意：set() 和 get() 函数中不能直接访问或者设置 dataName 对象中的 propName 属性，否则会报栈溢出错误。
 			通用用法：
 				const dataName = data();
 				// 引入发布订阅模式。
 				const Dep = {
 					eventMap: {},
-					collect(eventName, fn) {
+					collect: function(eventName, fn) {
 						if(!this.eventMap[eventName]) {
 							this.eventMap[eventName] = [];	
 						}
 						this.eventMap[eventName].push(fn);
 					},
-					trigger(eventName) {
-						this.eventMap[eventName].forEach(fn => fn())
+					trigger: function(eventName) {
+						this.eventMap[eventName].forEach(fn => fn());
 					}
 				};
 				// 初始化视图的数据和初始化 Dep 数据。
@@ -608,48 +617,51 @@ Vue
 					......
 					// 2、运用闭包保存响应式操作的逻辑。（提升效率）
 					// 3、发布订阅模式实现变量视图的一对多响应。（提升效率）
+					// node 是获取到的节点。
 					// nodeName 是“v-”指令的名字。
 					// nodeValue 是“v-”指令的属性值。
 					if(nodeName === 'v-text') {
 						node.innerText = dataName[nodeValue];
-						Dep.collect(dataName[nodeValue], () => {
+						// 运用闭包保存响应式操作的逻辑。
+						Dep.collect(nodeValue, () => {
 							node.innerText = dataName[nodeValue];
 						});
 					} eles(nodeName === 'v-model') {
-						node.innerText = dataName[nodeValue];
-						Dep.collect(dataName[nodeValue], () => {
+						node.value = dataName[nodeValue];
+						// 运用闭包保存响应式操作的逻辑。
+						Dep.collect(nodeValue, () => {
 							node.value = dataName[nodeValue];
 						});
 						// 视图响应数据的逻辑。
 						node.addEventListener('input', (e) => {
-							let newValue = e.target.value;
-							dataName[nodeValue] = newValue;
+							dataName[nodeValue] = e.target.value;
 						});
 					}
 				}
 				// 将 data() 函数中的数据包装成响应式数据。
 				Object.keys(dataName).forEach((key) => {
-					defineReactive(dataName, key, dataName[key]);
+					observe(dataName, key, dataName[key]);
 				});
-				function defineReactive(dataName, key, value) {
+				function observe(dataName, key, value) {
 					Object.defineProperty(dataName, key, {
 						get(){
-							return value
-						}
+							return value;
+						},
 						set(newValue){
 							if(newValue === value) { return }
 							value = newValue;
-							// 视图渲染逻辑。
+							// 此函数为视图渲染函数。
 							Dep.trigger(key);
 						}
 					}); 
 				}
 				注意：
-					1、函数的形参相当于在函数内部申明的变量，其初始值为 undefined；
-					2、调用函数传入实参的时候相当于在给这些变量做赋值操作；
-					3、observe 函数调用完毕时，内部所有的变量本来应该都会被回收；
-					4、内部由于有其它方法引用了 value 变量，所以 defineReactive 函数执行的完毕并不会导致 value 变量的销毁；
-					5、value 变量没有被销毁，进而让 set 和 get 函数形成了联动。
+					1、函数的形参相当于在函数内部申明的初始值为 undefined 的变量；
+					2、调用函数传入实参的时候相当于在给对应的形参变量做赋值操作；
+					3、observe 函数调用完毕时，内部所有的变量本来都应该被回收，由于 Object.defineProperty() 方法引用了 value 变量，所 value 变量不会被销毁；
+					4、因为 value 变量没有被销毁，进而让 set() 和 get() 函数形成了联动。
+		new Proxy(target, handler)
+			
 	路由
 		History 模式需要服务端的支持。
 	
