@@ -1,0 +1,1002 @@
+小程序基础简介一
+	项目结构
+		项目的基本组成结构
+			1、pages 文件夹用来存放所有小程序的页面；
+			2、utils 文件夹用来存放工具性质的模块（例如：格式化时间的自定义模块）；
+			3、app.js 文件是小程序项目的入口文件；
+			4、app.json 文件是小程序项目的全局配置文件；
+			5、app.wxss 文件是小程序项目的全局样式文件；
+			6、project.config.json 文件是项目的配置文件；
+			7、sitemap.json 文件是用来配置小程序及其页面是否允许被微信索引的配置文件。
+		页面的基本组成结构
+			小程序官方建议把所有小程序的页面，都存放在 pages 目录中，以单独的文件夹存在。其中，每个页面由 4 个基本文件组成，它们分别是：
+				1、.js 文件：页面的脚本文件，存放页面的数据、事件处理函数等；
+				2、.json 文件：当前页面的配置文件，配置窗口的外观、表现等；
+				3、.wxml 文件：页面的模板结构文件；
+				4、.wxss 文件：当前页面的样式表文件。
+	JSON 配置文件的作用
+		JSON 是一种数据格式，在实际开发中，JSON 总是以配置文件的形式出现。小程序项目中有 4 种 json 配置文件，分别是：
+			1、项目根目录中的 app.json 配置文件；
+			2、项目根目录中的 project.config.json 配置文件；
+			3、项目根目录中的 sitemap.json 配置文件；
+			4、每个页面文件夹中的 .json 配置文件。
+		app.json 文件
+			app.json 文件是当前小程序的全局配置文件，包括了对小程序所有的页面路径、窗口外观、界面表现、底部 tab 等的配置，常用的配置项如下：
+				1、pages：用来记录当前小程序所有页面的路径；
+				2、window：全局定义小程序所有页面的背景色、文字颜色等；
+				3、style：全局定义小程序组件所使用的样式版本；
+				4、sitemapLocation：用来指明 sitemap.json 配置文件的位置。
+		project.config.json 文件
+			project.config.json 文件是项目的配置文件，用来记录我们对小程序开发工具所做的个性化配置，例如：
+				1、setting 中保存了与编译相关的配置；
+				2、projectname 中保存的是项目名称；
+				3、appid 中保存的是小程序的账号 ID。
+		sitemap.json 文件
+			微信现已开放小程序内搜索，效果类似于 PC 网页的 SEO。sitemap.json 文件用来配置小程序页面是否允许微信索引。
+			当开发者允许微信索引时，微信会通过爬虫的形式，为小程序的页面内容建立索引。当用户的搜索关键字和页面的索引匹配成功的时候，小程序的页面将可能展示在搜索结果中。
+			注意：sitemap 的索引提示是默认开启的，如需要关闭 sitemap 的索引提示，可在小程序项目 project.config.json 文件中的 setting 项中配置 checkSiteMap 字段为 false。
+		页面的 .json 文件
+			小程序中的每一个页面，可以使用 .json 文件来对本页面的窗口外观进行配置，页面中的配置项会覆盖 app.json 文件中 window 项里的相同配置。
+			新建小程序页面
+				只需要在 app.json -> pages 中新增页面的存放路径，小程序开发者工具即可帮我们自动创建对应的页面文件。
+			修改项目首页
+				只需要调整 app.json -> pages 数组中页面路径的前后顺序，即可修改项目的首页。小程序会把排在第一位的页面，当作项目首页进行渲染。
+	WXML 模板
+		WXML（WeiXin Markup Language）是小程序框架设计的一套标签语言，用来构建小程序页面的结构，其作用类似于网页开发中的 HTML。
+		WXML 和 HTML 的区别：
+			1、标签名称不同；
+				1、HTML （div, span, img, a）
+				2、WXML（view, text, image, navigator）
+			2、属性节点不同；
+				1、<a href="#">超链接</a>
+				2、<navigator url="/pages/home/home"></navigator>
+			3、提供了类似于 Vue 中的模板语法。
+				1、数据绑定
+				2、列表渲染
+				3、条件渲染
+	WXSS 样式
+		WXSS (WeiXin Style Sheets)是一套样式语言，用于描述 WXML 的组件样式，类似于网页开发中的 CSS。
+		WXSS 和 CSS 的区别：
+			1、新增了 rpx 尺寸单位；
+				1、CSS 中需要手动进行像素单位换算，例如 rem；
+				2、WXSS 在底层支持新的尺寸单位 rpx，在不同大小的屏幕上小程序会自动进行换算。
+			2、提供了全局的样式和局部样式；
+				1、项目根目录中的 app.wxss 会作用于所有小程序页面；
+				2、局部页面的 .wxss 样式仅对当前页面生效。
+			3、WXSS 仅支持部分 CSS 选择器。
+				1、.class 和 #id；
+				2、element；
+				3、并集选择器、后代选择器；
+				4、::after 和 ::before 等伪类选择器。
+	.js 文件
+		在小程序中，我们通过 .js 文件来处理用户的操作。例如：响应用户的点击、获取用户的位置等等。
+		小程序中的 .js 文件分为三大类，分别是：
+			1、app.js：是整个小程序项目的入口文件，通过调用 App() 函数来启动整个小程序；
+			2、页面的 .js 文件：是页面的入口文件，通过调用 Page() 函数来创建并运行页面；
+			3、普通的 .js 文件：是普通的功能模块文件，用来封装公共的函数或属性供页面使用。
+小程序基础简介二
+	手机微信是小程序的宿主环境。
+		小程序借助宿主环境提供的能力，可以完成许多普通网页无法完成的功能，例如：微信扫码、微信支付、微信登录、地理定位、etc…
+		小程序宿主环境包含的内容：1、通信模型；2、运行机制；3、组件；4、API。
+	通信模型
+		小程序中通信的主体是渲染层和逻辑层，其中：
+			1、WXML 模板和 WXSS 样式工作在渲染层；                                  
+			2、JS 脚本工作在逻辑层。
+		小程序中的通信模型分为两部分：
+			1、渲染层和逻辑层之间的通信，由微信客户端进行转发；
+			2、逻辑层和第三方服务器之间的通信，也由微信客户端进行转发。
+	小程序启动的过程
+		1、把小程序的代码包下载到本地；
+		2、解析 app.json 全局配置文件；
+		3、执行 app.js 小程序入口文件，调用 App() 创建小程序实例；
+		4、渲染小程序首页；
+		5、小程序启动完成。
+	 小程序页面渲染的过程
+		1、加载解析页面的 .json 配置文件；
+		2、加载页面的 .wxml 模板和 .wxss 样式；
+		3、执行页面的 .js 文件，调用 Page() 创建页面实例；
+		4、页面渲染完成。
+	小程序中组件的分类
+		小程序中的组件也是由宿主环境提供的，开发者可以基于组件快速搭建出漂亮的页面结构。官方把小程序的组件分为了 9 大类，分别是：
+			1、视图容器
+			2、基础内容
+			3、表单组件
+			4、导航组件
+			5、媒体组件
+			6、map 地图组件
+			7、canvas 画布组件
+			8、开放能力
+			9、无障碍访问
+		常用的视图容器类组件
+			1、view
+				1、普通视图区域；
+				2、类似于 HTML 中的 div，是一个块级元素；
+				3、常用来实现页面的布局效果。
+				基本使用：实现 flex 横向布局效果。
+			2、scroll-view
+				1、可滚动的视图区域；
+				2、常用来实现滚动列表效果。
+				基本使用：实现纵向滚动效果。
+			3、swiper 和 swiper-item
+				轮播图容器组件和轮播图 item 组件。
+				基本使用：实现轮播图效果。
+				swiper 组件的常用属性：
+					属性			类型		默认值				说明
+					indicator-dots		boolean		false			是否显示面板指示点
+					indicator-color		color		rgba(0, 0, 0, .3)	指示点颜色
+					indicator-active-color	color		#000000			当前选中的指示点颜色
+					autoplay		boolean		false			是否自动切换
+					interval		number		5000			自动切换时间间隔
+					circular		boolean		false			是否采用衔接滑动
+		 常用的基础内容组件
+			1、text
+				1、文本组件；
+				2、类似于 HTML 中的 span 标签，是一个行内元素。
+				注意：通过 text 组件的 selectable 属性，可以实现长按选中文本内容的效果。
+			2、rich-text
+				1、富文本组件；
+				2、支持把 HTML 字符串渲染为 WXML 结构。
+				注意：通过 rich-text 组件的 nodes 属性节点，可以把 HTML 字符串渲染为对应的 UI 结构。
+		 其它的常用组件
+			1、button
+				1、按钮组件；
+				2、功能比 HTML 中的 button 按钮丰富；
+				3、通过 open-type 属性可以调用微信提供的各种功能（客服、转发、获取用户授权、获取用户信息等）。
+			2、image
+				1、图片组件；
+				2、image 组件默认宽度约 300px、高度约 240px。
+				注意：image 组件的 mode 属性用来指定图片的裁剪和缩放模式，常用的 mode 属性值如下：
+					mode 值				说明
+					scaleToFill	默认值，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素。
+					aspectFit	保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。
+					aspectFill	保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。
+					widthFix	宽度不变，高度自动变化，保持原图宽高比不变。
+					heightFix	高度不变，宽度自动变化，保持原图宽高比不变。
+			3、navigator
+				1、页面导航组件；
+				2、类似于 HTML 中的 a 链接。
+	小程序 API 概述
+		小程序官方把 API 分为了如下 3 大类：
+			1、事件监听 API
+				特点：以 on 开头，用来监听某些事件的触发。
+				举例：wx.onWindowResize(function callback) 监听窗口尺寸变化的事件。
+			2、同步 API
+				特点1：以 Sync 结尾的 API 都是同步 API。
+				特点2：同步 API 的执行结果，可以通过函数返回值直接获取，如果执行出错会抛出异常。
+				举例：wx.setStorageSync('key', 'value') 向本地存储中写入内容。
+			3、异步 API
+				特点：类似于 jQuery 中的 $.ajax(options) 函数，需要通过 success、fail、complete 接收调用的结果。
+				举例：wx.request() 发起网络数据请求，通过 success 回调函数接收数据。
+WXML 模板语法
+	数据绑定的基本原则：
+		1、在 data 中定义数据；
+			在页面对应的 .js 文件中，把数据定义到 data 对象中即可：
+				Page({
+					data: {
+						info: 'init data',
+						msgList: [{msg: 'hello'}, {msg: 'world'}]
+					}
+				})
+		2、在 WXML 中使用数据。
+			把data中的数据绑定到页面中渲染，使用 Mustache 语法（双大括号）将变量包起来即可。示例代码如下：
+				<view>{{ 要绑定的数据名称 }}</view>
+			Mustache 语法的主要应用场景如下：
+				1、绑定内容；
+				2、绑定属性；
+				3、运算（三元运算、算术运算等）。
+	事件绑定
+		事件是渲染层到逻辑层的通讯方式。通过事件可以将用户在渲染层产生的行为，反馈到逻辑层进行业务的处理。
+		小程序中常用的事件
+			类型			绑定方式			事件描述
+			tap		bindtap 或 bind:tap		手指触摸后马上离开，类似于 HTML 中的 click 事件。
+			input		bindinput 或 bind:input		文本框的输入事件。
+			change		bindchange 或 bind:change	状态改变时触发。
+		事件对象的属性列表
+			当事件回调触发的时候，会收到一个事件对象 event，它的详细属性如下表所示：
+				属性			类型			说明
+				type			String		事件类型。
+				timeStamp		Integer		页面打开到触发事件所经过的毫秒数。
+				target			Object		触发事件的组件的一些属性值集合。
+				currentTarget		Object		当前组件的一些属性值集合。
+				detail			Object		额外的信息。
+				touches			Array		触摸事件，当前停留在屏幕中的触摸点信息的数组。
+				changedTouches		Array		触摸事件，当前变化的触摸点信息的数组。
+			target 和 currentTarget 的区别
+				target 是触发该事件的源头组件，而 currentTarget 则是当前事件所绑定的组件。
+		在事件处理函数中为 data 中的数据赋值
+			通过调用 this.setData(dataObject) 方法，可以给页面 data 中的数据重新赋值，代码示例如下：
+				this.setData({
+					count: this.data.count + 1
+				});
+		事件传参
+			小程序中的事件传参比较特殊，不能在绑定事件的同时为事件处理函数传递参数。因为小程序会把 bindtap 的属性值，统一当作事件名称来处理。
+			普通传参
+				可以为组件提供 data-* 自定义属性传参，其中 * 代表的是参数的名字，代码示例如下：
+					<button bindtap="btnHandler" data-info="{{2}}">事件传参</button>
+				在事件处理函数中，通过 event.target.dataset.参数名 即可获取到具体参数的值。
+			bindinput 传参
+				在小程序中，通过 input 事件来响应文本框的输入事件，语法格式如下：
+					1、通过 bindinput，可以为文本框绑定输入事件：
+						<input bindinput="inputHandler"></input>
+					2、在页面的 .js 文件中定义事件处理函数：
+						inputHandler(e) {
+							console.log(e.detail.value);
+						}
+	条件渲染
+		wx:if
+			在小程序中，使用 wx:if="{{condition}}" 来判断是否需要渲染该代码块；也可以用 wx:elif="{{condition}}" 和 wx:else 来添加 else 的判断。
+			如果要一次性控制多个组件的显示与隐藏，可以使用一个 <block> 标签将多个组件包装起来，并在<block> 标签上使用 wx:if 来控制显示与隐藏。
+			注意： <block> 并不是一个组件，它只是一个包裹性质的容器，不会在页面中做任何渲染。
+		hidden
+			在小程序中，直接使用 hidden="{{ condition }}" 也能控制元素的显示与隐藏。
+		wx:if 与 hidden 的对比
+			1、运行方式不同；
+				wx:if 以动态创建和移除元素的方式，控制元素的展示与隐藏。
+				hidden 以切换样式的方式（display: none/block;），控制元素的显示与隐藏。
+			2、使用建议。
+				频繁切换时，建议使用 hidden。
+				控制条件复杂时，建议使用 wx:if 搭配 wx:elif、wx:else 进行显示与隐藏的切换。
+	列表渲染
+		wx:for
+			通过 wx:for 可以根据指定的数组，循环渲染重复的组件结构，语法示例如下：
+				<view wx:for="{{array}}">
+					{{index}}: {{item}}
+				</view>
+			默认情况下，当前循环项的索引用 index 表示；当前循环项用 item 表示。
+			使用 wx:for-index 可以指定当前循环项的索引名，使用 wx:for-item 可以指定当前项的变量名。代码示例如下：
+				<view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+					{{idx}}: {{itemName}}
+				</view>
+			wx:key 的使用
+				类似于 Vue 列表渲染中的 :key，小程序在实现列表渲染时，也建议为渲染出来的列表项指定唯一的 key 值，从而提高渲染的效率。代码示例如下：
+					data: {
+						userList: [
+							{ id: 1, name: '小红' },
+							{ id: 2, name: '小黄' }
+						]
+					}
+					<view wx:for="{{userList}}" wx:key="id">
+						{{item.name}}
+					</view>
+WXSS 模板样式
+	WXSS 扩展的特性有：
+		1、rpx 尺寸单位；
+			rpx（responsive pixel）是微信小程序独有的，用来解决屏幕适配的尺寸单位。
+			rpx 的实现原理非常简单：鉴于不同设备屏幕的大小不同，为了实现屏幕的自动适配，rpx 把所有设备的屏幕，在宽度上等分为 750 份（即：当前屏幕的总宽度为 750rpx）。
+				在较小的设备上，1rpx 所代表的宽度较小；
+				在较大的设备上，1rpx 所代表的宽度较大。
+			小程序在不同设备上运行的时候，会自动把 rpx 的样式单位换算成对应的像素单位来渲染，从而实现屏幕适配。
+			rpx 与 px 之间的单位换算
+				在 iPhone6 上，屏幕宽度为375px，共有 750 个物理像素，等分为 750rpx。则：750rpx = 375px = 750 物理像素；1rpx = 0.5px = 1 物理像素。
+					设备			rpx换算px (屏幕宽度/750)	px换算rpx (750/屏幕宽度)
+					iPhone5			1rpx = 0.42px			1px = 2.34rpx
+					iPhone6			1rpx = 0.5px			1px = 2rpx
+					iPhone6 Plus		1rpx = 0.552px			1px = 1.81rpx
+				官方建议：开发微信小程序时，设计师可以用 iPhone6 作为视觉稿的标准。
+		2、@import 样式导入。
+			使用 WXSS 提供的 @import 语法，可以导入外联的样式表。
+			@import 后跟需要导入的外联样式表的相对路径，用 ; 表示语句结束。代码示例如下：
+				@import "common.wxss";
+	全局样式和局部样式
+		定义在 app.wxss 中的样式为全局样式，作用于每一个页面。在页面的 .wxss 文件中定义的样式为局部样式，只作用于当前页面。
+		注意：当局部样式的权重大于或等于全局样式的权重时，才会覆盖全局的样式。
+全局配置
+	小程序根目录下的 app.json 文件是小程序的全局配置文件。常用的配置项如下：
+		1、pages：记录当前小程序所有页面的存放路径；
+		2、window：全局设置小程序窗口的外观；
+		3、tabBar：设置小程序底部的 tabBar 效果；
+		4、style：是否启用新版的组件样式。
+	window
+		常用的配置项
+			属性名				类型		默认值			说明
+			navigationBarTitleText		String		字符串		导航栏标题内容。
+			navigationBarBackgroundColor	HexColor	#000000		导航栏背景颜色。
+			navigationBarTextStyle		String		white		导航栏标题文本颜色，仅支持 black / white。
+			backgroundColor			HexColor	#ffffff		下拉刷新时窗口的背景颜色。
+			backgroundTextStyle		String		dark		下拉刷新时窗口 loading 的样式，仅支持 dark / light。
+			enablePullDownRefresh		Boolean		false		是否全局开启下拉刷新。
+			onReachBottomDistance		Number		50		页面上拉触底事件触发时距页面底部的距离，单位为 px。
+	tabBar
+		tabBar 是移动端应用常见的页面效果，用于实现多页面的快速切换。小程序中通常将其分为：
+			1、底部 tabBar；
+			2、顶部 tabBar。
+		注意：
+			1、tabBar中只能配置最少 2 个、最多 5 个 tab 页签；
+			2、当渲染顶部 tabBar 时，不显示 icon，只显示文本。	。
+		tabBar 节点的配置项
+			属性			类型		必填	默认值			描述
+			position		String		否	bottom		tabBar 的位置，仅支持 bottom/top。
+			borderStyle		String		否	black		tabBar 上边框的颜色，仅支持 black/white。
+			backgroundColor		HexColor	否			tabBar 的背景色。
+			color			HexColor	否			tab 上文字的默认（未选中）颜色。
+			selectedColor		HexColor	否			tab 上的文字选中时的颜色。
+			list			Array		是			tab 页签的列表，最少 2 个、最多 5 个 tab。
+			pagePath		String		是			页面路径，页面必须在 pages 中预先定义。
+			text			String		是			tab 上显示的文字。
+			iconPath		String		否			未选中时的图标路径；当 postion 为 top 时，不显示 icon。
+			selectedIconPath	String		否			选中时的图标路径；当 postion 为 top 时，不显示 icon。
+		tabBar 完整的配置代码
+			{
+				"tabBar": {
+					"list": [{
+						"pagePath": "",
+						"text": "",	
+						"iconPath": "",	
+						"selectedIconPath": ""
+					},{
+						"pagePath": "",
+						"text": "",	
+						"iconPath": "",	
+						"selectedIconPath": ""
+					},{
+						"pagePath": "",
+						"text": "",	
+						"iconPath": "",	
+						"selectedIconPath": ""
+					}]
+				}
+			}
+			注意：pagePath 路径的开头没有 /。
+页面配置
+	常用的配置项
+		属性				类型		默认值			描述
+		navigationBarBackgroundColor	HexColor	#000000		当前页面导航栏背景的颜色。
+		navigationBarTextStyle		String		white		当前页面导航栏标题的颜色，仅支持 black / white。
+		navigationBarTitleText		String				当前页面导航栏标题的文字内容。
+		backgroundColor			HexColor	#ffffff		当前页面下拉刷新时窗口的背景颜色。
+		backgroundTextStyle		String		dark		当前页面下拉刷新时窗口 loading 的样式，仅支持 dark / light。
+		enablePullDownRefresh		Boolean		false		是否为当前页面开启下拉刷新的效果。
+		onReachBottomDistance		Number		50		当前页面上拉触底事件触发时距页面底部的距离，单位为 px。
+网络数据请求
+	小程序中网络数据请求的限制
+		出于安全性方面的考虑，小程序官方对数据接口的请求做出了如下两个限制：
+			1、只能请求 HTTPS 类型的接口；
+			2、必须将接口的域名添加到信任列表中。
+	配置步骤：
+		登录微信小程序管理后台 -> 开发 -> 开发设置 -> 服务器域名 -> 修改 request 合法域名。
+		注意事项：
+			1、域名只支持 https 协议；
+			2、域名不能使用 IP 地址或 localhost；
+			3、域名必须经过 ICP 备案；
+			4、服务器域名一个月内最多可申请 5 次修改。
+	发起 GET/POST 请求
+		调用微信小程序提供的 wx.request() 方法，可以发起 GET/POST 数据请求，代码示例如下：
+			wx.request({
+				url: '',
+				method: 'GET/POST',
+				data: {
+					name: 'zs',
+					age: 22
+				},
+				success: (res) => {}
+			});
+	在页面刚加载时请求数据
+	 	在很多情况下，我们需要在页面刚加载的时候，自动请求一些初始化的数据。此时需要在页面的 onLoad 事件中调用获取数据的函数。
+	跳过 request 合法域名校验
+		如果后端程序员仅仅提供了 http 协议的接口、暂时没有提供 https 协议的接口。	
+		此时为了不耽误开发的进度，我们可以在微信开发者工具中，临时开启「开发环境不校验请求域名、TLS 版本及 HTTPS 证书」选项，跳过 request 合法域名的校验。
+		注意：跳过 request 合法域名校验的选项，仅限在开发与调试阶段使用！
+	关于跨域和 Ajax 的说明
+		跨域问题只存在于基于浏览器的 Web 开发中。由于小程序的宿主环境是微信客户端，所以小程序中不存在跨域的问题。
+		Ajax 技术的核心是依赖于浏览器中的 XMLHttpRequest 这个对象，由于小程序的宿主环境是微信客户端，所以小程序中不能叫做“发起 Ajax 请求”，而是叫做“发起网络数据请求”。
+页面导航
+	小程序中实现页面导航的两种方式：
+		1、声明式导航
+			在页面上声明一个 <navigator> 导航组件，通过点击 <navigator> 组件实现页面跳转。
+		2、编程式导航
+			调用小程序的导航 API，实现页面的跳转。
+	声明式导航
+		导航到 tabBar 页面
+			在使用 <navigator> 组件跳转到指定的 tabBar 页面时，需要指定 url 属性和 open-type 属性，其中：
+				1、url 表示要跳转的页面的地址，必须以 / 开头；
+				2、open-type 表示跳转的方式，必须为 switchTab。
+			代码示例如下：
+				<navigator url="" open-type="switchTab"></navigator>
+		导航到非 tabBar 页面
+			在使用 <navigator> 组件跳转到普通的非 tabBar 页面时，则需要指定 url 属性和 open-type 属性，其中：
+				1、url 表示要跳转的页面的地址，必须以 / 开头；
+				2、open-type 表示跳转的方式，必须为 navigate。
+			代码示例如下：
+				<navigator url="" open-type="navigate"></navigator>
+			注意：为了简便，在导航到非 tabBar 页面时，open-type="navigate" 属性可以省略。
+		后退导航
+			如果要后退到上一页面或多级页面，则需要指定 open-type 属性和 delta 属性，其中：
+				1、open-type 的值必须是 navigateBack，表示要进行后退导航；
+				2、delta 的值必须是数字，表示要后退的层级。
+			代码示例如下：
+				<navigator open-type="navigateBack" delta="1"></navigator>
+			注意：为了简便，如果只是后退到上一页面，则可以省略 delta 属性，因为其默认值就是 1。
+	编程式导航
+		导航到 tabBar 页面
+			调用 wx.switchTab(Object object) 方法，可以跳转到 tabBar 页面。其中 Object 参数对象的属性列表如下：
+				属性		类型		是否必选	说明
+				url		string		是	需要跳转的 tabBar 页面的路径，路径后不能带参数。
+				success		function	否	接口调用成功的回调函数。
+				fail		function	否	接口调用失败的回调函数。
+				complete	function	否	接口调用结束的回调函数（调用成功、失败都会执行）。
+		导航到非 tabBar 页面
+			调用 wx.navigateTo(Object object) 方法，可以跳转到非 tabBar 的页面。其中 Object 参数对象的属性列表如下：
+				属性		类型		是否必选	说明
+				url		string		是	需要跳转到的非 tabBar 页面的路径，路径后可以带参数。
+				success		function	否	接口调用成功的回调函数。
+				fail		function	否	接口调用失败的回调函数。
+				complete	function	否	接口调用结束的回调函数（调用成功、失败都会执行）。
+		后退导航
+			调用 wx.navigateBack(Object object) 方法，可以返回上一页面或多级页面。其中 Object 参数对象的属性列表如下：
+				属性		类型		默认值		是否必选		说明
+				delta		number		1		否		返回的页面数，如果 delta 大于现有页面数，则返回到首页。
+				success		function			否		接口调用成功的回调函数。
+				fail		function			否		接口调用失败的回调函数。
+				complete	function			否		接口调用结束的回调函数（调用成功、失败都会执行）。
+	导航传参
+		声明式导航传参
+			navigator 组件的 url 属性用来指定将要跳转到的页面的路径。同时，路径的后面还可以携带参数：
+				1、参数与路径之间使用 ? 分隔；
+				2、参数键与参数值用 = 相连；
+				3、不同参数用 & 分隔。
+			代码示例如下：
+				<navigator url="...?name=zs&age=20"></navigator>
+			注意：只有导航到非 tabBar 页面时，才可以进行传参。
+		编程式导航传参
+			调用 wx.navigateTo(Object object) 方法跳转页面时，也可以携带参数。
+		在 onLoad 中接收导航参数
+			通过声明式导航传参或编程式导航传参所携带的参数，可以直接在 onLoad 事件中直接获取到，代码示例如下：
+				onLoad: function(options) {
+					// options 就是导航传递过来的参数对象。
+					console.log(options);
+				}
+页面事件
+	下拉刷新事件
+		下拉刷新是移动端的专有名词，指的是通过手指在屏幕上的下拉滑动操作，从而重新加载页面数据的行为。
+		启用下拉刷新
+			启用下拉刷新有两种方式：
+				1、全局开启下拉刷新
+					在 app.json 的 window 节点中，将 enablePullDownRefresh 设置为 true。
+				2、局部开启下拉刷新
+					在页面的 .json 配置文件中，将 enablePullDownRefresh 设置为 true。
+			在实际开发中，推荐使用第 2 种方式，为需要的页面单独开启下拉刷新的效果。
+		配置下拉刷新窗口的样式
+			在全局或页面的 .json 配置文件中，通过 backgroundColor 和 backgroundTextStyle 来配置下拉刷新窗口的样式，其中：
+				1、backgroundColor 用来配置下拉刷新窗口的背景颜色，仅支持16 进制的颜色值；
+				2、backgroundTextStyle 用来配置下拉刷新 loading 的样式，仅支持 dark 和 light。
+		监听页面的下拉刷新事件
+			在页面的 .js 文件中，通过 onPullDownRefresh() 函数即可监听当前页面的下拉刷新事件。
+		停止下拉刷新的效果
+			当处理完下拉刷新后，下拉刷新的 loading 效果会一直显示，需要手动隐藏下拉刷新的 loading 效果。调用 wx.stopPullDownRefresh() 可以停止当前页面的下拉刷新 loading 效果。
+	上拉触底事件
+		上拉触底是移动端的专有名词，通过手指在屏幕上的上拉滑动操作，从而加载更多数据的行为。
+		监听页面的上拉触底事件
+			在页面的 .js 文件中，通过 onReachBottom() 函数即可监听当前页面的上拉触底事件。
+		配置上拉触底距离
+			上拉触底距离指的是触发上拉触底事件时，滚动条距离页面底部的距离。
+			可以在全局或页面的 .json 配置文件中，通过 onReachBottomDistance 属性来配置上拉触底的距离。
+			小程序默认的触底距离是 50px，在实际开发中，可以根据自己的需求修改这个默认值。
+生命周期
+	生命周期的分类
+		在小程序中，生命周期分为两类，分别是：
+			1、应用生命周期
+				特指小程序从启动 -> 运行 -> 销毁的过程。
+			2、页面生命周期
+				特指小程序中，每个页面的加载 -> 渲染 -> 销毁的过程。
+		其中，页面的生命周期范围较小，应用程序的生命周期范围较。
+	生命周期函数
+		生命周期函数是由小程序框架提供的内置函数，会伴随着生命周期，自动按次序执行。
+		生命周期函数的作用：允许程序员在特定的时间点，执行某些特定的操作。例如：页面刚加载的时候，可以在 onLoad 生命周期函数中初始化页面的数据。
+		注意：生命周期强调的是时间段，生命周期函数强调的是时间点。
+	生命周期函数的分类
+		小程序中的生命周期函数分为两类，分别是：
+			1、应用的生命周期函数
+				特指小程序从启动 -> 运行 -> 销毁期间依次调用的那些函数。
+			2、页面的生命周期函数
+				特指小程序中，每个页面从加载 -> 渲染 -> 销毁期间依次调用的那些函数。
+	应用的生命周期函数
+		小程序的应用生命周期函数需要在 app.js 中进行声明，代码示例如下：
+			App({
+				// 小程序初始化完成时执行此函数，全局只触发一次。可以做一些初始化的工作。
+				onLaunch: function(options) {},
+				// 小程序启动或从后台进入前台时触发。
+				onShow: function(options) {},
+				// 小程序从前台进入后台时触发。
+				onHide: function() {}
+			});
+	页面的生命周期函数
+		小程序的页面生命周期函数需要在页面的 .js 文件中进行声明，代码示例如下：
+			Page({
+				// 监听页面加载，一个页面只调用 1 次。
+				onLoad: function(options) {},
+				// 监听页面显示。
+				onShow: function() {},
+				// 监听页面初次渲染完成，一个页面只调用一次。
+				onReady: function() {},
+				// 监听页面隐藏。
+				onHide: function() {},
+				// 监听页面卸载，一个页面只调用一次。
+				onUnload: function() {}
+			});
+WXS 脚本
+	WXS（WeiXin Script）是小程序独有的一套脚本语言，结合 WXML 可以构建出页面的结构。
+	应用场景
+		WXML 中无法调用在页面的 .js 中定义的函数，但是 WXML 中可以调用 WXS 中定义的函数。因此，小程序中 WXS 的典型应用场景就是“过滤器”。
+	WXS 和 JavaScript 的关系
+		虽然 WXS 的语法类似于 JavaScript，但是 WXS 和 JavaScript 是完全不同的两种语言：
+			1、WXS 有自己的数据类型；
+				number 数值类型、string 字符串类型、boolean 布尔类型、object 对象类型、function 函数类型、array 数组类型、 date 日期类型、 regexp 正则类型。
+			2、WXS 不支持类似于 ES6 及以上的语法形式；
+				不支持：let、const、解构赋值、展开运算符、箭头函数、对象属性简写、etc...
+				支持：var 定义变量、普通 function 函数等类似于 ES5 的语法。
+			3、WXS 遵循 CommonJS 规范。
+				module 对象。
+				require() 函数。
+				module.exports 对象。
+	内嵌 WXS 脚本
+		WXS 代码可以编写在 WXML 文件中的 <wxs> 标签内，就像 JavaScript 代码可以编写在 HTML 文件中的 <script> 标签内一样。
+		WXML 文件中的每个 <wxs> 标签，必须提供 module 属性，用来指定当前 WXS 的模块名称，方便在WXML 中访问模块中的成员，代码示例如下：
+			<view>{{md.toUpper(username)}}</view>
+			<wxs module="md">
+				module.exports.toUpper = function(str) {
+					return str.toUpperCase()
+				}
+			</wxs>
+	外联 WXS 脚本
+		WXS 代码还可以编写在以 .wxs 为后缀名的文件内，就像 JavaScript 代码可以编写在以 .js 为后缀名的文件中一样。代码示例如下：
+			function(str) {
+				return str.toUpperCase()
+			}
+			module.exports = {
+				toUpper: toUpper
+			}
+		使用外联的 WXS 脚本	
+			在 WXML 文件中引入外联的 WXS 脚本时，必须为 <wxs> 标签添加 module 和 src 属性，其中：
+				module 用来指定模块的名称；
+				src 用来指定要引入的脚本的路径，且必须是相对路径。
+			代码示例如下：
+				view>{{md.toUpper(username)}}</view>
+				<wxs src="" module="md"></wxs>
+	WXS 脚本的特点
+		1、与 JavaScript 不同；
+			为了降低 WXS 脚本语言的学习成本， WXS 语言在设计时借大量鉴了 JavaScript 的语法。但是本质上，WXS 和 JavaScript 是完全不同的两种语言。
+		2、不能作为组件的事件回调；
+			WXS 典型的应用场景就是“过滤器”，经常配合 Mustache 语法进行使用。但是，在 WXS 中定义的函数不能作为组件事件的回调函数。
+		3、隔离性；
+			WXS 的运行环境和其他 JavaScript 代码是隔离的。体现在如下两方面：
+				1、WXS 不能调用 JS 中定义的函数；
+				2、WXS 不能调用小程序提供的 API。
+		4、性能好。
+自定义组件
+	创建组件
+		1、在项目的根目录中，鼠标右键，创建 components -> test 文件夹；
+		2、在新建的 components -> test 文件夹上，鼠标右键点击“新建 Component” ；
+		3、键入组件的名称之后回车，会自动生成组件对应的 4 个文件，后缀名分别为 .js，.json， .wxml 和 .wxss。
+		注意：为了保证目录结构的清晰，建议把不同的组件，存放到单独的目录中。
+	引用组件
+		组件的引用方式分为局部引用和全局引用，顾名思义：
+			1、局部引用：组件只能在当前被引用的页面内使用；
+			2、全局引用：组件可以在每个小程序页面中使用。
+		局部引用组件
+			在页面的 .json 配置文件中引用组件的方式，叫做“局部引用”，代码示例如下：
+				// 在页面的 .json 文件中引入组件。
+				{
+					"usingComponents": {
+						"my-test1": "/components/test1/test1"
+					}
+				}
+				// 在页面的 .wxml 文件中使用组件。
+				<my-test1></my-test1>
+		全局引用组件
+			在 app.json 全局配置文件中引用组件的方式，叫做“全局引用”，代码示例如下：
+				// 在 app.json 文件中引入组件。
+				{
+					"usingComponents": {
+						"my-test1": "/components/test1/test1"
+					}
+				}
+				// 在页面的 .wxml 文件中使用组件。
+				<my-test1></my-test1>
+	组件和页面的区别
+		从表面来看，组件和页面都是由 .js、.json、.wxml 和 .wxss 这四个文件组成的。但是组件和页面的 .js 与 .json 文件有明显的不同：
+			1、组件的 .json 文件中需要声明 "component": true 属性，页面中不需要；
+			2、组件的 .js 文件中调用的是 Component() 函数，页面的 .js 文件中调用的是 Page() 函数；
+			3、组件的事件处理函数需要定义到 methods 节点中，页面中不需要。
+	组件的样式隔离
+		默认情况下，自定义组件的样式只对当前组件生效，不会影响到组件之外的UI 结构。
+			1、组件 A 的样式不会影响组件 B 的样式；
+			2、组件 A 的样式不会影响小程序页面的样式；
+			3、小程序页面的样式不会影响组件 A 和 B 的样式。
+		好处：
+			1、防止外界的样式影响组件内部的样式；
+			2、防止组件的样式破坏外界的样式。
+		组件样式隔离的注意点
+			1、app.wxss 中的全局样式对组件无效；
+			2、只有 class 选择器会有样式隔离效果，id 选择器、属性选择器、标签选择器不受样式隔离的影响。
+			建议：在组件和引用组件的页面中建议使用 class 选择器，不要使用 id、属性、标签选择器。
+		修改组件的样式隔离选项
+			默认情况下，自定义组件的样式隔离特性能够防止组件内外样式互相干扰的问题。但有时，我们希望在外界能够控制组件内部的样式。
+			此时可以通过 styleIsolation 修改组件的样式隔离选项，用法如下：
+				// 在组件的 .js 文件中新增如下配置。
+				Component({
+					options: {
+						styleIsolation: 'isolated'
+					}
+				})
+				// 或在组件的 .json 文件中新增如下配置。
+				{
+					"styleIsolation": "isolated"
+				}
+			styleIsolation 的可选值
+				可选值			默认值				描述
+				isolated		是		表示启用样式隔离，在自定义组件内外，使用 class 指定的样式将不会相互影响。
+				apply-shared		否		表示页面 wxss 样式将影响到自定义组件，但自定义组件 wxss 中指定的样式不会影响页面。
+				shared			否		表示页面 wxss 样式将影响到自定义组件，自定义组件 wxss 中指定的样式也会影响页面和其他设置了 apply-shared 或 shared 的自定义组件。	
+	数据、方法和属性
+		data 数据
+			在小程序组件中，用于组件模板渲染的私有数据，需要定义到 data 节点中，代码示例如下：
+				Component({
+					data: {
+						count: 0
+					}
+				})
+		methods 方法
+			在小程序组件中，事件处理函数和自定义方法需要定义到 methods 节点中。事件处理函数建议使用小驼峰命名法，自定义方法建议使用以下划线开头的小驼峰命名法。
+		properties 属性
+			在小程序组件中，properties 是组件的对外属性，用来接收外界传递到组件中的数据。
+		data 和 properties 的区别
+			在小程序的组件中，properties 属性和 data 数据的用法相同，它们都是可读可写的，只不过：
+				1、data 更倾向于存储组件的私有数据；
+				2、properties 更倾向于存储外界传递到组件中的数据。
+			注意：data 数据和 properties 属性本质上是同一个对象。
+		数据监听器
+			数据监听器用于监听和响应任何属性和数据字段的变化，从而执行特定的操作。基本用法如下：
+				Component({
+					observers: {
+						'字段 A, 字段 B': function(字段 A 的新值, 字段 B 的新值) {
+							// do something
+						}
+					}
+				})
+			监听对象属性的变化
+				数据监听器支持监听对象中单个或多个属性的变化，代码示例如下：
+					Component({
+						observers: {
+							'对象.属性 A, 对象.属性 B': function(属性 A 的新值, 属性 B 的新值) {
+								// do something
+							}
+						}
+					})
+				注意：不管是为属性 A 赋值，还是为属性 B 赋值，还是直接为对象赋值，都会触发此监听器。
+		纯数据字段
+			纯数据字段指的是那些不用于界面渲染的 data 字段。
+			应用场景：例如有些情况下，某些 data 中的字段既不会展示在界面上，也不会传递给其他组件，仅仅在当前组件内部使用，带有这种特性的 data 字段适合被设置为纯数据字段。
+			好处：纯数据字段有助于提升页面更新的性能。
+			使用规则
+				在 Component 构造器的 options 节点中，指定 pureDataPattern 为一个正则表达式，字段名符合这个正则表达式的字段将成为纯数据字段，代码示例如下：
+					Component({
+						options: {
+							// 指定 data 中所有以 _ 开头的数据字段都为纯数据字段。
+							pureDataPattern: /^_/
+						}
+					})
+	组件的生命周期
+		小程序组件可用的全部生命周期如下表所示：
+			生命周期函数	参数			描述说明
+			created		无		在组件实例刚刚被创建时执行。
+			attached	无		在组件实例进入页面节点树时执行。
+			ready		无		在组件在视图层布局完成后执行。
+			moved		无		在组件实例被移动到节点树另一个位置时执行。
+			detached	无		在组件实例被从页面节点树移除时执行。
+			error		Object Error	每当组件方法抛出错误时执行。
+		组件主要的生命周期函数
+			在小程序组件中，最重要的生命周期函数有 3 个，分别是 created、attached、detached，它们各自的特点如下：
+				1、组件实例刚被创建好的时候，created 生命周期函数会被触发；
+					此时还不能调用 this.setData；这个时期基本用于给组件的 this 添加一些自定义的属性字段。
+				2、在组件完全初始化完毕、进入页面节点树后， attached 生命周期函数会被触发；
+					此时 this.data 已被初始化完毕；
+					这个生命周期很有用，绝大多数初始化的工作可以在这个时期进行（例如发请求获取初始数据）。
+				3、在组件离开页面节点树后， detached 生命周期函数会被触发。
+					退出一个页面时，会触发页面内每个自定义组件的 detached 生命周期函数；此时适合做一些清理性质的工作。
+		lifetimes 节点
+			在小程序组件中，生命周期函数可以直接定义在 Component 构造器的第一级参数中，也可以在 lifetimes 节点内进行声明（这是推荐的方式，其优先级最高），代码示例如下：
+				Component({
+					lifetimes: {
+						attached() {},
+						detached() {}
+					}
+				})
+		组件所在页面的生命周期
+			有时，自定义组件的行为依赖于页面状态的变化，此时就需要用到组件所在页面的生命周期。
+			在自定义组件中，组件所在页面的生命周期函数有如下 3 个，分别是：
+				生命周期函数	参数			描述
+				show		无		组件所在的页面被展示时执行。
+				hide		无		组件所在的页面被隐藏时执行。
+				resize		Object Size	组件所在的页面尺寸变化时执行。
+		pageLifetimes 节点
+			组件所在页面的生命周期函数，需要定义在 pageLifetimes 节点中，代码示例如下：
+				Component({
+					pageLifetimes: {
+						show: function() {},
+						resize: function(size) {}
+					}
+				})
+	插槽
+		在自定义组件的 WXML 结构中，可以提供一个 <slot> 节点（插槽），用于承载组件使用者提供的 WXML 结构。
+		单个插槽
+			在小程序中，默认每个自定义组件中只允许使用一个 <slot> 进行占位，这种个数上的限制叫做单个插槽。
+		启用多个插槽
+			在小程序的自定义组件中，需要使用多 <slot> 插槽时，可以在组件的 .js 文件中，通过如下方式进行启用，代码示例如下：
+				Component({
+					options: {
+						multipleSlots: true
+					}
+				})
+		定义多个插槽
+			可以在组件的 .wxml 文件中使用多个 <slot> 标签，以不同的 name 属性值来区分不同的插槽。
+		使用多个插槽
+			在使用带有多个插槽的自定义组件时，需要用 slot="插槽名" 属性来将节点插入到不同的插槽中。
+	父子组件之间的通信
+		父子组件之间通信的 3 种方式：
+			1、属性绑定
+				用于父组件向子组件的指定属性设置数据，仅能设置 JSON 兼容的数据。
+			2、事件绑定
+				用于子组件向父组件传递数据，可以传递任意数据。
+			3、获取组件实例
+				父组件还可以通过 this.selectComponent() 获取子组件实例对象，这样就可以直接访问子组件的任意数据和方法了。
+		属性绑定
+			// 父组件的 data 节点。
+			data: {
+				count: 0
+			}
+			// 父组件的 WXML 结构。
+			<my-cpt count="{{count}}"></my-cpt>
+			// 自组建的 properties 节点。
+			properties: {
+				count: Number
+			}
+			// 子组件的 WXML 结构。
+			<text>{{count}}</text>
+		事件绑定
+			事件绑定用于实现子向父传值，可以传递任何类型的数据。使用步骤如下：
+				1、在父组件的 .js 文件中定义一个函数，这个函数即将通过自定义事件的形式传递给子组件；
+				2、在父组件的 .wxml 文件中，通过自定义事件的形式，将步骤 1 中定义的函数引用传递给子组件；
+					<my-cpt bind:eventName="faEventName"></my-cpt>
+					<my-cpt bindeventName="faEventName"></my-cpt>
+				3、在子组件的 .js 文件中，通过调用 this.triggerEvent('自定义事件名称', { /* 参数对象 */ }) ，将数据发送到父组件；
+				4、在父组件的 .js 文件中，通过自定义函数的 e.detail 获取到子组件传递过来的数据。
+		获取组件实例
+			可在父组件里调用 this.selectComponent("id或class选择器") 方法获取子组件的实例对象，从而直接访问子组件的任意数据和方法。
+		
+	behaviors
+		behaviors 是小程序中，用于实现组件间代码共享的特性，类似于 Vue.js 中的 “mixins”。
+		每个 behavior 可以包含一组属性、数据、生命周期函数和方法。组件引用它时，它的属性、数据和方法会被合并到组件中。
+		每个组件可以引用多个 behavior，behavior 也可以引用其它 behavior。
+		创建 behavior
+			调用 Behavior(Object object) 方法即可创建一个共享的 behavior 实例对象，供所有的组件使用：
+				// 调用 Behavior(Object object) 方法创建实例对象。
+				module.exports = Behavior({
+					properties: {},
+					data: {},
+					methods: {},
+					......
+				})
+		导入并使用 behavior
+			在组件中，使用 require() 方法导入需要的 behavior，挂载后即可访问 behavior 中的数据或方法，代码示例如下：
+				// 1、使用 require() 方法导入需要的自定义 behavior 模块。
+				const myBehavior = require("")
+				Component({
+					// 2、将导入的 behavior 实例对象，挂载到 behaviors 数组节点中。
+					behaviors: [myBehavior]
+				})
+		behavior 中所有可用的节点
+			可用的节点	类型		是否必填	描述
+			properties	Object Map	否		同组件的属性
+			data		Object		否		同组件的数据
+			methods		Object		否		同自定义组件的方法
+			behaviors	String Array	否		引入其它的 behavior
+			created		Function	否		生命周期函数
+			attached	Function	否		生命周期函数
+			ready		Function	否		生命周期函数
+			moved		Function	否		生命周期函数
+			detached	Function	否		生命周期函数
+		 同名字段的覆盖和组合规则
+		 	组件和它引用的 behavior 中可以包含同名的字段，此时可以参考微信小程序官方文档给出的说明：
+				https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html
+使用 npm 包
+	目前，小程序中已经支持使用 npm 安装第三方包，从而来提高小程序的开发效率。但是，在小程序中使用 npm 包有如下 3 个限制：
+		1、不支持依赖于 Node.js 内置库的包；
+		2、不支持依赖于浏览器内置对象的包；
+		3、不支持依赖于 C++ 插件的包。
+	Vant Weapp
+		Vant Weapp 是有赞前端团队开源的一套小程序 UI 组件库，助力开发者快速搭建小程序应用。它所使用的是 MIT 开源许可协议，对商业使用比较友好。
+		官方文档地址 https://youzan.github.io/vant-weapp
+		安装 Vant 组件库
+			在小程序项目中，安装 Vant 组件库主要分为如下 3 步：
+				1、通过 npm 安装（建议指定版本为@1.3.3）；
+				2、构建 npm 包；
+				3、修改 app.json。
+					在 app.json 的 usingComponents 节点中引入需要的组件，即可在 WXML 文件中直接使用组件。代码示例如下：
+						"usingComponents": {
+							"van-button": "@vant/weapp/button/index"
+						}
+		定制全局主题样式
+			Vant Weapp 使用 CSS 变量来实现定制主题。 关于 CSS 变量的基本用法，请参考 MDN 文档：
+				https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties
+			在 app.wxss 文件中，写入 CSS 变量，即可对全局生效：
+				page {
+					--button-danger-background-color: #C00000;
+					--button-danger-border-color: #D60000;
+				}
+			所有可用的颜色变量，请参考 Vant 官方提供的配置文件：https://github.com/youzan/vant-weapp/blob/dev/packages/common/style/var.less
+	API Promise 化
+		API Promise 化，指的是通过额外的配置，将官方提供的、基于回调函数的异步 API，升级改造为基于 Promise 的异步 API，从而提高代码的可读性、维护性，避免回调地狱的问题。
+		在小程序中，实现 API Promise 化主要依赖于 miniprogram-api-promise 这个第三方的 npm 包。它的安装和使用步骤如下：
+			npm install --save miniprogram-api-promise
+			// 在小程序 app.js 文件中，只需要调用一次 promisifyAll() 方法，既可以实现异步 API 的 Promise 化。
+			import { promisifyAll } from 'miniprogram-api-promise'
+			const wxp = wx.p = {};
+			promisifyAll(wx, wxp);
+		调用 Promise 化之后的异步 API
+			// 页面的 WXML 结构。
+			<van-button bindtap="getInfo">获取</van-button>
+			// 页面 .js 文件中的事件处理函数。
+			async getInfo() {
+				const { data: res } = await wx.p.request({
+					method: 'GET',
+					url: '',
+					data: {}
+				})
+			}
+全局数据共享
+	全局数据共享（又叫做：状态管理）是为了解决组件之间数据共享的问题。开发中常用的全局数据共享方案有：Vuex、Redux、MobX 等。
+	在小程序中，可使用 mobx-miniprogram 配合 mobx-miniprogram-bindings 这两个第三方包实现全局数据共享。其中：
+		1、mobx-miniprogram 用来创建 Store 实例对象；
+		2、mobx-miniprogram-bindings 用来把 Store 中共享的数据或方法绑定到组件或页面中。
+	安装 MobX 相关的包
+		在项目中运行如下的命令，安装 MobX 相关的包：
+			npm install --save mobx-miniprogram mobx-miniprogram-bindings
+		注意：MobX 相关的包安装完毕之后，记得删除 miniprogram_npm 目录后，重新构建 npm。
+	创建 MobX 的 Store 实例
+		import { observable, action } from 'mobx-miniprogram'
+		export const store = observable({
+			// 数据字段
+			numA: 1,
+			numB: 2,
+			// 计算属性
+			get sum() {
+				return this.numA + this.numB
+			},
+			// action() 方法用来修改 store 中的数据。
+			updateNumA: action(function(step) {
+				this.numA += step;
+			}),
+			updateNumB: action(function(step) {
+				this.numB += step;
+			})
+		})
+	将 Store 中的成员绑定到页面中
+		// 页面的 .js 文件
+		import { createStoreBindings } from 'mobx-miniprogram-bindings'
+		import { store } from ''
+		Page({
+			onLoad: function() {
+				this.storeBindings = createStoreBindings(this, {
+					store,
+					fields: ['numA', 'numB', 'sum'],
+					actions: ['updateNumA']
+				})
+			},
+			onUnload: function() {
+				this.storeBindings.destroyStoreBindings();
+			}
+		})
+		在页面上使用 Store 中的成员
+			// 页面的 WXML 结构。
+			<view>{{numA}} + {{numB}} = {{sum}}</view>
+			<van-button bindtap="btnHandlerA" data-step="{{1}}">numA + 1</van-button>
+			<van-button bindtap="btnHandlerA" data-step="{{-1}}">numA - 1</van-button>
+			// 页面 .js 文件中的事件处理函数。
+			btnHandlerA(e) {
+				this.updateNumA(e.target.dataset.step);
+			}
+	将 Store 中的成员绑定到组件中
+		// 组件的 .js 文件
+		import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+		import { store } from ''
+		Component({
+			// 通过 storeBindingsBehavior 来实现自动绑定
+			behaviors: [storeBindingsBehavior],
+			storeBindings: {
+				store,
+				fields: {
+					// 绑定字段的 3 种方式。
+					numA: () => store.numA,
+					numB: store => store.numB,
+					sum: 'sum'
+				},
+				actions: {
+					updateNumB: 'updateNumB'
+				}
+			}
+		})
+		在组件中使用 Store 中的成员
+			// 组件的 WXML 结构。
+			<view>{{numA}} + {{numB}} = {{sum}}</view>
+			<van-button bindtap="btnHandlerB" data-step="{{1}}">numB + 1</van-button>
+			<van-button bindtap="btnHandlerB" data-step="{{-1}}">numB - 1</van-button>
+			// 组件 .js 文件中的事件处理函数。
+			btnHandlerB(e) {
+				this.updateNumB(e.target.dataset.step);
+			}
+分包
+	分包指的是把一个完整的小程序项目，按照需求划分为不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。
+	对小程序进行分包的好处主要有以下两点：
+		1、可以优化小程序首次启动的下载时间；
+		2、在多团队共同开发时可以更好的解耦协作。
+	分包前项目的构成
+		分包前，小程序项目中所有的页面和资源都被打包到了一起，导致整个项目体积过大，影响小程序首次启动的下载时间。
+	分包后项目的构成
+		分包后，小程序项目由 1 个主包 + 多个分包组成：
+			主包：一般只包含项目的启动页面或 TabBar 页面、以及所有分包都需要用到的一些公共资源。
+			分包：只包含和当前分包有关的页面和私有资源。
+	分包的加载规则
+		1、在小程序启动时，默认会下载主包并启动主包内页面；
+			tabBar 页面需要放到主包中。
+		2、当用户进入分包内某个页面时，客户端会把对应分包下载下来，下载完成后再进行展示。
+			非 tabBar 页面可以按照功能的不同，划分为不同的分包之后，进行按需下载。
+	分包的体积限制
+		目前，小程序分包的大小有以下两个限制：
+			整个小程序所有分包大小不超过 16M（主包 + 所有分包）；单个分包/主包大小不能超过 2M。
+	使用分包
+		配置方法
+		 	// 在 app.js 文件的 subpackages 节点中声明分包的结构。
+			App({
+				"subpackages": [{
+					"root": "packageA",	// 第一个分包的根目录。
+					"pages": [		// 当前分包下，所有页面的相对路径存放。
+						"",
+						""
+					]
+				},{
+					"root": "packageB",
+					"name": "pack2",	// 分包的别名。
+					"pages": [
+						"",
+						""
+					],
+					"independent": true	// 通过 independent 属性，声明 packageB 分包为“独立分包”。
+				}]
+			})
+		打包原则
+			1、小程序会按 subpackages 的配置进行分包，subpackages 之外的目录将被打包到主包中；
+			2、主包也可以有自己的 pages（即最外层的 pages 字段）；
+			3、tabBar 页面必须被打在主包内；
+			4、分包之间不能互相嵌套。
+		引用原则
+			1、主包无法引用分包内的私有资源；
+			2、分包之间不能相互引用私有资源；
+			3、分包可以引用主包内的公共资源。
+	独立分包
+		独立分包本质上也是分包，只不过它比较特殊，可以独立于主包和其他分包而单独运行。
+		独立分包和普通分包最主要的区别：是否依赖于主包才能运行。
+			普通分包必须依赖于主包才能运行；
+			独立分包可以在不下载主包的情况下独立运行。
+		应用场景
+			开发者可以按需，将某些具有一定功能独立性的页面配置到独立分包中。原因如下：
+				当小程序从普通的分包页面启动时，需要首先下载主包；而独立分包不依赖主包即可运行，可以很大程度上提升分包页面的启动速度。
+			注意：一个小程序中可以有多个独立分包。
+		引用原则
+			独立分包和普通分包以及主包之间，是相互隔绝的，不能相互引用彼此的资源，例如：
+				1、主包无法引用独立分包内的私有资源；
+				2、独立分包之间，不能相互引用私有资源；
+				3、独立分包和普通分包之间，不能相互引用私有资源；
+				4、特别注意：独立分包中不能引用主包内的公共资源。
+	分包预下载
+		分包预下载指的是：在进入小程序的某个页面时，由框架自动预下载可能需要的分包，从而提升进入后续分包页面时的启动速度。
+		配置分包的预下载
+			// 在 app.json 文件的 preloadRule 节点中定义分包的预下载规则。
+			{
+				"preloadRule": {
+					"network": "all",		// 可选值为：all（不限网络）和 wifi（仅 wifi 模式下进行预下载）。
+					"packages": ["packageA"]	// packages 节点表示进入页面后，预下载哪些分包。可以通过分包的 root 或 name 指定预下载哪些分包。
+				}
+			}
+		分包预下载的限制
+			同一个分包中的页面，享有共同的预下载大小限额 2M，一次性的分包预下载的大小不能超过 2M。	
+

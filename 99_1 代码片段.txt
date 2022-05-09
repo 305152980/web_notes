@@ -1,0 +1,69 @@
+1、隐藏垂直滚动条，同时允许垂直滚动。
+	.demo::-webkit-scrollbar {
+		display: none; // Chrome Safari
+	}
+	.demo {
+		scrollbar-width: none; // firefox
+		-ms-overflow-style: none; // IE 10+
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+
+
+2、修改滚动条样式。
+	.content {}
+	.content::-webkit-scrollbar {
+		width: 10px;
+	}
+	.content:hover::-webkit-scrollbar-thumb {
+		background: #cccccc;
+	}
+
+
+
+3、vue实现验证码60s倒计时。
+	<span v-show="show" @click="getCode">获取验证码</span>
+	<span v-show="!show" class="count">{{ count }}s</span>
+	data () {
+		return {
+			show: true,
+			count: '',
+			timer: null
+		}
+	},
+	methods: {
+		getCode () {
+			const TIME_COUNT = 60;
+			if (!this.timer) {
+				this.count = TIME_COUNT;
+				this.show = false;
+				this.timer = setInterval(() => {
+					if (this.count > 0 && this.count <= TIME_COUNT) {
+						this.count--;
+					} else {
+						this.show = true;
+						clearInterval(this.timer);
+						this.timer = null;
+					}
+				}, 1000)
+			}
+		}
+	}
+
+
+
+4、动画函数。
+	function animate(obj, targetSite, callBack){			// obj：动画对象；targetSite：终点位置。
+		clearInterval(obj.timer)
+		obj.time = setInterval(function(){
+			if(obj.offsetLeft === targetSite){
+				clearInterval(obj.timer)
+				if(callBack){ callBack }
+			}
+			// obj.style.left = obj.offsetLeft + 1 + 'px'			// 匀速动画。
+			var step = (targetSite - obj.offsetLeft) / 10
+			step = step > 0 ? Math.ceil(step) : Math.floor(step)
+			obj.style.left = obj.offsetLeft + step + 'px'			// 缓动动画。
+		}, 25)
+	}

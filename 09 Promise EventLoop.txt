@@ -1,0 +1,115 @@
+Promise
+	Promise 的基本概念：
+		1、Promise 是一个构造函数，它的每个实例对象，都代表着一个异步操作；
+		2、Promise 的原型上有一个 .then() 方法，用来预先指定异步操作结束后的回调函数；
+			new Promise(function(resolve, reject) {
+				setTimeout(function() {
+					let num = Math.random();
+					if(num > 0.5) {
+						//	1	2	成功
+						console.log('1');
+						resolve('成功');
+						console.log('2');
+					} else {
+						reject('失败');
+					}
+				});		
+			})
+			.then(result => { console.log(result); }, error => { console.log('then', error); })
+			.catch(error => { console.log('catch', error); });
+			注意：
+				1、.then() 方法中成功的回调函数 result => {} 必须有，失败的回调函数 error => {} 可以没有;
+				2、如果 .then() 方法已经捕获了 Promise 中的异常，则 .catch() 方法将不能再次捕获到这个异常。
+		3、如果上一个 .then() 方法中返回了一个新的 Promise 实例对象，则可以通过链式调用继续执行下一个 .then() 方法；
+			new Promise(function(resolve, reject) {
+				setTimeout(function() {
+					let num = Math.random();
+					if(num > 0.5) {
+						resolve('成功1');
+					} else {
+						reject('失败1');
+					}
+				});				
+			})
+			.then(
+				result => {
+					console.log('1', result);
+					return new Promise(function(resolve, reject) {
+						setTimeout(function() {
+							let num = Math.random();
+							if(num > 0.5) {
+								resolve('成功2');
+							} else {
+								reject('失败2');
+							}
+						});
+					});			
+				},
+				error => { console.log('1', error); }
+			)
+			.then(result => { console.log('2', result); }, error => { console.log('2', error); });
+			注意：.then() 方法中的函数 error => {} 会捕获在它之前被抛出的所有异常。
+		4、在 Promise 的链式操作中，如果发生了错误，则可以使用 .catch() 方法进行异常的统一捕获和处理；
+			new Promise(function(resolve, reject) {})
+			.then(result => {})
+			.then(result => {})
+			.catch(error => {});
+		5、如果不希望前面的错误导致后续的 .then() 方法无法继续正常执行，则可以将 .catch() 方法进行提前调用；
+			new Promise(function(resolve, reject) {})
+			.then(result => {})
+			.catch(error => {})
+			.then(result => {});
+		6、如果想人为抛出异常，可以使用 "return Promise.reject(new Error('失败信息'))" 这行代码。
+			new Promise(function(resolve, reject) {})
+			.then(result => { return Promise.reject(new Error('失败信息')); })
+			.then(result => {})
+			.catch(error => {
+				console.log(error);
+				return Promise.reject(error);
+			});
+	Promise.all()
+		Promise.all() 方法会发起并行的 Promise 异步操作，等所有的异步操作完全结束后才会执行下一步的 .then() 方法。（等待机制）
+			const promiseArr = [promise1, promise2, promise3.catch(error => {})];		// promise3 抛出异常时会被单独捕获，而不会影响到其他的异步操作。
+			Promise.all(promiseArr).then(result => {});		// result 是多个异步任务成功执行后返回结果的数组。
+	Promise.race()
+		Promise.race() 方法会发起并行的 Promise 异步操作，只要任何一个异步操作完成后就会执行下一步的 .then() 方法。（赛跑机制）
+			const promiseArr = [promise1, promise2, promise3];
+			Promise.race(promiseArr).then(result => {});
+	Promise.resolve()
+		Promise.resolve('abc').then(result => { console.log(result); });
+	Promise.reject()
+		Promise.reject(new Error('abc')).catch(error => { console.log(error); });
+async 和 await
+	async 和 await 可以简化 Promise 异步操作。
+		async function getAllFile() {
+			try {
+				const promiseArr = [promise1, promise2, promise3];
+				var r = await Promise.all(promiseArr);
+			}
+			catch (error) {}
+		}
+		注意：定义函数时，如果在函数体中使用了 await，则 function 必须被 async 修饰。
+
+
+
+EventLoop
+	JS 是一门单线程执行的编程语言，如果有一个任务非常耗时，这样就很容易造成程序的假死问题。
+	为了防止假死问题的产生，JS 把待执行的任务分成了两类：同步任务和异步任务。
+	同步任务；
+		又叫做非耗时任务，指的是在 JS 主线程上排队执行的那些任务。只有前一个同步任务执行完毕后，才能执行后一个同步任务。
+	异步任务。
+		又叫做耗时任务。异步任务由 JS 主线程委托给宿主环境进行执行，待异步任务执行完成后，宿主环境会通知 JS 主线程，JS 主线程再执行该异步任务的回调函数。
+宏任务和微任务
+	JS 把异步任务又进一步的划分成了宏任务和微任务。
+	宏任务
+		1、异步 Ajax 请求；
+		2、setTimeout、setInterval；
+		3、文件操作；
+		4、其它宏任务。
+	微任务
+		1、Promise.then、Promise.catch 和 Promise.finally；
+		2、process.nextTick；
+		3、其它微任务。
+	异步任务的执行机制：
+		JS 任务执行的优先级：JS 同步任务 > 异步微任务 > 异步宏任务。
+		每一个宏任务执行完之后，都会检查是否存在待执行的微任务；如果有，则执行完所有的微任务之后，再执行下一个宏任务。

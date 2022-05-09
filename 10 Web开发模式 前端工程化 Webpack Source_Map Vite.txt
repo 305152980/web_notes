@@ -1,0 +1,344 @@
+Web 开发模式
+	服务端渲染模式
+		服务器发送给客户端的 HTML 页面是在服务器通过字符串拼接生成的，因此客户端不需要额外使用 Ajax 异步请求页面的数据。
+		优点：
+			1、前端耗时少。浏览器只负责渲染页面。
+			2、有利于 SEO。一次性渲染完整的 HTML 页面更有利于爬虫爬取信息。
+		缺点：
+			1、占用服务器资源。如果请求过多会对服务器造成一定的访问压力。
+			2、开发效率低。都是服务器在生成 HTML 页面，无法进行前后端分工合作。
+	前后端分离模式
+		后端负责提供 API 接口响应数据；前端使用 Ajax 技术异步获取数据，拼接生成页面后供浏览器渲染。
+		优点：
+			1、开发效率高。前后端分离开发效率高。
+			2、用户体验好。Ajax 技术的应用，轻松实现了页面的局部刷新，提高了用户的使用体验。
+			3、服务器的访问压力小。服务器只负责提供数据，不负责拼接页面。
+		缺点：
+			不利于 SEO。解决方案：利用 Vue、React 等前端框架的 SSR 技术来解决。
+	如何选择开发模式
+		企业级网站，主要功能是展示，没有复杂的交互，并且需要良好的 SEO，这时就需要服务端渲染模式。
+		后台管理系统，交互性比较强，不需要考虑 SEO，这时就需要前后端分离模式。
+		有些网站为了兼顾首页的渲染速度和前后端分离的开发效率会采用 首页服务器渲染 + 其他页面前后端分离 的开发模式。
+
+
+
+前端工程化
+	小白眼中的前端开发：
+		1、会写 HTML + CSS + JavaScript 就会前端开发；
+		2、需要美化页面样式，就拽一个 bootstrap 过来；
+		3、需要操作 DOM 或发起 Ajax 请求，再拽一个 jQuery 过来；
+		4、需要快速实现网页布局效果，就拽一个 Layui 过来。
+	实际的前端开发：
+		1、模块化（js 的模块化、css 的模块化、资源的模块化）；
+		2、组件化（复用现有的 UI 结构、样式、行为）；
+		3、规范化（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理）；
+		4、自动化（自动化构建、自动部署、自动化测试）。
+	前端工程化的解决方案
+		早期的前端工程化解决方案：
+			1、grunt（ https://www.gruntjs.net/ ）；
+			2、gulp（ https://www.gulpjs.com.cn/ ）。
+		目前主流的前端工程化解决方案：
+			1、webpack（ https://www.webpackjs.com/ ）：主要用于前端网页的构建；
+			2、parcel（ https://zh.parceljs.org/ ）：主要用于第三方包的开发。
+
+
+
+Webpack 基础
+	Webpack 的作用
+		1、支持所有类型文件的打包；
+		2、支持 lesss/sass => css；
+		3、支持 ES6/7/8 => ES5；
+		4、压缩代码提高加载速度。
+		注意：目前 Vue、React 等前端项目，基本上都是基于 Webpack 进行工程化开发的。
+	Webpack 的使用
+		操作步骤：
+			1、初始化 node.js 包环境，在项目根目录下生成 package.json 文件；
+				npm init –y
+			2、安装 Webpack 所依赖的两个包；
+				npm install webpack webpack-cli -D
+					-S：--save 的简写。
+					-D：--save-dev 的简写。
+			3、在项目中对 Webpack 进行基本的配置；
+				在项目根目录中，创建名为 webpack.config.js 的配置文件，并初始化如下的基本配置。
+					module.exports = {
+						mode: 'development'		// mode 用来指定构建模式。可选值有 development 和 production。
+					}
+				在 package.json 的 scripts 节点下，新增 dev 脚本。
+					"scripts": {
+						"dev": "webpack"		// scripts 节点下的脚本，可以通过 num run 执行。例如：npm run dev。
+					}
+			4、在终端中运行 npm run dev 命令启动 Webpack，对项目进行打包。
+		mode 节点的可选值
+			development
+				1、开发环境；
+				2、不会对打包生成的文件进行代码压缩和性能优化；
+				3、打包速度快，适合在开发阶段使用。
+			production
+				1、生产环境；
+				2、会对打包生成的文件进行代码压缩和性能优化；
+				3、打包速度很慢，仅适合在项目发布阶段使用。
+		webpack.config.js 文件
+			webpack.config.js 是 Webpack 的配置文件。Webpack 在真正开始打包构建之前，会首先读取这个配置文件，从而基于给定的配置对项目进行打包。
+			注意：由于 Webpack 是基于 node.js 开发出来的打包工具，因此在它的配置文件中，支持使用 node.js 相关的语法和模块进行 Webpack 的个性化配置。
+		Webpack 的默认约定
+			在 webpack4.x 和 5.x 的版本中：
+				1、默认的打包入口文件为 src -> index.js；
+				2、默认的输出文件路径为 dist -> main.js。
+			注意：可以在 webpack.config.js 中修改打包的默认约定。
+	webpack 基本配置
+		在 webpack.config.js 配置文件中，通过 entry 节点指定打包的入口，通过 output 节点指定打包的出口。
+			const path = require('path');
+			module.exports = {
+				entry: path.join(__dirname, '/src/index.js'),
+				output: {
+					path: path.join(__dirname, '/dist'),
+					filename: 'bundle.js'
+				}
+			};
+Webpack 插件
+	webpack-dev-server 插件
+		插件简述
+			此插件可以让 Webpack 监听项目源代码的变化，进而对项目进行打包生成 bundle.js 文件。
+		使用步骤：
+			1、安装 webpack-dev-server 插件；
+				npm install webpack-dev-server -D
+			2、配置 webpack-dev-server 插件，修改 package.json 文件中 scripts 节点下的 dev 脚本；
+				"scripts": {
+					// scripts 节点下的脚本，可以通过 num run 执行。例如：npm run dev。
+					"dev": "webpack server"
+					// "dev": "webpack server --progress --config webpack.config.dev.js --open --hot"
+				}
+			3、运行 npm run dev 命令，对项目进行打包；
+			4、在浏览器中访问 http://localhost:8080 地址，查看打包的效果。
+			注意：webpack-dev-server 插件会启动一个实时打包的 http 服务器。
+		插件的运作原理
+			打包生成的文件哪儿去了？
+				不配置 webpack-dev-server 插件的情况下，Webpack 把打包生成的文件，存放到了服务器的物理磁盘上。
+				配置了 webpack-dev-server 插件的情况下，Webpack 把打包生成的文件，存放到了服务器的虚拟内存中。
+			生成到内存中的文件如何访问？
+				webpack-dev-server 插件生成到内存中的文件，默认放到了项目的根目录中，而且是虚拟不可见的。
+				可以直接用 / 表示项目根目录，后面跟上要访问的文件名称，即可访问内存中的文件。
+		devServer 节点
+			在 webpack.config.js 配置文件中，可以通过 devServer 节点对 webpack-dev-server 插件进行更多的配置。
+				devServer: {
+					// 该配置只在当前项目的开发调试阶段起作用。
+					open: true,			// 初次打包完成后，自动打开浏览器。
+					host: '127.0.0.1',		// 实时打包所使用的服务器 IP 地址。
+					port: 80			// 实时打包所使用的服务器端口号。
+				}
+			注意：凡是修改了 webpack.config.js 配置文件，或修改了 package.json 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效。
+	html-webpack-plugin 插件
+		插件的作用：
+			1、把 index.html 页面复制一份放到虚拟内存中的项目的根目录中去；
+			2、在生成 index.html 页面时，自动注入被打包的 bundle.js 文件。
+		使用步骤：
+			1、 安装 html-webpack-plugin 插件；
+				npm install html-webpack-plugin -D
+			2、在 webpack.config.js 文件中对 html-webpack-pligin 插件进行配置；
+				// 导入 html-webpack-pligin 插件，得到一个构造函数。
+				const HtmlPlugin = require('html-webpack-plugin');
+				// 创建 html-webpack-pligin 插件的实例对象。
+				const htmlPlugin = new HtmlPlugin({
+					template: './src/index.html',		// 指定原文件所在的位置。
+					filename: './index.html'		// 指原文件被复制到虚拟内存中的位置。
+				});
+				module.exports = {
+					plugins: [htmlPlugin]			// 通过 plugins 节点，使 html-webpack-pligin 插件生效。
+				};
+			3、再次运行 npm run dev 命令，重新对项目进行打包；
+			4、在浏览器中访问 http://localhost:8080 地址，查看自动打包的效果。
+Webpack 加载器
+	loader 简述
+		在实际开发过程中，Webpack 只能打包处理以 .js 后缀名结尾的模块，其他的非以 .js 后缀名结尾的模块 Webpack 需要调用 loader 才可以正常打包处理，否则会报错！
+	loader 的作用
+		协助 Webpack 打包处理特定的文件模块。比如：
+			css-loader 可以打包处理 .css 相关的文件。
+			less-loader 可以打包处理 .less 相关的文件。
+			babel-loader 可以打包处理 Webpack 无法处理的高级 JS 语法。
+	css-loader 和 style-loader
+		css-loader 让 Webpack 能够把 CSS 代码打包进 JS 文件中，然后 style-loader 再把 JS 文件中的 CSS 代码插入到 HTML 文件中。
+		使用步骤：
+			1、将 CSS 文件引入到 JS 文件中去；
+			2、安装 css-loader 和 style-loader 加载器；
+				npm i style-loader css-loader -D
+			3、在 webpack.config.js 文件的 module 节点下的 rules 数组中添加 loader 规则。
+				module.exports = {
+					module: {
+						rules: [{
+							test: /\.css$/,					// test 表示匹配的文件类型。
+							use: ["style-loader", "css-loader"]		// use 表示对应要调用的 loader，从后往前依次调用。
+						}]
+					}
+				};
+			4、运行 npm run dev 命令，对项目进行打包；
+			5、在浏览器中访问 http://localhost:8080 地址，查看打包的效果。
+	less-loader
+		Webpack 将 LESS 文件编译为 CSS 文件的 loader。
+		使用步骤：
+			1、将 LESS 文件引入到 JS 文件中去；
+			2、安装 less-loader、less、css-loader 和 style-loader 加载器；
+				npm i less-loader less style-loader css-loader -D
+			3、在 webpack.config.js 文件的 module 节点下的 rules 数组中添加 loader 规则。
+				module.exports = {
+					module: {
+						rules: [{
+							test: /\.less$/,
+							use: ["style-loader", "css-loader", "less-loader"]
+						}]
+					}
+				};
+			4、运行 npm run dev 命令，对项目进行打包；
+			5、在浏览器中访问 http://localhost:8080 地址，查看打包的效果。
+	url-loader 和 file-loader
+		url-loader 和 file-loader 负责打包处理样式表中与 url 路径相关的文件。
+		使用步骤：
+			1、安装 url-loader 和 file-loader；
+				npm i url-loader file-loader -D
+			2、在 webpack.config.js 文件的 module 节点下的 rules 数组中，添加 loader 规则；
+				module.exports = {
+					module: {
+						rules: [{
+							test: /\.less|png|gif$/,
+							use: {
+								loader: "url-loader",		// file-loader 是 url-loader 的依赖加载器，不需要在这里声明，否则会报错。
+								options: { limit: 22228 }
+							}
+						}]
+					}
+				};
+				注意：options 是 loader 的参数项：
+					1、limit 用来指定图片的大小，单位是字节（byte）；
+					2、只有 ≤ limit 大小的图片，才会被转为 base64 格式的图片被打包内联到出口文件中；否则原图片将直接被打包放到指定的资源文件夹中。
+			3、运行 npm run dev 命令，对项目进行打包；
+			4、在浏览器中访问 http://localhost:8080 地址，查看打包的效果。
+	babel-loader
+		Webpack 只能打包处理一部分高级 JS 语法，对于那些无法处理的高级 JS 语法，需要借助 babel-loader 才能对其进行打包处理。
+		使用步骤：
+			1、安装 babel-loader 和 @babel/core、css-loader 和 @babel/plugin-proposal-class-decorators；
+				npm i babel-loader @babel/core @babel/plugin-proposal-class-decorators -D
+			2、在 webpack.config.js 文件的 module 节点下的 rules 数组中，添加 loader 规则；
+				module.exports = {
+					module: {
+						rules: [{
+							test: /\.js$/,
+							use: {
+								loader: "babel-loader",
+								options: { plugins: ['@babel/plugin-proposal-class-decorators'] }
+							},
+							exclude: /node_modules/			// 不处理 node_modules 文件夹下的文件。
+						}]
+					}
+				};
+			3、运行 npm run dev 命令，对项目进行打包；
+			4、在浏览器中访问 http://localhost:8080 地址，查看打包的效果。
+Webpack 打包发布
+	配置 Webpack 的打包发布
+		1、在 package.json 文件中的 scripts 节点下，新增 build 脚本；
+			"scripts": {
+				"dev": "webpack server",			// scripts 节点下的脚本，可以通过 num run 执行。例如：npm run dev。
+				"build": "webpack --mode production"
+			}
+			注意：通过 --model 指定的参数项，会覆盖 webpack.config.js 文件中的 model 选项；
+		2、在 webpack.config.js 文件中进行配置，把 JS 文件统一生成到 js 目录中；
+			  output: {
+			    path: path.join(__dirname, '/dist'),
+			    filename: 'js/bundle.js'				// dist/js/bundle.js
+			  }
+		3、在 webpack.config.js 中的 url-loader 配置项内新增 outputPath 选项，把图片文件统一生成到 image 目录中；
+			{
+				test: /\.less|png|gif$/,
+				use: {
+					loader: "url-loader",
+					options: {
+						limit: 22228,
+						outputPath: 'image'		// 明确指定打包生成的图片文件，存储到 dist 目录下的 image 文件夹中。
+					}
+				}
+			}
+		4、安装并配置 clean-webpack-plugin 插件，自动清理 dist 目录下的旧文件。
+			// 1、安装清理 dist 目录的 Webpack 插件。
+			npm install clean-webpack-plugin -D
+			// 2、在 webpack.config.js 文件中按需导入插件，得到插件的构造函数后，创建插件的实例对象。
+			const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+			const cleanPlugin = new CleanWebpackPlugin();
+			// 3、把创建的 cleanPlugin 插件实例对象，挂载到 webpack.config.js 文件中的 plugins 节点中。
+			plugins: [htmlPlugin, cleanPlugin]
+	企业级项目的打包发布
+		企业级的项目在进行打包发布时，远比刚才的方式要复杂的多，主要的发布流程如下：
+			1、生成打包报告，根据报告分析具体的优化方案；
+			2、Tree-Shaking；
+			3、为第三方库启用 CDN 加载；
+			4、配置组件的按需加载；
+			5、开启路由懒加载；
+			6、定制首页内容。
+
+
+
+Source Map
+	项目开发中遇到的问题
+		前端项目在开发完成之后，都需要对 JS 源代码进行压缩混淆。此时就不可避免的产生了另一个问题：对压缩混淆之后的代码除错（debug）是一件极其困难的事情。
+	什么是 Source Map 文件
+		Source Map 文件就是一个，储存着源代码被压缩混淆前后对应位置映射的，信息文件。
+		有了它，代码出错的时候，除错工具将直接显示源代码，而不是显示压缩转换后的代码，这样能够极大的方便后期的调试。
+	Webpack 开发环境下的 Source Map
+		在开发环境下，Webpack 默认启用了 Source Map 功能。当程序运行出错时，可以直接在控制台提示错误行的位置，并定位到具体的源代码。
+		默认 Source Map 的问题
+			开发环境下默认生成的 Source Map 文件，报错时提示的是被装饰之后的源代码出错的位置，这样就导致了运行时报错的行数与源代码的行数不一致的问题。
+		解决默认 Source Map 的问题
+			开发环境下，推荐在 webpack.config.js 中添加如下的配置，即可保证运行时报错的行数与源代码的行数保持一致：
+				module.exports = {
+					mode: 'development',
+					devtool: 'eval-source-map'		// eval-source-map 仅限在开发模式下使用，不建议在生产模式下使用。
+				}
+	Webpack 生产环境下的 Source Map
+		在生产环境下，如果省略了 devtool 选项，则最终生成的文件中不包含 Source Map 文件。这能够防止源代码通过 Source Map 文件暴露给别有所图之人。
+		在生产环境下，如果只想定位报错的具体行数，且不想暴露源码。此时可以将 devtool 的值设置为 nosources-source-map。
+		在生产环境下，如果想在定位报错行数的同时，展示具体报错的源码。此时可以将 devtool 的值设置为 source-map。采用此选项后：你应该将你的服务器配置为不允许普通用户访问 Source Map 文件。
+	Source Map 的最佳实践
+		1、开发环境下：
+			1、建议把 devtool 的值设置为 eval-source-map；
+			2、好处：可以精准定位到具体的错误行。
+		2、生产环境下：
+			1、建议关闭 Source Map 或将 devtool 的值设置为 nosources-source-map；
+			2、好处：防止源码泄露，提高网站的安全性。
+
+
+
+Vite 的基本使用
+		创建 Vite 的项目
+		 	在命令行，按照如下顺序执行命令，即可基于 Vite 创建 vue3.x 的工程化项目：
+				npm init vite-app 项目名
+				cd 项目名
+				npm install
+				npm run dev
+		梳理项目的结构
+			使用 Vite 创建的项目结构如下：
+				node_modules		目录用来存放第三方依赖包。
+				public			是公共的静态资源目录。
+				src			是项目的源代码目录（程序员写的所有代码都要放在此目录下）。
+				.gitignore		是 Git 的配置文件。
+				index.html		是 SPA 单页面应用程序中唯一的 HTML 页面。
+				package.json		是配置项目的包管理文件。
+			在 src 这个项目源代码目录之下，包含了如下的文件和文件夹：
+				assets 目录		用来存放项目中所有的静态资源文件（css、fonts等）。
+				components 目录		用来存放项目中所有的自定义组件。
+				App.vue			是项目的根组件。
+				index.css		是项目的全局样式表文件。
+				main.js			是整个项目的打包入口文件。
+		Vite 项目的运行流程
+			在工程化的项目中，Vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。其中：
+				1、App.vue		用来编写待渲染的模板结构；
+				2、index.html		中需要预留一个 el 区域；
+				3、main.js		把 App.vue 渲染到了 index.html 所预留的区域中。
+		Vite 的主要任务是创建一个 Vue 根实例。
+			1、从 vue 中导入 createApp 函数；
+				import { createApp } from 'vue';
+			2、创建一个 Vue 根组件，并将其导入至 main.js 文件；
+				import App from './App.vue';
+			3、使用 createApp 函数在 Vue 根组件的基础上创建 Vue 根实例；
+				const app = createApp(App);
+			4、将 Vue 根实例挂载到 #app 容器中；
+				app.mount('#app');
+
+	
+	

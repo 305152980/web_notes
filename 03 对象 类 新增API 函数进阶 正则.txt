@@ -1,0 +1,765 @@
+对象（从 JS基础 复制而来）
+	创建对象
+		1、利用字面量创建对象；
+			var star = {
+				name: '刘德华',
+				sing: function (songName) {
+					console.log(songName);
+				}
+			}
+		2、利用 new Object 创建对象；
+			var star = new Object();
+			star.name = '刘德华'；
+			star.sing = function (songName) {
+					console.log(songName);
+				}
+		3、利用构造函数来创建对象。
+			function Star (name, songName) {
+				this.name = name；
+				this.sing = function (songName) {
+					console.log(songName);
+				}
+			}
+			var star = new Star('刘德华', '冰雨');
+			注意：
+				1、构造函数名字首个字母要大写；
+				2、构造函数不需要 return 就可以返回结果。
+			new 关键字的执行过程：
+				1、在内存中创建一个空对象；
+				2、this 关键字指向这个对象；
+				3、执行构造函数里面的代码；
+				4、返回这个对象（构造函数不需要 return）。
+	使用对象：
+		1、star.name | star.sing()
+		2、star['name']
+	遍历对象
+		for...in 语句用于对数组或者对象的属性进行循环操作。
+		for (var k in star) {
+			console.log(k);					// k 接收的是属性名。
+			console.log(star[k]);
+		}
+
+
+
+类的本质
+	类的本质就是一个构造函数，是构造函数的另外一种写法。
+	特点：
+		1、类里面有 prototype 指向它的原型；
+		2、它的原型里面有 constructor 指向类本身；
+		3、可以在它的原型里面添加方法；
+		4、类创建的实例里面有 __proto__ 指向它的原型。
+ES6 之后的类
+	类的定义
+		 class ClassName { 
+			constructor(parms1, parms2, ...) {
+				this.parms1 = parms1;
+				this.parms2 = parms2;
+				...
+			}
+			funName(value1, value2, ...) {				// 类中的方法都被挂载到了类的原型上。
+				...
+			}
+		 }
+	创建实例
+		var obj = new ClassName(parms1, parms2, ...);
+	类的继承
+		class Father { 
+				// 父类
+			}
+		class Son extends Father { 
+			constructor(parms1, parms2, ...) {
+				super (parms1, parms2, ...) {			// 子类构造函数中的 super 必须放在 this 之前。
+					// 调用了父类中的构造函数。
+				}
+				this.parms1 = parms1;
+				this.parms2 = parms2;
+				...
+			}
+			funName(value1, value2, ...) {				// 重写 funName 方法。
+				super.funName (value1, value2, ...) {		// 这里的 super.funName() 根据需求可写可不写。
+					// 调用了父类中的 funName 函数。
+				}
+			}
+		}
+	注意：
+		1、在 ES6 中，类没有变量提升，所以必须先定义类，才能通过类来实例化对象；
+		2、constructor 里面的 this 指向实例对象，方法里面的 this 指向方法的调用者。
+ES6 之前的类
+	类的定义
+		法一：
+			function ClassName(parms1, parms2, ...) {
+				this.parms1 = parms1;
+				this.parms2 = parms2;
+				...
+			}
+			ClassName.prototype.funName = function(value1, value2, ...) {
+				...
+			}
+		法二：
+			function ClassName(parms1, parms2, ...) {
+				this.parms1 = parms1;
+				this.parms2 = parms2;
+				...
+			}
+			ClassName.prototype = {
+				constructor: ClassName,				// 将原型指向原来的构造函数，这句代码必须写。
+				funName1: function(value1, value2, ...) {
+				...
+				},
+				funName2: function(value1, value2, ...) {
+				...
+				}
+			}
+	类的继承
+		组合继承：ES6 之前，通过构造函数和原型对象来模拟继承，称为组合继承。
+			function Father(parms1, parms2, ...) { 
+				this.parms1 = parms1;
+				this.parms2 = parms2;
+				...
+				Father.prototype.funName = function(value1, value2, ...) {
+					...
+				}
+			}
+			function Son(parms1, parms2, ...) { 
+				Father.call(this, parms1, parms2, ...);				// 继承属性
+				Son.prototype = Object.create(Father.prototype);		// 继承方法
+				Son.prototype.constructor = Son;
+				Son.prototype.funName = function(value1, value2, ...) {		// 重写 funName 方法。
+					...
+				}
+			}
+	原型的定义
+		详情见截图。
+		__proto__
+			实例都会有一个 __proto__ 属性用来指向它的原型 prototype 。它们两者都是地址引用，是等价的。
+		constructor
+			__proto__ 和 prototype 里面都有 constructor 属性，用来指向该对象的构造函数。
+	JS 成员查找规则
+		当访问一个对象的属性或方法时，首先查找这个对象的自身；如果没有就查找他的原型；如果还没有，就查找原型的原型。
+		复杂数据类型的属性，它的读写都遵循 JS 成员的查找规则；简单数据类型的属性，它的读取遵循 JS 成员的查找规则，写入则遵循就近原则（即直接写入到对象实例中）。
+
+
+
+ES5 新增的语法
+	字符串方法
+		trim()
+			作用：去除字符串两端的空白字符。
+			var newStr = str.trim()
+	对象方法
+		Object.create(proto，[propertiesObject])
+			参数：
+				proto：新创建对象的原型对象。如果为 null，则原型对象为 undefined，因此也不会继承 Object.prototype 上的方法。
+				propertiesObject：属性描述符，其值如下：
+					{ 
+						属性名: {
+							enumerable: true,	// 当且仅当该属性的 enumerable 键值为 true 时，该属性才会出现在对象的枚举属性中。默认值为 false。
+							configurable: true,	// 当且仅当该属性的 configurable 键值为 true 时，该属性的描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认值为 false。
+							writable: true,		// 当且仅当该属性的 writable 键值为 true 时，属性的值，也就是下面的 value 值，才能被赋值运算符改变。默认值为 false。
+							value: ''		// 该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认值为 undefined。
+						},
+						......
+					}
+			返回值：
+				一个新对象，带着指定的原型对象和属性。
+			方法的实现原理：
+				Object.create = function(proto，propertiesObject) {
+					// 省去了其他的判断操作。
+					function F() {}
+					F.prototype = proto;
+					if(propertiesObject) {
+						// 添加或者修改对象的属性值。
+						return Object.defineProperties(new F(), propertiesObject);
+					} eles {
+						return new F();
+					}
+				}
+			方法的应用场景：
+				实现对象的继承。代码原理：
+					function Person(name, sex) {
+						this.name = name;
+						this.sex = sex;
+					}
+					Person.prototype.getInfo = function() {
+						console.log('name：' + this.name + '，sex：' + this.sex + '。');
+					}
+					function Student(name, sex, age) {
+						Person.call(this, name, sex);
+						this.age = age;
+					}
+					Student.prototype = Object.create(Person.prototype);
+					Student.prototype.constructor = Student;
+					var student = new Student('zhangsan', 'nan', '18');
+					console.log('student: ' + student + '。');
+		keys()
+			作用：获取对象自身所有的属性，返回一个由属性名组成的数组。
+			var propArr = Object.keys()
+		defineProperty()
+			作用：定义对象中的新属性或修改对象中的原有属性。
+			Object.defineProperty(obj, prop, descriptor)
+				obj：必须，目标对象；
+				prop：必须，需定义或修改的属性；
+				descriptor：必须，属性所拥有的特性，以对象的形式传参。
+					value：属性值，默认值 undefined；
+					writable：属性值是否可以被修改，取值 true | false，默认值 false；
+					enumerable：该属性是否可以被 for...in 遍历出来，取值 true | false，默认值 false；
+					configurable：该属性是否可以被删除或者该属性的 descriptor 是否可以被修改，取值 true | false，默认值 false；
+					get：该属性被访问时触发此函数，例如：get() { return this.prop; }；
+					set：该属性被写入时触发此函数，例如：set(newValue) { this.prop = newValue; }。
+		delete
+			作用：删除对象中的某个属性。
+			delete obj.prop
+	数组方法
+		array.forEach(function(currentValue, index, arr))
+			参数：
+				function(currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+									该函数中的 return 不会终止程序的遍历。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+			示例：
+				arr.forEach(function(currentValue, index, arr) {
+					arr[index] += 20;
+				});
+		array.map(function(currentValue, index, arr))
+			参数：
+				function(currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+									该函数需要返回一个值，用来作为新数组中相应元素的值。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+			作用：返回一个新数组，新数组中的元素为原数组元素调用形参函数处理后的值。
+			示例：
+				var newArr = array.map(function(currentValue, index, arr) {
+					return currentValue + 20;
+				});
+		array.filter(function(currentValue, index, arr))
+			参数：
+				function(currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+									该函数需要返回一个布尔值。返回值为 true 的元素将会在新数组中被保留，返回值为 false 的元素将会在新数组中被过滤。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+			作用：返回一个新数组，新数组中的元素为原始数组中满足指定条件的元素。
+			示例：
+				var newArr = array.filter(function(currentValue, index, arr) {
+					return currentValue >= 20;
+				});
+		array.reduce(function(total, currentValue, index, arr), initialValue)
+			参数：
+				function(total, currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+										该函数需要返回一个值，用来作为下次该函数的 total 实参，或者用来作为 reduce 函数的返回值。
+					total		必需的。初始值（initialValue ? initialValue : array[0]），或者计算结束后的返回值。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+				initialValue		可选的。传递给 total 的初始值。
+			作用：返回一个值，完成数组元素的统计操作。
+			示例：
+				// 推荐用这种写法。
+				var total = [1, 2, 3, 4, 5].reduce(function(total, currentValue, index, arr) {
+									console.log(total, currentValue, index);
+									return total + currentValue; 
+								}, 0);
+				var total = [1, 2, 3, 4, 5].reduce(function(total, currentValue, index, arr) {
+									console.log(total, currentValue, index);
+									return total + currentValue; 
+								});
+		array.some(function(currentValue, index, arr))
+			参数：
+				function(currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+									该函数需要返回一个布尔值。如果返回值为 true，则会终止 some 函数的执行，并且让 some 返回一个 true 值；
+									如果返回值一直为 false，那么 some 函数的返回值也会是 false。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+			作用：返回一个布尔值，用来检测数组中是否含有满足指定条件的元素。
+			示例：
+				var flag = array.some(function(currentValue, index, arr) {
+					return currentValue >= 20;
+				});
+		array.every(function(currentValue, index, arr))
+			参数：
+				function(currentValue, index, arr)	必须。数组中的每个元素都会执行该函数。
+									该函数需要返回一个布尔值。如果返回值为 false，则会终止 every 函数的执行，并且让 every 返回一个 false 值；
+									如果返回值一直为 true，那么 every 函数的返回值也会是 true。
+					currentValue	必需的。当前元素的值。
+					index		可选的。当前元素的索引值。
+					arr		可选的。当前元素所属的数组对象。
+			作用：返回一个布尔值，用来检测数组中是否所有的元素都满足指定的条件。
+			示例：
+				var flag = array.every(function(currentValue, index, arr) {
+					return currentValue >= 20;
+				});
+ES6 新增的语法
+	关键字
+		let 关键字
+			1、在一个大括号中声明变量，该变量只在该大括号中起作用，防止循环变量变成全局变量；
+			2、不存在变量提升；
+			3、该变量具有暂时性死区特性。
+				var num = 10;
+				if(true) {
+					console.log(num);	// undefined
+					let num = 20;
+				}
+		const 关键字
+			1、在一个大括号中声明常量，该常量只在该大括号中起作用；
+			2、必须赋初始值；
+			3、不存在变量提升。
+		var 关键字
+			在一个大括号中声明变量，该变量在该大括号外也起作用。
+		注意：let、const 声明变量的作用域为块级作用域，var 声明变量的作用域为函数作用域。
+	解构赋值
+		数组结构
+			let [a, b, c] = [1, 2, 3];	// 同时定义三个变量。
+			注意：let [a, b, c, d] = [1, 2, 3];	// d 值为 undefined。
+		对象结构
+			let {name, age} = {name: 'zhangsan', age: 20};	// 同时定义两个变量。
+			let {name: myName, age: myAge} = {name: 'zhangsan', age: 20};	// myName、myAge 属于别名。
+	扩展运算
+		扩展运算符可以将数组或者对象转为用逗号分隔的参数序列，主要应用于实参。
+		let arr = [1, 2, 3];
+		...arr	// 1, 2, 3
+		console.log(...arr);	// 1 2 3
+		应用一：合并数组；
+			// 方法一
+			let arr1 = [1, 2, 3];
+			let arr2 = [4, 5, 6];
+			let arr3 = [...arr1, ...arr2];
+			// 方法二
+			let arr1.push(...arr2);
+		应用二：将伪数组转换为真数组。
+			let oDivs = [...document.getElementByTagName('div')];
+	剩余参数
+		剩余参数语法允许我们将一个不定数量的参数表示为一个数组，主要应用于形参。
+		应用一：
+			function sum(parms, ...parmsArr) {
+				console.log(parms);	// 10
+				console.log(parmsArr);	// [20, 30]
+			}
+			sum(10, 20, 30);
+		应用二：
+			let students = ['wangwu', 'zhangsan', 'lisi'];
+			let [s1, ...s2] = students;
+			console.log(s1);	// 'wangwu'
+			console.log(s2);	// ['zhangsan', 'lisi']
+	箭头函数
+		示例：
+			const fun = () => {}
+			fun();
+		特点：
+			1、如果函数体只有一句代码，且代码的执行结果就是返回值，则可以省略大括号；
+				const sum = (num1, num2) => num1 + num2;
+			2、如果形参只有一个，则形参外面的小括号可以省略；
+			2、箭头函数不绑定 this 关键字，箭头函数中的 this 指向的是函数定义位置“上下文（外一层）”的 this。
+	模板字符串
+		作用：
+			1、模板字符串中可以解析变量；
+				let name = `zhangsan`;
+				let sayHello = `hello, my name is ${name}.`;
+			2、模板字符串可以换行；
+			3、在模板字符串中可以调用函数。
+				const sayHello = function() {
+					return 'hello, my name is zhangsan.';	
+				}
+				let greet = `${sayHello()}`;
+	字符串方法
+		starsWith()
+			作用：表示参数是否在原字符串的头部，返回布尔值。
+			let flag = str.starsWith(subStr);
+		endsWith()
+			作用：表示参数是否在原字符串的尾部，返回布尔值。
+			let flag = str.endsWith(subStr);
+		repeat()
+			作用：将原字符串重复 n 次，返回一个新字符串。
+			let newStr = oldStr.repeat(n);
+	对象方法
+		let proxy = new Proxy(target, handler)
+			参数：
+				proxy：target 的代理对象；
+				target：需要被代理的对象；
+				handler：proxy 代理 target 的指定行为。
+			注意：
+				1、通过构造函数新建实例时其实是对目标对象进行了浅拷贝，因此目标对象与代理对象会互相影响；
+				2、handler 对象也可以为空，相当于不设置拦截操作，直接访问目标对象。
+			示例：
+				let target = {
+					name: 'Tom',
+					age: 24
+				};
+				let handler = {
+					get: function(target, key) {
+						console.log('getting ' + key);
+						return target[key];		// 不是 target.key
+					},
+					set: function(target, key, value) {
+						console.log('setting ' + key);
+						target[key] = value;
+					}
+				}
+				let proxy = new Proxy(target, handler);
+				proxy.name;					// 实际执行 handler.get
+				proxy.age = 25;					// 实际执行 handler.set
+			应用：
+				1、对象属性的校验。
+					class Person {
+						constructor() {
+							this.name = '';
+							this.age = 0;
+							return validator(this, personValidators);
+						}
+					}
+					const personValidators = {
+						name: function(value) { return typeof value === 'string'; },
+						age: function(value) { return typeof value === 'number' }
+					}
+					funcrion validator(target, validator) {
+						return new Proxy(target, {
+							_validator: validator,
+							set: function(target, key, value) {
+								if(target.hasOwnProperty(key)) {
+									let valid = this._validator[key];
+									if(!valid || valid(value)) {
+										return Reflect.set(target, key, value);
+									} else {
+										throw new Error(`不能给属性 ${key} 设置 ${value} 值。`);
+									}	
+								} else {
+									trow new Error(`${key} 属性不存在。`);
+								}
+							}
+						});
+					}
+				2、实现 Vue3 的数据响应式。
+				3、实现属性的私有。
+	数组方法
+		Array.from()
+			作用：用于将伪数组或可遍历对象转换为真数组。
+			let newArr = Array.from(arrLike);	// arrLike 伪数组
+			let newArr = Array.from(arrLike, (item, index) => item * 2);
+		find()
+			作用：用于找出第一个符合条件的数组成员，如果没有找到，那么返回 undefined。
+			let tarItem = arr.find((item, index) => item.id === 2);
+			注意：返回的是只这个对象的地址值，而不是这个对象的拷贝对象。
+		findIndex()
+			作用：用于找到第一个符合条件的数组成员的位置，如果没有找到，那么返回 -1。
+			let index = arr.findIndex((item, index) => item.id === 2);
+		includes()
+			作用：检测数组是否包含给定的值，返回布尔值。
+			let flag = arr.includes(2);
+	Set 数据结构
+		类似于数组，但是其元素都是唯一的。
+			const set = new Set();
+			const set = new Set([1, 2, 3]);
+		方法：
+			set.add(value)：添加某个值，返回 Set 结构本身。
+			set.delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+			set.has(value)：判断某个值是否为 set 的元素，返回一个布尔值。
+			set.clear()：清除 set 的所有元素，没有返回值。
+		遍历
+			set.forEach(item => console.log(item));	
+		应用：数组去重。
+			const newArr = [...new Set(oldArr)];
+			const newArr = Array.from(new Set(oldArr));
+	
+		
+
+函数进阶
+	函数的定义
+		1、函数声明 | 命名函数；
+			function fun() {};
+			注意：此种方法存在函数的提升。
+		2、函数表达式 | 匿名函数；
+			var fun = function() {};
+			注意：此种方法不存在函数的提升。
+		3、new Function() | 构造函数。（不常用）
+			var fun =  new Function('parms1', 'parms2', ..., 'funBody');
+	函数的调用
+		1、普通函数；
+			fun();
+			fun.call();
+			fun.apply();
+		2、对象方法；
+			obj.fun();
+		3、构造函数；
+			new Fun();
+		4、绑定事件的函数，事件触发时 DOM 元素调用；
+		5、定时器的回调函数，时间到时定时器调用。
+	this 的指向
+		1、有调用者的函数，函数内部的 this 指向调用者；
+		2、没有调用者的函数，函数内部的 this 指向 window 对象；
+		3、DOM 对象绑定的事件函数，函数内部的 this 指向 DOM 对象；
+		4、立即执行函数内部的 this 指向 window 对象；
+		5、箭头函数内部的 this 继承自函数定义位置 “上下文（外一层）”。
+	this 指向的改变
+		fun.call(thisParms, parms1, parms2, ...)
+			作用：调用函数并且改变函数中的 this 指向。
+			参数：
+				thisParms：当前函数中 this 指向的对象；
+				parms1 / parms2：fun 函数需要的参数。
+			返回值：
+				原函数被调用执行后的返回值。
+			代码实现：
+				Function.prototype.myCall = function (context) {
+					var args = [...arguments].slice(1);
+					context = context || window;
+					context.fn = this;
+					var result = context.fn(...args);
+					return result;
+				};
+		fun.apply(thisParms, parmsArr)
+			作用：调用函数并且改变函数中的 this 指向。
+			参数：
+				thisParms：当前函数中 this 指向的对象；
+				parmsArr：fun 函数需要的参数组成的数组。
+			返回值：
+				原函数被调用执行后的返回值。
+			代码实现：
+				Function.prototype.myApply = function (context) {
+					context = context || window;
+					context.fn = this;
+					var result = null;
+					if (arguments[1]) {
+						result = context.fn(...arguments[1]);
+					} else {
+						result = context.fn();
+					}
+					return result;
+				};
+		fun.bind(thisParms, parms1, parms2, ...)
+			作用：不调用函数，只改变函数中的 this 指向。
+			参数：
+				thisParms：当前函数中 this 指向的对象；
+				parms1 / parms2：fun 函数需要的参数。
+			返回值：
+				原函数的拷贝。
+			代码实现：
+				Function.prototype.myBind = function (context) {
+					var args = [...arguments].slice(1);
+					fn = this;
+					return function Fn() {
+						return fn.apply(context, args);
+					};
+				};
+	闭包
+		定义：在一个函数作用域中可以访问另一个函数作用域中的数据，的代码段。
+		本质：是将两个函数连接起来的桥梁。
+		通常形式：
+			1、将内部函数作为返回值返回；
+			2、将内部函数赋值给一个外部变量；
+			3、通过函数形参传递函数实参；
+			4、在函数内部定义子函数。
+		示例：
+			function fn1() {
+				var name = "Mozilla";
+				function fn2() {
+					alert(name);
+				}
+				return fn2;
+			}
+			var myFun = fn1();
+			myFun();
+		优缺点：
+			优点：
+				1、实现函数内部逻辑的封装；
+				2、可以在内存中维护变量并缓存。
+			缺点：
+				消耗内存：通常来说，函数的活动对象会随着执行上下文环境一起被销毁，但是由于闭包引用的是外部函数的活动对象，因此这个活动对象无法被销毁。
+				所以说，闭包比一般的函数需要消耗更多的内存。
+		应用：
+			1、缓存数据。
+				var cacheApp = (function () {
+					// 缓存数据。
+					var cache = {};
+					return { getResult: function (id) {
+						// 如果缓存中有值，并且值还有效。
+						if (id in cache && id === cache[id]) {
+							return '得到的结果为：' + cache[id] + '。';
+						}
+						cache[id] = getResultPort(id);
+						return '得到的结果为：' + cache[id] + '。';
+					} };
+				})();
+				function getResultPort(id) {
+					console.log("这是一个非常耗时的任务。");
+					return id;
+				}
+				console.log(cacheApp.getResult(23));
+				console.log(cacheApp.getResult(23));
+				console.log(cacheApp.getResult(24));
+			2、封装代码。
+				var stack = (function () {
+					// 使用数组模拟栈。
+					var arr = [];
+					return {
+						push: function (value) {
+							arr.push(value);
+						},
+						pop: function () {
+							return arr.pop();
+						},
+						size: function () {
+							return arr.length;
+						}
+					};
+				})();
+				stack.push("abc");
+				stack.push("def");
+				console.log(stack.size());	// 2
+				console.log(stack.pop());	// def
+				console.log(stack.size());	// 1
+	深浅拷贝
+		浅拷贝
+			Object.assign(target, sources);
+				参数：
+					target：目标对象。
+					sources：源对象。
+				返回值：目标对象。
+				作用：用于将源对象的所有可枚举属性值浅拷贝到目标对象。
+				注意：
+					1、无法实现对函数的拷贝；
+					2、如果对象中出现循环引用，会抛出异常；
+					3、对象中的构造函数会指向 Object，原有的原型链关系被破坏。
+				示例：
+					const target = { a: 1, b: 2 };
+					const source = { b: 4, c: 5 };
+					const returnedTarget = Object.assign(target, source);
+					console.log(target);			// { a: 1, b: 4, c: 5 }
+					console.log(returnedTarget);		// { a: 1, b: 4, c: 5 }
+		深拷贝
+			var newObj = JSON.parse(JSON.stringify(obj));
+	严格模式
+		开启严格模式
+			1、为脚本开启严格模式；
+				<script>
+					"use strict";
+					...
+				</script>
+			2、为函数开启严格模式。
+				function Name() {
+					"use strict";
+					...
+				}
+		严格模式的变化
+			1、变量的规定；
+				1、变量必须先声明再使用；
+				2、不能用 delete 删除已经声明好的变量。
+			2、this 的指向；
+				1、全局作用域中的函数中的 this 指向的是 undefined，不再是从前的 window 对象；
+				2、定时器回调函数中的 this 指向的还是 window 对象。
+			3、函数的规定；
+				1、函数里不能有重名的形参；（不懂）
+				2、不能在非函数代码块内声明函数。
+
+
+
+正则表达式
+	定义：正则表达式是用于匹配字符串组合的模式。
+	应用：
+		1、表单验证；
+		2、过滤敏感词汇；
+		3、提取字符串中的特定部分。
+	创建
+		1、通过 RegExp 对象的构造函数创建；
+			var regExp = new RegExp(/表达式/);
+		2、通过字面量创建。
+			var regExp = /表达式/;
+	test()
+		用于检测字符串是否符合正则表达式的规范，返回值为布尔值。
+		var flag = regExp.test(str);
+	特殊字符
+		1、边界符；
+			^：表示匹配行首的文本（以谁开始）；
+			$：表示匹配行尾的文本（以谁结束）。
+		2、字符类；
+			[...] / [...-...]：表示有一系列字符可供选择，只要匹配其中一个就可以了；
+			[^...]：表示有一系列字符不可供选择。
+		3、量词符；
+			用来设定某个模式出现的次数。
+			*：重复零次或更多次；
+			+：重复一次或更多次；
+			？：重复零次或一次；
+			{n}：重复 n 次；
+			{n,}：重复 n 次或更多次；
+			{n,m}：重复 n 到 m 次。
+		4、逻辑符。
+			|：逻辑或。
+	预定义类
+		\d：0-9；
+		\D：^0-9；
+		\w：A-Za-z0-9_；
+		\W：^A-Za-z0-9_；
+		\s：\t\r\n\v\f；
+		\S：^\t\r\n\v\f。
+	正则替换
+		var newSte = strObj.replace(regExp[switch]/subStr, replacement);
+			switch：正则表达式按什么模式来匹配。
+				g：全局匹配；
+				i：忽略大小写；
+				gi：全局匹配和忽略大小写。
+			eg：var newSte = strObj.replace(/傻逼|尼玛/g, '**');
+正则的应用：模板引擎 
+	数据和模板结构在经过模板引擎的处理之后会生成 HTMI 页面。
+	优点：
+		1、减少了字符串的拼接操作；
+		2、使代码结构更加清晰；
+		3、使代码更易于阅读和维护。
+	art-template
+		使用步骤：
+			1、导入 art-template；
+			2、定义数据；
+				var data = { name: 'zhangsan', age: 20 };
+			3、定义模板；
+				<script type="text/html" id="tpl-user">
+					<h1>{{name}}{{age}}岁</h1>
+				</script>
+			4、调用 template 函数；
+				var htmlStr = template('tpl-user', data);
+			5、渲染 HTML 结构。
+				$('selector').html(htmlStr);
+		标准语法
+			在 {{}} 内可以进行变量输出或循环数组等操作。
+			输出
+				{{value}}
+				{{obj.key}}
+				{{obj['key']}}
+				{{a ? b : c}}
+				{{a || b}}
+				{{a + b}}
+			原文输出
+				如果输出的 value 值中包含了 HTML 结构标签，则需要使用原文输出语法，才能保证 HTML 标签被正常渲染。
+				{{@ value}}
+			条件输出
+				{{if 条件}}...{{/if}}
+				{{if 条件1}}...{{else if 条件2}}...{{/if}}
+			循环输出
+				{{each arr}}
+					{{$index}} {{$value}}
+				{{/each}}
+			过滤器
+				定义
+					template.defaults.imports.filterName = function(value) { // return 处理的结果 }
+					应用：
+						template.defaults.imports.dateFormat = function(date) {
+							var y = date.getFullYear();
+							var m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1;
+							var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+							var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+							var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+							var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+							return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss;
+						}
+
+				调用
+					调用过滤器的语法类似管道操作符，它的上一个输出作为下一个输入。
+					{{value | filterName}}
+	模板引擎原理
+		本质：用正则表达式语法实现字符串的替换操作。
+		function template(id, data) {
+			var str = document.getElementById(id).innerHTML;
+			var pattern = /{{\s*[a-zA-Z]+\s*}}/;
+			var pattResult = null;
+			while((pattResult = pattern.exec(str))) {
+				str = str.replace(pattResult[0], data[pattResult[1]])
+			}
+			return str;
+		}

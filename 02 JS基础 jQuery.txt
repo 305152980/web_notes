@@ -1,0 +1,848 @@
+浏览器
+	组成：渲染引擎 +  JS 引擎
+		渲染引擎：用来解析 HTML 和 CSS，俗称内核；
+		JS 引擎：用来读取网页中的 JS 代码，对其处理后运行，也称为 JS 解析器。
+JS 组成
+	组成：ECMAScript + DOM + BOM
+		ECMAScript：JS 语法；
+		DOM：页面文档对象模型；
+		BOM：浏览器对象模型。
+JS 注释
+	1、单行注释（ctrl + /）；
+		// xxx
+	2、多行注释（sgift + alt + a）。
+		/* xxx */
+JS 引入方式
+	1、行内式 JS；
+		<input type="button" value="唐伯虎" onclick="alert('秋香姐');">
+		1、可以将单行或少量 JS 代码写在 HTML 标签的事件属性中；
+		2、注意单双引号的使用：在 HTML 中推荐使用双引号，在 JS 中推荐使用单引号。
+	2、内嵌式 JS；
+		<script>
+			alert('沙漠骆驼');
+		</script>
+	3、外部式 JS。
+		<script src="my.js"></script>
+输入输出语句
+	1、alert(msg)；
+		浏览器弹出警示框。
+	2、console.log(msg)；
+		浏览器控制台打印输出信息。
+	3、prompt(info)。
+		浏览器弹出输入框，用户可以输入。
+		var age = prompt(info);
+=========================================================================================================================================================================================
+变量
+	1、声明变量；
+		var age;
+	2、赋值；
+		age = 10;
+	3、变量的初始化 = 声明变量 + 赋值。
+		var age = 10;
+	注意：声明但未赋值的变量，其值为 undefined。
+命名规范
+	1、由字母、数字、下划线、美元符号组成；
+	2、严格区分大小写；
+	3、不能以数字开头；
+	4、不能是关键字、保留字；
+	5、变量名必须有意义；
+	6、遵循小驼峰命名法。
+标识（zhi）符、关键字、保留字
+	1、标识符是开发人员为变量、属性、函数、参数取的名字。标识符不能是关键字或保留字；
+	2、关键字是 JS 本省已经使用了的字，不能再用它们充当变量名、方法名；
+	3、保留字是预留的关键字。
+运算符
+	算数运算符
+		+、-、*、/、%
+		注意：浮点数在算数运算里会有问题，尽量避免浮点数直接参与运算。
+	递增递减运算符
+		++num、--num、num++、num--
+	比较运算符
+		>、<、>=、<=、==、!=、===、!==
+		返回值为 true / false。
+		注意：>、<、>=、<=、==、!= 中都有数据类型的隐式转换（字符型转换为数字型）。
+	逻辑运算符
+		&&、||、!
+		返回值为 true / false 。
+		短路运算的原理：当有多个表达式（值）参与逻辑运算，左边的表达式（值）可以确定结果时，就不再继续运算右边的表达式的值。
+			console.log(123 && 456);		// 123
+			console.log(0 || 456);			// 456
+	赋值运算符
+		=、+=、-=、*=、/=、%=
+	运算符优先级
+		顺序：小括号、一元运算符、算数运算符、关系运算符、判等运算符、逻辑运算符（先 && 后 || ）、赋值运算符、逗号运算符。
+数据类型
+	简单数据类型
+		Number
+			包含整数和小数，八进制数前面加 0，十六进制数前面加 0x。
+			Number.MAX_VALUE、Number.MIN_VALUE、Infinity、-Infinity、NaN。
+			isNaN(value) 的返回值为 true 或 false。
+		Boolean
+			true 和 false。
+			在数值运算中 true 等价于 1， false 等价于 0。
+		String
+			JS 中的字符串推荐使用单引号。
+			字符串转义字符都是用 \ 开头，但是这些转义字符都必须写到引号里面。
+			xxx.length 获取字符串的长度。
+		Undefined
+			var a
+			var a = undefined
+				var vari;
+				console.log('你好' + vari);		// 你好undefined
+				console.log(11 + vari);			// NaN
+				console.log(true + vari);		// NaN
+		Null
+			var a = null
+				var vari = null;
+				console.log('你好' + vari);		// 你好null
+				console.log(11 + vari);			// 11
+				console.log(true + vari);		// 1	
+		typeof
+			用来获取变量的类型。
+				var vari = null;
+				console.log(typeof vari);		// object	如果有个变量以后打算存储为对象，暂时又没有值，则先赋值为 null。
+		数据类型转换
+			数值转换为字符串
+				1.toString();
+				String(1);
+				1 + '';					// 和字符串拼接的结果都为字符串。
+			字符串转换为数值
+				parseInt('78')
+				parseInt('78.21')			// 78	取整
+				parseInt('78px')			// 78
+				parseFloat('78.21')
+				Number('12')
+				'12' - 0 | '12' / '1'
+			转换为布尔型
+				Boolean(value)
+					1、代表空、否定的值会被转换为 false，如：''、0、NaN、null、undefined；
+					2、其余的值都会被转换为 true。
+	复杂数据类型
+		通过 new 关键字创建的对象（系统对象、自定义对象），如 Object、Array、Data 等
+流程控制
+	顺序结构
+	分支结构：if
+		1、if
+			if (条件表达式) {
+				// 执行语句
+			}
+		2、if-else
+			if (条件表达式) {
+				// 执行语句1
+			} else {
+				// 执行语句2
+			}
+		3、if-else if-else
+			if (条件表达式1) {
+				// 执行语句1
+			} else if (条件表达式2) {
+				// 执行语句2
+			} else {
+				// 执行语句3
+			}
+	分支结构：三元表达式
+		条件表达式 ? 表达式1 : 表达式2
+	分支结构：switch
+		switch (表达式) {
+			case value1:
+				// 执行语句1；
+				break;
+			case value2:
+				// 执行语句2；
+				break;
+			......
+			default:
+				// 执行语句n；
+		}
+		注意：表达式的返回值“全等于” value 值时，才会执行 value 值对应的语句。当要针对变量设置一系列的特定值的选项时，就可以使用 switch。
+	循环结构
+		for 循环
+			for (初始化变量;  条件表达式; 操作表达式) {
+				// 循环体
+			}
+		while 循环
+			while (条件表达式) {
+				// 循环体
+			}
+		do...while 循环
+			do {
+				// 循环体
+			} while (条件表达式)
+		注意：break 和 continue 的区别：continue 关键字用于立即跳出本次循环，继续下一次循环。break 关键字用于立即跳出整个循环。
+=========================================================================================================================================================================================
+作用域
+	全局作用域
+	局部作用域
+		在函数内部就是局部作用域。
+		注意： JS 没有块级作用域，在 ES6 之后有块级作用域。
+	全局变量
+	局部变量
+		注意：如果在函数内部没有声明就直接赋值的变量属于全局变量。全局变量只有浏览器关闭的时候才会销毁，比较占用内存资源；局部变量是程序执行完毕后就销毁，比较节约内存资源。
+预解析
+	JS 引擎会把 JS 里面所有的 var 和 function 提升到当前作用域的最前面。
+	变量预解析（变量提升）
+		把所有的变量声明提升到当前作用域的最前面，不提升赋值操作。
+	函数预解析（函数提升）
+		把所有的函数声明提升到当前作用域的最前面，不调用函数。
+数组
+	创建数组
+		1、利用 new 关键字创建数组；
+			var arr = new Array();
+		2、利用数组字面量创建数组。
+			var arr = [];
+			var arr = [1, '2', 3, '4'];			// 数组的初始化（创建数组并赋值）。
+		注意：JS 数组中可以存放任意数据类型。
+	数组扩容
+		第一步：修改数组长度来扩容，数组的 length 属性是可读写的；第二步：通过数组索引来为数组追加元素。
+		arr[arr.length] = value;
+	冒泡排序（重点）
+函数
+	函数的使用
+		1、首先，声明函数；
+			function 函数名 (形参1, 形参2...) {
+				函数体
+			}
+		2、然后，调用函数。
+			函数名 (实参1, 实参2...);
+	函数的参数
+		JS 函数中如果实参的个数大于形参的个数，则多余的实参会被无视。
+	arguments
+		在 JS 中，arguments 是当前函数的一个内置对象，这个对象中存储了传递的所有实参。
+		arguments 展示形式是一个伪数组，因此可以进行遍历。
+		伪数组具有以下特点：
+			具有 length 属性；
+			按索引方式存储数据；
+			不具有数组的 push，pop 等方法。
+	函数的两种声明方式
+		1、命名函数：利用函数关键字自定义函数。
+			function fn () {}
+			调用：fn ();
+		2、匿名函数：函数表达式。
+			var fun = function () {}
+			调用：fun ();
+对象
+	创建对象
+		1、利用字面量创建对象；
+			var star = {
+				name: '刘德华',
+				sing: function (songName) {
+					console.log(songName);
+				}
+			}
+		2、利用 new Object 创建对象；
+			var star = new Object();
+			star.name = '刘德华'；
+			star.sing = function (songName) {
+					console.log(songName);
+				}
+		3、利用构造函数来创建对象。
+			function Star (name, songName) {
+				this.name = name；
+				this.sing = function (songName) {
+					console.log(songName);
+				}
+			}
+			var star = new Star('刘德华', '冰雨');
+			注意：
+				1、构造函数名字首个字母要大写；
+				2、构造函数不需要 return 就可以返回结果。
+			new 关键字的执行过程：
+				1、在内存中创建一个空对象；
+				2、this 关键字指向这个对象；
+				3、执行构造函数里面的代码；
+				4、返回这个对象（构造函数不需要 return）。
+	使用对象：
+		1、star.name | star.sing()
+		2、star['name']
+	遍历对象
+		for...in 语句用于对数组或者对象的属性进行循环操作。
+		for (var k in star) {
+			console.log(k);					// k 接收的是属性名。
+			console.log(star[k]);
+		}
+内置对象
+	JS 中的对象分为三种：自定义对象、内置对象、浏览器对象。前两种对象是 JS 基础内容，属于 ECMAScript；第三个对象属于 JS 独有。
+	Math 对象
+		Math 对象不是一个构造函数，不需要 new 来调用，可以直接使用它的属性和方法。
+		Math.PI
+		Math.max()
+		Math.min()
+		Math.floor()						// 向下取整
+		Math.ceil()						// 向上取整
+		Math.round()						// 四舍五入取整
+			Math.round(-1.5) 的返回值是 -1。这是特殊情况。因为 JS 中 .5 都是往大了取。
+		Math.abs()						// 取绝对值
+		Math.random()						// 函数返回一个浮点，伪随机数范围 [0,1) 。
+	Date 对象
+		Date 对象是一个构造函数，必须使用 new 来调用。
+			1、如果没有参数，返回当前系统的当前时间；
+				var date = new Date();
+			2、如果有参数，返回给定的时间。
+				数字型参数：2019, 10, 01
+				字符串型参数：'2019-10-1 8:8:8'、'2019/10/1'
+		日期格式化：
+			var date = new Date();
+			date.getFullYear();
+			date.getMonth();				// 返回 0 ~ 11 月
+			date.getDate();					// 返回几号
+			date.getDay();					// 返回周日（0）到周六（6）
+			date.getHours();				// 返回当前小时
+			date.getMinutes();				// 返回当前分钟
+			date.getSeconds();				// 返回当前秒
+		总的毫秒数（时间戳）：
+			1、new Date().valueof()；	
+			2、new Date().getTime()；
+			3、+new Date()；
+			4、Date.now() H5 新增。
+	Array 对象
+		创建数组：
+			1、利用数组字面量；
+				var arr = [1, 2, 3];
+			2、利用 new Array()。
+				var arr = new Array(2);			// 创建长度为 2 的空数组。
+				var arr = new Array(2, 3);		// 创建数组 [2, 3]。
+		判断变量是否为数组：
+			1、arr instanceof Array; 返回值为 true / false；
+			2、Array.isArray(arr); 返回值为 true / false。H5 新增。
+		添加删除数组元素：
+			1、push(value1...) 末尾添加一个或多个元素；
+			2、pop() 删除数组最后一个元素；
+			3、unshift(value1...) 开头添加一个或多个元素；
+			4、shift() 删除数组的第一个元素。
+		数组的排序：
+			1、arr.reverse(); 翻转数组，该方法改变现有的数组；
+			2、sort() 数组排序（冒泡排序），该方法改变现有的数组。
+				arr.sort(function(a, b){
+					return a - b;			// 升序的顺序排列，b - a 为降序排列。
+				});
+		获取数组索引：
+			1、arr.indexOf(value); 查找数组中给定元素的第一个索引，如果存在，返回索引号，如果不存在，返回 -1；
+			2、arr.lastIndexOf(value); 查找数组中给定元素的最后一个索引，如果存在，返回索引号，如果不存在，返回 -1。
+		数组转换为字符串：
+			1、arr.toString(); 返回值中，逗号分隔每一项；
+			2、arr.join('分隔符'); 。
+		其他的数组方法：
+			1、arr1.concat(arr2); 该方法用于连接两个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本；
+			2、arr.slice(startIndex, endIndex); 该方法不会改变现有的数组，而仅仅会返回一个新的数组，包含从 startIndex 到 endIndex（不包含该元素）的 arr 中的元素；
+			3、arr.splice(index, howmany, value1, ..., itemn); 该方法改变现有的数组，它返回值我还没搞懂。
+				var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+				arr.splice(2, 3);			// 删除。arr 为 [1, 2, 6, 7, 8]
+				arr.splice(5, 0, 'a', 'b', 'c');	// 插入。arr 为 [1, 2, 3, 4, 5, 'a', 'b', 'c', 6, 7, 8]
+				arr.splice(1, 2, 'a', 'b');		// 替换。arr 为 [1, 'a', 'b', 4, 5, 6, 7, 8]
+	基本包装类型
+		String
+			var str = 'andy'; 底层原理：
+				1、生成临时变量；
+					var temp = new String('andy');
+				2、赋值给字符变量；
+					var str = temp;
+				3、销毁临时变量。
+					temp = null;
+			获取字符位置：
+				1、indexOf() 查找字符中给定字符的第一个索引，如果存在，返回索引号，如果不存在，返回 -1；
+					str.indexOf(value);
+					str.indexOf(value, [起始的位置]);		// 从起始位置开始查找。
+				2、lastIndexOf() 查找字符中给定字符的最后一个索引，如果存在，返回索引号，如果不存在，返回 -1。
+					str.lastIndexOf(value);
+			根据位置获取字符：
+				1、str.charAt(index); ；
+				2、str[index]; H5 新增；
+				3、str.charCodeAt(index); 返回相应索引号的字符的 ASII 值。
+			拼接截取字符串：
+				1、str.concat(str1, str2, str3...); 返回值为被连接字符串的一个副本；
+				2、str.substr(start, length); 返回值为被截取字符串的一个副本；
+				3、str.slice(start, end); 返回值为被截取字符串的一个副本；
+				4、str.substring(start, end); 返回值为被截取字符串的一个副本。
+			替换字符串：
+				str.replace('被替换的字符', '替换为的字符'); 只替换第一个字符。返回值为被替换字符串的一个副本。
+			字符串转换为数组：
+				str.split('分隔符');
+			其他的字符串方法：
+				1、str.toUpperCase(); 转换为大写，返回值为全大写的 str；
+				2、str.toLowerCase(); 转换为小写，返回值为全小写的 str。
+		Number
+		Boolean
+=========================================================================================================================================================================================
+DOM 文档对象模型
+	 document 文档对象
+		1、 document 对象的获取：
+			HTML DOM 中可以使用 BOM 中的 window 对象来获取 document 对象。
+			1、window.document；
+			2、document。
+		2、 作用：获取 element 对象；
+			1、document.getElementById('value')：根据元素的 id 属性值获取元素对象。
+			2、document.getElementsByTagName('value')：根据元素的标签名获取元素对象。返回值为伪数组。
+				fatherElement.getElementsByTagName('value')：获取指定父元素下对应标签名的子元素对象。返回值为伪数组。
+			3、document.getElementsByClassName('value')：根据元素 class 属性值获取元素对象。返回值为伪数组。（H5 新增）
+			4、document.querySelector('选择器')：根据指定选择器返回第一个元素对象。（H5 新增）
+				fatherElement.querySelector('选择器')：获取指定父元素下对应选择器的第一个子元素对象。
+			5、document.querySelectorAll('选择器')：根据指定选择器返回所有的元素对象。返回值为伪数组。（H5 新增）
+			6、document.body：获取 body 元素。
+			7、document.documentElement：获取 html 元素。
+			注意：这些方法都是动态获取 element 对象，返回的结果只是一个指向这些 element 对象的索引值。
+	element 元素对象
+		1、element 对象的获取：
+			通过 document 对象来获取。
+		2、作用：操作元素的类和属性：
+			1、element.innerText = 'value'：设置/获取元素内容。不识别 html 标签，非标准，读取时去除空格和换行。
+			2、element.innerHtml = 'value'：设置/获取元素内容。识别 html 标签，标准，读取时保留空格和换行。
+			3、element.属性名 = '属性值'：设置/获取元素内置属性值。
+			4、element.getAttribute('属性名')：获取元素属性值。
+			5、element.setAttribute('属性名','属性值')：设置元素属性值。
+			6、element.removeAttribute('属性名')：删除元素属性。
+			7、element.style.xxx = 'value'：设置/获取元素行内样式。
+			8、element.className = 'value'：设置/获取元素类名，设置时会覆盖原先的类名。
+			9、element.classList.add('value1'...)：为元素添加一个或多个类名。
+			10、element.classList.remove('value1'...)：为元素移除一个或多个类名。
+			11、element.classList.contains('value')：检查元素是否含有某个类名。return true or false。
+			注意：H5 规定自定义属性以 data- 开头作为属性名。
+	node 节点操作
+		节点对象包括：nodeType、nodeName、nodeValue 三个基本属性。
+			nodeType：element_node(1)、attribute_node(2)、text_node(3)...
+		1、利用 DOM 提供的方法获取节点对象，见上。
+		2、利用节点层次关系获取节点对象：
+			1、node.parentNode：获取离 node 对象最近的父节点。
+			2、node.childNodes：获取 node 对象所有的子节点，不止有元素节点。
+			3、node.children：获取 node 对象所有的子元素节点。重点。
+			4、node.firstChild：获取 node 对象的第一个子节点，不止有元素节点。
+			5、node.lastChild：获取 node 对象的最后一个子节点，不止有元素节点。
+			6、node.firstElementChild：获取 node 对象的第一个子元素节点。IE9 以上。
+			7、node.lastElementChild：获取 node 对象的最后一个子元素节点。IE9 以上。
+			8、node.previousSibling：返回 node 对象的上一个兄弟节点，不止有元素节点，找不到则返回 null。
+			9、node.nextSibling：返回 node 对象的下一个兄弟节点，不止有元素节点，找不到则返回 null。
+			10、node.previousElementSibling：返回 node 对象的上一个兄弟元素节点，找不到则返回 null。IE9 以上。
+			11、node.nextElementSibling：返回 node 对象的下一个兄弟元素节点，找不到则返回 null。IE9 以上。
+		3、创建、添加、删除、复制节点对象：
+			1、document.createElement('tagName')：动态创建元素节点。
+			2、node.appendChild(child)：向 node 对象的子节点列表末尾添加子节点。
+			3、node.insertBefore(child, 指定元素)：向 node 对象子节点列表的指定子节点的前面添加子节点。
+			4、node.removeChild(child)：从 node 对象子节点列表中，删除指定的子节点。
+			5、node.cloneNode(true/false)：返回 node 对象的一个副本。参数默认值：false。true：深拷贝；false：浅拷贝。深拷贝复制标签和标签里的内容；浅拷贝只复制标签。
+			注意：面试题 createElement 与 innerText 生成子节点的效率问题。
+	事件基础
+		1、事件三要素
+			事件源、事件类型、事件处理程序。
+			document.getElementById('value').onclick = function() {}
+		2. 常见的事件
+			1、点击事件：
+				1、onclick：单击事件；
+				2、ondblclick：双击事件。
+			2、焦点事件：
+				1、onblur：失去焦点；
+				2、onfocus：获得焦点。
+			3、鼠标事件：
+				1、onmousedown：鼠标按键按下；
+				2、onmouseup：鼠标按键弹起；
+				3、onmousemove：鼠标移动；
+				4、onmouseover：鼠标覆盖某元素；
+				5、onmouseout：鼠标离开某元素；
+				6、contextmenu：鼠标右键弹出菜单。
+				7、onmouseenter：鼠标经过某元素。
+				8、onmouseleave：鼠标离开某元素。
+					e.clientX：返回鼠标相对于浏览器窗口可视区域的 X 坐标。
+					e.clientY：返回鼠标相对于浏览器窗口可视区域的 Y 坐标。
+					e.pageX：返回鼠标相对于文档流页面的 X 坐标。IE 9 以上。
+					e.pageY：返回鼠标相对于文档流页面的 Y 坐标。IE 9 以上。
+					e.screenX：返回鼠标相对于电脑屏幕的 X 坐标。
+					e.screenY：返回鼠标相对于电脑屏幕的 Y 坐标。
+				注意：onmouseover 会冒泡，onmouseenter 和 onmouseleave 不会冒泡。
+			4、键盘事件：
+				1、onkeydown：键盘按键按下，按之后会一直触发；
+				2、onkeypress：键盘按键按下，按下后会一直触发，不识别功能键，如：ctrl、shift、箭头等；
+				3、onkeyup：键盘按键弹起，弹起时会触发一次。
+					三个事件的执行顺序：onkeydown、onkeypress、onkeyup。
+					e.keyCode：返回该按键的 ASCII 码值。onkeydown、onkeyup 不区分字母的大小写，都视为小写；onkeypress 区分字母的大小写。
+			5、页面加载事件：
+				1、onload：当文档内容完全加载会触发该事件。（包括图像、脚本文件、CSS 文件等）
+					window.onload = function(){}
+					window.addEventListener('load', function(){}[, useCapture]);
+				2、DOMContentLoaded：仅 DOM 加载完成时触发该事件。IE9 以上。
+					window.addEventListener('DOMContentLoaded', function(){}[, useCapture]);
+				注意：立即执行函数：(function(){})() 或者 (function(){}())。
+			6、调整窗口大小事件：
+				window.onresize = function(){}
+				window.addEventListener('resize', function(){}[, useCapture]);
+					window.innerWidth 当前屏幕的宽度。
+					window.innerHeight 当前屏幕的高度。
+			7、表单事件：
+				1、onsubmit：确认按钮被点击。方法返回 true 或者不返回值，表单顺利提交；方法返回 false，阻止表单提交。
+					document.getElementById("form").onsubmit = function(){ return flag; }
+					<form action="#" id="form" onsubmit="return checkForm();"></form>
+					<script>
+						function checkForm(){
+							return flag;
+						}
+					</ script>
+				2、onreset：重置按钮被点击。
+	事件高级
+		1、注册事件
+			1、传统注册事件：
+				利用 on 开头的事件，例如：onclick。
+				特点：同一个元素的同一个事件只能设置一个处理函数，最后注册的处理函数会覆盖前面注册的处理函数。
+			2、方法监听注册事件：
+				targetElement.addEventListener('eventType', listener[, useCapture]);		// IE9 以上。
+					targetElement：绑定事件的目标对象。
+					eventType：不带 on 的事件类型。
+					listener：事件处理函数的函数名，不需要调用加小括号。
+					useCapture：默认值：false。true：事件处于捕获模式；false：事件处于冒泡模式。
+				targetElement.attschEvent('eventType', listener);				// IE6 ~ 8使用。
+					eventType：带 on 的事件类型。
+					listener：事件处理函数的函数名，不需要调用加小括号。
+				特点：同一个元素同一个事件可以添加多个监听器。按注册顺序依次执行。
+		2、解绑事件
+			1、传统注册事件的解绑：
+				targetElement.eventType = null;
+			2、方法监听注册事件的解绑：
+				targetElement.removeEventListener('eventType', listener[, useCapture]);		// IE9 以上。
+				targetElement.detachEvent('eventType', listener);				// IE6 ~ 8使用。
+		3、DOM 事件流（事件传播）
+			三个阶段：
+				1、捕获阶段：事件由 DOM 顶层节点开始，逐级向下传播到具体元素的过程；
+				2、当前目标阶段；
+				3、冒泡阶段：事件由具体元素开始，逐级向上传播到 DOM 顶层节点的过程。
+				注意：
+					1、事件有捕获则没有冒泡，有冒泡则没有捕获；
+					2、有些事件是没有冒泡的：onblur、onfocus、onmouseenter、onmouseleave。
+		4、事件对象
+			targetElement.eventType = function(e){
+				console.log(e || window.event);		// 兼容 IE6 ~ 8。
+			};
+			targetElement.addEventListener('eventType', function(e){ console.log(e); }[, useCapture]);
+			事件对象的属性和方法：
+				e.currentTarget：返回绑定事件的对象。IE9 以上。作用与 this 相同，但 this 没有兼容性问题。
+				e.target：返回触发事件的对象。
+				e.srcElement：返回触发事件的对象。IE6 ~ 8 使用。
+				e.type：返回不带 on 的事件类型。
+				e.preventDefault()：阻止事件默认行为。让链接不跳转，或者提交按钮不提交。
+				e.returnValue：阻止事件默认行为。IE6 ~ 8 使用。
+				e.stopPropagation()：阻止事件冒泡。
+				e.cancelBubble：阻止事件冒泡。IE6 ~ 8 使用。
+		5、事件委托（代理、委派）
+			事件冒泡的应用。
+			原理：不在每个子节点上单独设置事件监听器，而是在其父节点上设置事件监听器，然后利用事件冒泡的原理去影响每个子节点。
+			作用：减少了 DOM 操作的次数，提高了程序的性能。
+BOM 浏览器对象模型
+	1、window 对象
+		它是是浏览器的顶级对象。
+		在调用的时候 window 可以省略。
+		它是 JS 访问浏览器窗口的一个接口。
+		它是一个全局对象。定义在全局作用域中的变量、函数都会变成 window 对象的属性和方法。
+		window 对象包括：document、history、location、navigator、screen 等对象。
+	2、定时器
+		1、var timeout = window.setTimeout(调用函数[, 延迟的毫秒数]);		// 默认延迟时间 0 毫秒。执行一次。	
+			window.clearTimeout(timeout);
+		2、var interval = window.setInterval(调用函数[, 延迟的毫秒数]);		// 默认延迟时间 0 毫秒。循环执行。
+			window.clearInterval(interval);
+	3、this 指向
+		1、在全局作用域、普通函数、定时器中 this 指向 window 对象；
+		2、方法调用中 this 指向调用方法的对象；
+		3、构造函数中 this 指向构造函数的实例对象。
+	4、JS 同步异步
+		1、同步任务
+			同步任务都是在主线程上执行的。他们形成一个主线程执行栈。
+		2、异步任务
+			JS 异步任务是通过回调函数实现的。他们形成一个任务队列（消息队列）。一半而言，异步任务有以下三种类型：
+				1、普通事件，如：click、resize 等；
+				2、资源加载，如：load、error 等；
+				3、定时器等；
+				4、回调函数。
+		3、执行机制
+			1、先执行执行栈中的同步任务。把异步任务（回调函数）推入任务队列中；
+			2、一旦执行栈中的同步任务执行完毕，系统会按次序读取任务队列中的异步任务，将他们推入执行栈，开始执行；
+			3、如果执行栈中的任务执行完毕了，任务队列中又推入了新的异步任务，则该异步任务会立刻被推入执行栈中执行。这种机制称为事件循环。
+	5、location 对象
+		window 对象给我们提供了一个 location 属性，用于获取或设置窗体的 URL，并且可以用于解析 URL。
+		1、URL 的一般语法格式为：
+			protocol://host[:port]/path/[?query]#fragment
+			http://www.itcast.cn/index.html?name=andy&age=18#link
+				protocol				通信协议 常用的 http、ftp、maito 等。
+				host					主机（域名）
+				port					端口号
+				path					路径，一般用来表示主机上的一个目录或文件地址。
+				query					参数
+				fragment				片段（锚点）
+		2、location 对象的属性和方法：
+			location.href					获取或设置整个 URL
+			location.host					返回主机（域名）
+			location.port					返回端口号。如果没有，则返回空字符串。
+			location.pathname				返回路径
+			location.search					返回参数
+			location.hash					返回片段
+			location.assign()				跳转页面，跟 href 一样。
+			location.replace()				替换当前页面，因为不记录历史，所以不能后退页面。
+			location.reload()				重新加载页面，相当于刷新按钮或者 f5。如果参数为 true，则为 ctrl + f5 强制刷新。
+	6、navigator 对象
+		navigator 对象包含有关浏览器的信息，我们最常用的是它的 userAgent 属性。
+			if（）{
+				window.location.href = '';		// 手机
+			} else {
+				window.location.href = '';		// 电脑
+			}
+	7、history 对象
+		window 对象为我们提供了一个 history 对象，让我们与浏览器的历史纪录进行交互。该对象包含用户访问过的 URL。
+		history 对象的方法：
+			1、back()					后退一页
+			2、forward()					前进一页
+			3、go(n)					后退/前进 n 页。正数为前进，负数为后退。
+=========================================================================================================================================================================================
+元素偏移量 offset
+	作用：
+		1、动态获取元素距离带有定位父元素的位置；
+		2、动态获取元素自身的宽高；
+		3、返回的数值不带单位；
+		4、只能读值，不能赋值。
+	用法：
+		1、element.offsetParent：返回该元素带有定位的父元素，如果都没有定位，则返回 body。
+		2、element.offsetTop：返回该元素相对带有定位父元素，如果都没有定位，则是相对 body，上方的偏移量。
+		3、element.offsetLeft：返回该元素相对带有定位父元素，如果都没有定位，则是相对 body，左边的偏移量。
+		4、element.offsetWidth：返回该元素的宽度（包括 padding、边框）。
+		5、element.offsetHeight：返回该元素的高度（包括 padding、边框）。
+元素可视区 client
+	作用：动态获取元素的边框大小、元素的大小等；返回的数值不带单位。
+	用法：
+		1、element.clientTop：返回该元素上边框的大小。
+		2、element.clientLeft：返回该元素左边框的大小。
+		3、element.clientWidth：返回该元素的宽度（包括 padding，不含边框）。
+		4、element.clientHeight：返回该元素的高度（包括 padding，不含边框）。
+元素滚动 scroll
+	作用：动态获取元素的大小、滚动的距离等；返回的数值不带单位。
+	用法：
+		1、element.scrollTop：返回该元素被卷去的上侧距离。
+		2、element.scrollLeft：返回该元素被卷去的左侧距离。
+		3、element.scrollWidth：返回该元素的实际宽度（包括 padding，不含边框）。
+		4、element.scrollHeight：返回该元素的实际高度（包括 padding，不含边框）。
+	注意：滚动条在滚动时会触发 onscroll 事件；window.pageYoffset 返回页面被卷去的上侧距离，IE9 以上；页面滚动，使用 window.scroll(x, y)。
+元素动画
+	实现原理：通过定时器不断地移动盒子位置。
+	函数封装：
+		function animate(obj, targetSite, callBack){			// obj：动画对象；targetSite：终点位置。
+			clearInterval(obj.timer)
+			obj.time = setInterval(function(){
+				if(obj.offsetLeft === targetSite){
+					clearInterval(obj.timer)
+					if(callBack){ callBack }
+				}
+				// obj.style.left = obj.offsetLeft + 1 + 'px'			// 匀速动画。
+				var step = (targetSite - obj.offsetLeft) / 10
+				step = step > 0 ? Math.ceil(step) : Math.floor(step)
+				obj.style.left = obj.offsetLeft + step + 'px'			// 缓动动画。
+			}, 25)
+		}
+移动端 touch 事件
+	用法：
+		1、touchstart：手指触摸到该元素时触发此事件。
+		2、touchmove：手指在该元素上移动时触发此事件。
+		3、touchsend：手指离开该元素时触发此事件。
+	事件对象属性
+		1、touches：正在触摸屏幕的所有手指的列表。
+		2、targetTouches：正在触摸该元素的所有手指的列表。
+		3、changedTouches：状态发生变化的所有手指的列表。	
+本地存储
+	1、window.sessionStorage
+		特点：
+			1、生命周期为关闭浏览器窗口；
+			2、可以在同一个窗口下共享数据；
+			3、以键值对的形式存储值。
+		方法：
+			1、存储数据：sessionStorage.setItem(key, value);
+			2、获取数据：sessionStorage.getItem(key, value);
+			3、删除数据：sessionStorage.removeItem(key);
+			4、删除所有数据：sessionStorage.clear();
+	2、window.localStorage
+		特点：
+			1、生命周期为值永久生效，除非手动删除，否则关闭页面也会存在；
+			2、可以同一浏览器下多窗口共享数据；
+			3、以键值对的形式存储值。
+		方法：
+			1、存储数据：localStorage.setItem(key, value);
+			2、获取数据：localStorage.getItem(key, value);
+			3、删除数据：localStorage.removeItem(key);
+			4、删除所有数据：localStorage.clear();
+=========================================================================================================================================================================================
+jQuery
+	入门介绍
+		1、引入 jQuery；
+			<script src=""></script>
+		2、入口函数；
+			1、等页面 DOM 加载完成再去执行 JS 代码；
+				$(document).ready(function(){})
+			2、等页面 DOM 加载完成再去执行 JS 代码。
+				$(function(){})
+		3、顶级对象 $；
+			$ 是 jQuery 的别称，是 jQuery 的顶级对象，相当于 JS 中的 window 对象。
+		4、jQuery 对象与 DOM 对象。
+			DOMObj：用 JS 获取的对象；jQueryObj：用 jQuery 获取的对象，本质是对 DOM 对象包装后的伪数组。
+			DOMObj 转 jQueryObj：$(DOMObj)；jQueryObj 转 DOMObj：jQueryObj[index] 或者 jQueryObj.get(index)。
+	选择器
+		基本选择器
+			1、全选选择器：
+				$('*')：获取所有元素。
+			2、标签选择器；
+				$('标签名')：获取含有指定标签名的同一类元素。
+			3、ID 选择器；
+				$('#id')：获取含有指定 id 的元素。
+			4、类选择器；
+				$('.class')：获取含有指定 class 的同一类元素。
+			5、并集选择器；
+				$('选择器1,选择器2...')
+			6、交集选择器。
+				$('选择器1选择器2...')
+		层级选择器
+			1、后代选择器；
+				$('A B')：获取 A 元素内部的所有 B 元素。		
+			2、子选择器。
+				$('A>B')：获取 A 元素子元素中的所有 B 元素。
+		属性选择器
+			1、属性名选择器；
+				$('A[属性名]')：获取含有指定属性名的同一类元素。
+			2、属性值选择器；
+				$('A[属性名="值"]')：获取含有指定属性值的同一类元素。
+			3、并集属性选择器。
+				$('A[属性名="值"][]...') 
+		过滤选择器
+			1、首元素选择器；
+				:first：获取已选中元素集合中的第一个元素。
+			2、尾元素选择器；
+				:last：获取已选中元素集合中的最后一个元素。
+			3、非元素选择器；
+				:not('selector')：获取已选中元素集合中的不包含指定 selector 的元素。
+			4、偶数选择器；
+				:even：获取已选中元素集合中的下标为偶数的元素，下标从 0 开始计数。
+			5、奇数选择器；
+				:odd：获取已选中元素集合中的下标为奇数的元素，下标从 0 开始计数。
+			6、等于索引选择器；
+				:eq(index)：获取已选中元素集合中的指定下标的元素。
+			7、大于索引选择器；
+				:gt(index)：获取已选中元素集合中的大于指定下标的元素。
+			8、小于索引选择器；
+				:lt(index)：获取已选中元素集合中的小于指定下标的元素。
+			9、标题选择器。
+				:header：获取标题（h1 ~ h6）元素。
+	筛选方法
+		1、parent()：获取当前元素的父元素。
+		2、find('selector')：相当于后代选择器 $('A B')。
+		3、children('selector')：相当于子选择器 $('A>B')。
+		4、siblings('selector')：获取含有指定选择器的兄弟元素。
+		5、nextAll()：获取当前元素之后的所有同辈元素。
+		6、prevtAll()：获取当前元素之前的所有同辈元素。
+		7、hasClass("class")：检查当前元素是否含有指定的 class 类，返回值为 true/false。
+		8、eq(index)：相当于等于索引选择器 :eq(index)。
+	隐式迭代
+		$('div').css('background', 'red'); 不用循环处理被选中的元素。
+	样式操作
+		1、$('selector').css('cssAttrName')：返回 css 属性的属性值。
+		2、$('selector').css('cssAttrName', 'cssAttrValue')：设置 css 属性的属性值。复合属性名需要采取驼峰命名法。
+		3、$('selector').css({'cssAttrName1':'cssAttrValue1', 'cssAttrName2':'cssAttrValue2'})：设置 css 属性的属性值。复合属性名需要采取驼峰命名法。
+		4、$('selector').addClass('className')：添加类。
+		5、$('selector').removeClass('className')：删除类。
+		6、$('selector').toggleClass('className')：切换类，有此类就删除，没有此类就添加。
+	属性操作
+		prop()
+			prop('属性名')：获取元素固有属性值；
+			prop('属性名', '属性值')：设置元素固有属性值。
+		attr()
+			attr('属性名')：获取元素自定义属性值；
+			attr('属性名', '属性值')：设置元素自定义属性值。
+	内容操作
+		html()
+			html()：获取元素所有内容；
+			html('内容值')：设置元素所有内容。
+		text()
+			text()：获取元素文本内容；
+			text('内容值')：设置元素文本内容。
+		val()
+			val()：获取表单值；
+			val('值')：设置表单值。
+	元素操作
+		each()
+			$('div').each(function (index, demEle) { xxx; })
+				demEle：DOM 元素对象。
+			$.each(object, function (index, element) { xxx; })：主要用于遍历数组和对象。
+		$('<li></li>')：创建元素。
+		append(元素)：目标元素内部后添加元素。
+		prepend(元素)：目标元素内部前添加元素。
+		after(元素)：目标元素外部后添加元素。
+		before(元素)：目标元素外部前添加元素。
+		remove()：删除目标元素。
+		empty() / html('')：清空目标元素所有内容。
+	位置操作
+		width() / height()：设置/获取元素的 width / height。
+		innerWidth() / inerHeight()：获取元素的 width / height + padding。
+		outerWidth() / outerHeight()：获取元素的 width / height + padding + border。
+		outerWidth(true) / outerHeight(true)：获取元素的 width / height + padding + border + margin。
+		offset()：获取元素相对于文档的偏移坐标。
+		offset({top: xxx, left: yyy})：设置元素相对于文档的偏移坐标。
+		position()：获取元素相对于带有定位的父级元素的偏移坐标，如果父级都没有定位，则以文档为准。
+		scrollTop() / scrollLeft()：设置/获取元素的上/左偏移量。
+	动画
+		显示隐藏
+			show()
+				show([speed], [easing], [fn])
+					speed：slow、nomal、fast、1000；
+					easing：swing、linear；
+					fn：回调函数。
+			hide()
+				hide([speed], [easing], [fn])
+			toggle()
+				toggle([speed], [easing], [fn])
+		滑动
+			slideDown()
+				slideDown([speed], [easing], [fn])
+			slideUp()
+				slideUp([speed], [easing], [fn])
+			slideToggle()
+				slideToggle([speed], [easing], [fn])
+		淡入淡出
+			fadeIn()
+				fadeIn([speed], [easing], [fn])
+			fadeOut()
+				fadeOut([speed], [easing], [fn])
+			fadeToggle()
+				fadeToggle([speed], [easing], [fn])
+			fadeTo()
+				fadeTo([speed], opacity, [easing], [fn])
+					opacity：透明度，取值 0 ~ 1 之间。
+		自定义动画
+			animate()
+				fadeToggle(params, [speed], [easing], [fn])
+					params：想要改变的样式属性，以对象的形式传递；如果是复合属性，则必需采取驼峰命名法。
+		停止动画排队
+			stop()：该函数必须写到动画函数的前面，例如：stop().slideToggle()。
+	事件
+		事件绑定
+			1、绑定单个事件；
+				$('selector').eventType(function(){})
+			2、绑定多个事件。
+				$('selector').on({
+					eventType1:function(){},
+					eventType2:function(){}
+				})
+				$('selector').on('eventType1 eventType2', function(){})
+		事件委托
+			$('selector').on('eventType', 'inSelector', function(){})
+			注意：
+				1、selector：绑定事件的对象；
+				2、inSelector：后代元素的选择器，也是触发事件的对象；
+				3、事件函数中的 $(this) 指代的是 inSelector 所指代的元素；
+				4、能让未来动态被创建的 inSelector 元素绑定上此事件。
+		事件解绑
+			1、off() 方法可以移除通过 on() 方法添加的事件；
+				1、$('selector').off()：解绑元素身上的所有事件；
+				2、$('selector').off('eventType')：解绑元素身上的 eventType 事件；
+				3、$('selector').off('eventType', 'inSelector')：解绑元素身上的 eventType 委托事件。
+			2、one() 方法是在 on() 方法基础上的封装方法，事件执行一次就会被解绑。
+		事件自动触发
+			1、$('selector').eventType()；
+			2、$('selector').trigger('eventType')；
+			3、$('selector').triggerHandler('eventType')：此种方法不会触发元素的默认行为。
+		事件对象
+			$('selector').on('eventType', 'inSelector', function(event){})
+		对象拷贝
+			$.extend([deep], target, object1, [objectN])
+				deep：默认值 false：浅拷贝；true：深拷贝；
+				target：要拷贝的对象；
+				object：待拷贝的对象。
+		多库共存
+			用 & 符号替换冲突的 $ 符号：var & = $.noConflict();。
+		图片懒加载插件
+			当页面滑动到可视区域再显示图片。大大提高网页的性能。		
