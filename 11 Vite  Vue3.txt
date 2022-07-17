@@ -1,0 +1,404 @@
+Vite 的基本使用
+		创建 Vite 的项目
+		 	在命令行，按照如下顺序执行命令，即可基于 Vite 创建 vue3.x 的工程化项目：
+				npm init vite-app 项目名
+				cd 项目名
+				npm install
+				npm run dev
+		梳理项目的结构
+			使用 Vite 创建的项目结构如下：
+				node_modules		目录用来存放第三方依赖包。
+				public			是公共的静态资源目录。
+				src			是项目的源代码目录（程序员写的所有代码都要放在此目录下）。
+				.gitignore		是 Git 的配置文件。
+				index.html		是 SPA 单页面应用程序中唯一的 HTML 页面。
+				package.json		是配置项目的包管理文件。
+			在 src 这个项目源代码目录之下，包含了如下的文件和文件夹：
+				assets 目录		用来存放项目中所有的静态资源文件（css、fonts等）。
+				components 目录		用来存放项目中所有的自定义组件。
+				App.vue			是项目的根组件。
+				index.css		是项目的全局样式表文件。
+				main.js			是整个项目的打包入口文件。
+		Vite 项目的运行流程
+			在工程化的项目中，Vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。其中：
+				1、App.vue		用来编写待渲染的模板结构；
+				2、index.html		中需要预留一个 el 区域；
+				3、main.js		把 App.vue 渲染到了 index.html 所预留的区域中。
+		Vite 的主要任务是创建一个 Vue 根实例。
+			1、从 vue 中导入 createApp 函数；
+				import { createApp } from 'vue';
+			2、创建一个 Vue 根组件，并将其导入至 main.js 文件；
+				import App from './App.vue';
+			3、使用 createApp 函数在 Vue 根组件的基础上创建 Vue 根实例；
+				const app = createApp(App);
+			4、将 Vue 根实例挂载到 #app 容器中；
+				app.mount('#app');
+
+
+
+
+Vue3
+	vue3.x 的特点
+		1、性能提升。
+			打包大小减少41%，初次渲染快55%，更新渲染快133%，内存占用减少54%......
+		2、源码的升级。
+			使用 Proxy 方法代替 defineProperty 方法实现响应式，重写虚拟 DOM 的实现和重写 Tree-Shaking 的实现......
+		3、拥抱 TypeScript。
+		4、新特新。
+			1、Composition API。
+				setup 配置
+				ref 和 reactive
+				watch 和 watchEffect
+				provide 和 inject
+				......
+			2、新的内置组件。
+				Fragment
+				Teleport
+				Suspense
+			3、其他的改变。
+				新的生命周期钩子
+				data 选项应始终被申明为一个函数
+				移除 keyCode 支持作为 v-on 的修饰符
+				......
+	组件的生命周期
+		vue3.x 可以继续使用 vue2.x 的生命周期钩子，但最后两个生命周期钩子被改名。
+			beforeDestroy 改名为 beforeUnmount。
+			destroyed 改名为 unmounted。
+		vue3.x 也提供了 Composition API 形式的生命周期钩子，它与 vue2.x 生命周期钩子的对应关系如下：
+			beforeCreate()	==>	无				创建组件实例前
+			created()	==>	无				创建组件实例后			
+			beforeMount()	==>	onBeforeMount(() => {})		组件实例挂载到 DOM 前		
+			mounted()	==>	onMounted(() => {})		组件实例挂载到 DOM 后		
+			beforeUpdate()	==>	onBeforeUpdate(() => {})	组件实例更新前	
+			updated()	==>	onUpdated(() => {})		组件实例更新后		
+			beforeUnmount() ==>	onBeforeUnmount(() => {})	组件实例销毁前	
+			unmounted()	==>	无				组件实例销毁后
+	常用 Composition API
+		setup 函数
+			简介
+				setup 函数是一个组件选项，它在组件创建之前和 props 解析之后被执行，它是组合式 API 的入口。
+				注意：
+					1、setup 函数为在 beforeCreate 钩子函数之前被调用执行，此时的 this 是 undefined；
+					2、组件中所用到的数据、方法、监听器、计算属性、生命周期钩子等均要在 setup 函数中进行配置。
+			用法
+				setup(props, context) { return }
+			参数
+				props：对象。包含组件外部传递过来，且在组件内部声明接收了的属性。
+				context：上下文对象。包含：
+					attrs: 对象。包含组件外部传递过来，但没有在组件内部声明接收的属性，相当于 this.$attrs。
+					slots: 对象。包含组件接收到的插槽内容，相当于 this.$slots。
+					emit: 对象。包含组件接收到的自定义事件，相当于 this.$emit。
+						注意：vue3.x 中的自定义事件需要在组件中声明接收。
+			注意
+				1、因为 setup 函数的 props 参数是响应式的，所以对它不能使用 ES6 解构，这样会消除 prop 参数的响应性；
+				1、setup 函数可以返回普通 JS 对象供模板使用；setup 函数也可以返回渲染函数直接替换掉模板结构，这个在函数式组件中广泛被使用；
+				3、setup 函数不能是一个 async 函数，因为 async 函数的返回值是 Promise 对象。（也可以返回一个 Promise 对象，但需要 Suspense 和异步组件的配合。）
+		ref 函数
+			简介
+				接受一个内部值并返回一个响应式且可变的 ref 对象。该 ref 对象仅有一个 .value 属性，这个属性指向接收的内部值。
+			用法
+				<template>
+					<div>{{refValue}}</div>
+				</template>
+				<script>
+					import { ref } from 'vue';
+					export default {
+						setup () {
+							ver initValue = 0;
+							const refValue = ref(initValue);
+							// 读
+							console.log(refValue.value);
+							// 写
+							refValue.value = 1;
+							return { refValue }
+						}
+					}
+				</script>
+			注意：
+				1、接收的数据可以是：简单数据类型数据、也可以是复杂数据类型数据（对象和数组）；
+				2、简单数据类型数据的响应式是依靠 defineProperty 方法实现的单层响应式；
+				3、复杂数据类型数据（对象和数组）的响应式是依靠 reactive 函数实现的深层响应式。
+					注意：reactive 函数是对 Proxy() 方法的封装。
+			应用
+				接收接口返回值的时候经常用到 ref 函数，因为返回值的数据类型可能不确定。
+					const data = ref(null);
+					data.value = res.data;
+		reactive 函数
+			简介
+				接受一个复杂数据类型数据（对象和数组）并返回一个深层响应式的复杂数据类型数据（对象和数组）。
+			用法
+				<template>
+					<div>{{reactValue}}</div>
+				</template>
+				<script>
+					import { reactive } from 'vue';
+					export default {
+						setup () {
+							var initValue = {
+								name: 'zhangsan',
+								age: 18
+							};
+							const reactValue = reactive(initValue);
+							// 读。直接读，数组亦如此。
+							console.log(reactValue.name);
+							// 写。直接写，数组亦如此。
+							reactValue.age = 28;
+							return { reactValue }
+						}
+					}
+				</script>
+		ref 函数和 reactive 函数对比
+			从接收数据的数据类型角度对比：
+				ref 函数可以接收简单数据类型数据和复杂数据类型数据（对象和数组）。
+				reactive 函数不能接收简单数据类型数据，只能接收复杂数据类型数据（对象和数组）。
+			从实现响应式数据原理角度对比：
+				ref 函数是通过 defineProperty 方法实现的单层响应式（数据劫持）。
+				reactive 函数是通过 Proxy 方法实现的深层响应式（数据代理）, 并通过 Reflect 对象来操作目标“对象/数组”的“属性/元素”（反射）。
+			从响应式数据使用角度对比：
+				ref 函数返回的响应式数据在操作数据时需要使用 .value。
+				reactive 函数返回的响应式数据可以直接操作数据的属性或元素。
+		toRef 函数
+			作用：依赖源响应式对象的某个属性生成一个 ref 响应式数据，该 ref 响应式数据会保持对源响应式对象相对应属性的响应式连接。
+			用法
+				依赖 ref 定义的源响应式对象
+					const state = ref({
+						foo: 1,
+						bar: 2
+					});
+					const fooRef = toRef(state.value, 'foo');
+					state.value.foo++;
+					console.log(fooRef.value); // 2
+					fooRef.value++;
+					console.log(state.value.foo); // 3
+					return { fooRef }
+				依赖 reactive 定义的源响应式对象
+					const state = reactive({
+						foo: 1,
+						bar: 2
+					});
+					const fooRef = toRef(state, 'foo');
+					state.foo++;
+					console.log(fooRef.value); // 2
+					fooRef.value++;
+					console.log(state.foo); // 3
+					return { fooRef }
+			应用：setup 函数返回值的解构。
+		toRefs 函数
+			作用：依赖源响应式对象生成一个普通对象，该普通对象的每个属性都是一个 ref 响应式数据，并且该属性会保持对源响应式对象相对应属性的响应式连接。
+			用法
+				依赖 ref 定义的源响应式对象
+					const state = ref({
+						foo: 1,
+						bar: 2
+					});
+					const stateAsRefs = toRefs(state.value);
+					state.value.foo++;
+					console.log(stateAsRefs.foo.value) // 2
+					stateAsRefs.foo.value++
+					console.log(state.value.foo) // 3
+					return { ...state.value }
+				依赖 reactive 定义的源响应式对象
+					const state = reactive({
+						foo: 1,
+						bar: 2
+					});
+					const stateAsRefs = toRefs(state);
+					state.foo++;
+					console.log(stateAsRefs.foo.value) // 2
+					stateAsRefs.foo.value++
+					console.log(state.foo) // 3
+					return { ...state }
+			应用：setup 函数返回值的解构。
+		computed 函数
+			<script>
+				import { reactive, computed } from 'vue';
+				export default {
+					setup () {
+						const person = reactive({
+							firstName: 'zhang',
+							lastName: 'san'
+						});
+						// 简写
+						person.fullName_simple = computed(() => {
+							return person.firstName + '-' + person.lastName
+						});
+						// 完整
+						person.fullName_whole = computed({
+							get() {
+								return person.firstName + '-' + person.lastName
+							},
+							set(value) {
+								const nameArr = value.split('-');
+								person.firstName = nameArr[0];
+								person.lastName = nameArr[1];
+							}
+						});
+						return { person }
+					}
+				}
+			</script>
+		watchEffect 函数
+			简介
+				立即执行传入的函数参数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数，相当于没有返回值的 computed 函数。
+			用法
+				<script>
+					import { ref, watchEffect } from 'vue';
+					export default {
+						setup () {
+							const count = ref(0);
+							watchEffect(() => console.log(count.value));
+							setTimeout(() => {
+								count.value++;
+							}, 100);
+						}
+					}
+				</script>
+		watch 函数
+			对 ref 定义的数据的监听
+				1、单个简单数据类型数据的监听。
+					watch(valueName, (newValue, oldValue) => {
+						......
+					}, { immediate: true })	
+					注意：这里的 valueName 不能写成 valueName.value。
+				2、多个简单数据类型数据的监听。
+					watch([valueName1, valueName2], (newValue, oldValue) => {
+						......
+					}, { immediate: true })
+					注意：这里的 valueName 不能写成 valueName.value。
+				3、单个复杂数据类型数据（对象或数组）的监听。
+					// 写法一。
+					watch(objName, (newValue, oldValue) => {
+						......
+					}, { immediate: true, deep: true })
+					// 写法二。
+					watch(objName.value, (newValue, oldValue) => {
+						......
+					}, { immediate: true})
+					注意：
+						1、此种情况下 oldValue 参数接收到的不是 objName 的旧值而是 objName 的新值；
+						2、写法二中 watch 函数强制开启了深度监听，此时 watch 函数的 deep 配置无效。
+				4、单个复杂数据类型数据（对象或数组）的某个属性或元素的监听。
+					watch(() => objName.value.prop, (newValue, oldValue) => {
+						......
+					}, { immediate: true })
+					注意：
+						1、objName.value.prop 也可以是 objName.value.objProp.prop 这样的多层取值；
+						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
+						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
+				5、单个复杂数据类型数据（对象或数组）的某些属性或元素的监听。
+					watch([() => objName.value.prop1, () => objName.value.prop2], (newValue, oldValue) => {
+						......
+					}, { immediate: true })	
+					注意：
+						1、objName.value.prop 也可以是 objName.value.objProp.prop 这样的多层取值；
+						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
+						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
+			对 reactive 定义的数据的监听
+				1、单个复杂数据类型数据（对象或数组）的监听。
+					watch(objName, (newValue, oldValue) => {
+						......
+					}, { immediate: true })
+					注意：
+						1、此种情况下 oldValue 参数接收到的不是 objName 的旧值而是 objName 的新值；
+						2、此种情况下 watch 函数强制开启了深度监听，此种情况下 watch 函数的 deep 配置无效。
+				2、单个复杂数据类型数据（对象或数组）的某个属性或元素的监听。
+					watch(() => objName.prop, (newValue, oldValue) => {
+						......
+					}, { immediate: true })
+					注意：
+						1、objName.prop 也可以是 objName.objProp.prop 这样的多层取值；
+						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
+						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
+				3、单个复杂数据类型数据（对象或数组）的某些属性或元素的监听。
+					watch([() => objName.prop1, () => objName.prop2], (newValue, oldValue) => {
+						......
+					}, { immediate: true })	
+					注意：
+						1、objName.prop 也可以是 objName.objProp.prop 这样的多层取值；
+						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
+						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
+	其它 Composition API
+		
+			
+
+	
+	
+		
+	ref 属性
+		作用
+			ref 被用来给 DOM 元素或子组件注册引用信息。引用信息将会被注册在父组件的 $refs 对象上。
+			如果在 DOM 元素上使用，引用指向的就是该 DOM 元素；如果在子组件上使用，引用指向的就是该子组件实例。
+		用法
+			1、引用单个 DOM 元素或组件实例。
+				<template> 
+					<div ref="root">This is a root element</div>
+				</template>
+				<script>
+					import { ref, onMounted } from 'vue';
+					export default {
+						setup() {
+							// const root = null;
+							const root = ref(null);
+							onMounted(() => {
+								// DOM 元素将在初始渲染后分配给 ref。
+								// console.log(root);
+								console.log(root.value);
+							});
+							return { root }
+						}
+					}
+				</script>
+			2、引用 v-for 遍历的 DOM 元素或组件实例。
+				<template>
+					<div v-for="(item, i) in list" :ref="el => { if(el) divs[i] = el }">
+						{{ item }}
+					</div>
+				</template>
+				<script>
+					import { ref, reactive, onBeforeUpdate } from 'vue';
+					export default {
+						setup() {
+							const list = reactive([1, 2, 3]);
+							// const divs = [];
+							const divs = ref([]);
+							// 确保在每次更新之前重置 ref。
+							onBeforeUpdate(() => {
+								// divs = [];
+								divs.value = [];
+							});
+							return { list, divs }
+						}
+					}
+				</script>
+	组件通讯
+		父向子单项传值
+			父组件中的代码
+				<Son :valueName="valName"></Son>
+				setup() {
+					const valName = ref(0);
+					return { valName }
+				}
+			子组件中的代码
+				props: {
+					valueName: {
+						type: Number,
+						default: 0
+					}
+				}
+				setup(props) {
+					console.log(props.valueName);
+				}
+		子向父单项传值
+			父组件中的代码
+				<Son @funcName="fnName"></Son>
+				setup() {
+					const fnName = param => {
+						......
+					};
+					return { fnName }
+				}
+			子组件中的代码
+				setup(props, { emit }) {
+					......
+					emit('funcName', value);
+				}

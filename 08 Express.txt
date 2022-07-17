@@ -1,0 +1,308 @@
+Express 简介
+	概念：Express 是基于 Node.js 平台的一个快速、开放、极简的 Web 开发框架。
+		Express 就是一个 npm 上的第三方包。
+		Express 的作用和 Node.js 的 http 模块的功能相似。	
+	作用：使用 Express 可以方便快捷的创建 Web 网站服务器和 API 接口服务器。
+		Web 网站服务器：对外提供 Web 资源的服务器。（前端项目）
+		API 接口服务器：对外提供 API 接口的服务器。（后端项目）
+	用法：
+		1、在项目所处的目录中执行如下命令安装 Express。
+			npm install express@版本号
+		2、使用 require() 方法导入 Express。
+			const express = require('express')
+		3、创建 Web 服务器实例。
+			const app = express()
+		4、配置解析请求体数据的中间件。
+			app.use(express.json())
+			app.use(express.urlencoded({ extended: false }))
+		5、监听客户端的 GET 请求。
+			app.get('请求的 URL', (req, res) => {
+				// 获取请求的 URL 中的查询参数。
+				console.log(req.query)
+				// 获取请求的 URL 中的动态参数。
+				// eg：/user/:id/:name。
+				console.log(req.params)
+				// 向客户端响应文本内容。
+				res.send('请求成功！')
+			})
+		6、监听客户端的 POST 请求。
+			app.post('请求的 URL', (req, res) => {
+				// 获取请求体中携带的数据。
+				console.log(req.body)
+				// 向客户端响应文本内容。
+				res.send('请求成功！')
+			})
+		7、设置服务器监听的端口，并启动服务器。
+			app.listen(8080, () => {
+				console.log('Express server running at http://127.0.0.1:8080')
+			})
+		注意：
+			设置解析请求体数据的中间件前：req.query、req.params、req.params 的值为 undefined。
+			设置解析请求体数据的中间件后：req.query、req.params、req.params 的默认值为 {} 空对象。
+	nodemon 工具
+		作用：nodemon 可以监听项目文件的变动，当代码修改后 nodemon 会自动帮助我们重启项目。
+		用法：
+			1、在项目所处的目录中执行如下命令安装 nodemon 工具。
+				npm install -g nodemon
+			2、在项目所处的目录中执行如下命令启动项目。
+				nodemon 文件名
+Express 路由/接口
+	概念：在 Express 中路由指的是：客户端的请求与服务器的处理函数之间的映射关系。
+	组成：在 Express 中路由包括 3 个组成部分：请求的类型、请求的 URL、请求的处理函数。
+		handler = (req, res) => {}
+		app.METHOD(path, handler)
+	模块化路由
+		为了方便对路由的管理，Express 不建议将路由直接挂载到服务器实例 app 上，而是推荐将路由抽离为单独的模块。
+		用法：
+			1、创建路由模块对应的 router.js 文件。
+			2、调用 express.Router() 方法创建路由对象。
+				const express = require('express')
+				const router = express.Router()
+			3、在路由对象上挂载具体的路由规则。
+				handler1 = (req, res) => {}
+				router.METHOD(path1, handler1)
+				handler2 = (req, res) => {}
+				router.METHOD(path2, handler2)
+				......
+			4、使用统一暴露向外共享路由对象。
+				module.exports = router
+			5、在服务器模块中，使用 app.use() 方法注册路由模块，并为路由模块添加统一的访问前缀。
+				const express = require('express')
+				const router = require('./router.js')
+				const app = express()
+				app.use('路径前缀', router)
+				app.listen(8080, () => {
+					console.log('Express server running at http://127.0.0.1:8080')
+				})
+Express 中间件
+	本质：Express 中间件就是一系列对请求和响应进行处理的过滤器函数。
+	使用：
+		const express = require('express')
+		const app = express()
+		// 注册全局中间件。
+		const mw1 = (req, res, next) => {
+			next()
+		}
+		app.use(mw1)
+		// 注册局部中间件。
+		const mw2 = (req, res, next) => { 
+			next() 
+		}
+		app.METHOD(path, mw2, handler)
+		app.listen(8080, () => {
+			console.log('Express server running at http://127.0.0.1:8080')
+		})
+	特点：
+		1、多个中间件之间共享同一份 req 和 res 对象。
+		2、上一个中间件的输出是下一个中间件的输入。
+		3、中间件的形参列表中必须包含 next 参数。
+		4、next() 方法是实现多个中间件连续调用的关键，它表示将流转关系转交给下一个中间件。
+	注意：
+		1、一定要在路由之前注册中间件，错误级别的中间件除外。
+		2、执行完中间件的业务代码之后，不能忘记调用 next() 方法。
+		3、为了防止代码的逻辑混乱，在调用 next() 方法后，不要再写额外的代码。
+	分类
+		分类方式一：
+			全局中间件
+				任何的请求和响应都会触发的中间件，叫做全局中间件。
+					......
+					const mw = (req, res, next) => {
+						next()
+					}
+					app.use(mw)
+					......
+				注意：可以使用 app.use() 方法连续注册多个全局中间件。客户端请求到达服务器之后，会按照中间件定义的先后顺序依次进行调用。
+			局部中间件（少用）
+				只在特定的请求和响应中触发的中间件，叫做局部中间件。
+					......
+					const mw = (req, res, next) => { 
+						next() 
+					}
+					app.METHOD(path, mw, handler)
+					......
+				注意：在注册多个局部中间件时，以下两种写法是完全等价的。
+					app.METHOD(path, mw1, mw2, handler)
+					app.METHOD(path, [mw1, mw2], handler)
+		分类方式二：
+			应用级别的中间件
+				通过 app.use() 或 app.METHOD() 挂载到 app 实例上的中间件，叫做应用级别的中间件。
+				例如：全局中间件和局部中间件，还有部分的内置中间件和第三方中间件。
+			路由级别的中间件
+				挂载到 express.Router() 实例上的中间件，叫做路由级别的中间件。
+				注意：路由级别的中间件是由局部中间件演化而来，很大程度上取代了局部中间件。
+				用法：
+					// router.js。
+					const express = require('express')
+					const router = express.Router()
+					const mw = (req, res, next) => {
+						next()
+					}
+					router.use(mw)
+					handler = (req, res) => {}
+					router.METHOD(path, handler)
+					module.exports = router
+					// index.js。
+					const express = require('express')
+					const router = require('./router.js')
+					const app = express()
+					app.use('路径前缀', router)
+					app.listen(8080, () => {
+						console.log('Express server running at http://127.0.0.1:8080')
+					})
+			错误级别的中间件
+				专门用来捕获整个项目发生的异常的中间件，叫做错误级别的中间件。
+				注意：错误级别的中间件，必须注册在所有的路由之后。
+				用法：
+					const express = require('express')
+					const app = express()
+					const mw = (err, req, res, next) => {
+						next()
+					}
+					app.use(mw)
+					app.listen(8080, () => {
+						console.log('Express server running at http://127.0.0.1:8080')
+					})
+Express 内置中间件
+	express.static()
+		作用：将一个目录创建为一个静态资源服务器。
+		用法：
+			app.use(express.static('路径 + 目录名1'))
+			app.use(express.static('路径 + 目录名2'))
+			app.use('路径前缀', express.static('路径 + 目录名3'))
+			app.use('路径前缀', express.static('路径 + 目录名4'))
+		注意：
+			访问静态资源的 URL：HTTP协议 + 域名 + 端口号( + 路径前缀) + 不带目录名的文件名。
+			访问静态资源文件时，express.static() 方法会根据目录托管的顺序依次查找所需要的文件。
+	express.json()
+		作用：解析 application/json 格式的请求体数据。
+		用法：
+			app.use(express.json())
+			app.post('请求的 URL', (req, res) => {})
+		原理：
+			略。
+	express.urlencoded()
+		作用：解析 application/x-www-form-urlencoded 格式的请求体数据。
+		用法：
+			app.use(express.urlencoded({ extended: false }))
+			app.post('请求的 URL', (req, res) => {})
+		原理：
+			const queryStr = require('querystring')
+			// 1、挂载中间件。
+			app.use((req, res, next) => {
+				var str = ''
+				// 2、监听 req 的 data 事件。
+				req.on('data', chunk => {
+					str += chunk
+				})
+				// 3、监听 req 的 end 事件。
+				req.on('end', () => {
+					// 4、使用 querystring 模块解析请求体数据。
+					const body = queryStr.parse(str)
+					// 5、将解析出来的数据挂载到 req.body 上。
+					req.body = body
+					next()
+				})
+			})
+Express 第三方中间件
+	body-parser
+		作用：解析请求体的数据。
+		用法：
+			1、在项目所处的目录中执行如下命令安装中间件。
+				npm install body-parser
+			2、使用 require() 方法导入中间件。
+				const parser = require('body-parser')
+			3、调用 app.use() 注册中间件。
+				app.use(parser.urlencoded({ extended: false }))
+		注意：Express 内置的 express.urlencoded() 中间件，是基于 body-parser 第三方中间件封装出来的。
+解决跨域	
+	CORS
+		CORS 由一系列的 HTTP 响应头字段组成，这些 HTTP 响应头字段决定了浏览器是否拦截跨域请求响应回来的资源。
+		使用步骤：
+			1、在项目所处的目录中执行如下命令安装中间件。
+				npm install cors
+			2、使用 require() 方法导入中间件。
+				const cors = require('cors')
+			3、在路由之前使用 app.use() 方法注册中间件。
+				app.use(cors())
+			注意：
+				如果 Express 项目中配置了 CORS 中间件，为了防止冲突必须在 CORS 中间件之前声明 JSONP 接口。
+				因为 Express 项目中配置了 CORS 中间件之后挂载的接口，都会被处理成是开启了 CORS 资源共享的接口。
+		HTTP 响应头字段
+			Access-Control-Allow-Origin
+				服务器可以通过该字段告诉客户端的浏览器，对哪些外域 URL 跨域请求的响应消息进行放行。
+				res.setHeader('Access-Control-Allow-Origin', 'URL' | '*')
+					URL：表示对指定的外域 URL 跨域请求的响应消息进行放行。
+					*：表示对所有的外域 URL 跨域请求的响应消息进行放行。
+			Access-Control-Request-Headers
+				服务器可以通过该字段告诉客户端的浏览器，响应消息的响应头中包含了普通响应头字段之外的哪些特殊字段。
+				res.setHeader('Access-Control-Request-Headers', 'Content-Type, X-Custom-Header')
+			Access-Control-Request-Method
+				默认情况下 CORS 仅支持客户端发起的 GET、POST、HEAD 类型的跨域请求。如果客户端需要发起其他类型的跨域请求，则需要在服务器通过该字段来进行设置。
+				res.setHeader('Access-Control-Request-Method', 'GET, POST, DELETE, HEAD' | '*')
+		注意事项：
+			1、CORS 主要在服务器进行配置，客户端无需做任何额外的配置。
+			2、CORS 在浏览器中有兼容性问题，只有支持“XHR Level2”的浏览器。（例如：IE10+、Chrome4+、FireFox3.5+ 等。）
+			3、CORS 跨域笔记详解见：http://www.ruanyifeng.com/blog/2016/04/cors.html 。
+身份认证
+	会话与 JWT
+		当前端请求后端接口不存在跨域问题的时候，推荐使用 Session 身份认证。
+		当前端请求后端接口存在跨域问题的时候，推荐使用 JWT 身份认证。
+	会话技术
+		会话：客户端首次给服务器发送请求时，会话被建立；客户端和服务器任何一方断开连接时，会话被终止。
+		分类：客户端会话技术：Cookie，存储用户的简要信息；服务端会话技术：Session，存储用户的登录状态。
+		局限性：Cookie 默认不支持跨域访问，需要做很多的额外配置，才能支持跨域访问。
+		使用步骤：
+			1、在项目所处的目录中执行如下命令安装中间件。
+				npm install express-session
+			2、使用 require() 方法导入中间件。
+				const session = require('express-session')
+			3、通过 app.use() 方法注册中间件。
+				app.use(session({
+					secret: 'keyboard cat',		// 负责对 Session 进行加解密的任意字符串。
+					resave: false,			// 固定写法。
+					saveUninitialized: true		// 固定写法。
+				}))
+			4、向 Session 中存储数据。
+				可通过 req 对象的 session 属性访问 session 对象，来存储用户的相关信息。
+			5、从 Session 中获取数据。
+				可通过 req 对象的 session 属性访问 session 对象，来获取用户的相关信息。
+			6、清空 Session 中的数据。
+				用户退出登录的时候可通过 req.session.destroy() 方法，来清空用户的相关信息。
+			注意：当 express-session 中间件被挂载成功后，req 对象中便有了 session 属性。
+	JWT 技术
+		JWT：JWT 全称 JSON Web Token，是目前最流行的跨域认证解决方案。
+		组成：
+			JWT 通常由三部分组成：Header（头部）、Payload（有效荷载）、Signature（签名）。
+			三者之间使用英文的点号进行连接。Payload 部分存储的是用户信息经过加密之后生成的字符串。
+		运作流程：
+			1、服务器返回给客户端 JWT 字符串后，浏览器每次和客户端通信都要携带上这个 JWT 字符串，以此来进行身份的认证。
+			2、推荐的做法是把 JWT 字符串存放于 HTTP 请求头的 Authorization 字段中，以此来传递给服务器。
+		使用步骤：
+			1、在项目所处的目录中执行如下命令安装中间件。
+				npm install jsonwebtoken express-jwt
+			2、使用 require() 方法导入中间件。
+				const jwt = require('jsonwebtoken')
+				const expressJWT = require('express-jwt')
+			3、定义 secret 密钥。用于 jsonwebtoken express-jwt 包对用户信息进行加解密。
+				// 可以是任意字符串。
+				const secretKey = 'keyboard cat'
+			4、用户登录成功后，服务器根据用户信息生成 JWT 字符串，并在接口响应中将其返回给客户端。
+				// expiresIn：tokenStr 的有效时间。
+				const tokenStr = jwt.sign({ /*用户信息对象*/ }, secretKey, { expiresIn: '30s' })
+			5、在服务器挂载 express-jwt 中间件，对客户端发来的请求进行身份鉴权。
+				// .unless({ path: [/^\/api\//] })：指定哪些接口不需要进行身份鉴权。
+				app.use(expressJWT({ secret: secretKey }.unless({ path: [/^\/api\//] })))
+			6、使用 req 对象的 user 属性来获取用户信息。
+			7、捕获解析 JWT 字符串失败后产生的异常。
+				app.use((err, req, res, next) => {
+					if(err.name === 'UhauthorizedError') {
+						return res.send({ status: 401, message: '无效的 token。' })
+					}
+					// 其它异常的处理。
+					......
+					next()
+				})
+			注意：
+				1、jsonwebtoken 包用于将用户信息加密成 JWT 字符串，express-jwt 包用于将 JWT 字符串解析成 JSON 对象。
+				2、在实际项目中，建议 JWT 字符串中只包含用户名和用户的登录状态等信息，而不要包含用户的密码等敏感信息。
+				3、如果请求的权限验证得到通过，则 req 对象上就会被挂载一个 user 属性，这个 user 对象是用户登录时被 jsonwebtoken 包加密的用户登录信息。

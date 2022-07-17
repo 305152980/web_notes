@@ -1,0 +1,216 @@
+Promise
+	语法：
+		var timeout1 = null
+		var timeout2 = null
+		new Promise((resolve, reject) => {
+			timeout1 = setTimeout(() => {
+				let num = Math.random()
+				if(num > 0.5) {
+					return resolve('成功1')
+				} else {
+					return reject('失败1')
+				}
+			}, 2000)				
+		})
+		.then(
+			result => {
+				console.log('1', result)
+				return new Promise((resolve, reject) => {
+					timeout2 = setTimeout(() => {
+						let num = Math.random()
+						if(num > 0.5) {
+							return resolve('成功2')
+						} else {
+							return reject('失败2')
+						}
+					}, 2000)
+				})		
+			}
+		)
+		.then(result => { console.log('2', result) })
+		.catch(error => { console.log(error) })
+		.finally(() => { 
+			timeout1 && window.clearTimeout(timeout1)
+			timeout2 && window.clearTimeout(timeout2)
+		})
+	理解：
+		1、Promise：Promise 是一个构造函数。由它创建的每个实例对象，都代表着一个异步操作。
+		2、Promise 实例对象。
+			Promise 实例对象的状态：pending（进行中）、fulfilled（已成功）、rejected（已失败）。
+			Promise 实例对象被创建时的默认状态是 pending，默认结果是 undefined。
+			pending 状态的 Promise 实例对象在调用 then 和 finally 方法时程序会被休眠。只有等到 Promise 实例对象的状态被修改为 fulfilled 或 rejected 时，被休眠的程序才会被唤醒。
+		3、Promise 起始函数。
+			Promise 构造函数会接收一个回调函数作为参数。在 Promise 构造函数被 new 调用之后，这个回调函数会被异步执行。我们称此回调函数为起始函数。
+			起始函数有两个参数 resolve 函数和 reject 函数。
+			起始函数中的 resolve 函数可将 Promise 实例对象的状态修改为 fulfilled，并为其结果赋值。
+			起始函数中的 reject 函数可将 Promise 实例对象的状态修改为 rejected，并为其结果赋值。
+			注意：resolve 函数和 reject 函数并不能够使起始函数停止运行，别忘了 return。
+		4、Promise.prototype.then(onFulfilled, onRejected)。
+			调用者：一个 Promise 实例对象。
+			参数：
+				onFulfilled				可选的。调用者的状态变为 fulfilled 时此函数被调用。
+				onRejected				可选的。调用者的状态变为 rejected 时此函数被调用。
+				注意：
+					1、这两个回调函数必须至少传入一个，then 方法才会有实际意义；否则：Promise 实例对象 <==> Promise 实例对象.then()。
+					2、这两个回调函数在被调用时都会被传入一个参数：调用者的结果（PromiseResult）。
+			返回值：then 方法会返回一个新的 Promise 实例对象。
+				1、then 方法的回调函数的返回值是 Promise 实例对象时：
+					then 方法返回的 Promise 实例对象和 then 方法的回调函数返回的 Promise 实例对象保持一致。
+				2、then 方法的回调函数的返回值是非 Promise 实例对象时：
+					如果返回了一个 value 值，那么 then 方法返回的实例对象为：{ Prototype: Promise, PromiseState: fulfilled, PromiseResult: value }。
+					如果没有返回任何值，那么 then 方法返回的实例对象为：{ Prototype: Promise, PromiseState: fulfilled, PromiseResult: undefined }。
+				3、then 方法的回调函数的返回值是异常时：
+					then 方法返回的 Promise 实例对象的状态为 rejected，结果为抛出的错误。
+		5、Promise.prototype.catch(onRejected) 方法是 Promise.prototype.then(null, onRejected) 方法的别名。
+		6、Promise.prototype.finally(() => {}) 方法的回调函数不管怎样都会被执行。
+			Promise 实例对象 <==> Promise 实例对象.finally(() => {})
+	Promise.resolve()
+		Promise.resolve('abc')
+		// 等价于。
+		new Promise((resolve, reject) => {
+			return resolve('abc')				
+		})
+	Promise.reject()
+		Promise.reject(new Error('abc'))
+		// 等价于。
+		new Promise((resolve, reject) => {
+			return reject(new Error('abc'))				
+		})
+	Promise.all()
+		all 方法会发起并行的 Promise 异步操作，等所有的异步操作完全结束后再执行下一步的 then 方法。（等待机制）
+			// promiseObj3 抛出异常时会被单独捕获，而不会影响到整个异步操作的顺利进行。
+			const promiseArr = [promiseObj1, promiseObj2, promiseObj3.catch(error => {})]
+			// result 是多个异步任务成功执行后的返回结果所组成的数组。
+			Promise.all(promiseArr).then(result => {}).catch(error => {}).finally(() => {})
+	Promise.race()
+		race 方法会发起并行的 Promise 异步操作，只要任何一个异步操作完成后就会执行下一步的 then 方法。（赛跑机制）
+			const promiseArr = [promiseObj1, promiseObj2, promiseObj3]
+			Promise.race(promiseArr).then(result => {}).catch(error => {}).finally(() => {})
+async 和 await
+	语法：
+		async function getAllFile() {
+			try {
+				const promiseArr = [promiseObj1, promiseObj2, promiseObj3]
+				var result = await Promise.all(promiseArr)
+			}
+			catch(error) { console.log(error) }
+			finally {}
+		}
+	注意：定义函数时，如果在函数体中使用了 await 关键字，则 function 关键字必须被 async 关键字修饰。
+
+
+
+正则表达式
+	创建：
+		1、字面量创建。
+			var regExp = /表达式/
+		2、构造函数创建。
+			var regExp = new RegExp(/表达式/)
+	应用：
+		1、表单验证。
+		2、过滤敏感词汇。
+		3、提取字符串中的特定部分。
+	语法
+		特殊字符
+			^						匹配输入字符串的开始位置。
+			$						匹配输入字符串的结尾位置。
+			()						标记一个子表达式的开始和结束位置。
+			|						匹配左右两项之间的某一项。
+			\						将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。
+		普通字符
+			[...] / [...-...]				匹配中括号内字符中的某单个字符。
+			[^...] / [^...-...]				匹配除中括号内字符之外的某单个字符。
+			\d						匹配数字中的某单个字符。等价于 [0-9]。
+			\D						匹配除数字之外的某单个字符。等价于 [^0-9]。
+			\w						匹配字母、数字和下划线中的某单个字符。等价于 [A-Za-z0-9_]。
+			\W						匹配除字母、数字和下划线之外的某单个字符。等价于 [^A-Za-z0-9_]。
+			\s						匹配所有空白字符中的某单个字符。等价于 [ \f\n\r\t\v]。
+			\S						匹配所有除空白字符之外的某单个字符。等价于 [^ \f\n\r\t\v]。
+			.						匹配除换行符之外的某单个字符。等价于 [^\n\r]。
+		限定符
+			*						匹配前面的子表达式零次或多次。
+			+						匹配前面的子表达式一次或多次。
+			?						匹配前面的子表达式零次或一次。
+			{n}						匹配前面的子表达式 n 次。
+			{n,}						匹配前面的子表达式至少 n 次。
+			{n,m}						匹配前面的子表达式至少 n 次且最多 m 次。
+	标记
+		标记不写在正则表达式里，标记位于表达式之外。格式如下：
+			/表达式/flags
+		g：全局匹配。
+		i：忽略大小写。
+		gi：全局匹配和忽略大小写。
+	test()
+		用于检测字符串是否符合正则表达式的规范。返回值为布尔值。
+		var flag = /表达式/.test(str)
+	正则替换
+		var newStr = str.replace(/表达式/flags, replaceStr)
+		eg：var newStr = str.replace(/傻逼|尼玛/g, '**')
+正则的应用：模板引擎。
+	数据和模板结构经过模板引擎处理之后生成 HTML 页面。
+	优点：
+		1、减少了字符串的拼接操作。
+		2、代码结构更加清晰。
+		3、代码更易于阅读和维护。
+	原理：用正则表达式语法实现字符串的替换操作。
+		// id：模板 id；data：模板 data。
+		function template(id, data) {
+			var str = document.getElementById(id).innerHTML
+			var regExp = /{{\s*[a-zA-Z]+\s*}}/
+			var result = null
+			while((result = regExp.exec(str))) {
+				str = str.replace(result[0], data[result[0].trim()])
+			}
+			return str
+		}
+	art-template
+		使用步骤：
+			1、导入 art-template。
+			2、定义数据。
+				var data = { name: 'zhangsan', age: 20 }
+			3、定义模板。
+				<script type="text/html" id="tpl-user">
+					<h1>{{name}}：{{age}}岁。</h1>
+				</script>
+			4、调用 template 函数。
+				var htmlStr = template('tpl-user', data)
+			5、渲染 HTML 页面。
+				document.querySelector('选择器').innerHtml(htmlStr)
+		基本语法
+			在 {{}} 内可以进行变量输出或循环遍历等操作。
+			原文输出
+				如果输出的 value 值中包含了 HTML 标签，则需要使用原文输出语法，才能保证 HTML 标签被正常渲染。
+				{{@ value}}
+			输出
+				{{value}}
+				{{obj.key}}
+				{{obj['key']}}
+				{{a ? b : c}}
+				{{a || b}}
+				{{a + b}}
+			条件输出
+				{{if 条件}}......{{/if}}
+				{{if 条件1}}......{{else if 条件2}}......{{/if}}
+			循环输出
+				{{each arr}}
+					......
+					{{$index}}{{$value}}
+					......
+				{{/each}}
+			过滤器
+				定义
+					template.defaults.imports.filterName = function(value) { // return 处理的结果 }
+					应用：
+						template.defaults.imports.dateFormat = function(date) {
+							var y = date.getFullYear()
+							var m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1
+							var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+							var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+							var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+							var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+							return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss
+						}
+				调用
+					调用过滤器的语法类似管道操作符，上一个过滤器的输出作为下一个过滤器的输入。
+					{{value | filterName}}
+		

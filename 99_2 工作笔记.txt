@@ -1,6 +1,6 @@
 项目生产打包命令 ：npm run build:prod
 查看项目性能面板命令：npm run preview -- --report
-服务器启动项目：node app
+服务器启动项目命令：node app
 
 
 
@@ -16,51 +16,21 @@
 </style>
 
 
-
-v-slot 必须用到 template 标签上。
-
-
-
-组件注册时名称的写法
-	在进行组件的注册时，定义组件名称的方式有两种：
-		1、使用 kebab-case 命名法，即短横线命名法，例如：my-swiper 和 my-search；
-		2、使用 PascalCase 命名法，即大驼峰命名法，例如：MySwiper 和 MySearch。
-	短横线命名法的特点：在使用组件时，组件的名称只能是短横线名称。
-	大驼峰命名法的特点：在使用组件时，组件的名称既可以是大驼峰名称，也可以是短横线名称。
-	注意：在实际开发中，推荐使用大驼峰命名法，因为它的适用性更强。
+Vue 组件名称
+	组件 components 注册时，如果使用 PascalCase 大驼峰命名法；使用组件时，组件标签名既可以使用大驼峰命名法，也可以使用短横线命名法。
+	组件 components 注册时，如果使用 kebab-case 短横线命名法；使用组件时，组件标签名只能使用短横线命名法。
 
 
 
-Vue 行内 style 样式
-	:style 的语法十分直观————看着非常像 CSS，但其实绑定的值是一个 JS 对象。
-		<div :style="{ color: active, fontSize: fsize + 'px', 'background-color': bgcolor }">{{ user.name }}</div>	
-		注意：CSS 属性名可以采用小驼峰式 (camelCase，不带引号) 或短横线分隔式 (kebab-case，必须带引号) 来命名。
+Vue props 属性名称
+	子组件的 props 属性，如果使用 camelCase 小驼峰命名法；父组件的组件标签名既可以使用小驼峰命名法，也可以使用短横线命名法。
+	子组件的 props 属性，如果使用 kebab-case 短横线命名法；父组件的组件标签名只能使用短横线命名法。
 
 
 
-Vue 组件 props 自定义属性的命名方式
-	子组件中如果使用“短横线命名法”声明 props 自定义属性的名称，则父组件中必须使用“短横线命名法”的方式为子组件传递值。
-	子组件中如果使用“小驼峰命名法”声明 props 自定义属性的名称，则父组件中有两种方式为子组件传递值。
-		<!-- 既可以直接使用"小驼峰命名法”的方式为子组件传递值。 -->
-		<my-article pubTime="1989"></my-article>
-		<!-- 也可以使用等价的"短横线命名法"的方式为子组件传递值。 -->
-		<my-article pub-time="1989"></my-article>
-
-
-
-Vue3 全局配置 Axios
-	实际项目开发中应用 Axios 时遇到的两个问题：
-		1、每个组件中都需要导入 Axios 模块；
-		2、每次发起请求都需要填写完整的请求路径。
-	全局配置 Axios
-		在 main.js 入口文件中全局挂载 Axios。
-			// 为 axios 配置请求路径。
-			axios.defaultsbaseURL = '统一的 URL 前缀';
-			// 将 axios 挂载为 app 的全局自定义属性之后，每个组件都可以通过 this.$http 直接访问到全局挂载的 $http 自定义属性。
-			// Vue 中 this 代表当前组件的实例对象。
-			app.config.globalProperties.$http = axios;
-
-
+Vue 行内 :style 样式
+	<div :style="{ color: active, fontSize: fsize + 'px', 'background-color': bgcolor }">{{ user.name }}</div>	
+	此种情况下 CSS 属性的名称，可以使用不带引号的 camelCase 小驼峰命名法，也可以使用带引号的 kebab-case 短横线命名法。
 
 
 

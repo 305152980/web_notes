@@ -22,10 +22,10 @@
 
 
 
-3、vue实现验证码60s倒计时。
+3、vue 实现验证码 60s 倒计时。
 	<span v-show="show" @click="getCode">获取验证码</span>
 	<span v-show="!show" class="count">{{ count }}s</span>
-	data () {
+	data() {
 		return {
 			show: true,
 			count: '',
@@ -33,18 +33,18 @@
 		}
 	},
 	methods: {
-		getCode () {
-			const TIME_COUNT = 60;
-			if (!this.timer) {
-				this.count = TIME_COUNT;
-				this.show = false;
+		getCode() {
+			const TIME_COUNT = 60
+			if(!this.timer) {
+				this.count = TIME_COUNT
+				this.show = false
 				this.timer = setInterval(() => {
 					if (this.count > 0 && this.count <= TIME_COUNT) {
-						this.count--;
+						this.count--
 					} else {
-						this.show = true;
-						clearInterval(this.timer);
-						this.timer = null;
+						this.show = true
+						clearInterval(this.timer)
+						this.timer = null
 					}
 				}, 1000)
 			}
@@ -54,16 +54,95 @@
 
 
 4、动画函数。
-	function animate(obj, targetSite, callBack){			// obj：动画对象；targetSite：终点位置。
+	function animate(obj, targetSite, callBack) { // obj：动画对象；targetSite：终点位置。
 		clearInterval(obj.timer)
-		obj.time = setInterval(function(){
-			if(obj.offsetLeft === targetSite){
+		obj.time = setInterval(function() {
+			if(obj.offsetLeft === targetSite) {
 				clearInterval(obj.timer)
-				if(callBack){ callBack }
+				if(callBack) { callBack }
 			}
-			// obj.style.left = obj.offsetLeft + 1 + 'px'			// 匀速动画。
+			// obj.style.left = obj.offsetLeft + 1 + 'px' // 匀速动画。
 			var step = (targetSite - obj.offsetLeft) / 10
 			step = step > 0 ? Math.ceil(step) : Math.floor(step)
-			obj.style.left = obj.offsetLeft + step + 'px'			// 缓动动画。
+			obj.style.left = obj.offsetLeft + step + 'px' // 缓动动画。
 		}, 25)
+	}
+
+
+
+5、字符串逆序输出。
+	法一：
+		function strReverse(str) {
+			// return str.split('').reverse().join('')
+			return Array.from(str).reverse().join('')
+		}
+	法二：
+		function strReverse(str) {
+			var result = ''
+			for(var i = str.length - 1; i >= 0; i--) {
+				result += str.charAt(i)
+			}
+			return result
+		}
+
+
+
+6、统计字符串中出现次数最多的字符，并记录它的次数。
+	法一：
+		function getMaxCount(str) {
+			var max = 0
+			var maxChar = []
+			str = str.split('').sort().join('')
+			for(var i = 0; i < str.length; i++) {
+				var char = str[i]
+				var charCount = str.lastIndexOf(char) - i + 1
+				if(charCount > max) {
+					max = charCount
+					maxChar = [].push(char)
+				} else if(charCount = max) {
+					maxChar.push(char)
+				}
+				i = str.lastIndexOf(char)
+			}
+			return '出现次数最多的字符是' + maxChar + '，次数为' + max + '。'
+		}
+	法二：
+		function getMaxCount(str) {
+			// 创建一个 obj 对象。属性：出现的字符；属性值：该字符出现的次数。
+			var obj = {}
+			var char
+			for(var i = 0; i < str.length; i++) {
+				char = str.charAt(i)
+				if(obj[char]) {
+					obj[char]++
+				} else {
+					obj[char] = 1
+				}
+			}
+			// 遍历 obj 对象的属性。
+			var max = 0
+			var maxChar = []
+			for(var k in obj) {
+				if(obj[k] > max) {
+					max = obj[k]
+					maxChar = [].push(k)
+				} else if(obj[k] = max) {
+					maxChar.push(k)
+				}
+			}
+			return '出现次数最多的字符是' + maxChar + '，次数为' + max + '。'
+		}
+
+
+
+7、统计数组中每个元素出现的次数。
+	function getItemCount(arr) {
+		arr.reduce(function(count, item) {
+				if (item in count) {
+					count[item]++
+				} else {
+					count[item] = 1
+				}
+				return count
+			}, {})
 	}

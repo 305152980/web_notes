@@ -8,7 +8,7 @@ Web 开发模式
 			1、占用服务器资源。如果请求过多会对服务器造成一定的访问压力。
 			2、开发效率低。都是服务器在生成 HTML 页面，无法进行前后端分工合作。
 	前后端分离模式
-		后端负责提供 API 接口响应数据；前端使用 Ajax 技术异步获取数据，拼接生成页面后供浏览器渲染。
+		后端负责提供 API 接口的响应数据；前端使用 Ajax 技术异步获取数据，拼接生成页面后供浏览器渲染。
 		优点：
 			1、开发效率高。前后端分离开发效率高。
 			2、用户体验好。Ajax 技术的应用，轻松实现了页面的局部刷新，提高了用户的使用体验。
@@ -18,28 +18,28 @@ Web 开发模式
 	如何选择开发模式
 		企业级网站，主要功能是展示，没有复杂的交互，并且需要良好的 SEO，这时就需要服务端渲染模式。
 		后台管理系统，交互性比较强，不需要考虑 SEO，这时就需要前后端分离模式。
-		有些网站为了兼顾首页的渲染速度和前后端分离的开发效率会采用 首页服务器渲染 + 其他页面前后端分离 的开发模式。
+		有些网站为了兼顾首页的渲染速度和前后端分离的开发效率会采用“首页服务器渲染 + 其他页面前后端分离”的开发模式。
 
 
 
 前端工程化
 	小白眼中的前端开发：
-		1、会写 HTML + CSS + JavaScript 就会前端开发；
-		2、需要美化页面样式，就拽一个 bootstrap 过来；
-		3、需要操作 DOM 或发起 Ajax 请求，再拽一个 jQuery 过来；
-		4、需要快速实现网页布局效果，就拽一个 Layui 过来。
+		1、会写 HTML + CSS + JavaScript 就会前端开发。
+		2、需要美化页面样式，就拽一个 bootstrap 过来。
+		3、需要操作 DOM 或发起 Ajax 请求，就再拽一个 jQuery 过来。
+		4、需要快速实现网页布局效果，就再再拽一个 Layui 过来。
 	实际的前端开发：
-		1、模块化（js 的模块化、css 的模块化、资源的模块化）；
-		2、组件化（复用现有的 UI 结构、样式、行为）；
-		3、规范化（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理）；
-		4、自动化（自动化构建、自动部署、自动化测试）。
+		1、模块化：css 的模块化、js 的模块化、资源的模块化。
+		2、组件化：复用现有的 UI 结构、CSS 样式、JS 行为。
+		3、规范化：目录结构的规范化、文件编码的规范化、接口文档的规范化、 Git 分支管理的规范化。
+		4、自动化：自动化构建、自动化部署、自动化测试。
 	前端工程化的解决方案
 		早期的前端工程化解决方案：
-			1、grunt（ https://www.gruntjs.net/ ）；
+			1、grunt（ https://www.gruntjs.net/ ）。
 			2、gulp（ https://www.gulpjs.com.cn/ ）。
 		目前主流的前端工程化解决方案：
-			1、webpack（ https://www.webpackjs.com/ ）：主要用于前端网页的构建；
-			2、parcel（ https://zh.parceljs.org/ ）：主要用于第三方包的开发。
+			1、webpack（ https://www.webpackjs.com/ ）。
+			2、parcel（ https://zh.parceljs.org/ ）。
 
 
 
@@ -129,8 +129,8 @@ Webpack 插件
 			注意：凡是修改了 webpack.config.js 配置文件，或修改了 package.json 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效。
 	html-webpack-plugin 插件
 		插件的作用：
-			1、把 index.html 页面复制一份放到虚拟内存中的项目的根目录中去；
-			2、在生成 index.html 页面时，自动注入被打包的 bundle.js 文件。
+			1、把未打包项目的 ./src/index.html 文件复制到已打包项目的根目录中去；
+			2、在已打包项目的根目录中的 index.html 文件中，自动注入已打包项目的根目录中的 bundle.js 文件。
 		使用步骤：
 			1、 安装 html-webpack-plugin 插件；
 				npm install html-webpack-plugin -D
@@ -140,7 +140,7 @@ Webpack 插件
 				// 创建 html-webpack-pligin 插件的实例对象。
 				const htmlPlugin = new HtmlPlugin({
 					template: './src/index.html',		// 指定原文件所在的位置。
-					filename: './index.html'		// 指原文件被复制到虚拟内存中的位置。
+					filename: 'index.html'		// 指原文件被复制到虚拟内存中的位置。
 				});
 				module.exports = {
 					plugins: [htmlPlugin]			// 通过 plugins 节点，使 html-webpack-pligin 插件生效。
@@ -300,45 +300,4 @@ Source Map
 			2、好处：可以精准定位到具体的错误行。
 		2、生产环境下：
 			1、建议关闭 Source Map 或将 devtool 的值设置为 nosources-source-map；
-			2、好处：防止源码泄露，提高网站的安全性。
-
-
-
-Vite 的基本使用
-		创建 Vite 的项目
-		 	在命令行，按照如下顺序执行命令，即可基于 Vite 创建 vue3.x 的工程化项目：
-				npm init vite-app 项目名
-				cd 项目名
-				npm install
-				npm run dev
-		梳理项目的结构
-			使用 Vite 创建的项目结构如下：
-				node_modules		目录用来存放第三方依赖包。
-				public			是公共的静态资源目录。
-				src			是项目的源代码目录（程序员写的所有代码都要放在此目录下）。
-				.gitignore		是 Git 的配置文件。
-				index.html		是 SPA 单页面应用程序中唯一的 HTML 页面。
-				package.json		是配置项目的包管理文件。
-			在 src 这个项目源代码目录之下，包含了如下的文件和文件夹：
-				assets 目录		用来存放项目中所有的静态资源文件（css、fonts等）。
-				components 目录		用来存放项目中所有的自定义组件。
-				App.vue			是项目的根组件。
-				index.css		是项目的全局样式表文件。
-				main.js			是整个项目的打包入口文件。
-		Vite 项目的运行流程
-			在工程化的项目中，Vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。其中：
-				1、App.vue		用来编写待渲染的模板结构；
-				2、index.html		中需要预留一个 el 区域；
-				3、main.js		把 App.vue 渲染到了 index.html 所预留的区域中。
-		Vite 的主要任务是创建一个 Vue 根实例。
-			1、从 vue 中导入 createApp 函数；
-				import { createApp } from 'vue';
-			2、创建一个 Vue 根组件，并将其导入至 main.js 文件；
-				import App from './App.vue';
-			3、使用 createApp 函数在 Vue 根组件的基础上创建 Vue 根实例；
-				const app = createApp(App);
-			4、将 Vue 根实例挂载到 #app 容器中；
-				app.mount('#app');
-
-	
-	
+			2、好处：防止源码泄露，提高网站的安全性。	

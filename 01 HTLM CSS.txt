@@ -1,13 +1,128 @@
 ä¯ÀÀÆ÷Ë½ÓÐÇ°×º
-	-moz-£º´ú±í firefox ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ£»
-	-ms-£º´ú±í ie ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ£»
-	-webkit-£º´ú±í safari ¡¢ chrome ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ£»
+	-moz-£º´ú±í firefox ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ¡£
+	-ms-£º´ú±í ie ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ¡£
+	-webkit-£º´ú±í safari ¡¢ chrome ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ¡£
 	-o-£º´ú±í opera ä¯ÀÀÆ÷Ë½ÓÐÊôÐÔ¡£
 	Ê¾Àý£º
 		-moz-border-radius: 10px;
 		-webkit-border-radius: 10px;
 		-o-border-radius: 10px;
 		border-radius: 10px;
+»ù±¾ÑùÊ½±Ê¼Ç
+	outline: none | 0;						/* È¥µô input ¿ò»ñÈ¡½¹µãÊ±µÄÀ¶É«±ß¿òÏß¡£ */
+	text-decoration: none;						/* È¥µô a ±êÇ©µÄÏÂ»®Ïß¡£ */
+	input::placeholder { color: red; }				/* ÐÞ¸Ä placeholder ÀïÃæµÄ×ÖÌåÑÕÉ«¡£ */
+	resize: none;							/* ÈÃ textarea ÎÄ±¾ÓòÎÞ·¨±»ÍÏ×§¡£ */
+	vertical-align: baseline | top | middle | bottom;		/* ÐÞ¸Ä img ±êÇ©ÓëÎÄ±¾Ö®¼äµÄ¶ÔÆë·½Ê½¡£ */
+	overflow: visible | hidden | auto | scroll;			/* ÔªËØÒç³öÊ±ºÐ×ÓµÄÏÔÊ¾Ä£Ê½¡£ */
+	coursor: default | pointer | move | text | not-allowed;
+	display: none | block						/* ÔªËØÒþ²Ø|ÏÔÊ¾¡£ÔªËØÒþ²Øºó²»ÔÙÕ¼ÓÐÔ­À´µÄÎ»ÖÃ¡£³£´îÅä JS Ò»ÆðÊ¹ÓÃ¡£ */
+	visibility: hiddden | visible;					/* ÔªËØÒþ²Ø|ÏÔÊ¾¡£ÔªËØÒþ²Øºó¼ÌÐøÕ¼ÓÐÔ­À´µÄÎ»ÖÃ¡£Çå³ý¸¡¶¯Ê±ÓÐÊ¹ÓÃ¡£ */
+	img { filter: blur(5px); }					/* ÊýÖµÔ½´ó£¬Í¼Æ¬Ô½Ä£ºý¡£ */
+	width | height: calc(100% - 30px);				/* + - * / */
+Òç³öÎÄ×ÖÒþ²Ø
+	ÎÄ±¾ÏÔÊ¾·½Ê½ white-space¡£
+		normal£ºÊ¹ÓÃä¯ÀÀÆ÷Ä¬ÈÏÏÔÊ¾·½Ê½¡£
+		nowrap£ºÇ¿ÖÆÎÄ±¾Ò»ÐÐÄÚÏÔÊ¾¡£
+	ÎÄ±¾»»ÐÐ·½Ê½ word-break¡£
+		normal£ºÊ¹ÓÃä¯ÀÀÆ÷Ä¬ÈÏ»»ÐÐ·½Ê½¡£
+		break-all£ºÔÊÐíÔÚµ¥´ÊÄÚ»»ÐÐ¡£
+		keep-all£ºÖ»ÔÊÐíÔÚ°ë½Ç¡¢¿Õ¸ñ»òÁ¬×Ö·û´¦»»ÐÐ¡£
+		×¢Òâ£º¸ÃÊôÐÔÖ÷ÒªÓÃÓÚ´¦ÀíÓ¢ÎÄµ¥´Ê¡£
+	ÎÄ×ÖÒç³öÊ±µÄÏÔÊ¾·½Ê½ text-overflow¡£
+		clip£º²»ÏÔÊ¾Ê¡ÂÔºÅ£¬¶øÊÇ¼òµ¥µÄ²ÃÇÐ¡£
+		ellipsis£ºµ±ÎÄ±¾Òç³öÊ±ÏÔÊ¾Ê¡ÂÔºÅ±ê¼Ç¡£
+	µ¥ÐÐÎÄ×ÖÒç³öÊ¡ÂÔºÅÏÔÊ¾¡£
+		{
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	¶àÐÐÎÄ×ÖÒç³öÊ¡ÂÔºÅÏÔÊ¾¡£
+		{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;				/* µ¯ÐÔÉìËõºÐ×ÓÄ£ÐÍµÄÏÔÊ¾Ä£Ê½¡£ */
+			-webkit-line-clamp: 2;				/* ÏÞÖÆ¿éÔªËØÄÚÎÄ±¾ÏÔÊ¾µÄÐÐÊý¡£ */
+			-webkit-line-orient: vertical;			/* ÉèÖÃÉìËõºÐ¶ÔÏóµÄ×ÓÔªËØµÄÅÅÁÐ·½Ê½¡£ */
+		}
+		×¢Òâ£ºÕâ¸öÓÐ½Ï´óµÄ¼æÈÝÐÔÎÊÌâ£¬ÊÊÓÃÓÚ webkit ÄÚºËµÄä¯ÀÀÆ÷£¨ÒÆ¶¯¶Ë»òÕß¹È¸èä¯ÀÀÆ÷£©¡£ºÐ×ÓµÄ¸ß¶ÈÐèÅäºÏÎÄ×ÖµÄÐÐ¸ßÀ´ÉèÖÃ£¬»òÕßÎÄ×ÖµÄÐÐ¸ßÐèÅäºÏºÐ×ÓµÄ¸ß¶ÈÀ´ÉèÖÃ¡£
+ºÐ×Ó¾ÓÖÐ
+	1¡¢¸÷ÖÖÇé¿öÏÂºÐ×ÓË®Æ½´¹Ö±¾ÓÖÐµÄÍ¨ÓÃÐ´·¨¡£
+		.fu {
+			position: relative;
+			.zi {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100px;
+				height: 100px;
+				transform: translate(-50%, -50%);
+			}
+		}
+	2¡¢Î´ÍÑ±ê¿é¼¶ºÐ×ÓµÄË®Æ½¾ÓÖÐ¡£
+		{ margin: 0 auto; }
+	3¡¢ÐÐÄÚ¿éºÐ×ÓºÍÒÑÍÑ±ê¿é¼¶ºÐ×Ó¡£
+		Ë®Æ½¾ÓÖÐ£º
+			{ text-align: center; }
+		´¹Ö±¾ÓÖÐ£º
+			{
+				line-height: xpx;			/* ÐÐ¸ßÉèÖÃÎª¸¸ºÐ×ÓµÄ¸ß¶È¡£ */
+				vertical-align: middle;
+			}		
+BFC
+	BFC ÊÇÒ»¸ö¶ÀÁ¢äÖÈ¾ÇøÓò£¬Ö»ÓÐ¿é¼¶ºÐ×Ó²ÅÄÜÉèÖÃ BFC¡£ËüÈÃºÐ×ÓÄÚ²¿µÄ²¼¾Ö²»»áÓ°Ïìµ½Íâ²¿ÆäËûºÐ×ÓµÄÑùÊ½¡£
+	³£¼û´¥·¢ BFC µÄÇé¿ö£º
+		1¡¢float ²»Îª none¡£
+		2¡¢position Îª absolute »ò fixed¡£
+		3¡¢display Îª inline-block »ò flex¡£
+		4¡¢overflow ²»Îª visible¡£
+	BFC Ö÷ÒªÓÃÍ¾£º
+		1¡¢½â¾ö×ÓÔªËØ¸¡¶¯µ¼ÖÂ¸¸ºÐ×Ó¸ß¶ÈËúÏÝµÄÎÊÌâ¡£
+		2¡¢½â¾öºÐ×ÓÍâ±ß¾àµÄºÏ²¢ºÍËúÏÝÎÊÌâ¡£
+³£ÓÃÑùÊ½±í
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	em,
+	i {
+		font-style: normal;					/* Ð±Ìå×Ö²»ÔÙÇãÐ±¡£ */
+	}
+	li {
+		list-style: none;					/* È¥µô li ÔªËØÇ°ÃæµÄµã¡£ */
+	}
+	img {
+		border: 0;						/* ¼æÈÝµÍ°æ±¾ä¯ÀÀÆ÷¡£ */
+		vertical-aligh: middle;	
+	}
+	button {
+		cursor: pointer;					/* Êó±ê¸²¸ÇÓÐÐ¡ÊÖ¡£ */
+	}
+	a {
+		color: #666;
+		text-decoration: none;					/* ³¬Á´½ÓÈ¥µôÏÂ»®Ïß¡£ */
+	}
+	a:hover {
+		color: #c81623;
+	}
+	input {
+		border: 0;						/* È¥µô input ¿ò±¾Éí×Ô´øµÄ±ß¿ò¡£ */
+		outline: none;						/* È¥µô input ¿ò¼¤»îÊ±µÄÀ¶É«±ß¿ò¡£ */
+	}
+	body { 
+		font: 12px/1.5 'Microsoft YaHei';
+	}
+	.clearfix:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.clearfix {
+		*zoom: 1;
+	}
 
 
 
@@ -23,13 +138,12 @@
 <ins></ins>								<!-- ×ÖÌåÏÂ»®Ïß -->
 <br />
 <img src="" alt=""></img>
-<a href="#" target="_self | _blank"></a>				<!-- Ä¬ÈÏÖµ£º_self¡£href="javascript:void(0); | javascript:;" ÒâË¼Îª½ûÓÃÁ´½ÓµÄÌø×ª¹¦ÄÜ¡£ -->
-<a href="#xxx"></a>
+<a href="#" target="_self | _blank"></a>				<!-- target Ä¬ÈÏÖµ£º_self¡£href="javascript:void(0); | javascript:;" ÒâË¼Îª½ûÓÃÁ´½ÓµÄÌø×ª¹¦ÄÜ¡£ -->
 <link rel="stylesheet" type="text/css" herf=""></link>
 /	./	../
 &nbsp; &lt; &gt;
 =========================================================================================================================================================================================
-<table style="boeder-collapse: collspse;">				<!-- Ï¸Ïß±ß¿ò¡£thead ºÍ tbody ±êÇ©¿ÉÓÐ¿ÉÎÞ¡£margin-left: -1px; Ò²ÄÜÊµÏÖÏ¸Ïß±ß¿òµÄÐ§¹û¡£ -->
+<table style="boeder-collapse: collspse;">				<!-- thead ºÍ tbody ±êÇ©¿ÉÓÐ¿ÉÎÞ¡£Ï¸Ïß±ß¿ò£ºboeder-collapse: collspse; | margin-left: -1px; -->
 	<thead>								<!-- thead ÖÐ±ØÐëÓÐ tr¡£ -->
 		<tr>
 			<th></th>
@@ -55,25 +169,20 @@
 	<dd></dd>
 </dl>
 =========================================================================================================================================================================================
-<form action="" method="get | post">
-	<input type="text | password" name="" value="" placeholder="ÇëÊäÈëÖµ..."></input>				
-	<input type="radio | checkbox" name="" value="" checked="checked">xxx</input>
-						<!-- µ¥¸´Ñ¡¿òÖÐÈç¹ûÃ»ÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇÎÄ±¾Öµ£»Èç¹ûÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ value Öµ¡£ -->
-	<label for="sex">ÄÐ</label><input type="radio" name="sex" value="" id="sex"></input>			
+<form action="ÇëÇóµØÖ·" method="get | post">
+	<input type="text | password" placeholder="ÇëÊäÈëÖµ..." name="" value=""></input>				
+	<input type="radio | checkbox" checked="checked" name="" value="">xxx</input>
+						<!-- µ¥¸´Ñ¡¿òÖÐ£¬Èç¹ûÃ»ÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ xxx ÎÄ±¾Öµ£»Èç¹ûÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ value Öµ¡£ -->
+	<label for="sex">ÄÐ</label><input id="sex" type="radio" name="sex" value="ÄÐ"></input>			
 	<select name="">
-		<option value="">xxx</option>
-		<option value="" selected="selected">xxx</option>
-						<!-- <option> ÖÐÈç¹ûÃ»ÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇÎÄ±¾Öµ£»Èç¹ûÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ value Öµ¡£ -->
-	</select>				
-	<textarea name="" value="" placeholder="ÃèÊöÐÅÏ¢..."></textarea>
+		<option value="">xxx</option>	<!-- ÏÂÀ­¿òÖÐ£¬Èç¹ûÃ»ÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ xxx ÎÄ±¾Öµ£»Èç¹ûÓÐ value ÊôÐÔ£¬Ôò´«µ½ºó¶ËµÄÊÇ value Öµ¡£ -->	
+		<option selected="selected" value="">xxx</option>
+	</select>			
+	<textarea placeholder="ÃèÊöÐÅÏ¢..." name="" value=""></textarea>
 	<input type="file" multiple="multiple"></input>
 	<input type="submit | reset | button" value="">xxx</input>
+						<!-- °´Å¥ÖÐ£¬Èç¹ûÃ»ÓÐ value ÊôÐÔ£¬ÔòÒ³ÃæÏÔÊ¾µÄÊÇ xxx ÎÄ±¾Öµ£»Èç¹ûÓÐ value ÊôÐÔ£¬ÔòÒ³ÃæÏÔÊ¾µÄÊÇ value Öµ¡£ -->
 </form>
-
-input { outline: none | 0; }						/* È¥µôÊäÈë¿ò»ñÈ¡½¹µãÊ±µÄÀ¶É«±ß¿òÏß¡£ */
-input::placeholder { color: red; }					/* ÐÞ¸Ä placeholder ÀïÃæµÄ×ÖÌåÑÕÉ«¡£ */
-textarea { resize: none; }						/* ÈÃÎÄ±¾ÓòÎÞ·¨±»ÍÏ×§¡£ */
-img { vertical-align: baseline | top | middle | bottom; }		/* ÉèÖÃ img ±êÇ©ÓëÎÄ±¾Ö®¼äµÄ¶ÔÆë·½Ê½¡£ */
 
 
 
@@ -86,12 +195,12 @@ font-weight: normal | bold | 100 ~ 900;					/* 400 = nomal£»700 = bold */
 font-size: 14px;
 line-height: 14px;							/* line-height = ºÐ×Ó height Ê±£¬µ¥ÐÐÎÄ×Ö´¹Ö±¾ÓÖÐ£¬Ò²¿ÉÒÔ¼ä½ÓÈÃÐÐÄÚºÍÐÐÄÚ¿éÔªËØ´¹Ö±¾ÓÖÐ¡£ */
 font-family: Arial "Microsoft YaHei";
-font: font-style font-weight font-size/line-height font-family;		/* ¸÷ÊôÐÔÖ®¼äÓÐË³ÐòÒªÇó¡£font-size ºÍ font-family Îª±ØÊäÊôÐÔ¡£ */
+font: font-style font-weight font-size/line-height font-family;		/* ¸÷ÊôÐÔÖµÖ®¼äÓÐË³ÐòÒªÇó¡£font-size ºÍ font-family Îª±ØÐëÊôÐÔÖµ¡£ */
 color: red | #ffffff | rgb(0, 0, 225);
 text-align: center | right | left;					/* center ¿ÉÒÔÈÃÎÄ±¾¡¢ÐÐÄÚºÍÐÐÄÚ¿éÔªËØË®Æ½¾ÓÖÐ¶ÔÆë¡£ */
 text-indent: 2em;							/* Ëõ½ø 2 ×Ö·û¡£ */
 text-decoration: none | underline;					/* ³£ÓÃÀ´È¥µô a ±êÇ©µÄÏÂ»®Ïß¡£ */
-text-shadow: h-shadow v-shaow blur color;				/* ¸÷ÊôÐÔÖ®¼äÓÐË³ÐòÒªÇó¡£h-shadow ºÍ v-shaow Îª±ØÐëÊôÐÔ¡£blur ÎªÒõÓ°µÄÐéÊµ¡£ */
+text-shadow: h-shadow v-shaow blur color;				/* ¸÷ÊôÐÔÖµÖ®¼äÓÐË³ÐòÒªÇó¡£h-shadow ºÍ v-shaow Îª±ØÐëÊôÐÔÖµ¡£blur ÎªÒõÓ°µÄÐéÊµ¡£ */
 	eg: text-shadow: 2px 2px 2px reba(0, 0, 0, 0.3);
 =========================================================================================================================================================================================
 background-color: transparent | red;
@@ -99,48 +208,48 @@ background-img: none | url();
 background-repeat: repeat | no-repeat | repeat-x | repeat-y;
 background-attachment: scroll | fixed;					/* scroll£º±³¾°¹ö¶¯£»fixed£º±³¾°¹Ì¶¨¡£ */
 background-position: center | top | right | left | bottom center | top | right | left | bottom;
-									/* Á½¸öÖµÎÞË³Ðò¹ØÏµ¡£Èç¹ûÆäÖÐÒ»¸öÖµÊ¡ÂÔ£¬ÔòÄ¬ÈÏÆäÖµÎª center¡£ */
+									/* Á½¸öÊôÐÔÖµÖ®¼äÃ»ÓÐË³ÐòÒªÇó¡£Èç¹ûÆäÖÐµÄÒ»¸öÖµ±»Ê¡ÂÔ£¬ÔòÄ¬ÈÏÆäÎª center¡£ */
 background-position: center | top | right | left | bottom | 20px center | top | right | left | bottom | 50px;
-									/* Á½¸öÖµÓÐË³Ðò¹ØÏµ (x, y)¡£²»ÍÆ¼öÊ¡ÂÔÖµ¡£ */
+									/* Á½¸öÊôÐÔÖµ (x, y) Ö®¼äÓÐË³ÐòÒªÇó¡£´ËÖÖÐ´·¨²»ÍÆ¼öÊ¡ÂÔÆäÖÐµÄÒ»¸öÖµ¡£ */
 background: background-color background-img background-repeat background-attachment background-position;
-									/* Ã»ÓÐË³ÐòÒªÇó¡£ */
-background: rgba(0, 0, 0, 0.3);						/* ±³¾°°ëÍ¸Ã÷¡£alpha È¡Öµ·¶Î§Îª 0 ~ 1¡£H5 ÐÂÔö¡£ */
+									/* ¸÷ÊôÐÔÖµÖ®¼äÃ»ÓÐË³ÐòÒªÇó¡£ */
 background-size: 300px 300px;						/* ±³¾°Í¼Æ¬µÄ´óÐ¡¡£Ö»ÓÐÒ»¸öÖµÊ±£¬¸ß¶ÈµÈ±ÈÀýÀ­Éì¡£ */
 	µ¥Î»£ºpx | % | cover | contain
 		% ÊÇÏà¶ÔÓÚ¸¸ºÐ×ÓµÄµ¥Î»¡£
-		cover ¿í¸ßµÈ±ÈÀýÀ­Éì£¬»áÍêÈ«¸²¸Ç¸¸ºÐ×Ó£¬¿ÉÄÜÓÐ²¿·Ö±³¾°Í¼Æ¬ÏÔÊ¾²»È«¡£
-		contain ¿í¸ßµÈ±ÈÀýÀ­Éì£¬µ±¿í¶È»ò¸ß¶ÈÆÌÂú¸¸ºÐ×Ó¾Í²»ÔÙÀ­ÉìÁË£¬¿ÉÄÜÓÐ²¿·Ö¿Õ°×ÇøÓò¡£
+		cover ¿í¸ßµÈ±ÈÀýÀ­Éì£¬±³¾°Í¼Æ¬»áÍêÈ«¸²¸Ç¸¸ºÐ×Ó£¬¿ÉÄÜÓÐ²¿·Ö±³¾°Í¼Æ¬ÏÔÊ¾²»³öÀ´¡£
+		contain ¿í¸ßµÈ±ÈÀýÀ­Éì£¬µ±±³¾°Í¼Æ¬¿í»ò¸ßÆÌÂú¸¸ºÐ×ÓÊ±¾Í²»ÔÙÀ­ÉìÁË£¬´ËÊ±¸¸ºÐ×Ó¿ÉÄÜÓÐ²¿·Ö¿Õ°×ÇøÓòÎ´±»ÆÌÂú¡£
+background: rgba(0, 0, 0, 0.3);						/* ±³¾°°ëÍ¸Ã÷¡£alpha È¡Öµ·¶Î§Îª 0 ~ 1¡£H5 ÐÂÔö¡£ */
 background: linear-gradient(ÆðÊ¼·½Ïò, ÑÕÉ«1, ÑÕÉ«2, ...);		/* ±³¾°ÑÕÉ«½¥±ä¡£ÆäÖµ±ØÐëÌí¼Óä¯ÀÀÆ÷Ë½ÓÐÇ°×º¡£ */
 	eg: background: -webkit-linear-gradient(left top, red, blue);
 =========================================================================================================================================================================================
-border: 1px none | solid | dotted | dashed #fff;			/* Ã»ÓÐË³ÐòÒªÇó¡£ */
+border: 1px none | solid | dotted | dashed #fff;			/* ¸÷ÊôÐÔÖµÖ®¼äÃ»ÓÐË³ÐòÒªÇó¡£ */
 border-top | right | bottom | left: 1px none | solid | dotted | dashed #fff;
 border-radius: 5px | 50%;
-padding: 15px;								/* Á½¸öÖµ£ºÉÏÏÂ ×óÓÒ¡£Èý¸öÖµ£ºÉÏ ×óÓÒ ÏÂ¡£ */ 
+padding: 15px;								/* Á½¸öÖµ£ºÉÏÏÂ ×óÓÒ¡£Èý¸öÖµ£ºÉÏ ×óÓÒ ÏÂ¡£ËÄ¸öÖµ£ºÉÏ ÓÒ ÏÂ ×ó¡£ */ 
 padding-top | right | bottom | left: 15px; 
-margin: 15px;								/* Á½¸öÖµ£ºÉÏÏÂ ×óÓÒ¡£Èý¸öÖµ£ºÉÏ ×óÓÒ ÏÂ¡£ */ 
+margin: 15px;								/* Á½¸öÖµ£ºÉÏÏÂ ×óÓÒ¡£Èý¸öÖµ£ºÉÏ ×óÓÒ ÏÂ¡£ËÄ¸öÖµ£ºÉÏ ÓÒ ÏÂ ×ó¡£ */ 
 margin-top | right | bottom | left: 15px; 
-	margin: auto;  <=>  margin: 0 auto;				/* ¿ÉÒÔÈÃ¿é¼¶ºÐ×ÓË®Æ½¾ÓÖÐ¶ÔÆë¡££¨ÒªÇó£º1¡¢±ØÐë×ÔÉíÓÐ¿í¶È£¬¼Ì³ÐµÄ¿í¸ß²»ÐÐ£»2¡¢²»ÄÜÍÑ±ê¡££© */ 
-	ÏàÁÚ¿éÔªËØ´¹Ö±Íâ±ß¾à»áºÏ²¢£¨È¡Á½ÕßµÄ´óÖµ£©£¬Ç¶Ì×¿éÔªËØ´¹Ö±ÉÏÍâ±ß¾à¿ÉÄÜ»áËúÏÝ£¨ÓÐµã³éÏó£©¡£
-		´¹Ö±Íâ±ß¾àºÏ²¢µÄ½â¾ö·½°¸£º
-			1¡¢Ö»ÎªÆäÖÐµÄÒ»¸öºÐ×ÓÌí¼ÓÍâ±ß¾à£»
-			2¡¢¸øÏÂ±ßµÄºÐ×ÓÉèÖÃ¶¨Î»»ò¸¡¶¯£¬Ê¹ÆäÍÑ±ê£»
-			3¡¢¸øÆäÖÐµÄÒ»¸öºÐ×ÓÉèÖÃ³ÉÐÐÄÚ¿éÔªËØ¡£
-		´¹Ö±ÉÏÍâ±ß¾àËúÏÝµÄ½â¾ö·½°¸£º
-			1¡¢Îª¸¸ÔªËØ¶¨ÒåÉÏ±ß¿ò£»
-			2¡¢Îª¸¸ÔªËØ¶¨ÒåÉÏÄÚ±ß¾à£»
-			3¡¢Îª¸¸ÔªËØÌí¼Ó overflow: hidden; £»
-			4¡¢ÍÑ±êµÄ¸¸/×ÓºÐ×Ó²»»áÓÐÍâ±ß¾àºÏ²¢µÄÎÊÌâ¡£
 box-sizing: content-box | border-box;
-	ÆÕÍ¨ºÐ×Ó´óÐ¡ = ÄÚÈÝ´óÐ¡£¨¿í¸ßÊôÐÔÖµ£© + ÄÚ±ß¾à´óÐ¡ + ±ß¿ò¿í¶È	/* Èç¹ûºÐ×Ó±¾ÉíÃ»ÓÐÖ¸¶¨¿í¸ßÊôÐÔ£¬ÊÇ¼Ì³ÐµÄ¿í¸ßÊôÐÔ£¬ÔòÄÚ±ß¾à²»»á³Å¿ªºÐ×Ó¡£ */
-	C3ºÐ×Ó´óÐ¡ = ¿í¸ßÊôÐÔÖµ
-border-shadow: h-shadow v-shaow blur spread color inset;		/* ¸÷ÊôÐÔÖ®¼äÓÐË³ÐòÒªÇó¡£h-shadow ºÍ v-shaow Îª±ØÐëÊôÐÔ¡£blur ÎªÒõÓ°µÄÐéÊµ¡£spread ÎªÒõÓ°µÄ³ß´ç¡£ */
+	ÆÕÍ¨ºÐ×Ó´óÐ¡ = ÄÚÈÝ´óÐ¡£¨¿í¸ßÊôÐÔÖµ£© + ÄÚ±ß¾à´óÐ¡ + ±ß¿ò¿í¶È
+	C3 ºÐ×Ó´óÐ¡ = ¿í¸ßÊôÐÔÖµ
+border-shadow: h-shadow v-shaow blur spread color inset;		/* ¸÷ÊôÐÔÖµÖ®¼äÓÐË³ÐòÒªÇó¡£h-shadow ºÍ v-shaow Îª±ØÐëÊôÐÔÖµ¡£blur ÎªÒõÓ°µÄÐéÊµ¡£spread ÎªÒõÓ°µÄ³ß´ç¡£ */
 	eg: border-shadow: 2px 2px 2px 2px reba(0, 0, 0, 0.3) (inset);
 ±ß¿òÍ¼Æ¬£º
 	border-image-source						/* ÓÃÔÚ±ß¿òµÄÍ¼Æ¬µÄÂ·¾¶¡£ */
-	border-image-slice						/* Í¼Æ¬±ß¿òÏòÄÚÆ«ÒÆµÄ¾àÀë£¬²»´øµ¥Î»¡£ */
-	border-image-width						/* Í¼Æ¬±ß¿òµÄ¿í¶È£¬´øµ¥Î»¡£ */
-	border-image-repeat						/* Í¼Æ¬±ß¿òÊÇ·ñÆ½ÆÌ£¨repeat£©¡¢ÆÌÂú£¨round£©»òÀ­Éì£¨stretch£©£¬Ä¬ÈÏÀ­Éì¡£ */
+	border-image-slice						/* Í¼Æ¬±ß¿òÏòÄÚÆ«ÒÆµÄ¾àÀë¡£²»´øµ¥Î»¡£ */
+	border-image-width						/* Í¼Æ¬±ß¿òµÄ¿í¶È¡£´øµ¥Î»¡£ */
+	border-image-repeat						/* Í¼Æ¬±ß¿òÊÇ·ñÆ½ÆÌ£¨repeat£©¡¢ÆÌÂú£¨round£©»òÀ­Éì£¨stretch£©¡£Ä¬ÈÏÀ­Éì¡£ */
+margin: auto;  <=>  margin: 0 auto;					/* ¿ÉÒÔÈÃ¿é¼¶ºÐ×ÓË®Æ½¾ÓÖÐ¶ÔÆë¡££¨ÒªÇó£º1¡¢²»ÄÜÍÑ±ê£¬2¡¢±ØÐë×ÔÉíÓÐ¿í¶È£¬¼Ì³ÐµÄ¿í¶È²»ÐÐ¡££© */ 
+×¢Òâ£º´¹Ö±·½ÏòÉÏÏàÁÚ¿éÔªËØÍâ±ß¾à»áºÏ²¢£¨È¡Á½ÕßµÄ´óÖµ£©£¬´¹Ö±·½ÏòÉÏÇ¶Ì×¿éÔªËØÉÏÍâ±ß¾à»áËúÏÝ¡£
+	´¹Ö±Íâ±ß¾àºÏ²¢µÄ½â¾ö·½°¸£º
+		1¡¢Ö»ÎªÆäÖÐµÄÒ»¸ö¿éÔªËØÌí¼ÓÍâ±ß¾à¡£
+		2¡¢¸øÆäÖÐµÄÒ»¸ö¿éÔªËØÉèÖÃ³ÉÐÐÄÚ¿éÔªËØ¡£´¥·¢ BFC¡£
+		3¡¢¸øÏÂ±ßµÄ¿éÔªËØÉèÖÃ¶¨Î»»ò¸¡¶¯¡£´¥·¢ BFC¡£
+	´¹Ö±ÉÏÍâ±ß¾àËúÏÝµÄ½â¾ö·½°¸£º
+		1¡¢Îª¸¸¼¶¿éÔªËØ¶¨ÒåÉÏ±ß¿ò¡£
+		2¡¢Îª¸¸¼¶¿éÔªËØ¶¨ÒåÉÏÄÚ±ß¾à¡£
+		3¡¢Îª¸¸¼¶¿éÔªËØÌí¼Ó overflow: hidden; ¡£´¥·¢ BFC¡£
+		4¡¢ÍÑ±êµÄ¸¸»ò×Ó¼¶¿éÔªËØ²»»áÓÐÉÏÍâ±ß¾àËúÏÝµÄÎÊÌâ¡£´¥·¢ BFC¡£
 
 
 
@@ -150,32 +259,33 @@ border-shadow: h-shadow v-shaow blur spread color inset;		/* ¸÷ÊôÐÔÖ®¼äÓÐË³ÐòÒªÇ
 
 ¿éÔªËØ
 	<h> | <p> | <div> | <ul> | <ol> | <li>
-	¶ÀÕ¼Ò»ÐÐ£¬Ä¬ÈÏ¿í¶ÈÓë¸¸ÔªËØÏàÍ¬£¬ÀïÃæ¿ÉÒÔ·ÅÈÎºÎÀàÐÍµÄÔªËØ¡££¨ÎÄ×ÖÀàµÄ¿éÔªËØÄÚ²»ÄÜ·Å¿éÔªËØ£©
+	¶ÀÕ¼Ò»ÐÐ£¬Ä¬ÈÏ¿í¶ÈÓë¸¸ÔªËØÏàÍ¬£¬ÀïÃæ¿ÉÒÔ·ÅÈÎºÎÀàÐÍµÄÔªËØ¡£ÎÄ×ÖÀàµÄ¿éÔªËØÄÚ²»ÄÜ·Å¿éÔªËØ¡£
 ÐÐÄÚÔªËØ
 	<a> | <strong> | <b> | <em> | <i> | <del> | <s> | <ins> | <u> | <span>
-	²»¶ÀÕ¼Ò»ÐÐ£¬µ«ÏàÁÚ¼ä»áÓÐ·ìÏ¶£¨ÓÉ´úÂë»»ÐÐÒýÆðµÄ·ìÏ¶£©£¬Ö±½ÓÉèÖÃ¿í¸ßÎÞÐ§£¬Ä¬ÈÏ¿í¶ÈÎªÔªËØÄÚÈÝ±¾Éí£¬ÀïÃæÖ»ÄÜ·ÅÎÄ±¾»òÕßÆäËûÐÐÄÚÔªËØ¡£
+	²»¶ÀÕ¼Ò»ÐÐ£¬µ«ÏàÁÚ¼ä»áÓÐÓÉ´úÂë»»ÐÐÒýÆð·ìÏ¶£¬Ä¬ÈÏ¿í¶ÈÎªÔªËØÄÚÈÝ±¾Éí£¬¶ÔÆäÖ±½ÓÉèÖÃ¿í¸ß»áÎÞÐ§£¬ÀïÃæÖ»ÄÜ·ÅÎÄ±¾»òÕßÆäËûÐÐÄÚÔªËØ¡£
 	×¢Òâ£ºÐÐÄÚÔªËØ¾¡Á¿Ö»ÉèÖÃ×óÓÒÍâ±ß¾à£¬²»ÉèÖÃÉÏÏÂÍâ±ß¾à¡£
 ÐÐÄÚ¿éÔªËØ
 	img | input | td
-	²»¶ÀÕ¼Ò»ÐÐ£¬µ«ÏàÁÚ¼ä»áÓÐ·ìÏ¶£¨ÓÉ´úÂë»»ÐÐÒýÆðµÄ·ìÏ¶£©£¬Ö±½ÓÉèÖÃ¿í¸ßÓÐÐ§£¬Ä¬ÈÏ¿í¶ÈÎªÔªËØÄÚÈÝ±¾Éí¡£
+	²»¶ÀÕ¼Ò»ÐÐ£¬µ«ÏàÁÚ¼ä»áÓÐÓÉ´úÂë»»ÐÐÒýÆð·ìÏ¶£¬Ä¬ÈÏ¿í¶ÈÎªÔªËØÄÚÈÝ±¾Éí£¬¶ÔÆäÖ±½ÓÉèÖÃ¿í¸ß»áÎÞÐ§¡£
 display: block | inline | inline-block;					/* Ö÷ÒªÓÃÓÚÐÐÄÚÔªËØ×ª»»ÎªÐÐÄÚ¿éÔªËØ£¬Ò²¿ÉÒÔÓÃÓÚÔªËØµÄÏÔÊ¾ÓëÒþ²Ø¡£ */
 =========================================================================================================================================================================================
-¸¡¶¯ÌØÐÔ£º
-	1¡¢¸¡¶¯ÔªËØ»áÍÑÀë±ê×¼Á÷£»
-	2¡¢¸¡¶¯ÔªËØ»áÒ»ÐÐÄÚÏÔÊ¾£¬²¢ÇÒÔªËØ¶¥²¿¶ÔÆë£»
-	3¡¢¸¡¶¯ÔªËØ»á¾ßÓÐÐÐÄÚ¿éÔªËØµÄÌØÐÔ£¬²¢ÇÒÏàÁÚ¼ä²»»áÓÐ·ìÏ¶¡£
-	×¢Òâ£º¸¡¶¯ÔªËØÖ»»áÓ°ÏìºÐ×ÓºóÃæµÄ±ê×¼Á÷£¬²»»áÓ°ÏìºÐ×ÓÇ°ÃæµÄ±ê×¼Á÷¡£¸¡¶¯×î³õÊÇÓÃÀ´ÊµÏÖÎÄ×Ö»·ÈÆÐ§¹ûµÄ¡£
 ¸¡¶¯µÄ×÷ÓÃ£º
-	¸¡¶¯µÄÔªËØ¾­³£´îÅä±ê×¼Á÷µÄ¸¸ÔªËØ£¬±ê×¼Á÷¸¸ÔªËØ¸ºÔð×ÝÏò²¼¾Ö£¬¸¡¶¯×ÓÔªËØ¸ºÔðºáÏò²¼¾Ö¡£
+	¸¡¶¯µÄÔªËØ¾­³£´îÅä±ê×¼Á÷µÄ¸¸ÔªËØ¡£±ê×¼Á÷¸¸ÔªËØ¸ºÔð×ÝÏò²¼¾Ö£¬¸¡¶¯×ÓÔªËØ¸ºÔðºáÏò²¼¾Ö¡£
+	×¢Òâ£º¸¡¶¯×î³õÊÇÓÃÀ´ÊµÏÖÎÄ×Ö»·ÈÆÐ§¹ûµÄ¡£
+¸¡¶¯ÌØÐÔ£º
+	1¡¢¸¡¶¯ÔªËØ»áÍÑÀë±ê×¼Á÷¡£
+	2¡¢¸¡¶¯ÔªËØ»áÔÚÒ»ÐÐÄÚÏÔÊ¾£¬²¢ÇÒÔªËØ»á¶¥²¿¶ÔÆë¡£
+	3¡¢¸¡¶¯ÔªËØ»á¾ßÓÐÐÐÄÚ¿éÔªËØµÄÌØÐÔ£¬²¢ÇÒÏàÁÚÔªËØ¼ä²»»áÓÐ·ìÏ¶¡£
+	×¢Òâ£º¸¡¶¯ÔªËØÖ»»áÓ°ÏìºÐ×ÓºóÃæµÄ±ê×¼Á÷£¬²»»áÓ°ÏìºÐ×ÓÇ°ÃæµÄ±ê×¼Á÷¡£
 Çå³ý¸¡¶¯µÄ×÷ÓÃ£º
-	ÓÉÓÚ¸¸¼¶±ê×¼Á÷ºÐ×ÓÔÚºÜ¶àÇé¿öÏÂ£¬²»·½±ãÉèÖÃ¸ß¶È£¬µ«¸¡¶¯µÄ×ÓºÐ×ÓÓÖ²»»á³Å¿ª¸¸ºÐ×Ó¡£Çå³ý¸¡¶¯Ö®ºó£¬¸¸¼¶±ê×¼Á÷ºÐ×Ó»á¸ù¾Ý¸¡¶¯µÄ×ÓºÐ×ÓµÄ¸ß¶È×Ô¶¯¼ì²â¸ß¶È¡£
+	ÓÉÓÚ¸¸¼¶±ê×¼Á÷ºÐ×ÓÔÚºÜ¶àÇé¿öÏÂ²»·½±ãÉèÖÃ¸ß¶È£¬µ«¸¡¶¯µÄ×ÓºÐ×ÓÓÖ²»»á³Å¿ª¸¸ºÐ×Ó£¬Çå³ý¸¡¶¯Ö®ºó¸¸¼¶±ê×¼Á÷ºÐ×Ó»á¸ù¾Ý¸¡¶¯µÄ×ÓºÐ×ÓµÄ¸ß¶È×Ô¶¯¼ì²â³ö¸ß¶È¡£
 Çå³ý¸¡¶¯µÄ·½·¨£º
-	1¡¢¶îÍâ±êÇ©·¨£º
+	1¡¢¶îÍâ±êÇ©·¨¡£
 		ÔÚ¸¡¶¯ºÐ×Ó±êÇ©µÄ×îÄ©Î²Ìí¼ÓÒ»¸ö¿é¼¶±êÇ©¡£
 		eg: <div style="clear: both;"></div>
-	2¡¢¸ø¸¸¼¶±ê×¼Á÷ºÐ×ÓÌí¼Ó overflow ÊôÐÔ£º
+	2¡¢¸ø¸¸¼¶±ê×¼Á÷ºÐ×ÓÌí¼Ó overflow ÊôÐÔ¡£´¥·¢ BFC¡£
 		overflow: visible | hidden | auto | scroll;
-	3¡¢¸ø¸¸¼¶±ê×¼Á÷ºÐ×ÓÌí¼Ó after Î±ÔªËØ£º
+	3¡¢¸ø¸¸¼¶±ê×¼Á÷ºÐ×ÓÌí¼Ó after Î±ÔªËØ¡£
 		.clearfix:after {
 			content: "";
 			display: block;
@@ -183,8 +293,8 @@ display: block | inline | inline-block;					/* Ö÷ÒªÓÃÓÚÐÐÄÚÔªËØ×ª»»ÎªÐÐÄÚ¿éÔªËØ£
 			clear: both;
 			visibility: hidden;
 		}
-		.clearfix {						/* IE6¡¢7×¨ÓÐ */
-			*zoom: 1;
+		.clearfix {						/* IE6¡¢7×¨ÓÐ¡£ */					
+			*zoom: 1;					
 		}
 	4¡¢¸ø¸¸¼¶±ê×¼Á÷ºÐ×ÓÌí¼ÓË«Î±ÔªËØ¡£
 		.clearfix:before,.clearfix:after {
@@ -194,7 +304,7 @@ display: block | inline | inline-block;					/* Ö÷ÒªÓÃÓÚÐÐÄÚÔªËØ×ª»»ÎªÐÐÄÚ¿éÔªËØ£
 		.clearfix:after {
 			clear: both;
 		}
-		.clearfix {						/* IE6¡¢7×¨ÓÐ */
+		.clearfix {						/* IE6¡¢7×¨ÓÐ¡£ */
 			*zoom: 1;
 		}
 =========================================================================================================================================================================================
@@ -206,37 +316,35 @@ display: block | inline | inline-block;					/* Ö÷ÒªÓÃÓÚÐÐÄÚÔªËØ×ª»»ÎªÐÐÄÚ¿éÔªËØ£
 ¶¨Î»µÄ×÷ÓÃ£º
 	Ê¹Ä³¸öÔªËØ¿ÉÒÔÔÚºÐ×ÓÄÚ²¿×ÔÓÉÒÆ¶¯£¬²¢ÇÒÑ¹×¡ÆäËûµÄºÐ×Ó¡£
 ¾²Ì¬¶¨Î»£º
-	Ä¬ÈÏÖµ¡£
+	position µÄÄ¬ÈÏÖµ¡£
 Ïà¶Ô¶¨Î»£º
-	1¡¢Ïà¶ÔÓÚ×ÔÉíÔ­À´µÄÎ»ÖÃÒÆ¶¯£»
-	2¡¢²»ÍÑ±ê£¬¼ÌÐøÕ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ£¬ÒÆ¶¯Ö®ºóµÄÎ»ÖÃ»áÑ¹×¡ÆäËûµÄÔªËØ¡£
+	1¡¢Ïà¶ÔÓÚ×ÔÉíÔ­À´µÄÎ»ÖÃÒÆ¶¯¡£
+	2¡¢ÔªËØ²»ÍÑ±ê¡£²»½ö¼ÌÐøÕ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ£¬ÒÆ¶¯Ö®ºóµÄÔªËØ»¹»áÑ¹×¡ÆäËûµÄÔªËØ¡£
 ¾ø¶Ô¶¨Î»£º
-	1¡¢Èç¹ûÃ»ÓÐ×æÏÈÔªËØ»òÕß×æÏÈÔªËØÃ»ÓÐ¶¨Î»£¬ÔòÒÔä¯ÀÀÆ÷µÄÎÄµµÁ÷Îª»ù×¼À´ÒÆ¶¯£»
-	2¡¢Èç¹û×æÏÈÔªËØÓÐ¶¨Î»£¨Ïà¶Ô¡¢¾ø¶Ô¡¢¹Ì¶¨£©£¬ÔòÒÔ×î½üÒ»¼¶ÓÐ¶¨Î»µÄ×æÏÈÔªËØÎª»ù×¼À´ÒÆ¶¯£»
-	3¡¢ÍÑ±ê£¬²»Õ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ¡£
+	1¡¢Èç¹û×æÏÈÔªËØÃ»ÓÐ¶¨Î»»òÕßÃ»ÓÐ×æÏÈÔªËØ£¬ÔòÒÔä¯ÀÀÆ÷µÄÎÄµµÁ÷Îª»ù×¼À´ÒÆ¶¯¡£
+	2¡¢Èç¹û×æÏÈÔªËØÓÐ£¨Ïà¶Ô¡¢¾ø¶Ô¡¢¹Ì¶¨£©¶¨Î»£¬ÔòÒÔ×î½üÒ»¼¶ÓÐ¶¨Î»µÄ×æÏÈÔªËØÎª»ù×¼À´ÒÆ¶¯¡£
+	3¡¢ÔªËØÍÑ±ê£¬²»Õ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ¡£
 ¹Ì¶¨¶¨Î»£º
-	1¡¢ÔªËØÒÔä¯ÀÀÆ÷µÄ¿ÉÊÓÇøÎª»ù×¼À´ÒÆ¶¯£»
-	2¡¢ÍÑ±ê£¬²»Õ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ£»
+	1¡¢ÔªËØÒÔä¯ÀÀÆ÷µÄ¿ÉÊÓÇøÎª»ù×¼À´ÒÆ¶¯¡£
+	2¡¢ÔªËØÍÑ±ê£¬²»Õ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ¡£
 	3¡¢Ö÷ÒªÊ¹ÓÃ³¡¾°£ºÔÚä¯ÀÀÆ÷Ò³Ãæ¹ö¶¯Ê±ÔªËØµÄÎ»ÖÃ±£³Ö²»±ä¡£
-	×¢Òâ£ºÈç¹ûÃ»ÓÐ·½Î»ÊôÐÔ£¬ÔòÔÚÔ­ÏÈµÄÎ»ÖÃÆ¯¸¡ÆðÀ´¡£
+	×¢Òâ£º¹Ì¶¨¶¨Î»Èç¹ûÃ»ÓÐ·½Î»ÊôÐÔ£¬ÔòÔÚÔ­ÏÈµÄÎ»ÖÃÆ¯¸¡ÆðÀ´¡£
 Õ³ÐÔ¶¨Î»£º
-	1¡¢ÔªËØÒÔä¯ÀÀÆ÷µÄ¿ÉÊÓÇøÎª»ù×¼À´ÒÆ¶¯£»
-	2¡¢²»ÍÑ±ê£¬¼ÌÐøÕ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ£»
-	3¡¢±ØÐëÌí¼Ó top¡¢left¡¢right¡¢bottom ÖÐµÄÖÁÉÙÒ»¸öÊôÐÔ²ÅÓÐÐ§£»
-	4¡¢¸úÒ³Ãæ¹ö¶¯´îÅäÊ¹ÓÃ£¬¼æÈÝÐÔ½Ï²î£¬IE²»Ö§³Ö¡£
+	1¡¢ÔªËØÒÔä¯ÀÀÆ÷µÄ¿ÉÊÓÇøÎª»ù×¼À´ÒÆ¶¯¡£
+	2¡¢ÔªËØ²»ÍÑ±ê£¬¼ÌÐøÕ¼ÓÐÔ­ÏÈµÄÎ»ÖÃ¡£
+	3¡¢Õ³ÐÔ¶¨Î»±ØÐëÌí¼Ó top¡¢left¡¢right¡¢bottom ÖÐµÄÖÁÉÙÒ»¸öÊôÐÔ²ÅÓÐÐ§¡£
+	4¡¢Õ³ÐÔ¶¨Î»³£¸úÒ³ÃæµÄ¹ö¶¯´îÅäÊ¹ÓÃ£¬¼æÈÝÐÔ½Ï²î£¬IE ä¯ÀÀÆ÷²»Ö§³Ö¡£
+	×¢Òâ£ºÕ³ÐÔ¶¨Î»ÊÇÏà¶Ô¶¨Î»ºÍ¹Ì¶¨¶¨Î»µÄ½áºÏÌå¡£
 z-index£º
-	1¡¢ÊýÖµÎªÕûÊý£¬ÖµÔ½´ó£¬ºÐ×ÓÔ½¿¿ÉÏ£»
-	2¡¢Èç¹ûÊôÐÔÖµÏàµÈ£¬ÔòºóÀ´Õß¾ÓÉÏ£»
+	1¡¢ÊýÖµÎªÕûÊý£¬ÖµÔ½´ó£¬ºÐ×ÓÔ½¿¿ÉÏ¡£
+	2¡¢Èç¹ûÊôÐÔÖµÏàµÈ£¬ÔòºóÀ´Õß¾ÓÉÏ¡£
 	3¡¢Ö»ÓÐ¶¨Î»µÄºÐ×Ó²ÅÓÐ´ËÊôÐÔ¡£
-Ó¦ÓÃ£º
-	¾ø¶Ô¶¨Î» + Íâ±ß¾à = ºÐ×ÓË®Æ½´¹Ö±¾ÓÖÐ
-	¹Ì¶¨¶¨Î» + Íâ±ß¾à = ºÐ×Ó¹Ì¶¨ÔÚ°æÐÄÓÒ²à
 ¾ø¶Ô¶¨Î»¡¢¹Ì¶¨¶¨Î»ºÍ¸¡¶¯µÄÌØÐÔ£º
-	1¡¢ÐÐÄÚºÍÐÐÄÚ¿éÔªËØ¿ÉÒÔÖ±½ÓÉèÖÃ¿í¸ßÊôÐÔ£»
-	2¡¢¿é¼¶ÔªËØµÄ¿í¸ßÖµÄ¬ÈÏÎªÄÚÈÝµÄ¿í¸ßÖµ£»
-	3¡¢ÒÑ¾­ÍÑ±ê£¬²»»á´¥·¢Íâ±ß¾àºÏ²¢µÄÎÊÌâ£»
+	1¡¢ÐÐÄÚºÍÐÐÄÚ¿éÔªËØ¿ÉÒÔÖ±½ÓÉèÖÃ¿í¸ßÊôÐÔÖµ¡£
+	2¡¢¿é¼¶ÔªËØµÄ¿í¸ßÖµÄ¬ÈÏÎªÄÚÈÝµÄ¿í¸ßÖµ¡£
+	3¡¢ÔªËØÒÑ¾­ÍÑ±ê£¬²»»á´¥·¢Íâ±ß¾àºÏ²¢µÄÎÊÌâ¡£
 	4¡¢margin: 0 auto; Ê§Ð§¡£
-	×¢Òâ£º¸¡¶¯µÄÔªËØÖ»»áÑ¹×¡ÏÂÃæ±ê×¼Á÷ºÐ×Ó£¬²»»áÑ¹×¡ÏÂÃæ±ê×¼Á÷ºÐ×ÓÀïµÄÎÄ×ÖºÍÍ¼Æ¬£»¶¨Î»Ôò»áÑ¹×¡È«²¿¡£
+	×¢Òâ£º¸¡¶¯ÔªËØÖ»»áÑ¹×¡ÏÂÃæµÄ±ê×¼Á÷ºÐ×Ó£¬²»»áÑ¹×¡ÏÂÃæ±ê×¼Á÷ºÐ×ÓÀïµÄÎÄ×ÖºÍÍ¼Æ¬¡£¶¨Î»Ôò»áÑ¹×¡È«²¿¡£
 
 
 
@@ -244,15 +352,16 @@ z-index£º
 
 
 
-¼Ì³ÐÐÔ£º×ÓÔªËØ¿ÉÒÔ¼Ì³Ð¸¸ÔªËØµÄÄ³Ð©ÑùÊ½¡££¨text-£¬front-£¬line- ÒÔ¼° color ÊôÐÔ¿ÉÒÔ¼Ì³Ð¡££©
+¼Ì³ÐÐÔ£º×ÓÔªËØ¿ÉÒÔ¼Ì³Ð¸¸ÔªËØµÄÄ³Ð©ÑùÊ½¡££¨text-£¬front-£¬line- ÒÔ¼° color µÈÊôÐÔ¿ÉÒÔ¼Ì³Ð¡££©
 	eg: body { font: 12px/1.5 'Microsoft YaHei'; }			/* ÐÐ¸ßµÄ¼Ì³Ð */
-ÓÅÏÈ¼¶£º£¨¸´ºÏÑ¡ÔñÆ÷ÖÐ£¬È¨ÖØÖ»¿ÉÏà¼Ó£¬²»¿É½øÎ»¡££©
+ÓÅÏÈ¼¶£º
 	¼Ì³Ð»òÕß *			0, 0, 0, 0
 	ÔªËØÑ¡ÔñÆ÷			0, 0, 0, 1
 	Àà¡¢Î±Àà¡¢ÊôÐÔÑ¡ÔñÆ÷		0, 0, 1, 0
 	ID Ñ¡ÔñÆ÷			0, 1, 0, 0
 	ÐÐÄÚÑùÊ½			1, 0, 0, 0
 	!important			ÎÞÇî´ó
+	×¢Òâ£º¸´ºÏÑ¡ÔñÆ÷ÖÐ£¬È¨ÖØÖ»¿ÉÏà¼Ó£¬²»¿É½øÎ»¡£
 »ù´¡Ñ¡ÔñÆ÷£º
 	*						Í¨Åä·ûÑ¡ÔñÆ÷
 	xxx						±êÇ©Ñ¡ÔñÆ÷
@@ -267,140 +376,27 @@ z-index£º
 		a:visited				±»·ÃÎÊ¹ýµÄ×´Ì¬
 		a:hover					Êó±êÐü¸¡µÄ×´Ì¬
 		a:active				ÕýÔÚ±»·ÃÎÊµÄ×´Ì¬
-ÊôÐÔÑ¡ÔñÆ÷£º
-	E[att]						Ñ¡Ôñ¾ßÓÐ att ÊôÐÔµÄ E ÔªËØ
-	E[att="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµµÈÓÚ val µÄ E ÔªËØ
-	E[att^="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµÒÔ val ¿ªÍ·µÄ E ÔªËØ
-	E[att$="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµÒÔ val ½áÎ²µÄ E ÔªËØ
-	E[att*="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµ°üº¬ val µÄ E ÔªËØ
+ÊôÐÔÑ¡ÔñÆ÷£º³£´îÅä½»¼¯Ñ¡ÔñÆ÷Ê¹ÓÃ£¬Ò²¿ÉÒÔµ¥¶ÀÊ¹ÓÃ¡£
+	E[att]						Ñ¡Ôñ¾ßÓÐ att ÊôÐÔµÄ E ÀàÐÍÔªËØ
+	E[att="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµµÈÓÚ val µÄ E ÀàÐÍÔªËØ
+	E[att^="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµÒÔ val ¿ªÍ·µÄ E ÀàÐÍÔªËØ
+	E[att$="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµÒÔ val ½áÎ²µÄ E ÀàÐÍÔªËØ
+	E[att*="val"]					Ñ¡Ôñ¾ßÓÐ att ÊôÐÔÇÒÊôÐÔÖµ°üº¬ val µÄ E ÀàÐÍÔªËØ
 ½á¹¹Î±ÀàÑ¡ÔñÆ÷£º³£´îÅäºó´úÑ¡ÔñÆ÷Ê¹ÓÃ£¬Ò²¿ÉÒÔµ¥¶ÀÊ¹ÓÃ¡£
-	E:first-child					Æ¥Åä¸¸ÔªËØÖÐµÄµÚÒ»¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØÀàÐÍ±ØÐëÎª E
-	E:last-child					Æ¥Åä¸¸ÔªËØÖÐµÄ×îºóÒ»¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØÀàÐÍ±ØÐëÎª E
-	E:nth-child(n)					Æ¥Åä¸¸ÔªËØÖÐµÄµÚ n ¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØÀàÐÍ±ØÐëÎª E
+	E:first-child					Æ¥Åä¸¸ÔªËØÖÐµÄµÚÒ»¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØµÄÀàÐÍ±ØÐëÎª E
+	E:last-child					Æ¥Åä¸¸ÔªËØÖÐµÄ×îºóÒ»¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØµÄÀàÐÍ±ØÐëÎª E
+	E:nth-child(n)					Æ¥Åä¸¸ÔªËØÖÐµÄµÚ n ¸ö×ÓÔªËØ£¬ÇÒ¸Ã×ÓÔªËØµÄÀàÐÍ±ØÐëÎª E
 	E:first-of-type					Æ¥Åä¸¸ÔªËØÖÐÀàÐÍÎª E µÄµÚÒ»¸ö×ÓÔªËØ
 	E:last-of-type					Æ¥Åä¸¸ÔªËØÖÐÀàÐÍÎª E µÄ×îºóÒ»¸ö×ÓÔªËØ
 	E:nth-of-type(n)				Æ¥Åä¸¸ÔªËØÖÐÀàÐÍÎª E µÄµÚ n ¸ö×ÓÔªËØ
-	×¢Òâ£ºn ¿ÉÒÔÊÇÊý×Ö£¬¹«Ê½ºÍ¹Ø¼ü×Ö¡£Èç¹ûÊÇÊý×Ö£¬ÔòÖµ´Ó 1 ¿ªÊ¼¡£Èç¹ûÊÇ¹«Ê½£¬ÔòÖµ´Ó 0 ¿ªÊ¼¡£Èç¹ûÊÇ¹Ø¼ü×Ö£¬Ôò even Å¼Êý£¬odd ÆæÊý¡£
-Î±ÔªËØÑ¡ÔñÆ÷£º
-	1¡¢before ºÍ after ´´½¨Ò»¸öÐÐÄÚÔªËØ£»
-	2¡¢ÐÂ´´½¨µÄÕâ¸öÔªËØÔÚÎÄµµÊ÷ÖÐÊÇÕÒ²»µ½µÄ£¬ËùÒÔ³ÆÎªÎ±ÔªËØ£»
-	3¡¢Óï·¨£ºelement::before {}					´ËÎ±ÔªËØÎª element ÔªËØ¿¿Ç°µÄ×ÓÔªËØ¡£
-	4¡¢before ºÍ after ±ØÐëÓÐ content ÊôÐÔ£»
-	5¡¢before ÔÚÔªËØÇ°Ãæ´´½¨Î±ÔªËØ£¬after ÔÚÔªËØºóÃæ´´½¨Î±ÔªËØ£»
-	6¡¢Î±ÔªËØÑ¡ÔñÆ÷ºÍ±êÇ©Ñ¡ÔñÆ÷Ò»Ñù£¬È¨ÖØÎª 1¡£
-=========================================================================================================================================================================================
-display: none | block							/* ÔªËØÒþ²Ø|ÏÔÊ¾¡£ÔªËØÒþ²Øºó²»ÔÙÕ¼ÓÐÔ­À´µÄÎ»ÖÃ¡£³£´îÅä JS Ê¹ÓÃ¡£ */
-visibility: hiddden | visible;						/* ÔªËØÒþ²Ø|ÏÔÊ¾¡£ÔªËØÒþ²Øºó¼ÌÐøÕ¼ÓÐÔ­À´µÄÎ»ÖÃ¡£Çå³ý¸¡¶¯Ê±ÓÐÊ¹ÓÃ¡£ */
-overflow: visible | hidden | auto | scroll;				/* ÔªËØÒç³öÊ±ºÐ×ÓµÄÏÔÊ¾Ä£Ê½¡£ */
-coursor: default | pointer | move | text | not-allowed;
-CSSÒç³öÎÄ×ÖÒþ²Ø
-	ÎÄ±¾ÏÔÊ¾·½Ê½ white-space£º
-		normal£ºÊ¹ÓÃä¯ÀÀÆ÷Ä¬ÈÏÏÔÊ¾·½Ê½£»
-		nowrap£ºÇ¿ÖÆÎÄ±¾Ò»ÐÐÄÚÏÔÊ¾¡£
-	ÎÄ±¾»»ÐÐ·½Ê½ word-break£º
-		normal£ºÊ¹ÓÃä¯ÀÀÆ÷Ä¬ÈÏ»»ÐÐ·½Ê½£»
-		break-all£ºÔÊÐíÔÚµ¥´ÊÄÚ»»ÐÐ£»
-		keep-all£ºÖ»ÔÊÐíÔÚ°ë½Ç¡¢¿Õ¸ñ»òÁ¬×Ö·û´¦»»ÐÐ¡£
-		×¢Òâ£º¸ÃÊôÐÔÖ÷ÒªÓÃÓÚ´¦ÀíÓ¢ÎÄµ¥´Ê¡£
-	ÎÄ×ÖÒç³öÊ±µÄÏÔÊ¾·½Ê½ text-overflow£º
-		clip£º²»ÏÔÊ¾Ê¡ÂÔºÅ£¬¶øÊÇ¼òµ¥µÄ²ÃÇÐ£»
-		ellipsis£ºµ±ÎÄ±¾Òç³öÊ±ÏÔÊ¾Ê¡ÂÔºÅ±ê¼Ç¡£
-		×¢Òâ£ºÒ»¶¨ÒªÊ×ÏÈÇ¿ÖÆÒ»ÐÐÄÚÏÔÊ¾£¬È»ºóºÍ overflow ÊôÐÔ´îÅäÊ¹ÓÃ¡£
-	µ¥ÐÐÎÄ×ÖÒç³öÊ¡ÂÔºÅÏÔÊ¾£º
-		{
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-	¶àÐÐÎÄ×ÖÒç³öÊ¡ÂÔºÅÏÔÊ¾£º
-		{
-			overflow: hidden;
-			text-overflow: ellipsis;
-			display: -webkit-box;				/* µ¯ÐÔÉìËõºÐ×ÓÄ£ÐÍµÄÏÔÊ¾Ä£Ê½¡£ */
-			-webkit-line-clamp: 2;				/* ÏÞÖÆ¿éÔªËØÄÚÎÄ±¾ÏÔÊ¾µÄÐÐÊý¡£ */
-			-webkit-line-orient: vertical;			/* ÉèÖÃÉìËõºÐ¶ÔÏóµÄ×ÓÔªËØµÄÅÅÁÐ·½Ê½¡£ */
-		}
-		×¢Òâ£ºÕâ¸öÓÐ½Ï´óµÄ¼æÈÝÐÔÎÊÌâ£¬ÊÊÓÃÓÚ webkit ÄÚºËµÄä¯ÀÀÆ÷£¨ÒÆ¶¯¶Ë»òÕß¹È¸èä¯ÀÀÆ÷£©¡£ºÐ×ÓµÄ¸ß¶ÈÐèÅäºÏÎÄ×ÖµÄÐÐ¸ßÀ´µ÷ÊÔ¡£
-ºÐ×ÓË®Æ½´¹Ö±¾ÓÖÐ
-	´¹Ö±¾ÓÖÐ
-		¿é¼¶ºÐ×Ó£º
-			1¡¢Ê¹ÓÃÍâ±ß¾àÊ¹ºÐ×Ó´¹Ö±¾ÓÖÐ£»
-			2¡¢ÏÈÈÃºÐ×ÓµÄÉÏÏÂ±ßÔµºÍ¸¸ºÐ×ÓµÄË®Æ½ÖÐÐÄÏßÖØµþ£¬È»ºóÔÙÈÃºÐ×ÓÍù»ØÒÆ¶¯×ÔÉí¸ß¶ÈµÄÒ»°ë¡£
-		ÐÐÄÚ¿é£¨±í¸ñ£©ºÐ×Ó£º
-			Ê¹ÓÃ vertical-align: middle; ÊµÏÖºÐ×ÓµÄ´¹Ö±¾ÓÖÐ¡£
-	Ë®Æ½¾ÓÖÐ
-		¿é¼¶ºÐ×Ó£º
-			1¡¢Ê¹ÓÃÍâ±ß¾àÊ¹ºÐ×ÓË®Æ½¾ÓÖÐ£»
-			2¡¢ÏÈÈÃºÐ×ÓµÄ×óÓÒ±ßÔµºÍ¸¸ºÐ×ÓµÄ´¹Ö±ÖÐÐÄÏßÖØµþ£¬È»ºóÔÙÈÃºÐ×ÓÍù»ØÒÆ¶¯×ÔÉí¿í¶ÈµÄÒ»°ë£»
-			3¡¢Ê¹ÓÃ margin: 0 auto; ÊµÏÖºÐ×ÓË®Æ½¾ÓÖÐ£¬Ç°ÌáÊÇºÐ×Ó²»ÄÜÍÑ±ê¡£
-		ÐÐÄÚ¿é£¨±í¸ñ£©ºÐ×Ó£º
-			1¡¢Ê¹ÓÃÍâ±ß¾àÊ¹ºÐ×ÓË®Æ½¾ÓÖÐ£»
-			2¡¢Ê¹ÓÃ text-align: center; Ê¹ºÐ×ÓË®Æ½¾ÓÖÐ¡£
-BFC
-	BFC ÊÇÒ»¸ö¶ÀÁ¢µÄäÖÈ¾ÇøÓò£¬Ö»ÓÐ¿é¼¶ºÐ×Ó²ÅÄÜÉèÖÃ BFC £¬Ëü¹æ¶¨ÁËÄÚ²¿µÄºÐ×ÓÈçºÎ²¼¾Ö£¬¶ø²»»áÓ°Ïìµ½Íâ²¿ÆäËûºÐ×ÓµÄÑùÊ½¡£
-	´¥·¢ BFC£º
-		1¡¢float ÊôÐÔ²»Îª none;
-		2¡¢position Îª absolute »ò fixed;
-		3¡¢display Îª inline-block¡¢flex£»
-		4¡¢overflow ²»Îª visible¡£
-	BFC ÌØÐÔ£º
-		1¡¢ÄÚ²¿ºÐ×Ó´Ó¶¥¶Ë¿ªÊ¼Ò»¸ö½ÓÒ»¸öµÄ´¹Ö±ÅÅÁÐ£»
-		2¡¢ÄÚ²¿ºÐ×Ó´¹Ö±·½ÏòµÄ¾àÀëÓÉ margin ¾ö¶¨£¬Í¬ÊôÒ»¸ö BFC µÄ´¹Ö±·½ÏòµÄ ÏàÁÚºÐ×ÓµÄ margin »á·¢ÉúÖØµþ£»
-		3¡¢BFC ÇøÓò²»»áÓëÍâ²¿µÄ¸¡¶¯ºÐ×Ó²úÉú½»¼¯£¬¶øÊÇ»á½ôÌù¸¡¶¯ºÐ×ÓµÄ±ßÔµ£»
-		4¡¢¼ÆËã BFC ºÐ×Ó¸ß¶ÈÊ±£¬Ò²»á¼ì²âÄÚ²¿¸¡¶¯ºÐ×ÓµÄ¸ß¶È¡£
-	BFC Ö÷ÒªÓÃÍ¾£º
-		1¡¢Çå³ýÔªËØÄÚ²¿µÄ¸¡¶¯£»
-		2¡¢½â¾öÍâ±ß¾àºÏ²¢£»
-		3¡¢ÖÆ×÷ÓÒ²à×ÔÊÊÓ¦µÄºÐ×Ó£¬ÌØÐÔ 3¡£
-
-
-
-=========================================================================================================================================================================================
-
-
-
-* {
-	padding: 0;
-	margin: 0;
-}
-em,
-i {
-	font-style: normal;
-}
-li {
-	list-style: none;
-}
-img {
-	border: 0;							/* ÕÕ¹ËµÍ°æ±¾ä¯ÀÀÆ÷£¬Èç¹ûÍ¼Æ¬ÍâÃæ°üº¬ÁËÁ´½Ó»áÓÐ±ß¿òµÄÎÊÌâ¡£ */
-	vertical-aligh: middle;
-}
-button {
-	cursor: pointer;
-}
-a {
-	color: #666;
-	text-decoration: none;
-}
-a:hover {
-	color: #c81623;
-}
-input {
-	border: 0;							/* È¥µô input ¿ò±¾Éí×Ô´øµÄ±ß¿ò¡£ */
-	outline: none;							/* È¥µô input ¿ò¼¤»îÊ±µÄÀ¶É«±ß¿ò¡£ */
-}
-body { 
-	font: 12px/1.5 'Microsoft YaHei';
-}
-.clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-.clearfix {
-	*zoom: 1;
-}
+	×¢Òâ£ºn ¿ÉÒÔÊÇÊý×Ö¡¢¹«Ê½ºÍ¹Ø¼ü×Ö¡£Èç¹ûÊÇÊý×Ö£¬ÔòÖµ´Ó 1 ¿ªÊ¼£»Èç¹ûÊÇ¹«Ê½£¬ÔòÖµ´Ó 0 ¿ªÊ¼£»Èç¹ûÊÇ¹Ø¼ü×Ö£¬Ôò even Ö¸Å¼Êý£¬odd Ö¸ÆæÊý¡£
+Î±ÔªËØÑ¡ÔñÆ÷£º±ØÐë´îÅä½»¼¯Ñ¡ÔñÆ÷Ò»ÆðÊ¹ÓÃ¡£
+	1¡¢Óï·¨£ºelement::before {}¡£
+	2¡¢before ºÍ after ±ØÐëÓÐ content ÊôÐÔ¡£
+	3¡¢before ÔÚÔªËØÇ°Ãæ´´½¨Î±ÔªËØ£¬after ÔÚÔªËØºóÃæ´´½¨Î±ÔªËØ¡£
+	4¡¢before ºÍ after ´´½¨µÄÊÇÒ»¸öÐÐÄÚÔªËØ¡£
+	5¡¢ÐÂ´´½¨µÄÕâ¸öÔªËØÔÚÎÄµµÊ÷ÖÐÊÇÕÒ²»µ½µÄ£¬ËùÒÔ³ÆÎªÎ±ÔªËØ¡£
+	6¡¢Î±ÔªËØÑ¡ÔñÆ÷ºÍ±êÇ©Ñ¡ÔñÆ÷È¨ÖØÒ»Ñù¡£
 
 
 
@@ -414,7 +410,6 @@ body {
 <section></section>							<!-- ¶¨ÒåÎÄµµÄ³¸öÇøÓò -->
 <aside></aside>								<!-- ²à±ßÀ¸±êÇ© -->
 <footer></footer>							<!-- Î²²¿±êÇ© -->
-	ÕâÖÖÓïÒå»¯±êÇ©Ö÷ÒªÊÇÕë¶ÔËÑË÷ÒýÇæµÄ£¬ÔÚÒ³ÃæÖÐ¿ÉÒÔ¶à´Î±»Ê¹ÓÃ£¬IE9 ÖÐÐèÒª°ÑËüÃÇ×ª»»Îª¿é¼¶ÔªËØ¡£
 <video src="movie.mp4" width="320" height="240" controls="controls"></video>
 <video width="320" height="240" controls="controls">
 	<source src="movie.mp4" type="video/mp4">
@@ -427,32 +422,31 @@ body {
 	<source src="horse.ogg" type="audio/ogg">
 	ÄúµÄä¯ÀÀÆ÷²»Ö§³Ö audio ±êÇ©¡£
 </audio>
-HTML5 ÐÂÔöµÄ input ¿òÀàÐÍ£º
-	type="email | url | date | time | month | week | number | tel | search | color"	
-									/* Ö÷ÒªÓÃÍ¾£ºÏÞÖÆÓÃ»§ÊäÈëµÄÎÄ±¾¸ñÊ½¡£ */
-HTML5 ÐÂÔöµÄ±íµ¥ÊôÐÔ£º
-	required="required"						/* ±íµ¥µÄÄÚÈÝ²»ÄÜÎª¿Õ£¬±ØÌî¡£ */
-	placeholder="ÌáÊ¾ÎÄ±¾"						/* ±íµ¥µÄÌáÊ¾ÐÅÏ¢¡£ */
-	autofocus="autofocus"						/* Ò³Ãæ¼ÓÔØÍê³ÉÊ±£¬±íµ¥×Ô¶¯»ñÈ¡½¹µã¡£ */
-	autocomplete="on | off"						/* ±íµ¥ÄÚÈÝ×Ô¶¯²¹È«¡£on ÎªÄ¬ÈÏÖµ¡£Ìõ¼þ£ºÓÐ name ÊôÐÔ£¬Í¬Ê±Ìá½»³É¹¦¹ý¡£ÎªÐÅÏ¢°²È«Æð¼û£¬ÖµÒ»°ãÉèÎª off¡£ */
-	multiple="multiple"						/* ¿ÉÒÔ¶àÑ¡ÎÄ¼þÌá½»¡£ */
+HTML5 ÐÂÔöµÄ input ¿òÀàÐÍ
+	<input type="email | url | date | time | month | week | number | tel | search | color" placeholder="ÇëÊäÈëÖµ..." name="" value=""></input>
+									<!-- Ö÷ÒªÓÃÍ¾£ºÏÞÖÆÓÃ»§ÊäÈëµÄÎÄ±¾¸ñÊ½¡£ -->
+HTML5 ÐÂÔöµÄ±íµ¥ÏîÊôÐÔ
+	required="required"						<!-- ±íµ¥ÏîµÄÄÚÈÝ²»ÄÜÎª¿Õ¡£ -->
+	placeholder="ÌáÊ¾ÎÄ±¾"						<!-- ±íµ¥ÏîµÄÌáÊ¾ÐÅÏ¢¡£ -->
+	autofocus="autofocus"						<!-- Ò³Ãæ¼ÓÔØÍê³ÉÊ±£¬±íµ¥Ïî×Ô¶¯»ñÈ¡½¹µã¡£ -->
+	autocomplete="on | off"						<!-- ±íµ¥ÏîÄÚÈÝ×Ô¶¯²¹È«¡£on ÎªÄ¬ÈÏÖµ¡£Ìõ¼þ£ºÓÐ name ÊôÐÔ£¬Í¬Ê±Ìá½»³É¹¦¹ý¡£ÎªÐÅÏ¢°²È«Æð¼û£¬ÖµÒ»°ãÉèÎª off¡£ -->
+	multiple="multiple"						<!-- ¿ÉÒÔ¶àÑ¡ÎÄ¼þ½øÐÐÌá½»¡£ -->
 =========================================================================================================================================================================================
-ÂË¾µ£º
-	img { filter: blur(5px); }					/* ÊýÖµÔ½´ó£¬Í¼Æ¬Ô½Ä£ºý¡£ */
-calc º¯Êý£º
-	width | height: calc(100% - 30px);				/* + - * / */
-¹ý¶É£º¾­³£ºÍ :hover ´îÅäÊ¹ÓÃ¡£
-	transition: Òª¹ý¶ÉµÄÊôÐÔ »¨·ÑµÄÊ±¼ä ÔË¶¯ÇúÏß ºÎÊ±¿ªÊ¼;		/* Èç¹ûËùÓÐÊôÐÔ¶¼ÐèÒª¹ý¶È£¬ÔòÓÃ all¡£Ê±¼äµÄµ¥Î»¶¼ÊÇ s¡£Ç°Á½¸öÖµÎª±ØÊäÏî¡£Ë­×ö¹ý¶É¸øË­¼Ó¹ý¶É¡£ */
-		eg: transition: width 1s, height 1s;			/* Ò»¸ö±êÇ©ÔªËØ¿ÉÒÔÌí¼Ó¶à¸ö¹ý¶É£¬Ã¿¸ö¹ý¶ÉÖ®¼äÓÃ¶ººÅ¸ô¿ª¡£ */
-2D ×ª»»
+transition
+	transition: Òª¹ý¶ÉµÄÊôÐÔ »¨·ÑµÄÊ±¼ä ÔË¶¯ÇúÏßÀàÐÍ ºÎÊ±¿ªÊ¼;	/* Ê±¼äµÄµ¥Î»¶¼ÊÇ s¡£Ç°Á½¸öÖµÎª±ØÊäÏî¡£Ë­×ö¹ý¶É¸øË­¼Ó¡£ */
+		eg: transition: width 1s, height 1s;			/* Ò»¸öÔªËØ¿ÉÒÔÌí¼Ó¶à¸ö¹ý¶É£¬Ã¿¸ö¹ý¶ÉÖ®¼äÐèÓÃ¶ººÅ¸ô¿ª¡£ */
+	×¢Òâ£º
+		1¡¢ËùÓÐÊôÐÔ¶¼ÐèÒª¹ý¶É <==> transition: all 1s;¡£
+		2¡¢transition ¾­³£ºÍ :hover ´îÅäÊ¹ÓÃ¡£
+2D transform
 	translate
 		transform: translate(100px | 50%, 100px | 50%);
 		transform: translateX(100px | 50%);
 		transform: translateY(100px | 50%);
 		×¢Òâ£º
-			1¡¢translate µÄ×î´óÓÅµãÊÇ£¬²»»áÓ°Ïìµ½ÆäËûÔªËØµÄÎ»ÖÃ£»
-			2¡¢translate ÖÐµÄ°Ù·Ö±Èµ¥Î»ÊÇÏà¶ÔÓÚ×ÔÉíÔªËØµÄ¿í¸ß£»
-			3¡¢translate ¶ÔÐÐÄÚ±êÇ©Ã»ÓÐÐ§¹û¡£
+			1¡¢translate ÖÐµÄ°Ù·Ö±Èµ¥Î»ÊÇÏà¶ÔÓÚ×ÔÉíÔªËØµÄ¿í¸ß¡£
+			2¡¢translate µÄ×î´óÓÅµãÊÇ²»»áÓ°Ïìµ½ÆäËûÔªËØµÄÎ»ÖÃ¡£
+			3¡¢translate ¶ÔÐÐÄÚÔªËØÃ»ÓÐÐ§¹û¡£
 		ºÐ×ÓË®Æ½´¹Ö±¾ÓÖÐ£º
 			.fu {
 				position: relative;
@@ -467,27 +461,24 @@ calc º¯Êý£º
 			}
 	rotate
 		transform: rotate(45deg);
-		transform-origin: x y;
+		transform-origin: X Y;
 		×¢Òâ£º
-			1¡¢rotate ÀïÃæ¸ú¶ÈÊý£¬µ¥Î»ÊÇ deg£»
-			2¡¢½Ç¶ÈÎªÕýÊ±£¬Ë³Ê±ÕëÐý×ª£¬½Ç¶ÈÎª¸ºÊ±£¬ÄæÊ±ÕëÐý×ª£»
-			3¡¢x ºÍ y ÓÃ¿Õ¸ñ¸ô¿ª£»
-			4¡¢x ºÍ y µÄµ¥Î»¿ÉÒÔÊÇÏñËØ¡¢°Ù·Ö±È»òÕß·½Î»Ãû´Ê£¨top bottom left right center£©£»
-			5¡¢Ä¬ÈÏÐý×ªµÄÖÐÐÄµãÊÇÔªËØµÄÖÐÐÄµã£¨50% 50%£©¡£
+			1¡¢Ä¬ÈÏÐý×ªµÄÖÐÐÄµãÊÇÔªËØµÄÖÐÐÄµã£¨50% 50%£©¡£
+			2¡¢½Ç¶ÈÎªÕýÊ±£¬Ë³Ê±ÕëÐý×ª£»½Ç¶ÈÎª¸ºÊ±£¬ÄæÊ±ÕëÐý×ª¡£
+			3¡¢X ºÍ Y µÄµ¥Î»¿ÉÒÔÊÇÏñËØ»òÕß°Ù·Ö±È£¬X ºÍ Y Ò²¿ÉÒÔÊÇ·½Î»Ãû´Ê£¨top bottom left right center£©¡£
 	scale
 		transform: scale(x, y);
-		transform-origin: x y;
+		transform-origin: X Y;
 		×¢Òâ£º
-			1¡¢x ºÍ y ÓÃ¶ººÅ¸ô¿ª£»
-			2¡¢x ºÍ y ÖµÎª 1 Ê±Ïàµ±ÓÚÃ»ÓÐËõ·Å£»
-			3¡¢x ºÍ y ÖµÏàÍ¬Ê±¿ÉÒÔ¼òÐ´Îª transform: scale(x);£»
-			4¡¢scale µÄ×î´óÓÅµãÊÇ£¬²»»áÓ°Ïìµ½ÆäËûÔªËØµÄÎ»ÖÃ£¬¶øÇÒ¿ÉÒÔÉèÖÃËõ·ÅµÄÖÐÐÄµã¡£
+			1¡¢x ºÍ y ÖµÎª 1 Ê±Ïàµ±ÓÚÃ»ÓÐËõ·Å¡£
+			2¡¢scale µÄ×î´óÓÅµãÊÇ²»»áÓ°Ïìµ½ÆäËûÔªËØµÄÎ»ÖÃ£¬¶øÇÒ¿ÉÒÔÉèÖÃËõ·ÅµÄÖÐÐÄµã¡£
 	×ÛºÏÐ´·¨
 		transform: translate() scale() rotate();
-		×¢Òâ£ºË³Ðò»áÓ°Ïì×ª»»µÄÐ§¹û£¬ÒòÎªÐý×ª»á¸Ä±ä×ø±êÖáµÄ·½Ïò¡£
+		×¢Òâ£ºË³Ðò¸Ä±ä»áÓ°Ïì×ª»»ºóµÄÐ§¹û¡£
+=========================================================================================================================================================================================
 ¶¯»­£º
 	Óï·¨£º
-		1¡¢¶¨Òå¶¯»­£»
+		1¡¢¶¨Òå¶¯»­¡£
 			@keyframes ¶¯»­Ãû³Æ {
 				0% | from {
 					width: 100px;
@@ -497,22 +488,22 @@ calc º¯Êý£º
 				}
 			}
 		2¡¢µ÷ÓÃ¶¯»­¡£
-			animation-name: ¶¯»­Ãû³Æ£»
-			animation-duration: 1s£»			/* ³ÖÐøÊ±¼ä */
+			animation-name: ¶¯»­Ãû³Æ;
+			animation-duration: 1s;				/* ³ÖÐøÊ±¼ä */
 	¶¯»­³£ÓÃÊôÐÔ£º
-		@keyframes£º¶¨Òå¶¯»­£¬±ØÐëµÄ£»
-		animation£ºËùÓÐ¶¯»­ÊôÐÔµÄ¼òÐ´£¬³ýÁË animation-pay-state ÊôÐÔ£»
-		animation-name£ºµ÷ÓÃ¶¯»­£¬±ØÐëµÄ£»
-		animation-duration£º¶¯»­Íê³ÉÒ»¸öÖÜÆÚËù»¨·ÑµÄÊ±¼ä£¬Ä¬ÈÏÖµÊÇ 0s£¬±ØÐëµÄ£»
-		animation-timing-function£º¶¯»­µÄËÙ¶ÈÇúÏß£¬Ä¬ÈÏÖµÊÇ ease£»
-		animation-delay£º¶¯»­¿ªÊ¼µÄÑÓ³ÙÊ±¼ä£¬Ä¬ÈÏÖµÊÇ 0s£»
-		animation-interation-count£º¶¯»­Á¬Ðø²¥·ÅµÄ´ÎÊý£¬Ä¬ÈÏÖµÊÇ 1£¬»¹ÓÐ infinite£»
-		animation-direction£ºÔÚÏÂÒ»ÖÜÆÚÄÚ¶¯»­ÊÇ·ñÄæÏò²¥·Å£¬Ä¬ÈÏÖµÊÇ normal£¬»¹ÓÐ alternate£»
-		animation-fill-mode£º¶¯»­½áÊøºóµÄ×´Ì¬£¬Ä¬ÈÏÖµÊÇ backwards£¬»¹ÓÐ forwards¡£
-		animation-pay-state£º¶¯»­ÊÇ·ñÕýÔÚÔËÐÐ»òÔÝÍ££¬Ä¬ÈÏÖµÊÇ running£¬»¹ÓÐ paused£¬¾­³£ÅäºÏÊó±ê¸²¸ÇÊÂ¼þÒ»ÆðÊ¹ÓÃ£»
+		@keyframes£º¶¨Òå¶¯»­¡£±ØÐëµÄ¡£
+		animation-name£ºµ÷ÓÃ¶¯»­¡£±ØÐëµÄ¡£
+		animation-duration£º¶¯»­Íê³ÉÒ»¸öÖÜÆÚËù»¨·ÑµÄÊ±¼ä¡£Ä¬ÈÏÖµÊÇ 0s¡£±ØÐëµÄ¡£
+		animation-timing-function£º¶¯»­ËÙ¶ÈÇúÏßµÄÀàÐÍ¡£Ä¬ÈÏÖµÊÇ ease¡£
+		animation-delay£º¶¯»­¿ªÊ¼µÄÑÓ³ÙÊ±¼ä¡£Ä¬ÈÏÖµÊÇ 0s¡£
+		animation-interation-count£º¶¯»­Á¬Ðø²¥·ÅµÄ´ÎÊý¡£Ä¬ÈÏÖµÊÇ 1¡£»¹ÓÐ infinite¡£
+		animation-direction£º¶¯»­ÔÚÏÂÒ»ÖÜÆÚÄÚÊÇ·ñÄæÏò²¥·Å¡£Ä¬ÈÏÖµÊÇ normal¡£»¹ÓÐ alternate¡£
+		animation-fill-mode£º¶¯»­½áÊøºóµÄ×´Ì¬¡£Ä¬ÈÏÖµÊÇ backwards¡£»¹ÓÐ forwards¡£
+		animation-pay-state£ºÉèÖÃ¶¯»­µÄÔËÐÐ»òÔÝÍ£×´Ì¬¡£Ä¬ÈÏÖµÊÇ running¡£»¹ÓÐ paused¡£¾­³£ÅäºÏÊó±ê¸²¸ÇÊÂ¼þÒ»ÆðÊ¹ÓÃ¡£
+		animation£º³ýÁË animation-pay-state ÊôÐÔ£¬ËùÓÐ¶¯»­ÊôÐÔµÄ¼òÐ´¡£
 	¶¯»­¼òÐ´£º
-		animation: name duration timing-function delay interation-count direction fill-mode;		/* ¸÷ÊôÐÔÖ®¼äÓÐË³ÐòÒªÇó¡£ */
-		×¢Òâ£ºÒ»¸ö±êÇ©ÔªËØ¿ÉÒÔÌí¼Ó¶à¸ö¶¯»­£¬Ã¿¸ö¶¯»­Ö®¼äÓÃ¶ººÅ¸ô¿ª¡£
+		animation: name duration timing-function delay interation-count direction fill-mode;		/* ¸÷ÊôÐÔÖµÖ®¼äÓÐË³ÐòÒªÇó¡£ */
+		×¢Òâ£ºÒ»¸öÔªËØ¿ÉÒÔÌí¼Ó¶à¸ö¶¯»­£¬Ã¿¸ö¶¯»­Ö®¼äÓÃ¶ººÅ¸ô¿ª¡£
 
 
 
@@ -521,162 +512,163 @@ calc º¯Êý£º
 
 
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0">
-	width			¿í¶ÈÉèÖÃµÄÊÇ viewport ¿í¶È
-	user-scalable		ÓÃ»§ÊÇ·ñ¿ÉÒÔËõ·Å£¬yes »ò no£¨1 »ò 0£©
-	initial-scale		³õÊ¼Ëõ·Å±È£¬´óÓÚ 0 µÄÊý×Ö
-	maximum-scale		×î´óËõ·Å±È£¬´óÓÚ 0 µÄÊý×Ö
-	minimum-scale		×îÐ¡Ëõ·Å±È£¬´óÓÚ 0 µÄÊý×Ö
+	width			¿í¶ÈÉèÖÃµÄÊÇ viewport ¿í¶È¡£
+	user-scalable		ÓÃ»§ÊÇ·ñ¿ÉÒÔËõ·Å¡£yes »ò no£¨1 »ò 0£©¡£
+	initial-scale		³õÊ¼Ëõ·Å±È¡£´óÓÚ 0 µÄÊý×Ö¡£
+	maximum-scale		×î´óËõ·Å±È¡£´óÓÚ 0 µÄÊý×Ö¡£
+	minimum-scale		×îÐ¡Ëõ·Å±È¡£´óÓÚ 0 µÄÊý×Ö¡£
 Á÷Ê½²¼¾Ö
-	±¾ÖÊÊÇ¿í¶È°Ù·Ö±È¼Ó¸¡¶¯¡£
+	±¾ÖÊÊÇ¿í¶È°Ù·Ö±È¼Ó¸¡¶¯²¼¾Ö¡£
 	max-width: 980px;
 	min-width: 320px;
+=========================================================================================================================================================================================
 flex ²¼¾Ö
-	max-width: 980px;
-	min-width: 320px;
-	ÈÎºÎÒ»¸öÈÝÆ÷¶¼¿ÉÒÔÖ¸¶¨Îª flex ²¼¾Ö¡£
-	µ±°Ñ¸¸ºÐ×ÓÉèÎª flex ²¼¾ÖÒÔºó£¬×ÓÔªËØµÄ float¡¢clear ºÍ vertical-align ÊôÐÔ½«Ê§Ð§¡£			£¿£¿£¿
 	ÉìËõ²¼¾Ö = µ¯ÐÔ²¼¾Ö = ÉìËõºÐ²¼¾Ö = µ¯ÐÔºÐ²¼¾Ö = flex ²¼¾Ö
-	²¼¾ÖÔ­Àí£ºÍ¨¹ý¸ø¸¸ºÐ×ÓÌí¼Ó flex ÊôÐÔ£¬À´¿ØÖÆ×ÓºÐ×ÓµÄÎ»ÖÃºÍÅÅÁÐ·½Ê½¡£
-	³£¼û¸¸ÏîÊôÐÔ£º
-		display: ÉèÖÃµ¯ÐÔºÐ×ÓÄ£Ê½£¬´ËÊôÐÔ»áÈÃ¸ùºÐ×Ó±äÎª¿é¼¶ÔªËØ£¬ÈÃ×ÓºÐ×Ó±äÎªÐÐÄÚ¿éÔªËØ£»
+	×¢Òâ£ºÒÔÏÂ±Ê¼ÇÊÇÒÔ flex-direction: row; Îª»ù×¼À´¼ÇÂ¼µÄ¡£
+	³£¼û¸¸ºÐ×ÓÊôÐÔ£º
+		display: ÉèÖÃµ¯ÐÔºÐ×ÓÄ£Ê½¡£
 			display: flex;
-		flex-direction: ÉèÖÃÖ÷Öá·½Ïò£»
+		flex-direction: ÉèÖÃµ¯ÐÔºÐ×ÓµÄÖ÷Öá·½Ïò¡£
 			flex-direction: row | row-reverse | column | column-reverse;
-			×¢Òâ£ºÈç¹û²àÖáÉÏµÄ×ÓºÐ×ÓÃ»ÓÐÖ¸¶¨¿í»òÕß¸ßÊôÐÔ£¬ÔòºÐ×ÓÄÚÈÝµÄÏàÓ¦ÊôÐÔ»á±»À­Éì¡£
-		justify-content: ÉèÖÃÖ÷ÖáÉÏ×ÓÔªËØµÄÅÅÁÐ·½Ê½£»£¨ÒÔ°üÀ¨Íâ±ß¾àµÄÕû¸öºÐ×ÓÎªÕûÌåÀ´ÅÅÁÐ£©
-			flex-start: ÔÚÖ÷Öá´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£»
-			flex-end: ÔÚÖ÷Öá´ÓÎ²²¿¿ªÊ¼ÅÅÁÐ£»
-			center: ÔÚÖ÷ÖáÖÐ¼äÅÅÁÐ£»
-			space-around: ÔÚÖ÷ÖáÆ½·ÖÊ£Óà¿Õ¼ä£»
-			space-between: ÔÚÖ÷Öá£¬ÏÈÁ½±ßÌù±ß£¬ÔÙÆ½·ÖÊ£Óà¿Õ¼ä¡£
-		flex-wrap: ÉèÖÃ×ÓÔªËØÊÇ·ñ»»ÐÐ£¬²»»»ÐÐµÄÊ±ºò£¬×ÓºÐ×ÓµÄÄÚÈÝ²¿·Ö»á±»Ñ¹Ëõ£»
-			nowrap: Ä¬ÈÏÖµ£¬²»»»ÐÐ£»
-			wrap: »»ÐÐ¡£
-		flex-flow: ¸´ºÏÊôÐÔ£¬Ïàµ±ÓÚÍ¬Ê±ÉèÖÃÁË flex-direction ºÍ flex-wrap¡£
-		align-items: ÉèÖÃ²àÖáÉÏ×ÓÔªËØµÄÅÅÁÐ·½Ê½£¨µ¥ÐÐ£©£»£¨ÒÔ°üÀ¨Íâ±ß¾àµÄÕû¸öºÐ×ÓÎªÕûÌåÀ´ÅÅÁÐ£©
-			flex-start: ÔÚ²àÖá´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£»
-			flex-end: ÔÚ²àÖá´ÓÎ²²¿¿ªÊ¼ÅÅÁÐ£»
-			center: ÔÚ²àÖáÖÐ¼äÅÅÁÐ£»
-			stretch: ÔÚ²àÖá£¬ÏÈ´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£¬ÔÙÆ½·ÖÊ£Óà¿Õ¼ä¡£
-		align-content: ÉèÖÃ²àÖáÉÏ×ÓÔªËØµÄÅÅÁÐ·½Ê½£¨¶àÐÐ£©£»£¨ÒÔ°üÀ¨Íâ±ß¾àµÄÕû¸öºÐ×ÓÎªÕûÌåÀ´ÅÅÁÐ£©
-			flex-start: ÔÚ²àÖá´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£» 
-			flex-end: ÔÚ²àÖá´ÓÎ²²¿¿ªÊ¼ÅÅÁÐ£»
-			center: ÔÚ²àÖáÖÐ¼äÅÅÁÐ£»
-			space-around: ÔÚ²àÖáÆ½·ÖÊ£Óà¿Õ¼ä£»
-			space-between: ÔÚ²àÖá£¬ÏÈÁ½±ßÌù±ß£¬ÔÙÆ½·ÖÊ£Óà¿Õ¼ä£»
-			stretch: ÔÚ²àÖá£¬ÏÈ´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£¬ÔÙÀ­ÉìÒÔÊÊÓ¦ÈÝÆ÷¡£
-	³£¼û×ÓÏîÊôÐÔ£º
-		flex: ÉèÖÃ×ÓÔªËØÕ¼Ê£Óà¿Õ¼äµÄ·ÝÊý£¬Ä¬ÈÏÖµÎª 0£»
-			flex: 1£»					// ÕâÖÖÐ´·¨×ÓÔªËØ²»ÄÜ»»ÐÐ¡£
-			flex: 20%£»					// ÕâÖÖÐ´·¨×ÓÔªËØ¿ÉÒÔ»»ÐÐ¡£
-			×¢Òâ£º¸ÃÊôÐÔ»áÊ¹µÃ×ÓÔªËØÖ÷ÖáÉÏµÄ¿í»ò¸ßÊôÐÔÊ§Ð§¡£
-		align-self: ÉèÖÃ×ÓÔªËØ×ÔÉíÔÚ²àÖáµÄÅÅÁÐ·½Ê½£»£¨ÒÔ°üÀ¨Íâ±ß¾àµÄÕû¸öºÐ×ÓÎªÕûÌåÀ´ÅÅÁÐ£©
-			flex-start: ÔÚ²àÖá´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£»
-			flex-end: ÔÚ²àÖá´ÓÎ²²¿¿ªÊ¼ÅÅÁÐ£»
-			center: ÔÚ²àÖáÖÐ¼äÅÅÁÐ£»
-			stretch: ÔÚ²àÖá£¬ÏÈ´ÓÍ·²¿¿ªÊ¼ÅÅÁÐ£¬ÔÙÆ½·ÖÊ£Óà¿Õ¼ä¡£
-		order: ÉèÖÃ×ÓÔªËØµÄÅÅÁÐË³Ðò£¬ÖµÔ½Ð¡Ô½¿¿Ç°£¬Ä¬ÈÏÖµÎª 0¡£
-			order: 0;
-	×¢Òâ£ºÊ£Óà¿Õ¼ä = ¸¸ºÐ×ÓµÄÄÚÈÝ¿í¶È - ×ÓºÐ×ÓµÄÍâ±ß¾à - ×ÓºÐ×ÓµÄ±ß¿ò - ×ÓºÐ×ÓµÄÄÚ±ß¾à¡£flex: ×ÓºÐ×ÓµÄÄÚÈÝÆ½·ÖÊ£Óà¿Õ¼ä¡£¶ÔÆë·½Ê½£º×ÓºÐ×ÓµÄÍâ²àÆ½·ÖÊ£Óà¿Õ¼ä¡£
+		flex-wrap: ÉèÖÃÖ÷Öá·½ÏòÉÏ×ÓºÐ×ÓÊÇ·ñ»»ÐÐ¡£
+			nowrap			Ä¬ÈÏÖµ¡£²»»»ÐÐ¡£
+			wrap			±ØÒªµÄÊ±ºò»»ÐÐ¡£
+		flex-flow: flex-direction ºÍ flex-wrap ÊôÐÔµÄ¸´ºÏÊôÐÔ¡£Ä¬ÈÏÖµ£ºrow nowrap¡£
+		justify-content: ÉèÖÃÖ÷Öá·½ÏòÉÏ×ÓºÐ×ÓµÄÅÅÁÐ·½Ê½¡£
+			flex-start		Ä¬ÈÏÖµ¡£´ÓÖ÷Öá·½ÏòÆðÊ¼Î»ÖÃ¿ªÊ¼ÅÅÁÐ¡£
+			flex-end		´ÓÖ÷Öá·½ÏòÄ©Î²Î»ÖÃ¿ªÊ¼ÅÅÁÐ¡£
+			center			ÔÚÖ÷ÖáÉÏ¾ÓÖÐÅÅÁÐ¡£
+			space-between		ÔÚÖ÷Öá·½ÏòÉÏ£¬¾ùÔÈÅÅÁÐÃ¿¸ö×ÓºÐ×Ó£¬Ê×¸ö×ÓºÐ×Ó·ÅÖÃÓÚÆðµã£¬Ä©Î²×ÓºÐ×Ó·ÅÖÃÓÚÖÕµã¡£
+			space-around		ÔÚÖ÷Öá·½ÏòÉÏ£¬¾ùÔÈÅÅÁÐÃ¿¸ö×ÓºÐ×Ó£¬Ã¿¸ö×ÓºÐ×ÓµÄ×óÓÒ»òÉÏÏÂ·ÖÅäÏàÍ¬µÄ¿Õ¼ä¡£
+			space-evenly		ÔÚÖ÷Öá·½ÏòÉÏ£¬¾ùÔÈÅÅÁÐÃ¿¸ö×ÓºÐ×Ó£¬¡°Ã¿¸ö×ÓºÐ×ÓÖ®¼ä && Ê×Î²×ÓºÐ×ÓÓë¸¸ºÐ×ÓÖ®¼ä¡±µÄ¼ä¸ô¶¼ÏàµÈ¡£
+		align-content: ÉèÖÃ²àÖá·½ÏòÉÏÐÐÓëÐÐÖ®¼äµÄÅÅÁÐ·½Ê½¡£
+			stretch			Ä¬ÈÏÖµ¡£ÔÚ²àÖá·½ÏòÉÏµÄÊ£Óà¿Õ¼ä»á±»ËùÓÐÐÐÆ½·Ö¡£
+			flex-start		¸÷ÐÐ´Ó²àÖá·½ÏòÆðÊ¼Î»ÖÃ¿ªÊ¼ÅÅÁÐ¡£
+			flex-end		¸÷ÐÐ´Ó²àÖá·½ÏòÄ©Î²Î»ÖÃ¿ªÊ¼ÅÅÁÐ¡£
+			center			¸÷ÐÐÔÚ²àÖáÉÏ¾ÓÖÐÅÅÁÐ¡£
+			space-between		ÔÚ²àÖá·½ÏòÉÏ£¬¾ùÔÈÅÅÁÐ¸÷ÐÐ£¬Ê×ÐÐ·ÅÖÃÓÚÆðµã£¬Î²ÐÐ·ÅÖÃÓÚÖÕµã¡£
+			space-around		ÔÚ²àÖá·½ÏòÉÏ£¬¾ùÔÈÅÅÁÐ¸÷ÐÐ£¬¸÷ÐÐµÄ×óÓÒ»òÉÏÏÂ·ÖÅäÏàÍ¬µÄ¿Õ¼ä¡£
+		align-items: ÉèÖÃ²àÖá·½ÏòÉÏ×ÓºÐ×ÓÔÚ¶ÔÓ¦ÐÐÖÐµÄÅÅÁÐ·½Ê½¡£
+			stretch			Ä¬ÈÏÖµ¡£Èç¹û×ÓºÐ×ÓÃ»ÓÐÉèÖÃ¿í»ò¸ßÊôÐÔ£¬Ôò×ÓºÐ×ÓµÄ¿í»ò¸ß¶È»á±»À­ÉìÒÔÊÊÓ¦ÐÐ¸ß£»
+						Èç¹û×ÓºÐ×ÓÓÐÉèÖÃ¿í»ò¸ßÊôÐÔ£¬Ôò×ÓºÐ×ÓÔÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏ°´ flex-start ·½Ê½½øÐÐÅÅÁÐ¡£
+			flex-start		×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄ¿ªÍ·¡£
+			flex-end		×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄ½áÎ²¡£
+			center			×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄÖÐÐÄ¡£
+			×¢Òâ£º×ÓºÐ×ÓµÄ align-self ÊôÐÔ¿ÉÖØÐ´¸¸ºÐ×ÓµÄ align-items ÊôÐÔ¡£
+	³£¼û×ÓºÐ×ÓÊôÐÔ£º
+		flex-grow£ºÔÚÃ¿ÐÐÖÐ£¬°ÑÖ÷Öá·½ÏòÉÏ¡°¸¸ºÐ×ÓµÄÆÕÍ¨¿í»ò¸ß¶È - ¸÷¸ö×ÓºÐ×ÓµÄ C3 ¿í»ò¸ß¶ÈÖ®ºÍ¡±µÄ²îÖµ£¬°´¸÷¸ö×ÓºÐ×Ó×ÔÉí flex-grow ÖµµÄ±ÈÀý·ÖÅä¸ø¸÷¸ö×ÓºÐ×Ó¡£Ä¬ÈÏÖµÎª 0¡£
+			flex-grow: 0;					/* ×ÓºÐ×Ó²»»á·¢ÉúÅòÕÍ¡£ */
+			flex-grow: 1;
+			flex-grow: 20%;	
+		flex-shrink£ºÔÚÃ¿ÐÐÖÐ£¬°ÑÖ÷Öá·½ÏòÉÏ¡°¸÷¸ö×ÓºÐ×ÓµÄ C3 ¿í»ò¸ß¶ÈÖ®ºÍ - ¸¸ºÐ×ÓµÄÆÕÍ¨¿í»ò¸ß¶È¡±µÄ²îÖµ£¬°´¸÷¸ö×ÓºÐ×Ó×ÔÉí flex-shrink ÖµµÄ±ÈÀý·ÖÅä¸ø¸÷¸ö×ÓºÐ×Ó¡£Ä¬ÈÏÖµÎª 1¡£
+			flex-shrink: 0;					/* ×ÓºÐ×Ó²»»á·¢ÉúÊÕËõ¡£ */
+		flex-basis£ºÉèÖÃÖ÷Öá·½ÏòÉÏ×ÓºÐ×ÓÉìËõÊ±µÄ»ù×¼Öµ¡£
+			auto			Ä¬ÈÏÖµ¡£ÊýÖµµÈÓÚ×ÓºÐ×Ó×ÔÉíµÄ¿í»ò¸ßÊôÐÔÖµ¡£Èç¹û×ÓºÐ×ÓÃ»ÓÐÖ¸¶¨¸ÃÊôÐÔ£¬ÔòÆäÖµ½«¸ù¾Ý×ÓºÐ×ÓµÄÄÚÈÝÀ´¾ö¶¨¡£
+						flex-basis = width/height ? width/height : ÄÚÈÝ¡£
+			number			ÕýÕûÊý¡£
+		flex: flex-grow¡¢flex-shrink ºÍ flex-basis ÊôÐÔµÄ¼òÐ´ÊôÐÔ¡£Ä¬ÈÏÖµÎª 0 1 auto¡£
+		align-self: ÉèÖÃ²àÖá·½ÏòÉÏ×ÓºÐ×ÓÔÚ¶ÔÓ¦ÐÐÖÐµÄÅÅÁÐ·½Ê½¡£
+			auto			Ä¬ÈÏÖµ¡£×ÓºÐ×Ó¼Ì³Ð¸¸ºÐ×ÓµÄ align-items ÊôÐÔ¡£
+			stretch			Èç¹û×ÓºÐ×ÓÃ»ÓÐÉèÖÃ¿í»ò¸ßÊôÐÔ£¬Ôò×ÓºÐ×ÓµÄ¿í»ò¸ß¶È»á±»À­ÉìÒÔÊÊÓ¦ÐÐ¸ß£»
+						Èç¹û×ÓºÐ×ÓÓÐÉèÖÃ¿í»ò¸ßÊôÐÔ£¬Ôò×ÓºÐ×ÓÔÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏ°´ flex-start ·½Ê½½øÐÐÅÅÁÐ¡£
+			flex-start		×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄ¿ªÍ·¡£
+			flex-end		×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄ½áÎ²¡£
+			center			×ÓºÐ×ÓÎ»ÓÚ¶ÔÓ¦ÐÐµÄ²àÖáÉÏµÄÖÐÐÄ¡£
+		order: ÉèÖÃ×ÓºÐ×ÓÔÚÖ÷Öá·½ÏòÉÏµÄÅÅÁÐË³Ðò£¬ÖµÔ½Ð¡Ô½¿¿Ç°¡£Ä¬ÈÏÖµÎª 0¡£
+	×¢Òâ£ºÊ£Óà¿Õ¼ä = ¸¸ºÐ×ÓµÄÄÚÈÝ¿í¸ß - ×ÓºÐ×ÓµÄÍâ±ß¾à - ×ÓºÐ×ÓµÄ±ß¿ò - ×ÓºÐ×ÓµÄÄÚ±ß¾à - ×ÓºÐ×ÓµÄÄÚÈÝ¿í¸ß¡£
+=========================================================================================================================================================================================
 Ã½Ìå²éÑ¯ + less + rem
-	rem
-		em£ºÈç¹û¸¸ÔªËØµÄ×ÖÌå´óÐ¡Îª xpx£¬Ôò×ÓÔªËØÖÐµÄ yem = yxpx¡£
-		rem£ºÈç¹û¸ùÔªËØ£¨html£©µÄ×ÖÌå´óÐ¡Îª xpx£¬ÔòÔªËØÖÐµÄ yem = yxpx¡£
 	Ã½Ìå²éÑ¯
-		CSS3 ÐÂÓï·¨¡£
 		Óï·¨£º
 			@media mediatyoe and | not | only (media feature) {
-				css_code;
+				/* css_code */
 			}
-			mediatyoe£ºÃ½ÌåÀàÐÍ£»
-				all£ºËùÓÐÉè±¸£»
-				print£º´òÓ¡»úºÍ´òÓ¡Ô¤ÀÀ£»
+			mediatyoe£ºÃ½ÌåÀàÐÍ¡£
+				all£ºËùÓÐÉè±¸¡£
+				print£º´òÓ¡»ú¡£
 				screen£ºµçÄÔ¡¢Æ½°å¡¢ÊÖ»ú¡£
-			and | not | only£º¹Ø¼ü×Ö£»
-			media feature£ºÃ½ÌåÌØÐÔ£¬ÐèÒªÐ¡À¨ºÅ°üº¬¡£
-				width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ¿É¼ûÇøÓòµÄ¿í¶È£»
-				min-width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ×îÐ¡¿É¼ûÇøÓò¿í¶È£»
-				max-width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ×î´ó¿É¼ûÇøÓò¿í¶È¡£
+			and | not | only£º¹Ø¼ü×Ö¡£
+			media feature£ºÃ½ÌåÌØÐÔ£¬ÐèÒªÐ¡À¨ºÅ°ü¹ü¡£
+				width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ¿É¼ûÇøÓòµÄ¿í¶È¡£
+				min-width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ×îÐ¡¿É¼ûÇøÓòµÄ¿í¶È¡£
+				max-width£º¶¨ÒåÊä³öÉè±¸ÖÐÒ³Ãæ×î´ó¿É¼ûÇøÓòµÄ¿í¶È¡£
 		ÒýÈë×ÊÔ´£º
 			<link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
 	less
 		±äÁ¿£º
 			Óï·¨£º
-				@±äÁ¿Ãû:Öµ;
-			±äÁ¿ÃüÃû¹æ·¶£º
-				1¡¢±ØÐëÒÔ@ÎªÇ°×º£»
-				2¡¢²»ÄÜ°üº¬ÌØÊâ×Ö·û£»
-				3¡¢²»ÄÜÒÔÊý×Ö¿ªÍ·£»
+				@±äÁ¿Ãû: Öµ;
+			ÃüÃû¹æ·¶£º
+				1¡¢±ØÐëÒÔ@ÎªÇ°×º¡£
+				2¡¢²»ÄÜ°üº¬ÌØÊâ×Ö·û¡£
+				3¡¢²»ÄÜÒÔÊý×Ö¿ªÍ·¡£
 				4¡¢´óÐ¡Ð´Ãô¸Ð¡£
-
 		±àÒë£º
-			less ÎÄ¼þÐèÒª±»±àÒë³É css ÎÄ¼þÖ®ºó²ÅÄÜ±» html Ò³ÃæÊ¹ÓÃ¡£
+			less ÎÄ¼þÐèÒª±»±àÒë³É css ÎÄ¼þÖ®ºó²ÅÄÜÔÚ html Ò³ÃæÊ¹ÓÃ¡£
 		Ç¶Ì×£º
-			1¡¢×ÓÔªËØµÄÑùÊ½Ö±½ÓÐ´µ½¸¸ÔªËØÀïÃæ£»
-			2¡¢ÈçÓö¼û½»¼¯¡¢Î±Àà¡¢Î±ÔªËØÑ¡ÔñÆ÷£¬ÔòÔÚÆäÇ°Ãæ¼ÓÉÏ & ·ûºÅ¡£
+			1¡¢×ÓÔªËØµÄÑùÊ½¿ÉÒÔÖ±½ÓÐ´µ½¸¸ÔªËØÀïÃæ¡£
+			2¡¢ÈçÓö¼û½»¼¯¡¢Î±ÀàºÍÎ±ÔªËØÑ¡ÔñÆ÷£¬ÔòÐèÔÚÆäÇ°Ãæ¼ÓÉÏ & ·ûºÅ¡£
 		ÔËËã£º
-			1¡¢+¡¢-¡¢*¡¢/£»
-			2¡¢ÔËËã·û×óÓÒ¸÷ÓÐÒ»¸ö¿Õ¸ñ£»
-			3¡¢Á½¸ö²»Í¬µ¥Î»µÄÖµ×öÔËËã£¬½á¹ûµÄµ¥Î»ÓëµÚÒ»¸öÖµµÄµ¥Î»ÏàÍ¬£»
-			4¡¢Èç¹û×öÔËËãµÄÁ½¸öÖµÖ»ÓÐÒ»¸öÖµÓÐµ¥Î»£¬Ôò½á¹ûµÄµ¥Î»¾ÍÊÇÕâ¸öµ¥Î»¡£
-	rem ÊÊÅä·½°¸
-		·½°¸Ò»£ºÃ½Ìå²éÑ¯ + less + rem
-			1¡¢Éè¼Æ¸å³£¼û³ß´ç¿í¶È£»
-				Ò»°ãÇé¿öÏÂ£¬ÎÒÃÇÒÔÒ»Ì×»òÕßÁ½Ì×Ð§¹ûÍ¼ÊÊÓ¦´ó²¿·ÖµÄÆÁÄ»£¬·ÅÆú¼«¶ËÆÁ»òÕß¶ÔÆäÓÅÑÅ½µ¼¶£¬ÎþÉüÒ»Ð©Ð§¹û¡£ÏÖÔÚ»ù±¾ÒÔ 750px Îª×¼¡£
-			2¡¢¶¯Ì¬ÉèÖÃ html ±êÇ© font-size ´óÐ¡£»
-				1¡¢¼ÙÉè°ÑÆÁÄ»»®·ÖÎª 15 µÈ·Ý£¨Ò²¿ÉÒÔÊÇ 10 µÈ·Ý»òÕßÊÇ 20 µÈ·Ý£©£»
-				2¡¢ÔÚ 320px Éè±¸ÉÏ£¬×ÖÌå´óÐ¡Îª 320 / 15 = 21.33px£»
-				3¡¢ÔÚ 750px Éè±¸ÉÏ£¬×ÖÌå´óÐ¡Îª 750 / 15 = 50px£»
-				4¡¢Ò³ÃæÔªËØµÄ´óÐ¡ÊôÐÔÓÃ rem µ¥Î»¡£
-			3¡¢ÔªËØ´óÐ¡µÄÈ¡Öµ·½·¨¡£
-				1¡¢html µÄ×ÖÌå´óÐ¡ = ÆÁÄ»¿í¶È / »®·Ö·ÝÊý£»
-				2¡¢Ò³ÃæÔªËØµÄ rem Öµ = Ò³ÃæÔªËØÖµ£¨px£© / £¨ÆÁÄ»¿í¶È / »®·Ö·ÝÊý£©£»
-				3¡¢Ò³ÃæÔªËØµÄ rem Öµ = Ò³ÃæÔªËØÖµ£¨px£© / html µÄ×ÖÌå´óÐ¡¡£
-		·½°¸¶þ£ºflexible.js + rem
-			Ô­Àí£º
-				°Ñµ±Ç°Éè±¸µÄ¿í¶È»®·ÖÎª 10 µÈ·Ý¡£
-			ÒýÈë×ÊÔ´£º
-				<script src="flexible.js"></script>
-		×¢Òâ£»ÊÐ³¡¸üÇãÏòÓÚ·½°¸¶þ¡£
-ÏìÓ¦Ê½¿ª·¢
-	Ô­Àí£ºÔÚ²»Í¬ÆÁÄ»ÏÂ£¬Í¨¹ýÃ½Ìå²éÑ¯À´¸Ä±ä²¼¾ÖÈÝÆ÷µÄ´óÐ¡£¬½ø¶ø¸Ä±ä²¼¾ÖÈÝÆ÷ÖÐ×ÓÔªËØµÄ´óÐ¡ºÍÅÅÁÐ·½Ê½¡£
+			1¡¢+¡¢-¡¢*¡¢/¡£
+			2¡¢ÔËËã·û×óÓÒ¸÷ÓÐÒ»¸ö¿Õ¸ñ¡£
+			3¡¢Á½¸ö²»Í¬µ¥Î»µÄÖµ×öÔËËã£¬½á¹ûµÄµ¥Î»ÓëµÚÒ»¸öÖµµÄµ¥Î»ÏàÍ¬¡£
+			4¡¢Èç¹û×öÔËËãµÄÁ½¸öÖµÖ»ÓÐÒ»¸öÖµÓÐµ¥Î»£¬Ôò½á¹ûµÄµ¥Î»¾ÍÊÇÕâ¸öÖµµÄµ¥Î»¡£
+	rem
+		em£ºÈç¹û¸¸ÔªËØµÄ×ÖÌå´óÐ¡Îª xpx£¬Ôò×ÓÔªËØÖÐµÄ yem = yxpx¡£
+		rem£ºÈç¹û¸ùÔªËØ£¨html£©µÄ×ÖÌå´óÐ¡Îª xpx£¬Ôò¸÷ÔªËØÖÐµÄ yem = yxpx¡£
+	¾ßÌåÓÃ·¨
+		Éè¼Æ¸å³£¼û³ß´ç¿í¶È¡£
+			Ò»°ãÇé¿öÏÂ£¬ÎÒÃÇÒÔÒ»Ì×»òÕßÁ½Ì×Ð§¹ûÍ¼ÊÊÓ¦´ó²¿·ÖµÄÆÁÄ»¡£ÏÖÔÚ»ù±¾ÒÔ 750px Îª×¼¡£
+		¶¯Ì¬ÉèÖÃ html ±êÇ© font-size Öµ´óÐ¡¡£
+			1¡¢¼ÙÉè°ÑÆÁÄ»»®·ÖÎª 15 µÈ·Ý£¨Ò²¿ÉÒÔÊÇ 10 µÈ·Ý»òÕßÊÇ 20 µÈ·Ý£©¡£
+			2¡¢ÔÚ 320px Éè±¸ÉÏ£¬html ±êÇ©µÄ×ÖÌå´óÐ¡Îª 320 / 15 = 21.33px¡£
+			3¡¢ÔÚ 750px Éè±¸ÉÏ£¬html ±êÇ©µÄ×ÖÌå´óÐ¡Îª 750 / 15 = 50px¡£
+			4¡¢Ò³ÃæÔªËØµÄ´óÐ¡ÊôÐÔÓÃ rem µ¥Î»¡£
+flexible.js + less + rem¡£
+	Ô­Àí£º
+		°Ñµ±Ç°Éè±¸µÄ¿í¶È»®·ÖÎª 10 µÈ·Ý¡£
+	ÒýÈë×ÊÔ´£º
+		<script src="flexible.js"></script>
+	×¢Òâ£»Ïà¶ÔÓÚ Ã½Ìå²éÑ¯ + less + rem£¬ÊÐ³¡¸üÇãÏòÓÚ flexible.js + less + rem¡£
+=========================================================================================================================================================================================
+Bootstrap ÏìÓ¦Ê½¿ª·¢
+	Ô­Àí£º
+		ÔÚ²»Í¬ÆÁÄ»ÏÂ£¬Í¨¹ýÃ½Ìå²éÑ¯À´¸Ä±ä²¼¾ÖÈÝÆ÷µÄ´óÐ¡£¬½ø¶ø¸Ä±ä²¼¾ÖÈÝÆ÷ÖÐ×ÓÔªËØµÄ´óÐ¡ºÍÅÅÁÐ·½Ê½¡£
+		±¾ÖÊÊÇ¿í¶È°Ù·Ö±È¼Ó¸¡¶¯²¼¾Ö£¬¼´Á÷Ê½²¼¾Ö¡£
+		Bootstrap ÒÔÀàÃûÀ´¿ØÖÆÑùÊ½¡£
 	Bootstrap
-		±¾ÖÊÊÇ¿í¶È°Ù·Ö±È¼Ó¸¡¶¯£¬¼´Á÷Ê½²¼¾Ö¡£Bootstrap ÒÔÀàÃûÀ´¿ØÖÆÑùÊ½¡£
-		²¼¾ÖÈÝÆ÷£º
-			Bootstrap ÐèÒªÎªÒ³ÃæÄÚÈÝºÍÕ¤¸ñÏµÍ³°ü¹üÒ»¸ö²¼¾ÖÈÝÆ÷¸¸ÔªËØ£¬¼´Îª²¼¾ÖÈÝÆ÷¸¸ÔªËØÌí¼Ó .container Àà»òÕß .container-fluid Àà¡£
-		.container£º
-			1¡¢ÏìÓ¦Ê½²¼¾ÖÈÝÆ÷£¬¹Ì¶¨¿í¶È£»
-			2¡¢´óÆÁ£¨>= 1200px£©¹Ì¶¨Îª 1170px .col-lg-£»
-			3¡¢ÖÐÆÁ£¨>= 992px£©¹Ì¶¨Îª 970px .col-md-£»
-			3¡¢Ð¡ÆÁ£¨>= 768px£©¹Ì¶¨Îª 750px .col-sm-£»
-			4¡¢³¬Ð¡ÆÁ£¨100%£© .col-xs-¡£
-		.container-fluid£º
-			1¡¢Á÷Ê½²¼¾ÖÈÝÆ÷£¬°Ù·Ö°Ù¿í¶È£»
-			2¡¢Õ¼¾ÝÈ«²¿ÊÓ¿ÚµÄÈÝÆ÷£»
+		²¼¾ÖÈÝÆ÷
+			Bootstrap ÐèÒªÎªÒ³ÃæÄÚÈÝºÍÕ¤¸ñÏµÍ³°ü¹üÒ»¸öº¬ÓÐ .container Àà»òÕß .container-fluid ÀàµÄ²¼¾ÖÈÝÆ÷¡£
+		.container
+			1¡¢ÏìÓ¦Ê½²¼¾ÖÈÝÆ÷¡£¹Ì¶¨¿í¶È¡£
+			2¡¢´óÆÁ£¨>= 1200px£©	¹Ì¶¨Îª 1170px	.col-lg-¡£
+			3¡¢ÖÐÆÁ£¨>= 992px£©	¹Ì¶¨Îª 970px	.col-md-¡£
+			3¡¢Ð¡ÆÁ£¨>= 768px£©	¹Ì¶¨Îª 750px	.col-sm-¡£
+			4¡¢³¬Ð¡ÆÁ£¨< 768px£©	¿í¶ÈÎª100%	.col-xs-¡£
+		.container-fluid
+			1¡¢Á÷Ê½²¼¾ÖÈÝÆ÷¡£°Ù·Ö°Ù¿í¶È¡£
+			2¡¢Õ¼¾ÝÈ«²¿ÊÓ¿ÚµÄÈÝÆ÷¡£
 			3¡¢ÊÊºÏµ¥¶À×öÒÆ¶¯¶Ë¿ª·¢¡£
-	Õ¤¸ñÏµÍ³
-		1¡¢ÄÚÈÝ²¿·ÖÒ»ÐÐ 12 µÈ·ÝÁÐ£»
-		2¡¢Ã¿ÐÐÃ¿ÁÐ£¨°üÀ¨ÈÝÆ÷ÔªËØ£©Ä¬ÈÏÓÐ×óÓÒ 15padding Öµ£»Èç¹ûÈÝÆ÷ÖÐÓÐÐÐ£¬ÔòÈÝÆ÷µÄ padding Öµ»á±»È¥³ý£»Èç¹ûÐÐÖÐÓÐÁÐ£¬ÔòÐÐµÄ padding Öµ»á±»È¥³ý£»
-		Èç¹ûÁÐÖÐÓÐÐÐ£¬ÔòÁÐµÄ padding Öµ»á±»È¥³ý¡£
-	ÁÐÇ¶Ì×
-		ÁÐÇ¶Ì×µÄÊ±ºò×îºÃ¼ÓÒ»¸öÐÐ£¬ÕâÑù¿ÉÒÔÈ¡Ïû¸¸ÔªËØ£¨°üÀ¨ÈÝÆ÷ÔªËØ£©µÄ padding Öµ£¬²¢ÇÒ¸ß¶È×Ô¶¯ºÍ¸¸¼¶Ò»Ñù¸ß¡£
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-sm-6">1</div>
-					<div class="col-lg-3 col-sm-6">
-						<div class="row">
-							<div class="col-lg-3 col-sm-6">1</div>
-							<div class="col-lg-3 col-sm-6">2</div>
+	Õ¤¸ñÏµÍ³£ºÄÚÈÝ²¿·ÖÒ»ÐÐ 12 µÈ·ÝÁÐ¡£
+		ÁÐÇ¶Ì×
+			ÁÐÇ¶Ì×µÄÊ±ºò×îºÃ¼ÓÒ»¸öÐÐ£¬ÕâÑù¿ÉÒÔÈ¡Ïû¸¸ÔªËØ£¨°üÀ¨ÈÝÆ÷ÔªËØ£©µÄ padding Öµ£¬²¢ÇÒ¸ß¶È×Ô¶¯ºÍ¸¸¼¶Ò»Ñù¸ß¡£
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-sm-6">1</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="row">
+								<div class="col-lg-3 col-sm-6">2_1</div>
+								<div class="col-lg-3 col-sm-6">2_2</div>
+							</div>
 						</div>
+						<div class="col-lg-3 col-sm-6">3</div>
+						<div class="col-lg-3 col-sm-6">4</div>
 					</div>
-					<div class="col-lg-3 col-sm-6">3</div>
-					<div class="col-lg-3 col-sm-6">4</div>
 				</div>
-			</div>
-	ÁÐÆ«ÒÆ
-		Ê¹ÓÃ .col-md-offset-* Àà¿ÉÒÔ½«ÁÐÏòÓÒ²àÆ«ÒÆ¡£Êµ¼ÊÊÇÎªµ±Ç°ÔªËØÔö¼ÓÁË×ó²àµÄÍâ±ß¾à¡£
-	ÁÐÅÅÐò
-		Ê¹ÓÃ .col-md-pull-* ÀàºÍ .col-md-push-* Àà¿ÉÒÔÊµÏÖÁÐÅÅÐò¡£×óÀ­ÓÒÍÆ¡£
-	ÔªËØµÄÏÔÊ¾ºÍÒþ²Ø
-		Ö»ÔÚÄ³ÖÖÆÁÄ»ÏÂÏÔÊ¾£º.visible-xs .visible-sm .visible-md .visible-lg
-		Ö»ÔÚÄ³ÖÖÆÁÄ»ÏÂÒþ²Ø£º.hidden-xs .hidden-sm .hidden-md .hidden-lg
+		ÁÐÆ«ÒÆ
+			Ê¹ÓÃ .col-md-offset-* Àà¿ÉÒÔ½«ÁÐÏòÓÒ²àÆ«ÒÆ¡£Êµ¼ÊÊÇÎªµ±Ç°ÔªËØÔö¼ÓÁË×ó²àµÄÍâ±ß¾à¡££¨* Îª 1 µ½ 12 ÕûÊýÖµ¡££©
+		ÁÐÅÅÐò
+			Ê¹ÓÃ .col-md-pull-* ÀàºÍ .col-md-push-* Àà¿ÉÒÔÊµÏÖÁÐµÄ×óÓÒÅÅÐò¡£×óÀ­ÓÒÍÆ¡££¨* Îª 1 µ½ 12 ÕûÊýÖµ¡££©
+		ÔªËØµÄÏÔÊ¾ºÍÒþ²Ø
+			Ö»ÔÚÄ³ÖÖÆÁÄ»ÏÂÏÔÊ¾£º.visible-xs .visible-sm .visible-md .visible-lg¡£
+			Ö»ÔÚÄ³ÖÖÆÁÄ»ÏÂÒþ²Ø£º.hidden-xs .hidden-sm .hidden-md .hidden-lg¡£

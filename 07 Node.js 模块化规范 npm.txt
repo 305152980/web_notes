@@ -1,0 +1,241 @@
+Node.js 介绍
+	Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。
+	学习路线：JS 语法 + Node.js 内置模块（fs、path、http） + Node.js 第三方模块（Express、Mysql）。
+	在 Node.js 环境中执行 JS 代码：在终端执行“node 文件的全名”命令。
+	基于 Node.js 的常见框架：
+		1、Express 框架可以快速地构建 Web 应用。
+		2、Restify 框架可以快速地构建 RESTful Web 应用。Restify 框架是 Express 框架的改良。
+		3、Electron 框架可以快速地构建跨平台的桌面应用。
+fs 文件模块
+	fs 模块提供了一系列方法和属性用来满足用户对文件操作的需求。
+	在 JS 文件中导入 fs 模块：const fs = require('fs')。
+	相关 API
+		fs.readFile(path[, options], (error, dataStr) => {})
+			作用：异步地读取文件的全部内容。
+			参数：
+				path			必需的。文件的全名。
+				options			可选的。读取文件时使用的编码方式。默认值 utf8。
+				function		必需的。文件读取完成后的回调函数。
+					error			文件读取成功时 error 值为 null，文件读取失败时 error 值为错误信息对象。
+					dataStr			文件读取成功时 dataStr 值为文件内容，文件读取失败时 dataStr 值为 undefined。
+			注意：通常以 error 值是否为 null 来判断文件是否被读取成功。
+		fs.writeFile(path, data[, options], (error) => {})
+			作用：将数据异步地写入文件，如果文件已存在则替换该文件。 
+			参数：
+				path			必需的。文件的全名。
+				data			必需的。要写入文件的内容。
+				options			可选的。内容写入时使用的编码方式。默认值 utf8。
+				function		必需的。文件写入完成后的回调函数。
+					error			文件写入成功时 error 值为 null，文件写入失败时 error 值为错误信息对象。
+			注意：通常以 error 值是否为 null 来判断文件是否被写入成功。
+	路径问题
+		绝对路径：在使用 fs 模块操作文件时，可以使用 __dirname 来表示当前文件所处目录的绝对路径。
+		相对路径：在使用 fs 模块操作文件时，如果提供是相对路径，那么会以“执行 node 命令时所处的目录”为相对标准，动态地拼接出目标文件的文件全名。 
+path 路径模块
+	path 模块提供了一系列方法和属性用来满足用户对路径处理的需求。
+	在 JS 文件中导入 path 模块：const path = require('path')。
+	相关 API
+		path.join([...paths])
+			作用：用来将多个路径片段拼接成一个完整的路径字符串。
+			示例：
+				path.join('/a', '/b/c', '../', '/d', 'e')			// 返回: '/a/b/d/e'。
+				path.join('/foo', 'bar', 'baz/asdf', 'quux', '..')		// 返回: '/foo/bar/baz/asdf'。
+				path.join('foo', {}, 'bar')					// 抛出 'TypeError: Path must be a string. Received {}'。
+			注意：../ 会抵消前面的一层路径。
+		path.basename(path[, ext])
+			作用：返回 path 的最后一部分。
+			参数：
+				path			必需的。文件的全名。
+				ext			可选的。文件的扩展名。
+			示例：
+				path.basename('/foo/bar/baz/asdf/quux.html')			// 返回: 'quux.html'。
+				path.basename('/foo/bar/baz/asdf/quux.html', '.html')		// 返回: 'quux'。
+		path.extname(path)
+			作用：返回 path 的扩展名。没有扩展名就返回空字符串。
+			示例：
+				path.extname('index.html')					// 返回: '.html'。
+				path.extname('index.')						// 返回: '.'。
+				path.extname('.index')						// 返回: ''。
+http 请求模块
+	通过 http 模块提供的 http.createServer() 方法，可以将一台普通的主机变成一台 Web 服务器。
+	在 JS 文件中导入 http 模块：const http = require('http')。
+	创建 Web 服务器
+		1、导入 http 模块。
+			const http = require('http')
+		2、创建 Web 服务器实例。
+			const server =  http.createServer()
+		3、为服务器绑定 request 事件，以此来监听客户端发送过来的请求。
+			server.on('request', (req, res) => {
+				console.log('Someone visit our web server.')
+			})
+				req：请求对象。包含了与客户端相关的数据和属性。
+					req.url：客户端请求的 URL 地址。
+					req.method：客户端请求的请求类型。
+				res：响应对象。包含了与服务器相关的数据和属性。
+					res.end(data)：将 data 数据响应给客户端。
+		4、设置服务器监听的端口，并启动服务器。
+			server.listen(8080, () => {
+				console.log('http server running at http://127.0.0.1:8080')
+			})
+		注意：解决中文乱码问题。
+			server.on('request', (req, res) => {
+				var data = '有人参观我们的服务器。'
+				res.setHeader('Content-Type', 'text/html;charset=utf-8')
+				res.end(data)
+			})
+
+
+
+CommonJS 模块化规范
+	规范的要求：
+		1、一个文件就是一个基础模块。
+		2、模块内部的 module 对象存储的是该模块的基本信息。
+		3、模块内部的 module.exports 对象存储的是该模块对外暴露的信息。
+		4、为了方便模块的暴露，模块内部的 exports 变量指向 module.exports 对象。
+		5、模块内部的 require() 方法用于加载外部模块。
+	模块分类
+		按照模块形式分：
+			目录模块
+			文件模块
+		按照模块来源分：
+			内置模块：由 Node.js 官方提供的 fs、path、http 等模块。
+			第三方模块：由第三方开发出来的模块。使用前需要下载。
+			自定义模块：由用户自己开发的模块。
+	暴露模块
+		统一暴露。只可书写一次。
+			module.exports = { targetObjAlias1: targetObjName1, targetObjAlias2: targetObjName2 }
+		单独暴露。可以书写多次。
+			exports.targetObjAlias1 = targetObjName1
+			exports.targetObjAlias2 = targetObjName2
+	加载模块
+		加载内置模块或第三方模块
+			const http = require('http')
+			const moment = require('moment')
+		加载目录模块
+			const custom = require('./custom')
+			注意：路径标识符必须以 ./ 或 ../ 开头。
+		加载文件模块
+			const custom = require('./custom.js')
+			注意：路径标识符必须以 ./ 或 ../ 开头。
+	模块的加载机制
+		1、优先加载缓存中的模块。
+			模块在第一次被加载后会被系统缓存；当该模块再次被加载时，系统会从缓存中对其进行加载。
+			只有第一次调用 require() 方法加载模块时，模块内部的代码才会被执行。
+		2、优先加载内置模块。
+			内置模块加载的优先级是最高的，内置模块与第三方模块存在同名时内置模块会被优先加载。
+		3、第三方模块的加载机制。
+			1、系统会从该文件所处当前目录下的 node_modules 文件夹中加载第三方模块。
+			2、如果没有找到第三方模块，则移动到上一层目录的 node_modules 文件夹中进行加载，依此原理直到文件系统的根目录。
+		4、目录模块的加载机制。
+			1、在被加载的目录下查找 package.json 文件，将文件里的 main 属性作为 require() 方法加载的入口。
+			2、如果目录里没有 package.json 文件，或者该文件下的 main 属性不存在，则系统会尝试加载该目录下的 index.js 文件。
+			3、如果以上两步都失败了，则系统会在终端打印错误消息，报告模块的缺失：Error:Cannot find module 'xxx'。
+		5、文件模块的加载机制。
+			加载模块时如果省略了文件的扩展名，系统会按顺序分别尝试进行以下方式的加载。
+				1、依据文件名正常进行加载。
+				2、补全 .js 扩展名进行加载。
+				3、补全 .json 扩展名进行加载。
+				4、补全 .node 扩展名进行加载。
+				5、加载失败，终端报错。
+ES Module 模块化规范
+	在项目中使用 ES Module 模块化规范
+		在项目的 package.json 文件中添加 "type": "module"。如果不添加的话，项目默认遵循 CommonJS 模块化规范。
+	规范的要求：
+		1、一个文件就是一个基础模块。
+		2、向外暴露模块的成员使用 export 关键字。
+		3、加载其它模块的成员使用 import 关键字。
+	基本语法
+		默认暴露与加载
+			export default targetObjName
+			import targetObjName from '......'
+			import targetObjName as targetObjAlias from '......'
+			注意：
+				1、当模块只有一个成员被暴露时，才建议使用此暴露方式。
+				2、模块中只允许使用一次默认暴露。
+				3、默认暴露的成员必须使用默认加载的方式才能被加载。
+		命名暴露与加载
+			export targetObjName1, targetObjName2
+			import { targetObjName1, targetObjName2 }  from '......'
+			import { targetObjName1 as targetObjAlias1, targetObjName2 as targetObjAlias2 }  from '......'
+			注意：
+				1、模块中可以使用多次命名暴露。
+				2、命名暴露的成员必须使用命名加载的方式才能被加载。
+		空的加载
+			import {} from '......'
+			import '......'
+		按需加载
+			import('......').then(result => {}).catch(error => {})
+		注意：暴露成员时模块标识符（文件的全名）的后缀不能省略，这一点和 CommonJS 模块化规范中的不一样。
+	模块的加载机制
+		同一模块被多个模块多次加载时，模块内部的逻辑代码只会被执行一次。
+CommonJS 与 ES Module 的对比
+	CJS：运行时加载、同步加载；ESM：编译时加载、异步加载。ESM 模块加载效率要比 CJS 的高。
+	在 Node.js 环境中采用的是 CJS 加载方式。因为 Node.js 环境中的依赖资源都存储在本地，也因为当时的 ESM 加载方式还没来得及流行。
+	Webpack 是基于 Node.js 环境来对文件进行打包的，所以在 Webpack 环境中采用的也是 CJS 加载方式。
+	在浏览器环境中采用的是 ESM 加载方式。因为浏览器中的依赖资源都是从远程服务器上请求获得的，如果采用 CJS 运行时同步加载的方式势必会引起一些页面的卡顿。
+
+
+
+包
+	Node.js 中的第三方模块又叫做包。
+	在项目中安装包
+		npm install 包的完整名称
+		npm install 包的完整名称@版本号
+	包的分类
+		项目包
+			被安装到项目 mode_modules 文件夹下的包是项目包。
+			核心依赖包：被记录到项目根目录下 package.json 文件中的 dependencies 节点中的包。
+				npm install 包的完整名称 -S
+			开发依赖包：被记录到项目根目录下 package.json 文件中的 devDependencies 节点中的包。
+				npm install 包的完整名称 -D
+		全局包
+			被安装到 C:\Users\lijie\AppData\Roaming\npm\mode_modules 文件夹下的包是全局包。
+				npm install 包的完整名称 -g
+			注意：只有工具性质的包才有全局安装的必要性，因为他们提供了好用的终端命令。
+	包结构的规范
+		1、包必须以单独的目录形式存在。
+		2、包的顶级目录下必须包含 package.json 这个文件。
+		3、包的顶级目录下的 package.json 文件中必须包含 name、version、main 三个属性。
+			这三个属性分别代表了包的名字、包的版本号、包的入口。
+	包版本号的规范
+		包版本号是以三位“点分十进制”数字进行定义的。例如：2.24.0。
+			第一位数字：大版本。
+			第二位数字：功能版本。
+			第三位数字：BUG 修复版本。
+		注意：只要前面的版本号增长了，后面的版本号就需要归零。
+npm
+	npm
+		npm 是世界上最大的软件注册表，可以把它理解为一个包管理工具。
+		npm 规定，在项目根目录下，必须提供一个叫做 package.json 的文件，用来记录与项目有关的一些配置。
+	创建 package.json 文件
+		在项目根目录下执行：
+			npm init -y
+		注意：这个命令只能在英文目录下被成功执行，所以项目名必须是英文且不能出现空格。
+	下载包
+		执行“npm install”命令时，npm 会先读取项目根目录下 package.json 文件中的包依赖信息，然后将相应的包一次性的下载到项目中。
+	卸载包
+		执行“npm uninstall 包的完整名称”命令时，npm 会将该包的信息从项目根目录下 package.json 文件中的包依赖信息中剔除。
+	发布包
+		1、将终端切换到包的顶级目录中。
+		2、登录 npm 账号。
+			npm login
+			注意：在执行该命令之前，必须先把下载包的服务器地址切换为 npm 官方服务器的地址，否则在发布包时会出错。
+		3、在 npm 上发布包。
+			npm publish
+		4、删除 npm 上已发布的包。
+			npm unpublish 包的完整名称 --force
+	包下载速度慢
+		法一：
+			# 查看当前下载包时使用的镜像源。
+			npm config get registry
+			# 将下载包使用的镜像源切换为淘宝 npm 镜像源。
+			npm config set registry=https://registry.npm.taobao.org/
+			# 检查镜像源是否被切换成功。
+			npm config get registry
+		法二：
+			# 通过 npm 全局安装 nrm。
+			npm i nrm -g
+			# 查看当前所有可用的镜像源。
+			nrm ls
+			# 将下载包使用的镜像源切换为淘宝 npm 镜像源。
+			npm use taobao
