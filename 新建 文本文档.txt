@@ -1,0 +1,55 @@
+{
+  "workbench.tree.indent": 16,
+  "explorer.compactFolders": false, // 取消紧凑的文件夹模式。
+  "editor.minimap.enabled": false, // 隐藏右侧的快捷预览栏。
+  "workbench.editor.enablePreview": false, // 打开新文件时不关闭旧文件。
+  "editor.detectIndentation": false, // 关闭根据文件类型自动检测 tabsize 值的选项。
+  "editor.tabSize": 2,
+  "editor.fontSize": 16,
+  "editor.formatOnSave": true, // 文件保存时自动格式化代码。
+
+  // Prettier 一个“有态度”的代码格式化工具。
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // "[html]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[css]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[less]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[scss]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[json]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[jsonc]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[vue]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+
+  // "prettier.tabWidth": 2,
+  // "prettier.printWidth": 100, // 设置多少字符换行。
+  // "prettier.endOfLine": "auto", // (不知道有啥用。)
+  // "prettier.singleQuote": true, // 使用单引号替代双引号。
+  // "prettier.semi": false, // 去除代码末尾的分号。
+  // // "prettier.quoteProps": "as-needed", // 对象的 key 仅在必要时使用引号。(不知道有啥用。)
+  // "prettier.trailingComma": "none", // 去除对象属性的尾逗号。
+  // "prettier.bracketSpacing": true, // 在对象的括号与属性之间加空格 "{ foo: bar }"。
+  // "prettier.arrowParens": "avoid", // (x) => {} 箭头函数参数只有一个时是否要有小括号。avoid：省略小括号。
+  // // "prettier.vueIndentScriptAndStyle": true, // 缩进 Vue 文件中 <script> 和 <style> 标记内的代码。
+
+  // open-in-browser 插件的配置。
+  "open-in-browser.default": "Chrome"
+}
