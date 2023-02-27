@@ -15,7 +15,7 @@
 	resize: none;							/* 让 textarea 文本域无法被拖拽。 */
 	vertical-align: baseline | top | middle | bottom;		/* 修改 img 标签与文本之间的对齐方式。 */
 	overflow: visible | hidden | auto | scroll;			/* 元素溢出时盒子的显示模式。 */
-	coursor: default | pointer | move | text | not-allowed;
+	cursor: default | pointer | move | text | not-allowed;
 	display: none | block						/* 元素隐藏|显示。元素隐藏后不再占有原来的位置。常搭配 JS 一起使用。 */
 	visibility: hiddden | visible;					/* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
 	img { filter: blur(5px); }					/* 数值越大，图片越模糊。 */
