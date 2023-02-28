@@ -1,195 +1,195 @@
-½Ó¿ÚÎÄµµ¹æ·¶
-	1¡¢½Ó¿ÚÃû³Æ£ºÓÃÀ´±êÊ¶¸÷¸ö½Ó¿ÚµÄ¼òµ¥ËµÃ÷¡£Èç£ºµÇÂ¼½Ó¿Ú¡¢»ñÈ¡ÓÃ»§ÐÅÏ¢½Ó¿ÚµÈ¡£
-	2¡¢½Ó¿Ú URL£º½Ó¿ÚµÄµ÷ÓÃµØÖ·¡£
-	3¡¢µ÷ÓÃ·½Ê½£º½Ó¿ÚµÄµ÷ÓÃ·½Ê½¡£Èç£ºGET »ò POST¡£
-	4¡¢½Ó¿Ú²ÎÊý£º½Ó¿ÚÐèÒª´«µÝµÄ²ÎÊý¡£Ã¿¸ö²ÎÊý±ØÐë°üº¬£º²ÎÊýÃû³Æ¡¢²ÎÊýÀàÐÍ¡¢ÊÇ·ñ±ØÑ¡¡¢²ÎÊýËµÃ÷µÈ 4 ÏîÄÚÈÝ¡£
-	5¡¢½Ó¿ÚÏìÓ¦£º½Ó¿Ú·µ»ØÖµµÄÏêÏ¸ÃèÊö¡£Ò»°ã°üº¬£ºÊý¾ÝÃû³Æ¡¢Êý¾ÝÀàÐÍ¡¢Êý¾ÝËµÃ÷µÈ 3 ÏîÄÚÈÝ¡£
-	6¡¢ÏìÓ¦Ê¾Àý£¨¿ÉÑ¡£©¡£
-XML ºÍ JSON
-	XML ºÍ JSON ÊÇÊý¾ÝÔÚ´«Êä¹ý³ÌÖÐ³£ÓÃµÄÁ½ÖÖ¸ñÊ½¡£
+æŽ¥å£æ–‡æ¡£è§„èŒƒ
+	1ã€æŽ¥å£åç§°ï¼šç”¨æ¥æ ‡è¯†å„ä¸ªæŽ¥å£çš„ç®€å•è¯´æ˜Žã€‚å¦‚ï¼šç™»å½•æŽ¥å£ã€èŽ·å–ç”¨æˆ·ä¿¡æ¯æŽ¥å£ç­‰ã€‚
+	2ã€æŽ¥å£ URLï¼šæŽ¥å£çš„è°ƒç”¨åœ°å€ã€‚
+	3ã€è°ƒç”¨æ–¹å¼ï¼šæŽ¥å£çš„è°ƒç”¨æ–¹å¼ã€‚å¦‚ï¼šGET æˆ– POSTã€‚
+	4ã€æŽ¥å£å‚æ•°ï¼šæŽ¥å£éœ€è¦ä¼ é€’çš„å‚æ•°ã€‚æ¯ä¸ªå‚æ•°å¿…é¡»åŒ…å«ï¼šå‚æ•°åç§°ã€å‚æ•°ç±»åž‹ã€æ˜¯å¦å¿…é€‰ã€å‚æ•°è¯´æ˜Žç­‰ 4 é¡¹å†…å®¹ã€‚
+	5ã€æŽ¥å£å“åº”ï¼šæŽ¥å£è¿”å›žå€¼çš„è¯¦ç»†æè¿°ã€‚ä¸€èˆ¬åŒ…å«ï¼šæ•°æ®åç§°ã€æ•°æ®ç±»åž‹ã€æ•°æ®è¯´æ˜Žç­‰ 3 é¡¹å†…å®¹ã€‚
+	6ã€å“åº”ç¤ºä¾‹ï¼ˆå¯é€‰ï¼‰ã€‚
+XML å’Œ JSON
+	XML å’Œ JSON æ˜¯æ•°æ®åœ¨ä¼ è¾“è¿‡ç¨‹ä¸­å¸¸ç”¨çš„ä¸¤ç§æ ¼å¼ã€‚
 	XML
-		È±µã:
-			1¡¢¸ñÊ½Ó·Ö×£¬ºÍÊý¾ÝÎÞ¹ØµÄ´úÂë½Ï¶à£¬´«ÊäÐ§ÂÊÆ«µÍ¡£
-			2¡¢ÔÚ JS ÖÐ½âÎö XML ±È½ÏÂé·³¡£
+		ç¼ºç‚¹:
+			1ã€æ ¼å¼è‡ƒè‚¿ï¼Œå’Œæ•°æ®æ— å…³çš„ä»£ç è¾ƒå¤šï¼Œä¼ è¾“æ•ˆçŽ‡åä½Žã€‚
+			2ã€åœ¨ JS ä¸­è§£æž XML æ¯”è¾ƒéº»çƒ¦ã€‚
 	JSON
-		ÓÅµã£º¸üÐ¡¡¢¸ü¿ì¡¢¸üÒ×ÓÚ½âÎö¡£
-		¶ÔÏó¸ñÊ½£º{ "key1": value1, "key2": value2, ...... }
-		Êý×é¸ñÊ½£º[value1, value2, value3, ......]
-		¸ñÊ½ÒªÇó£º
-			1¡¢×Ö·û´®Êý¾ÝÓÃË«ÒýºÅ°ü¹ü¡£
-			2¡¢value µÄÊý¾ÝÀàÐÍ¿ÉÒÔÊÇÊý×Ö¡¢×Ö·û´®¡¢²¼¶ûÖµ¡¢null¡¢Êý×é¡¢¶ÔÏóÕâ 6 ÖÖ¡£
-			3¡¢Êý¾ÝµÄ×îÍâ²ã±ØÐëÊÇ¶ÔÏó»òÊý×é¸ñÊ½¡£
-			4¡¢²»ÄÜÊ¹ÓÃ undefined »òº¯Êý×÷Îª JSON Êý¾ÝµÄÖµ¡£
-		JSON ¶ÔÏóÓë JS ¶ÔÏóÖ®¼äµÄ×ª»»
-			var JS ¶ÔÏó = JSON.parse(JSON ¶ÔÏó)		// JSON ÐòÁÐ»¯¡£
-			var JSON ¶ÔÏó = JSON.stringify(JS ¶ÔÏó)		// JSON ·´ÐòÁÐ»¯¡£
+		ä¼˜ç‚¹ï¼šæ›´å°ã€æ›´å¿«ã€æ›´æ˜“äºŽè§£æžã€‚
+		å¯¹è±¡æ ¼å¼ï¼š{ "key1": value1, "key2": value2, ...... }
+		æ•°ç»„æ ¼å¼ï¼š[value1, value2, value3, ......]
+		æ ¼å¼è¦æ±‚ï¼š
+			1ã€å­—ç¬¦ä¸²æ•°æ®ç”¨åŒå¼•å·åŒ…è£¹ã€‚
+			2ã€value çš„æ•°æ®ç±»åž‹å¯ä»¥æ˜¯æ•°å­—ã€å­—ç¬¦ä¸²ã€å¸ƒå°”å€¼ã€nullã€æ•°ç»„ã€å¯¹è±¡è¿™ 6 ç§ã€‚
+			3ã€æ•°æ®çš„æœ€å¤–å±‚å¿…é¡»æ˜¯å¯¹è±¡æˆ–æ•°ç»„æ ¼å¼ã€‚
+			4ã€ä¸èƒ½ä½¿ç”¨ undefined æˆ–å‡½æ•°ä½œä¸º JSON æ•°æ®çš„å€¼ã€‚
+		JSON å¯¹è±¡ä¸Ž JS å¯¹è±¡ä¹‹é—´çš„è½¬æ¢
+			var JS å¯¹è±¡ = JSON.parse(JSON å¯¹è±¡)		// JSON åºåˆ—åŒ–ã€‚
+			var JSON å¯¹è±¡ = JSON.stringify(JS å¯¹è±¡)		// JSON ååºåˆ—åŒ–ã€‚
 
 
 
-HTTP ÇëÇó
-	ÇëÇóÏûÏ¢
-		HTTP ÇëÇóÏûÏ¢ÓÖ½Ð×ö HTTP ÇëÇó±¨ÎÄ¡£
-		HTTP ÇëÇóÏûÏ¢ÓÉÇëÇóÐÐ¡¢ÇëÇóÍ·¡¢¿ÕÐÐºÍÇëÇóÌå 4 ¸ö²¿·Ö×é³É¡£
-		ÇëÇóÐÐ£ºÇëÇóÐÐÓÉÇëÇó·½Ê½¡¢URL ºÍ HTTP Ð­Òé°æ±¾ 3 ¸ö²¿·Ö×é³É¡£ËüÃÇÖ®¼äÊ¹ÓÃ¿Õ¸ñ¸ô¿ª¡£
-		ÇëÇóÍ·£ºÇëÇóÍ·ÓÉ¶àÐÐ¼üÖµ¶Ô×é³É£¬ÓÃÀ´ÃèÊöä¯ÀÀÆ÷µÄ»ù±¾ÐÅÏ¢¡£Ã¿ÐÐ¼üÓëÖµÖ®¼äÊ¹ÓÃÓ¢ÎÄÃ°ºÅ¸ô¿ª¡£
-			User-Agent£ºÓÃÀ´¸æËß·þÎñÆ÷¿Í»§¶ËÊ¹ÓÃµÄ²Ù×÷ÏµÍ³ºÍä¯ÀÀÆ÷µÄÃû³ÆÒÔ¼°°æ±¾¡£
+HTTP è¯·æ±‚
+	è¯·æ±‚æ¶ˆæ¯
+		HTTP è¯·æ±‚æ¶ˆæ¯åˆå«åš HTTP è¯·æ±‚æŠ¥æ–‡ã€‚
+		HTTP è¯·æ±‚æ¶ˆæ¯ç”±è¯·æ±‚è¡Œã€è¯·æ±‚å¤´ã€ç©ºè¡Œå’Œè¯·æ±‚ä½“ 4 ä¸ªéƒ¨åˆ†ç»„æˆã€‚
+		è¯·æ±‚è¡Œï¼šè¯·æ±‚è¡Œç”±è¯·æ±‚æ–¹å¼ã€URL å’Œ HTTP åè®®ç‰ˆæœ¬ 3 ä¸ªéƒ¨åˆ†ç»„æˆã€‚å®ƒä»¬ä¹‹é—´ä½¿ç”¨ç©ºæ ¼éš”å¼€ã€‚
+		è¯·æ±‚å¤´ï¼šè¯·æ±‚å¤´ç”±å¤šè¡Œé”®å€¼å¯¹ç»„æˆï¼Œç”¨æ¥æè¿°æµè§ˆå™¨çš„åŸºæœ¬ä¿¡æ¯ã€‚æ¯è¡Œé”®ä¸Žå€¼ä¹‹é—´ä½¿ç”¨è‹±æ–‡å†’å·éš”å¼€ã€‚
+			User-Agentï¼šç”¨æ¥å‘Šè¯‰æœåŠ¡å™¨å®¢æˆ·ç«¯ä½¿ç”¨çš„æ“ä½œç³»ç»Ÿå’Œæµè§ˆå™¨çš„åç§°ä»¥åŠç‰ˆæœ¬ã€‚
 				User-Agent:Mozilla/......
-			Referer£ºÓÃÀ´¸æËß·þÎñÆ÷ÇëÇóÊÇ´ÓÄÄ¸öÒ³Ãæ·¢ËÍ¹ýÀ´µÄ¡£
+			Refererï¼šç”¨æ¥å‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚æ˜¯ä»Žå“ªä¸ªé¡µé¢å‘é€è¿‡æ¥çš„ã€‚
 				Referer:https://www.baidu.com/?start=1
-			Host£ºÓÃÀ´ÃèÊö×ÊÔ´µÄInternetÖ÷»úºÍ¶Ë¿ÚºÅ¡£Í¨³£´ÓÇëÇóÐÐµÄ URL ÖÐÌáÈ¡¶øÀ´¡£
+			Hostï¼šç”¨æ¥æè¿°èµ„æºçš„Internetä¸»æœºå’Œç«¯å£å·ã€‚é€šå¸¸ä»Žè¯·æ±‚è¡Œçš„ URL ä¸­æå–è€Œæ¥ã€‚
 				Host:www.baidu.com
-			Accept£ºÓÃÀ´ÃèÊöä¯ÀÀÆ÷ÄÜ¹»½ÓÊÕÊ²Ã´ÀàÐÍµÄ×ÊÔ´¡£ÀýÈç£ºÍ¼Æ¬¡¢ÍøÒ³µÈ¡£
+			Acceptï¼šç”¨æ¥æè¿°æµè§ˆå™¨èƒ½å¤ŸæŽ¥æ”¶ä»€ä¹ˆç±»åž‹çš„èµ„æºã€‚ä¾‹å¦‚ï¼šå›¾ç‰‡ã€ç½‘é¡µç­‰ã€‚
 				Accept:application/json
-				Accept:*/*							ä¯ÀÀÆ÷¿ÉÒÔ´¦ÀíËùÓÐÀàÐÍµÄ×ÊÔ´¡£Ò»°ãä¯ÀÀÆ÷·¢¸ø·þÎñÆ÷µÄ¶¼ÊÇÕâ¸ö¡£
-			Accept-Language£ºÓÃÀ´ÃèÊöä¯ÀÀÆ÷ÆÚÍû½ÓÊÕÄÄÖÖÈËÀàÓïÑÔµÄÎÄ±¾×ÊÔ´¡£
-			Content-Type£ºÓÃÀ´¸æËß·þÎñÆ÷ÇëÇóÌåµÄÊý¾Ý±àÂë·½Ê½¡£
-				Content-Type:application/json;charset=UTF-8			¸æËß·þÎñÆ÷ÇëÇóÌåµÄÊý¾Ý²ÉÓÃµÄÊÇ JSON ¸ñÊ½£¬ÇÒ²ÉÓÃ UTF-8 ×Ö·û±àÂë¡£Ò»°ãµÄ½Ó¿ÚÇëÇó»áÊ¹ÓÃ¸ÃÖµ¡£
-				Content-Type:application/x-www-form-urlencoded			¸æËß·þÎñÆ÷ÇëÇóÌåµÄÊý¾Ý¸ñÊ½Îª key1=value1&key2=value2¡£Ò»°ãµÄ±íµ¥Ìá½»»áÊ¹ÓÃ¸ÃÖµ¡£
-				Content-Type:multipart/form-data				Ò»°ãÐèÒªÉÏ´«ÎÄ¼þµÄ±íµ¥»áÊ¹ÓÃ¸ÃÖµ¡£
-			Connection£ºÓÃÀ´Ö¸¶¨ÇëÇóÏìÓ¦Íê±Ïºóä¯ÀÀÆ÷Óë·þÎñÆ÷Ö®¼äµÄ TCP Á´½ÓÊÇ·ñ¹Ø±Õ¡£
+				Accept:*/*							æµè§ˆå™¨å¯ä»¥å¤„ç†æ‰€æœ‰ç±»åž‹çš„èµ„æºã€‚ä¸€èˆ¬æµè§ˆå™¨å‘ç»™æœåŠ¡å™¨çš„éƒ½æ˜¯è¿™ä¸ªã€‚
+			Accept-Languageï¼šç”¨æ¥æè¿°æµè§ˆå™¨æœŸæœ›æŽ¥æ”¶å“ªç§äººç±»è¯­è¨€çš„æ–‡æœ¬èµ„æºã€‚
+			Content-Typeï¼šç”¨æ¥å‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚ä½“çš„æ•°æ®ç¼–ç æ–¹å¼ã€‚
+				Content-Type:application/json;charset=UTF-8			å‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚ä½“çš„æ•°æ®é‡‡ç”¨çš„æ˜¯ JSON æ ¼å¼ï¼Œä¸”é‡‡ç”¨ UTF-8 å­—ç¬¦ç¼–ç ã€‚ä¸€èˆ¬çš„æŽ¥å£è¯·æ±‚ä¼šä½¿ç”¨è¯¥å€¼ã€‚
+				Content-Type:application/x-www-form-urlencoded			å‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚ä½“çš„æ•°æ®æ ¼å¼ä¸º key1=value1&key2=value2ã€‚ä¸€èˆ¬çš„è¡¨å•æäº¤ä¼šä½¿ç”¨è¯¥å€¼ã€‚
+				Content-Type:multipart/form-data				ä¸€èˆ¬éœ€è¦ä¸Šä¼ æ–‡ä»¶çš„è¡¨å•ä¼šä½¿ç”¨è¯¥å€¼ã€‚
+			Connectionï¼šç”¨æ¥æŒ‡å®šè¯·æ±‚å“åº”å®Œæ¯•åŽæµè§ˆå™¨ä¸ŽæœåŠ¡å™¨ä¹‹é—´çš„ TCP é“¾æŽ¥æ˜¯å¦å…³é—­ã€‚
 				Connection:keep-alive
 				Connection:close
-			Cache-Control£ºÓÃÓÚ×ÊÔ´µÄ»º´æ¿ØÖÆ¡£
-			Range£ºÓÃÓÚ×ÊÔ´µÄ¶ÏµãÐø´«¡£
+			Cache-Controlï¼šç”¨äºŽèµ„æºçš„ç¼“å­˜æŽ§åˆ¶ã€‚
+			Rangeï¼šç”¨äºŽèµ„æºçš„æ–­ç‚¹ç»­ä¼ ã€‚
 			Cookie
-		¿ÕÐÐ£º×îºóÒ»¸öÇëÇóÍ·¼üÖµ¶ÔµÄºóÃæÊÇÒ»¸ö¿ÕÐÐ£¬ÓÃÀ´¸æËß·þÎñÆ÷ÇëÇóÍ·µ½´Ë½áÊø¡£
-		ÇëÇóÌå£ºÇëÇóÌåÖÐ´æ·ÅµÄÊÇÌá½»µ½·þÎñÆ÷µÄÊý¾Ý¡£Ö»ÓÐ post ÇëÇó²ÅÓÐÇëÇóÌå¡£	
-	ÏìÓ¦ÏûÏ¢
-		HTTP ÏìÓ¦ÏûÏ¢ÓÖ½Ð×ö HTTP ÏìÓ¦±¨ÎÄ¡£
-		HTTP ÏìÓ¦ÏûÏ¢ÓÉ×´Ì¬ÐÐ¡¢ÏìÓ¦Í·¡¢¿ÕÐÐºÍÏìÓ¦Ìå 4 ¸ö²¿·Ö×é³É¡£
-		×´Ì¬ÐÐ£º×´Ì¬ÐÐÓÉ HTTP Ð­Òé°æ±¾¡¢×´Ì¬ÂëºÍ×´Ì¬ÂëµÄÃèÊöÎÄ±¾ 3 ¸ö²¿·Ö×é³É¡£ËüÃÇÖ®¼äÊ¹ÓÃ¿Õ¸ñ¸ô¿ª¡£
-		ÏìÓ¦Í·£ºÏìÓ¦Í·ÓÉ¶àÐÐ¼üÖµ¶Ô×é³É£¬ÓÃÀ´ÃèÊö·þÎñÆ÷µÄ»ù±¾ÐÅÏ¢¡£Ã¿ÐÐ¼üÓëÖµÖ®¼äÊ¹ÓÃÓ¢ÎÄÃ°ºÅ¸ô¿ª¡£
-			Server£ºÓÃÀ´¸æËßä¯ÀÀÆ÷·þÎñÆ÷µÄÀàÐÍºÍ°æ±¾¡£
-				Server£ºTengine/1.4.6
-			Date£ºÓÃÀ´ÃèÊö·þÎñÆ÷ÏìÓ¦×ÊÔ´Ê±µÄ·þÎñÆ÷Ê±¼ä¡£
+		ç©ºè¡Œï¼šæœ€åŽä¸€ä¸ªè¯·æ±‚å¤´é”®å€¼å¯¹çš„åŽé¢æ˜¯ä¸€ä¸ªç©ºè¡Œï¼Œç”¨æ¥å‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚å¤´åˆ°æ­¤ç»“æŸã€‚
+		è¯·æ±‚ä½“ï¼šè¯·æ±‚ä½“ä¸­å­˜æ”¾çš„æ˜¯æäº¤åˆ°æœåŠ¡å™¨çš„æ•°æ®ã€‚åªæœ‰ post è¯·æ±‚æ‰æœ‰è¯·æ±‚ä½“ã€‚	
+	å“åº”æ¶ˆæ¯
+		HTTP å“åº”æ¶ˆæ¯åˆå«åš HTTP å“åº”æŠ¥æ–‡ã€‚
+		HTTP å“åº”æ¶ˆæ¯ç”±çŠ¶æ€è¡Œã€å“åº”å¤´ã€ç©ºè¡Œå’Œå“åº”ä½“ 4 ä¸ªéƒ¨åˆ†ç»„æˆã€‚
+		çŠ¶æ€è¡Œï¼šçŠ¶æ€è¡Œç”± HTTP åè®®ç‰ˆæœ¬ã€çŠ¶æ€ç å’ŒçŠ¶æ€ç çš„æè¿°æ–‡æœ¬ 3 ä¸ªéƒ¨åˆ†ç»„æˆã€‚å®ƒä»¬ä¹‹é—´ä½¿ç”¨ç©ºæ ¼éš”å¼€ã€‚
+		å“åº”å¤´ï¼šå“åº”å¤´ç”±å¤šè¡Œé”®å€¼å¯¹ç»„æˆï¼Œç”¨æ¥æè¿°æœåŠ¡å™¨çš„åŸºæœ¬ä¿¡æ¯ã€‚æ¯è¡Œé”®ä¸Žå€¼ä¹‹é—´ä½¿ç”¨è‹±æ–‡å†’å·éš”å¼€ã€‚
+			Serverï¼šç”¨æ¥å‘Šè¯‰æµè§ˆå™¨æœåŠ¡å™¨çš„ç±»åž‹å’Œç‰ˆæœ¬ã€‚
+				Serverï¼šTengine/1.4.6
+			Dateï¼šç”¨æ¥æè¿°æœåŠ¡å™¨å“åº”èµ„æºæ—¶çš„æœåŠ¡å™¨æ—¶é—´ã€‚
 				Date:Tue, 03 Apr 2020 03:52:28 GMT
-			Content-Type£ºÓÃÀ´¸æËßä¯ÀÀÆ÷×ÊÔ´µÄÎÄ¼þÀàÐÍºÍ×Ö·û±àÂë¡£
-				Content-Type:text/html;charset=UTF-8				¸æËßä¯ÀÀÆ÷ÏìÓ¦ÌåÖÐµÄÊý¾Ý²ÉÓÃµÄÊÇ HTML ¸ñÊ½£¬ÇÒ²ÉÓÃ UTF-8 ×Ö·û±àÂë¡£
-			Last-Modified£ºÓÃÀ´ÃèÊö×ÊÔ´×îºó±»ÐÞ¸ÄµÄÈÕÆÚ¡£
+			Content-Typeï¼šç”¨æ¥å‘Šè¯‰æµè§ˆå™¨èµ„æºçš„æ–‡ä»¶ç±»åž‹å’Œå­—ç¬¦ç¼–ç ã€‚
+				Content-Type:text/html;charset=UTF-8				å‘Šè¯‰æµè§ˆå™¨å“åº”ä½“ä¸­çš„æ•°æ®é‡‡ç”¨çš„æ˜¯ HTML æ ¼å¼ï¼Œä¸”é‡‡ç”¨ UTF-8 å­—ç¬¦ç¼–ç ã€‚
+			Last-Modifiedï¼šç”¨æ¥æè¿°èµ„æºæœ€åŽè¢«ä¿®æ”¹çš„æ—¥æœŸã€‚
 				Last-Modified: Dec, 26 Dec 2019 17:30:00 GMT
-			Connection£º¶ÔÓ¦ÇëÇóÖÐµÄ Connection¡£
-			Cache-Control£º¶ÔÓ¦ÇëÇóÖÐµÄ Cache-Control¡£
-		¿ÕÐÐ£º×îºóÒ»¸öÏìÓ¦Í·¼üÖµ¶ÔµÄºóÃæÊÇÒ»¸ö¿ÕÐÐ£¬ÓÃÀ´¸æËßä¯ÀÀÆ÷ÏìÓ¦Í·µ½´Ë½áÊø¡£
-		ÏìÓ¦Ìå£ºÏìÓ¦ÌåÖÐ´æ·ÅµÄÊÇ·þÎñÆ÷ÏìÓ¦¸ø¿Í»§¶ËµÄ×ÊÔ´¡£
-	ÇëÇó·½·¨
-		ÇëÇó·½·¨ÓÃÀ´±íÃ÷ä¯ÀÀÆ÷Òª¶Ô·þÎñÆ÷ÉÏµÄ×ÊÔ´ËùÖ´ÐÐµÄ²Ù×÷¡£ÇëÇó·½·¨·ÖÎª get ÇëÇóºÍ post ÇëÇóµÈ¡£
-	ÏìÓ¦×´Ì¬Âë
-		HTTP ÏìÓ¦×´Ì¬ÂëÓÉÈý¸öÊ®½øÖÆÊý×Ö×é³É£¬µÚÒ»¸öÊ®½øÖÆÊý×Ö¶¨ÒåÁËÏìÓ¦×´Ì¬ÂëµÄÀàÐÍ£¬ºóÁ½¸öÊý×ÖÓÃÀ´¶ÔÏìÓ¦×´Ì¬Âë½øÐÐÏ¸·Ö¡£
-		1**£ºÐÅÏ¢¡£±íÊ¾·þÎñÆ÷ÊÕµ½ÇëÇó¡£ÐèÒªÇëÇóÕß¼ÌÐøÖ´ÐÐ²Ù×÷¡£
-		2**£º³É¹¦¡£±íÊ¾ÇëÇó±»³É¹¦½ÓÊÕ²¢´¦Àí¡£
-			200 OK						ÇëÇó³É¹¦¡£Ò»°ãÓÃÓÚ get ºÍ post ÇëÇó¡£
-			201 Created					ÇëÇó³É¹¦²¢´´½¨ÁËÐÂµÄ×ÊÔ´¡£Ò»°ãÓÃÓÚ post ºÍ put ÇëÇó¡£
-		3**£ºÖØ¶¨Ïò¡£±íÊ¾·þÎñÆ÷ÒªÇóÇëÇóÕßÖØ¶¨Ïò¡£ÐèÒªÇëÇóÕß¼ÌÐøÖ´ÐÐ²Ù×÷¡£
-			301 Moved Permanently				ÓÀ¾ÃÒÆ¶¯¡£ÇëÇóµÄ×ÊÔ´±»ÓÀ¾ÃÒÆ¶¯µ½ÐÂµÄ URL¡£·µ»ØµÄÐÅÏ¢°üÀ¨ÐÂµÄ URL¡£¿Í»§¶Ë½ÓÏÂÀ´µÄÇëÇóÓ¦Ê¹ÓÃÐÂµÄ URL¡£
-			302 Found					ÁÙÊ±ÒÆ¶¯¡£ÇëÇóµÄ×ÊÔ´±»ÁÙÊ±ÒÆ¶¯µ½ÐÂµÄ URL¡£·µ»ØµÄÐÅÏ¢°üÀ¨ÐÂµÄ URL¡£¿Í»§¶Ë½ÓÏÂÀ´µÄÇëÇóÓ¦Ê¹ÓÃÐÂµÄ URL¡£
-			304 Not Modified				Ã»ÓÐÒÆ¶¯¡£ÇëÇóµÄÏìÓ¦ÏûÏ¢Ã»ÓÐÏìÓ¦Ìå£¬±íÊ¾×ÊÔ´Ã»ÓÐ±»ÒÆ¶¯¡£¿Í»§¶Ë½ÓÏÂÀ´µÄÇëÇóÓ¦Ê¹ÓÃä¯ÀÀÆ÷»º´æµÄ URL¡£
-		4**£º¿Í»§¶Ë´íÎó¡£±íÊ¾ÇëÇóÖÐ°üº¬Óï·¨´íÎó»ò·Ç·¨ÄÚÈÝ£¬´Ó¶øµ¼ÖÂÁËÕâ´ÎÏìÓ¦µÄÊ§°Ü¡£
-			400 Bad Request					ÇëÇóµÄÓï·¨»ò²ÎÊýÓÐÎÊÌâ¡£
-			401 Unauthorized				µ±Ç°ÇëÇóÃ»ÓÐ·ÃÎÊÈ¨ÏÞ£¬ÐèÒª½øÐÐÉí·ÝÈÏÖ¤¡£
-			403 Forbidden					·þÎñÆ÷ÒÑ¾­Àí½âÇëÇó£¬µ«ÊÇ¾Ü¾øÖ´ÐÐ¸ÃÈÎÎñ¡£
-			404 Not Found					·þÎñÆ÷ÎÞ·¨¸ù¾Ý¿Í»§¶ËµÄÇëÇóÕÒµ½×ÊÔ´¡£
-			408 Request Timeout				ÇëÇó³¬Ê±¡£·þÎñÆ÷µÈ´ý¿Í»§¶Ë·¢ËÍµÄÇëÇóÊ±¼ä¹ý³¤¡£
-		5**£º·þÎñÆ÷´íÎó¡£±íÊ¾·þÎñÆ÷ÔÚ´¦ÀíÇëÇóµÄ¹ý³ÌÖÐ·¢ÉúÁË´íÎó¡£
-			500 Internal Server				·þÎñÆ÷ÄÚ²¿´íÎó£¬ÎÞ·¨Íê³ÉÇëÇó¡£
-			501 Not Implemented				·þÎñÆ÷²»Ö§³Ö¸ÃÇëÇó·½·¨¡£
-			503 Service Unavailable				ÓÉÓÚ³¬ÔØ»òÏµÍ³Î¬»¤£¬·þÎñÆ÷ÔÝÊ±ÎÞ·¨´¦Àí¿Í»§¶ËµÄÇëÇó¡£
-Ò»´Î HTTP ÇëÇóµÄÍêÕû¹ý³Ì
-	1¡¢¸ù¾Ýä¯ÀÀÆ÷ÖÐµÄ URL ÇëÇóºÍ DNS ÓòÃû·þÎñÆ÷£¬½âÎö³ö·þÎñÆ÷µÄ IP µØÖ·¡£
-	2¡¢ä¯ÀÀÆ÷¶Ô·þÎñÆ÷·¢Æð TCP 3 ´ÎÎÕÊÖ¡£
-	3¡¢ä¯ÀÀÆ÷ºÍ·þÎñÆ÷½¨Á¢ TCP Á´½Óºó£¬ä¯ÀÀÆ÷Ïò·þÎñÆ÷·¢ËÍ HTTP ÇëÇó±¨ÎÄ¡£
-	4¡¢·þÎñÆ÷½«´Ë HTTP ÇëÇóµÄÏìÓ¦±¨ÎÄ·µ»Ø¸øä¯ÀÀÆ÷¡£
-	5¡¢¶ÌÁ´½ÓµÄÇé¿öÏÂ£¬ä¯ÀÀÆ÷ºÍ·þÎñÆ÷Í¨¹ý TCP ËÄ´Î»ÓÊÖ¹Ø±ÕÁ´½Ó£»³¤Á´½ÓµÄÇé¿öÏÂ£¬ÔÚä¯ÀÀÆ÷Ã»ÓÐ·ÃÎÊ·þÎñÆ÷µÄÈô¸ÉÊ±¼äºó£¬ËûÃÇµÄÁ´½Ó»á×Ô¶¯¹Ø±Õ¡£
-	6¡¢ä¯ÀÀÆ÷½âÎö³öÏìÓ¦ÐÅÏ¢ÖÐµÄ HTML ´úÂë£¬ ²¢¼ÌÐøÇëÇó HTML ´úÂëÖÐµÄ×ÊÔ´£¨Èç£ºJS¡¢CSS¡¢Í¼Æ¬µÈ£©¡£
-	7¡¢ä¯ÀÀÆ÷¶Ô´Ë HTML ´úÂë½øÐÐÒ³ÃæäÖÈ¾²¢³ÊÏÖ¸øÓÃ»§¡£
-HTTP »º´æ¿ØÖÆ
-	Ç¿»º´æ
-		×ÊÔ´ÔÚÓÐÐ§ÆÚÄÚ¶¼ÓÐÐ§£¬¹ýÁËÓÐÐ§ÆÚ¾ÍÊ§Ð§µÄ»º´æ¡£
-		Èç¹ûÃüÖÐÁË´ËÖÖ»º´æ£¬ä¯ÀÀÆ÷ÊÇ²»»áÏò·þÎñÆ÷·¢ËÍÇëÇóµÄ¡£
-	Ð­ÉÌ»º´æ
-		Ç¿»º´æµÄ×ÊÔ´¹ýÆÚºó£¬ä¯ÀÀÆ÷Ïò·þÎñÆ÷·¢ËÍÇëÇó¡£
-		Èç¹û¸Ã×ÊÔ´Ã»ÓÐ±ä»¯£¬Ôò·þÎñÆ÷»áÏìÓ¦ä¯ÀÀÆ÷´úÂë 304£¬²¢ÖØÐÂ½«Õâ¸ö×ÊÔ´±êÒ»¸ö¹ýÆÚÊ±¼ä¡£
-		Èç¹û¸Ã×ÊÔ´ÒÑ¾­±ä»¯£¬Ôò·þÎñÆ÷»áÏìÓ¦ä¯ÀÀÆ÷´úÂë 200£¬²¢·µ»ØÐÂµÄ×ÊÔ´¡£
-			×ÊÔ´ÊÇ·ñ±ä»¯µÄÅÐ¶ÏÒÀ¾ÝÖ®Ò»ÊÇ×ÊÔ´µÄ×îºóÐÞ¸ÄÈÕÆÚ¡££¨ÈÕÆÚ»áÓÐ¾«È·¶ÈµÄÎÊÌâ£¬±ÈÈçËµÒ»ÃëÄÚÐÞ¸Ä¶à´Î¡££©
-HTTP µÄ keep-alive
-	ºóÆÚµÄ HTTP1.0 ÒÔ¼° HTTP1.1 ÖÐ£¬ÔÚÇëÇóÍ·ÖÐ¼ÓÈë Connection: keep-alive ×Ö¶Î£¬¿ÉÒÔÈÃÇëÇóÏìÓ¦Íêºó×ÔÉíÁ´½Ó²»±»¹Ø±Õ£¬ÏÂ´Î»¹¸´ÓÃÕâ´ÎÇëÇóµÄÁ´½Ó½øÐÐ»á»°Í¨ÐÅ¡£
-	È±µã£ºÔÚÇëÇó½áÊøºó£¬±¾À´¿ÉÒÔÊÍ·ÅµÄÁ´½Ó×ÊÔ´ÈÔÈ»±»Õ¼ÓÃ¡£
-	½â¾ö°ì·¨£º
-		ÔÚÇëÇóÍ·ÖÐ¼ÓÈë Keep-Alive: timeout = 5, max = 100¡£
-		timeout£ºÁ½´ÎÇëÇó¼äµÄ×î´óÊ±¼ä¼ä¸ô¡£
-		max£º¸ÃÁ´½Ó×î¶à±»¸´ÓÃµÄ´ÎÊý¡£
-HTTP2 Ïà±È HTTP1.X µÄÓÅÊÆ
-	ÌØµã£º³ä·ÖÀûÓÃÍøÂç´ø¿í£¬³¬¼¶¿ì¡£
-	1¡¢HTTP2 ²ÉÓÃ¶þ½øÖÆ¸ñÊ½´«ÊäÊý¾Ý£¬¶ø HTTP1.X ²ÉÓÃµÄÊÇÎÄ±¾¸ñÊ½´«ÊäÊý¾Ý¡£¶þ½øÖÆÐ­Òé½âÎöÆðÀ´¸ü¸ßÐ§¡£
-	2¡¢HTTP2 ²ÉÓÃÁËÒ»Ð©Í·²¿Ñ¹Ëõ¼¼Êõ£¬¼õÉÙÁËÔÚÇëÇóÍ·ºÍÏìÓ¦Í·ÖÐÖØ¸´Ð¯´øµÄÊý¾Ý£¬½µµÍÁËÍøÂç¸ºµ£¡£
-	3¡¢HTTP2 ²ÉÓÃÁË·þÎñÆ÷ÍÆËÍ·½Ê½£¬Ö÷¶¯Ïò¿Í»§¶ËÍÆËÍ×ÊÔ´£¬Ìá¸ßÁËÒ³ÃæµÄ¼ÓÔØÐ§ÂÊ¡££¨ÓÃµÄ±È½ÏÉÙ£©
-	4¡¢HTTP2 ²ÉÓÃÁË¶àÂ·¸´ÓÃ¼¼Êõ£¬¼õÉÙÁËÐèÒª´´½¨Á´½ÓµÄÊýÁ¿£¬½µµÍÁË×ÊÔ´Õ¼ÓÃºÍÐÔÄÜÏûºÄ¡£
-		HTTP2 ½¨Á¢Ò»¸öÁ´½Ó¿ÉÒÔ²¢·¢ n ¸öÇëÇóºÍÏìÓ¦£¬¶ø HTTP1.X ½¨Á¢Ò»¸öÁ´½ÓÍ¬Ò»Ê±¼äÖ»ÄÜ·¢ËÍÒ»¸öÇëÇóºÍÏìÓ¦¡£
-		HTTP2 Í¬Ò»Ê±¼ä½¨Á¢Á´½ÓµÄÊýÁ¿Ô¶³¬ HTTP1.X µÄ 6 ¸ö¡£
-HTTPS Ð­Òé
-	1¡¢Ê²Ã´ÊÇ HTTPS Ð­Òé£¿
-		HTTP Ð­ÒéÍ¨³£³ÐÔØÓÚ TCP Ð­ÒéÖ®ÉÏ£¬ÔÚ HTTP Ð­ÒéºÍ TCP Ð­ÒéÖ®¼äÌí¼ÓÒ»¸ö°²È«Ð­Òé²ã£¨SSL »ò TSL£©£¬Õâ¸öÊ±ºò¾Í³ÉÁËÎÒÃÇ³£ËµµÄ HTTPS Ð­Òé¡£
-	2¡¢ÎªÊ²Ã´ÐèÒª HTTPS Ð­Òé£¿
-		ÒòÎª HTTP Ð­ÒéÊÇÃ÷ÎÄ´«ÊäµÄ£¬Êý¾ÝÈÝÒ×±»½ØÈ¡£¬¶ø HTTPS Ð­Òé»á¶ÔÄ³Ð©Ãô¸ÐÊý¾Ý½øÐÐ¼ÓÃÜ´¦Àí¡£
-	3¡¢HTTPS Ð­ÒéÊÇÈçºÎ¶ÔÊý¾Ý½øÐÐ¼ÓÃÜµÄ£¿
-		HTTPS Ð­Òé²ÉÓÃµÄÊÇ¡°¶Ô³Æ¼ÓÃÜ¡±ºÍ¡°·Ç¶Ô³Æ¼ÓÃÜ¡±Ïà½áºÏµÄ·½Ê½¶ÔÊý¾Ý½øÐÐ¼ÓÃÜ¡£
-		Ãô¸ÐÊý¾Ý²ÉÓÃ¶Ô³Æ¼ÓÃÜ·½Ê½½øÐÐ¼ÓÃÜ´«Êä£¬¶Ô³Æ¼ÓÃÜµÄÃÜÔ¿²ÉÓÃ·Ç¶Ô³Æ¼ÓÃÜµÄ·½Ê½½øÐÐ¼ÓÃÜ´«Êä¡£
-	4¡¢¶Ô³Æ¼ÓÃÜ¡£
-		¶Ô³Æ¼ÓÃÜ²ÉÓÃµÄÊÇÍ¬Ò»¸öÃÜÔ¿½øÐÐ¼Ó½âÃÜ¡£¼ÓÃÜ³É±¾µÍ¡£
-	5¡¢·Ç¶Ô³Æ¼ÓÃÜ¡£
-		·Ç¶Ô³Æ¼ÓÃÜ²ÉÓÃµÄÊÇ²»Í¬µÄÃÜÔ¿½øÐÐ¼Ó½âÃÜ¡£¼ÓÃÜ³É±¾¸ß¡£
-	6¡¢ÈçºÎ±£Ö¤·Ç¶Ô³Æ¼ÓÃÜ¹«Ô¿Ã÷ÎÄ´«ÊäµÄ°²È«ÐÔ£¿
-		Êý×ÖÖ¤Êé£¨CA Ö¤Êé£©£¬Ò»°ãÊÇ CA »ú¹¹°ä·¢µÄ£¬¿ÉÒÔÓÃÀ´Ö¤Ã÷Õâ¸öÍøÕ¾ÊÇ·ñ¿É¿¿¡£
-		CA Ö¤ÊéÖÐ°üº¬ÁËÍøÕ¾µÄ¹«Ô¿¡¢ÓòÃûµØÖ·¡¢Ö¤ÊéµÄµ½ÆÚÊ±¼äµÈÐÅÏ¢¡£
-		·ÃÎÊÃ»ÓÐ CA Ö¤Êé»òÕß CA Ö¤Êé¹ýÆÚµÄÍøÕ¾£¬ä¯ÀÀÆ÷»á·¢³ö¾¯¸æ¡£
-		ÓÐÁË CA Ö¤ÊéµÄ·þÎñÆ÷²»»áÔÙÏìÓ¦Ã÷ÎÄµÄ¹«Ô¿¸øÓÃ»§£¬¶øÊÇÏìÓ¦ CA Ö¤Êé¸øÓÃ»§¡£
-	7¡¢Êý×ÖÇ©Ãû¡£
-		Êý×ÖÇ©Ãû¿ÉÒÔÓÃÀ´Ö¤Ã÷ CA Ö¤ÊéÊÇ·ñÎ±Ôì»òÕß±»´Û¸Ä¡£
-		Ô­Àí£ºÊý×ÖÇ©ÃûÊÇÓÉ CA Ö¤ÊéÀïÃæµÄÐÅÏ¢Í¨¹ý hash Ëã·¨½øÐÐ¼ÓÃÜµÃÀ´µÄÒ»¸öÎ¨Ò»±êÊ¶£¬¿ÉÒÔÀí½âÎªÉí·ÝÖ¤µÄÉí·ÝÖ¤ºÅÂë¡£
+			Connectionï¼šå¯¹åº”è¯·æ±‚ä¸­çš„ Connectionã€‚
+			Cache-Controlï¼šå¯¹åº”è¯·æ±‚ä¸­çš„ Cache-Controlã€‚
+		ç©ºè¡Œï¼šæœ€åŽä¸€ä¸ªå“åº”å¤´é”®å€¼å¯¹çš„åŽé¢æ˜¯ä¸€ä¸ªç©ºè¡Œï¼Œç”¨æ¥å‘Šè¯‰æµè§ˆå™¨å“åº”å¤´åˆ°æ­¤ç»“æŸã€‚
+		å“åº”ä½“ï¼šå“åº”ä½“ä¸­å­˜æ”¾çš„æ˜¯æœåŠ¡å™¨å“åº”ç»™å®¢æˆ·ç«¯çš„èµ„æºã€‚
+	è¯·æ±‚æ–¹æ³•
+		è¯·æ±‚æ–¹æ³•ç”¨æ¥è¡¨æ˜Žæµè§ˆå™¨è¦å¯¹æœåŠ¡å™¨ä¸Šçš„èµ„æºæ‰€æ‰§è¡Œçš„æ“ä½œã€‚è¯·æ±‚æ–¹æ³•åˆ†ä¸º get è¯·æ±‚å’Œ post è¯·æ±‚ç­‰ã€‚
+	å“åº”çŠ¶æ€ç 
+		HTTP å“åº”çŠ¶æ€ç ç”±ä¸‰ä¸ªåè¿›åˆ¶æ•°å­—ç»„æˆï¼Œç¬¬ä¸€ä¸ªåè¿›åˆ¶æ•°å­—å®šä¹‰äº†å“åº”çŠ¶æ€ç çš„ç±»åž‹ï¼ŒåŽä¸¤ä¸ªæ•°å­—ç”¨æ¥å¯¹å“åº”çŠ¶æ€ç è¿›è¡Œç»†åˆ†ã€‚
+		1**ï¼šä¿¡æ¯ã€‚è¡¨ç¤ºæœåŠ¡å™¨æ”¶åˆ°è¯·æ±‚ã€‚éœ€è¦è¯·æ±‚è€…ç»§ç»­æ‰§è¡Œæ“ä½œã€‚
+		2**ï¼šæˆåŠŸã€‚è¡¨ç¤ºè¯·æ±‚è¢«æˆåŠŸæŽ¥æ”¶å¹¶å¤„ç†ã€‚
+			200 OK						è¯·æ±‚æˆåŠŸã€‚ä¸€èˆ¬ç”¨äºŽ get å’Œ post è¯·æ±‚ã€‚
+			201 Created					è¯·æ±‚æˆåŠŸå¹¶åˆ›å»ºäº†æ–°çš„èµ„æºã€‚ä¸€èˆ¬ç”¨äºŽ post å’Œ put è¯·æ±‚ã€‚
+		3**ï¼šé‡å®šå‘ã€‚è¡¨ç¤ºæœåŠ¡å™¨è¦æ±‚è¯·æ±‚è€…é‡å®šå‘ã€‚éœ€è¦è¯·æ±‚è€…ç»§ç»­æ‰§è¡Œæ“ä½œã€‚
+			301 Moved Permanently				æ°¸ä¹…ç§»åŠ¨ã€‚è¯·æ±‚çš„èµ„æºè¢«æ°¸ä¹…ç§»åŠ¨åˆ°æ–°çš„ URLã€‚è¿”å›žçš„ä¿¡æ¯åŒ…æ‹¬æ–°çš„ URLã€‚å®¢æˆ·ç«¯æŽ¥ä¸‹æ¥çš„è¯·æ±‚åº”ä½¿ç”¨æ–°çš„ URLã€‚
+			302 Found					ä¸´æ—¶ç§»åŠ¨ã€‚è¯·æ±‚çš„èµ„æºè¢«ä¸´æ—¶ç§»åŠ¨åˆ°æ–°çš„ URLã€‚è¿”å›žçš„ä¿¡æ¯åŒ…æ‹¬æ–°çš„ URLã€‚å®¢æˆ·ç«¯æŽ¥ä¸‹æ¥çš„è¯·æ±‚åº”ä½¿ç”¨æ–°çš„ URLã€‚
+			304 Not Modified				æ²¡æœ‰ç§»åŠ¨ã€‚è¯·æ±‚çš„å“åº”æ¶ˆæ¯æ²¡æœ‰å“åº”ä½“ï¼Œè¡¨ç¤ºèµ„æºæ²¡æœ‰è¢«ç§»åŠ¨ã€‚å®¢æˆ·ç«¯æŽ¥ä¸‹æ¥çš„è¯·æ±‚åº”ä½¿ç”¨æµè§ˆå™¨ç¼“å­˜çš„ URLã€‚
+		4**ï¼šå®¢æˆ·ç«¯é”™è¯¯ã€‚è¡¨ç¤ºè¯·æ±‚ä¸­åŒ…å«è¯­æ³•é”™è¯¯æˆ–éžæ³•å†…å®¹ï¼Œä»Žè€Œå¯¼è‡´äº†è¿™æ¬¡å“åº”çš„å¤±è´¥ã€‚
+			400 Bad Request					è¯·æ±‚çš„è¯­æ³•æˆ–å‚æ•°æœ‰é—®é¢˜ã€‚
+			401 Unauthorized				å½“å‰è¯·æ±‚æ²¡æœ‰è®¿é—®æƒé™ï¼Œéœ€è¦è¿›è¡Œèº«ä»½è®¤è¯ã€‚
+			403 Forbidden					æœåŠ¡å™¨å·²ç»ç†è§£è¯·æ±‚ï¼Œä½†æ˜¯æ‹’ç»æ‰§è¡Œè¯¥ä»»åŠ¡ã€‚
+			404 Not Found					æœåŠ¡å™¨æ— æ³•æ ¹æ®å®¢æˆ·ç«¯çš„è¯·æ±‚æ‰¾åˆ°èµ„æºã€‚
+			408 Request Timeout				è¯·æ±‚è¶…æ—¶ã€‚æœåŠ¡å™¨ç­‰å¾…å®¢æˆ·ç«¯å‘é€çš„è¯·æ±‚æ—¶é—´è¿‡é•¿ã€‚
+		5**ï¼šæœåŠ¡å™¨é”™è¯¯ã€‚è¡¨ç¤ºæœåŠ¡å™¨åœ¨å¤„ç†è¯·æ±‚çš„è¿‡ç¨‹ä¸­å‘ç”Ÿäº†é”™è¯¯ã€‚
+			500 Internal Server				æœåŠ¡å™¨å†…éƒ¨é”™è¯¯ï¼Œæ— æ³•å®Œæˆè¯·æ±‚ã€‚
+			501 Not Implemented				æœåŠ¡å™¨ä¸æ”¯æŒè¯¥è¯·æ±‚æ–¹æ³•ã€‚
+			503 Service Unavailable				ç”±äºŽè¶…è½½æˆ–ç³»ç»Ÿç»´æŠ¤ï¼ŒæœåŠ¡å™¨æš‚æ—¶æ— æ³•å¤„ç†å®¢æˆ·ç«¯çš„è¯·æ±‚ã€‚
+ä¸€æ¬¡ HTTP è¯·æ±‚çš„å®Œæ•´è¿‡ç¨‹
+	1ã€æ ¹æ®æµè§ˆå™¨ä¸­çš„ URL è¯·æ±‚å’Œ DNS åŸŸåæœåŠ¡å™¨ï¼Œè§£æžå‡ºæœåŠ¡å™¨çš„ IP åœ°å€ã€‚
+	2ã€æµè§ˆå™¨å¯¹æœåŠ¡å™¨å‘èµ· TCP 3 æ¬¡æ¡æ‰‹ã€‚
+	3ã€æµè§ˆå™¨å’ŒæœåŠ¡å™¨å»ºç«‹ TCP é“¾æŽ¥åŽï¼Œæµè§ˆå™¨å‘æœåŠ¡å™¨å‘é€ HTTP è¯·æ±‚æŠ¥æ–‡ã€‚
+	4ã€æœåŠ¡å™¨å°†æ­¤ HTTP è¯·æ±‚çš„å“åº”æŠ¥æ–‡è¿”å›žç»™æµè§ˆå™¨ã€‚
+	5ã€çŸ­é“¾æŽ¥çš„æƒ…å†µä¸‹ï¼Œæµè§ˆå™¨å’ŒæœåŠ¡å™¨é€šè¿‡ TCP å››æ¬¡æŒ¥æ‰‹å…³é—­é“¾æŽ¥ï¼›é•¿é“¾æŽ¥çš„æƒ…å†µä¸‹ï¼Œåœ¨æµè§ˆå™¨æ²¡æœ‰è®¿é—®æœåŠ¡å™¨çš„è‹¥å¹²æ—¶é—´åŽï¼Œä»–ä»¬çš„é“¾æŽ¥ä¼šè‡ªåŠ¨å…³é—­ã€‚
+	6ã€æµè§ˆå™¨è§£æžå‡ºå“åº”ä¿¡æ¯ä¸­çš„ HTML ä»£ç ï¼Œ å¹¶ç»§ç»­è¯·æ±‚ HTML ä»£ç ä¸­çš„èµ„æºï¼ˆå¦‚ï¼šJSã€CSSã€å›¾ç‰‡ç­‰ï¼‰ã€‚
+	7ã€æµè§ˆå™¨å¯¹æ­¤ HTML ä»£ç è¿›è¡Œé¡µé¢æ¸²æŸ“å¹¶å‘ˆçŽ°ç»™ç”¨æˆ·ã€‚
+HTTP ç¼“å­˜æŽ§åˆ¶
+	å¼ºç¼“å­˜
+		èµ„æºåœ¨æœ‰æ•ˆæœŸå†…éƒ½æœ‰æ•ˆï¼Œè¿‡äº†æœ‰æ•ˆæœŸå°±å¤±æ•ˆçš„ç¼“å­˜ã€‚
+		å¦‚æžœå‘½ä¸­äº†æ­¤ç§ç¼“å­˜ï¼Œæµè§ˆå™¨æ˜¯ä¸ä¼šå‘æœåŠ¡å™¨å‘é€è¯·æ±‚çš„ã€‚
+	åå•†ç¼“å­˜
+		å¼ºç¼“å­˜çš„èµ„æºè¿‡æœŸåŽï¼Œæµè§ˆå™¨å‘æœåŠ¡å™¨å‘é€è¯·æ±‚ã€‚
+		å¦‚æžœè¯¥èµ„æºæ²¡æœ‰å˜åŒ–ï¼Œåˆ™æœåŠ¡å™¨ä¼šå“åº”æµè§ˆå™¨ä»£ç  304ï¼Œå¹¶é‡æ–°å°†è¿™ä¸ªèµ„æºæ ‡ä¸€ä¸ªè¿‡æœŸæ—¶é—´ã€‚
+		å¦‚æžœè¯¥èµ„æºå·²ç»å˜åŒ–ï¼Œåˆ™æœåŠ¡å™¨ä¼šå“åº”æµè§ˆå™¨ä»£ç  200ï¼Œå¹¶è¿”å›žæ–°çš„èµ„æºã€‚
+			èµ„æºæ˜¯å¦å˜åŒ–çš„åˆ¤æ–­ä¾æ®ä¹‹ä¸€æ˜¯èµ„æºçš„æœ€åŽä¿®æ”¹æ—¥æœŸã€‚ï¼ˆæ—¥æœŸä¼šæœ‰ç²¾ç¡®åº¦çš„é—®é¢˜ï¼Œæ¯”å¦‚è¯´ä¸€ç§’å†…ä¿®æ”¹å¤šæ¬¡ã€‚ï¼‰
+HTTP çš„ keep-alive
+	åŽæœŸçš„ HTTP1.0 ä»¥åŠ HTTP1.1 ä¸­ï¼Œåœ¨è¯·æ±‚å¤´ä¸­åŠ å…¥ Connection: keep-alive å­—æ®µï¼Œå¯ä»¥è®©è¯·æ±‚å“åº”å®ŒåŽè‡ªèº«é“¾æŽ¥ä¸è¢«å…³é—­ï¼Œä¸‹æ¬¡è¿˜å¤ç”¨è¿™æ¬¡è¯·æ±‚çš„é“¾æŽ¥è¿›è¡Œä¼šè¯é€šä¿¡ã€‚
+	ç¼ºç‚¹ï¼šåœ¨è¯·æ±‚ç»“æŸåŽï¼Œæœ¬æ¥å¯ä»¥é‡Šæ”¾çš„é“¾æŽ¥èµ„æºä»ç„¶è¢«å ç”¨ã€‚
+	è§£å†³åŠžæ³•ï¼š
+		åœ¨è¯·æ±‚å¤´ä¸­åŠ å…¥ Keep-Alive: timeout = 5, max = 100ã€‚
+		timeoutï¼šä¸¤æ¬¡è¯·æ±‚é—´çš„æœ€å¤§æ—¶é—´é—´éš”ã€‚
+		maxï¼šè¯¥é“¾æŽ¥æœ€å¤šè¢«å¤ç”¨çš„æ¬¡æ•°ã€‚
+HTTP2 ç›¸æ¯” HTTP1.X çš„ä¼˜åŠ¿
+	ç‰¹ç‚¹ï¼šå……åˆ†åˆ©ç”¨ç½‘ç»œå¸¦å®½ï¼Œè¶…çº§å¿«ã€‚
+	1ã€HTTP2 é‡‡ç”¨äºŒè¿›åˆ¶æ ¼å¼ä¼ è¾“æ•°æ®ï¼Œè€Œ HTTP1.X é‡‡ç”¨çš„æ˜¯æ–‡æœ¬æ ¼å¼ä¼ è¾“æ•°æ®ã€‚äºŒè¿›åˆ¶åè®®è§£æžèµ·æ¥æ›´é«˜æ•ˆã€‚
+	2ã€HTTP2 é‡‡ç”¨äº†ä¸€äº›å¤´éƒ¨åŽ‹ç¼©æŠ€æœ¯ï¼Œå‡å°‘äº†åœ¨è¯·æ±‚å¤´å’Œå“åº”å¤´ä¸­é‡å¤æºå¸¦çš„æ•°æ®ï¼Œé™ä½Žäº†ç½‘ç»œè´Ÿæ‹…ã€‚
+	3ã€HTTP2 é‡‡ç”¨äº†æœåŠ¡å™¨æŽ¨é€æ–¹å¼ï¼Œä¸»åŠ¨å‘å®¢æˆ·ç«¯æŽ¨é€èµ„æºï¼Œæé«˜äº†é¡µé¢çš„åŠ è½½æ•ˆçŽ‡ã€‚ï¼ˆç”¨çš„æ¯”è¾ƒå°‘ï¼‰
+	4ã€HTTP2 é‡‡ç”¨äº†å¤šè·¯å¤ç”¨æŠ€æœ¯ï¼Œå‡å°‘äº†éœ€è¦åˆ›å»ºé“¾æŽ¥çš„æ•°é‡ï¼Œé™ä½Žäº†èµ„æºå ç”¨å’Œæ€§èƒ½æ¶ˆè€—ã€‚
+		HTTP2 å»ºç«‹ä¸€ä¸ªé“¾æŽ¥å¯ä»¥å¹¶å‘ n ä¸ªè¯·æ±‚å’Œå“åº”ï¼Œè€Œ HTTP1.X å»ºç«‹ä¸€ä¸ªé“¾æŽ¥åŒä¸€æ—¶é—´åªèƒ½å‘é€ä¸€ä¸ªè¯·æ±‚å’Œå“åº”ã€‚
+		HTTP2 åŒä¸€æ—¶é—´å»ºç«‹é“¾æŽ¥çš„æ•°é‡è¿œè¶… HTTP1.X çš„ 6 ä¸ªã€‚
+HTTPS åè®®
+	1ã€ä»€ä¹ˆæ˜¯ HTTPS åè®®ï¼Ÿ
+		HTTP åè®®é€šå¸¸æ‰¿è½½äºŽ TCP åè®®ä¹‹ä¸Šï¼Œåœ¨ HTTP åè®®å’Œ TCP åè®®ä¹‹é—´æ·»åŠ ä¸€ä¸ªå®‰å…¨åè®®å±‚ï¼ˆSSL æˆ– TSLï¼‰ï¼Œè¿™ä¸ªæ—¶å€™å°±æˆäº†æˆ‘ä»¬å¸¸è¯´çš„ HTTPS åè®®ã€‚
+	2ã€ä¸ºä»€ä¹ˆéœ€è¦ HTTPS åè®®ï¼Ÿ
+		å› ä¸º HTTP åè®®æ˜¯æ˜Žæ–‡ä¼ è¾“çš„ï¼Œæ•°æ®å®¹æ˜“è¢«æˆªå–ï¼Œè€Œ HTTPS åè®®ä¼šå¯¹æŸäº›æ•æ„Ÿæ•°æ®è¿›è¡ŒåŠ å¯†å¤„ç†ã€‚
+	3ã€HTTPS åè®®æ˜¯å¦‚ä½•å¯¹æ•°æ®è¿›è¡ŒåŠ å¯†çš„ï¼Ÿ
+		HTTPS åè®®é‡‡ç”¨çš„æ˜¯â€œå¯¹ç§°åŠ å¯†â€å’Œâ€œéžå¯¹ç§°åŠ å¯†â€ç›¸ç»“åˆçš„æ–¹å¼å¯¹æ•°æ®è¿›è¡ŒåŠ å¯†ã€‚
+		æ•æ„Ÿæ•°æ®é‡‡ç”¨å¯¹ç§°åŠ å¯†æ–¹å¼è¿›è¡ŒåŠ å¯†ä¼ è¾“ï¼Œå¯¹ç§°åŠ å¯†çš„å¯†é’¥é‡‡ç”¨éžå¯¹ç§°åŠ å¯†çš„æ–¹å¼è¿›è¡ŒåŠ å¯†ä¼ è¾“ã€‚
+	4ã€å¯¹ç§°åŠ å¯†ã€‚
+		å¯¹ç§°åŠ å¯†é‡‡ç”¨çš„æ˜¯åŒä¸€ä¸ªå¯†é’¥è¿›è¡ŒåŠ è§£å¯†ã€‚åŠ å¯†æˆæœ¬ä½Žã€‚
+	5ã€éžå¯¹ç§°åŠ å¯†ã€‚
+		éžå¯¹ç§°åŠ å¯†é‡‡ç”¨çš„æ˜¯ä¸åŒçš„å¯†é’¥è¿›è¡ŒåŠ è§£å¯†ã€‚åŠ å¯†æˆæœ¬é«˜ã€‚
+	6ã€å¦‚ä½•ä¿è¯éžå¯¹ç§°åŠ å¯†å…¬é’¥æ˜Žæ–‡ä¼ è¾“çš„å®‰å…¨æ€§ï¼Ÿ
+		æ•°å­—è¯ä¹¦ï¼ˆCA è¯ä¹¦ï¼‰ï¼Œä¸€èˆ¬æ˜¯ CA æœºæž„é¢å‘çš„ï¼Œå¯ä»¥ç”¨æ¥è¯æ˜Žè¿™ä¸ªç½‘ç«™æ˜¯å¦å¯é ã€‚
+		CA è¯ä¹¦ä¸­åŒ…å«äº†ç½‘ç«™çš„å…¬é’¥ã€åŸŸååœ°å€ã€è¯ä¹¦çš„åˆ°æœŸæ—¶é—´ç­‰ä¿¡æ¯ã€‚
+		è®¿é—®æ²¡æœ‰ CA è¯ä¹¦æˆ–è€… CA è¯ä¹¦è¿‡æœŸçš„ç½‘ç«™ï¼Œæµè§ˆå™¨ä¼šå‘å‡ºè­¦å‘Šã€‚
+		æœ‰äº† CA è¯ä¹¦çš„æœåŠ¡å™¨ä¸ä¼šå†å“åº”æ˜Žæ–‡çš„å…¬é’¥ç»™ç”¨æˆ·ï¼Œè€Œæ˜¯å“åº” CA è¯ä¹¦ç»™ç”¨æˆ·ã€‚
+	7ã€æ•°å­—ç­¾åã€‚
+		æ•°å­—ç­¾åå¯ä»¥ç”¨æ¥è¯æ˜Ž CA è¯ä¹¦æ˜¯å¦ä¼ªé€ æˆ–è€…è¢«ç¯¡æ”¹ã€‚
+		åŽŸç†ï¼šæ•°å­—ç­¾åæ˜¯ç”± CA è¯ä¹¦é‡Œé¢çš„ä¿¡æ¯é€šè¿‡ hash ç®—æ³•è¿›è¡ŒåŠ å¯†å¾—æ¥çš„ä¸€ä¸ªå”¯ä¸€æ ‡è¯†ï¼Œå¯ä»¥ç†è§£ä¸ºèº«ä»½è¯çš„èº«ä»½è¯å·ç ã€‚
 
 
 
 XHR
-	XMLHttpRequest ÊÇä¯ÀÀÆ÷Ìá¹©µÄÓÃÓÚ·¢ËÍÒì²½Êý¾ÝÇëÇóµÄ JS ¶ÔÏó¡£
-	Óï·¨
-		get ÇëÇó
-			// 1¡¢´´½¨ XHR ¶ÔÏó¡£
+	XMLHttpRequest æ˜¯æµè§ˆå™¨æä¾›çš„ç”¨äºŽå‘é€å¼‚æ­¥æ•°æ®è¯·æ±‚çš„ JS å¯¹è±¡ã€‚
+	è¯­æ³•
+		get è¯·æ±‚
+			// 1ã€åˆ›å»º XHR å¯¹è±¡ã€‚
 			var xhr = new XMLHttpRequest()
-			// 2¡¢µ÷ÓÃ open º¯Êý¡£
+			// 2ã€è°ƒç”¨ open å‡½æ•°ã€‚
 			xhr.open('GET', URL + '?param=value')
-			// 3¡¢µ÷ÓÃ send º¯Êý¡£
+			// 3ã€è°ƒç”¨ send å‡½æ•°ã€‚
 			xhr.send()
-			// 4¡¢¼àÌý onreadystatechange ÊÂ¼þ¡£
+			// 4ã€ç›‘å¬ onreadystatechange äº‹ä»¶ã€‚
 			xhr.onreadystatechange = function() {
-				// 4.1¡¢¼àÌý xhr ¶ÔÏóµÄÇëÇó×´Ì¬ readyState ºÍ·þÎñÆ÷µÄÏìÓ¦×´Ì¬ status¡£
+				// 4.1ã€ç›‘å¬ xhr å¯¹è±¡çš„è¯·æ±‚çŠ¶æ€ readyState å’ŒæœåŠ¡å™¨çš„å“åº”çŠ¶æ€ statusã€‚
 				if(xhr.readyState === 4 && xhr.status === 200) {
-					// 4.2¡¢´òÓ¡·þÎñÆ÷ÏìÓ¦»ØÀ´µÄÊý¾Ý¡£
+					// 4.2ã€æ‰“å°æœåŠ¡å™¨å“åº”å›žæ¥çš„æ•°æ®ã€‚
 					console.log(xhr.responseText)
 				}
 			}
-		post ÇëÇó
-			// 1¡¢´´½¨ XHR ¶ÔÏó¡£
+		post è¯·æ±‚
+			// 1ã€åˆ›å»º XHR å¯¹è±¡ã€‚
 			var xhr = new XMLHttpRequest()
-			// 2¡¢µ÷ÓÃ open º¯Êý¡£
+			// 2ã€è°ƒç”¨ open å‡½æ•°ã€‚
 			xhr.open('POST', URL)
-			// 3¡¢ÉèÖÃÇëÇóÍ·µÄ Content-Type ×Ö¶Î¡£
+			// 3ã€è®¾ç½®è¯·æ±‚å¤´çš„ Content-Type å­—æ®µã€‚
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-			// 4¡¢µ÷ÓÃ send º¯Êý¡£
+			// 4ã€è°ƒç”¨ send å‡½æ•°ã€‚
 			xhr.send('key1=value1&key2=value2&key3=value3')
-			// 5¡¢¼àÌý onreadystatechange ÊÂ¼þ¡£
+			// 5ã€ç›‘å¬ onreadystatechange äº‹ä»¶ã€‚
 			xhr.onreadystatechange = function() {
-				// 5.1¡¢¼àÌý xhr ¶ÔÏóµÄÇëÇó×´Ì¬ readyState ºÍ·þÎñÆ÷µÄÏàÓ¦×´Ì¬ status¡£
+				// 5.1ã€ç›‘å¬ xhr å¯¹è±¡çš„è¯·æ±‚çŠ¶æ€ readyState å’ŒæœåŠ¡å™¨çš„ç›¸åº”çŠ¶æ€ statusã€‚
 				if(xhr.readyState === 4 && xhr.status === 200) {
-					// 5.2¡¢´òÓ¡·þÎñÆ÷ÏìÓ¦»ØÀ´µÄÊý¾Ý¡£
+					// 5.2ã€æ‰“å°æœåŠ¡å™¨å“åº”å›žæ¥çš„æ•°æ®ã€‚
 					console.log(xhr.responseText)
 				}
 			}
 		xhr.readyState
-			0£º×´Ì¬ unsent¡£					xhr ¶ÔÏóÒÑ±»´´½¨£¬µ«ÉÐÎ´µ÷ÓÃ xhr.open ·½·¨¡£
-			1£º×´Ì¬ opened¡£					xhr.open ·½·¨ÒÑ¾­±»µ÷ÓÃ¡£
-			2£º×´Ì¬ headers_received¡£				xhr.send ·½·¨ÒÑ¾­±»µ÷ÓÃ£¬ÏìÓ¦Í·Ò²ÒÑ¾­±»½ÓÊÕ¡£
-			3£º×´Ì¬ loading¡£					Êý¾Ý½ÓÊÕÖÐ¡£´ËÊ± xhr.responseText ÖÐÒÑ¾­°üº¬ÁË²¿·ÖÊý¾Ý¡£
-			4£º×´Ì¬ done¡£						Ajax ÇëÇóÍê³É¡£ÕâÒâÎ¶×ÅÊý¾Ý´«ÊäÒÑ¾­³¹µ×Íê³É»òÊ§°Ü¡£
-·â×° Ajax º¯Êý
+			0ï¼šçŠ¶æ€ unsentã€‚					xhr å¯¹è±¡å·²è¢«åˆ›å»ºï¼Œä½†å°šæœªè°ƒç”¨ xhr.open æ–¹æ³•ã€‚
+			1ï¼šçŠ¶æ€ openedã€‚					xhr.open æ–¹æ³•å·²ç»è¢«è°ƒç”¨ã€‚
+			2ï¼šçŠ¶æ€ headers_receivedã€‚				xhr.send æ–¹æ³•å·²ç»è¢«è°ƒç”¨ï¼Œå“åº”å¤´ä¹Ÿå·²ç»è¢«æŽ¥æ”¶ã€‚
+			3ï¼šçŠ¶æ€ loadingã€‚					æ•°æ®æŽ¥æ”¶ä¸­ã€‚æ­¤æ—¶ xhr.responseText ä¸­å·²ç»åŒ…å«äº†éƒ¨åˆ†æ•°æ®ã€‚
+			4ï¼šçŠ¶æ€ doneã€‚						Ajax è¯·æ±‚å®Œæˆã€‚è¿™æ„å‘³ç€æ•°æ®ä¼ è¾“å·²ç»å½»åº•å®Œæˆæˆ–å¤±è´¥ã€‚
+å°è£… Ajax å‡½æ•°
 	// data: { prop1: value1, prop2: value2, ...... }
 	function resolveData(data) {
 		var arr = []
@@ -217,48 +217,48 @@ XHR
 			}
 		}
 	}
-Ajax µÄÓ¦ÓÃ
-	Form ±íµ¥
-		Form ±íµ¥ÓÉ±íµ¥±êÇ©¡¢±íµ¥Óò¡¢±íµ¥°´Å¥Èý¸ö²¿·Ö×é³É¡£
-		±íµ¥Óò°üº¬ÎÄ±¾¿ò¡¢ÃÜÂë¿ò¡¢Òþ²ØÓò¡¢¶àÐÐÎÄ±¾¡¢¸´Ñ¡¿ò¡¢µ¥Ñ¡¿ò¡¢ÏÂÀ­Ñ¡Ôñ¿òºÍÎÄ¼þÉÏ´«¿òµÈ¡£
-	<form> ±êÇ©µÄÊôÐÔ
-		action£ºÖ¸¶¨ÏòºÎ´¦Ìá½»±íµ¥Êý¾Ý¡£
-			Ä¬ÈÏÖµÎªµ±Ç°Ò³ÃæµÄ URL¡£
-		target£ºÖ¸¶¨ÔÚºÎ´¦´ò¿ª action URL Ò³Ãæ¡£
-			_self£ºÔÚÔ­´°¿ÚÖÐ´ò¿ª¡£Ä¬ÈÏÖµ¡£
-			_blank£ºÔÚÐÂ´°¿ÚÖÐ´ò¿ª¡£	
-		method£ºÖ¸¶¨ÒÔºÎÖÖ·½Ê½°Ñ±íµ¥Êý¾ÝÌá½»µ½ action URL¡£
-			get »ò post¡£
-		enctype£º¸æËß·þÎñÆ÷±íµ¥Êý¾Ý²ÉÓÃºÎÖÖ±àÂë¸ñÊ½¡£
-			application/x-www-form-urlencoded£º¸æËß·þÎñÆ÷ÇëÇóÌåµÄÊý¾Ý¸ñÊ½Îª key1=value1&key2=value2¡£Ä¬ÈÏÖµ¡£
-			multipart/form-data£ºÒ»°ãÐèÒªÉÏ´«ÎÄ¼þµÄ±íµ¥»áÊ¹ÓÃ¸ÃÖµ¡£
-	Form ±íµ¥µÄÍ¬²½Ìá½»ÎÊÌâ
-		¶¨Òå£ºÍ¨¹ýµã»÷ submit °´Å¥´¥·¢±íµ¥µÄÌá½»²Ù×÷£¬´Ó¶øÊ¹Ò³ÃæÌø×ªµ½ action URL µÄÐÐÎª£¬½Ð×ö±íµ¥µÄÍ¬²½Ìá½»ÎÊÌâ¡£
-		È±µã£º
-			1¡¢Ò³Ãæ»á·¢ÉúÌø×ª¡£
-			2¡¢Ö®Ç°Ò³ÃæµÄ×´Ì¬ºÍÊý¾Ý»á¶ªÊ§¡£
-		½â¾ö·½°¸£º±íµ¥Ö»¸ºÔð²É¼¯Êý¾Ý£¬È»ºóÓÃ Ajax ½«Êý¾ÝÌá½»µ½·þÎñÆ÷¡£
+Ajax çš„åº”ç”¨
+	Form è¡¨å•
+		Form è¡¨å•ç”±è¡¨å•æ ‡ç­¾ã€è¡¨å•åŸŸã€è¡¨å•æŒ‰é’®ä¸‰ä¸ªéƒ¨åˆ†ç»„æˆã€‚
+		è¡¨å•åŸŸåŒ…å«æ–‡æœ¬æ¡†ã€å¯†ç æ¡†ã€éšè—åŸŸã€å¤šè¡Œæ–‡æœ¬ã€å¤é€‰æ¡†ã€å•é€‰æ¡†ã€ä¸‹æ‹‰é€‰æ‹©æ¡†å’Œæ–‡ä»¶ä¸Šä¼ æ¡†ç­‰ã€‚
+	<form> æ ‡ç­¾çš„å±žæ€§
+		actionï¼šæŒ‡å®šå‘ä½•å¤„æäº¤è¡¨å•æ•°æ®ã€‚
+			é»˜è®¤å€¼ä¸ºå½“å‰é¡µé¢çš„ URLã€‚
+		targetï¼šæŒ‡å®šåœ¨ä½•å¤„æ‰“å¼€ action URL é¡µé¢ã€‚
+			_selfï¼šåœ¨åŽŸçª—å£ä¸­æ‰“å¼€ã€‚é»˜è®¤å€¼ã€‚
+			_blankï¼šåœ¨æ–°çª—å£ä¸­æ‰“å¼€ã€‚	
+		methodï¼šæŒ‡å®šä»¥ä½•ç§æ–¹å¼æŠŠè¡¨å•æ•°æ®æäº¤åˆ° action URLã€‚
+			get æˆ– postã€‚
+		enctypeï¼šå‘Šè¯‰æœåŠ¡å™¨è¡¨å•æ•°æ®é‡‡ç”¨ä½•ç§ç¼–ç æ ¼å¼ã€‚
+			application/x-www-form-urlencodedï¼šå‘Šè¯‰æœåŠ¡å™¨è¯·æ±‚ä½“çš„æ•°æ®æ ¼å¼ä¸º key1=value1&key2=value2ã€‚é»˜è®¤å€¼ã€‚
+			multipart/form-dataï¼šä¸€èˆ¬éœ€è¦ä¸Šä¼ æ–‡ä»¶çš„è¡¨å•ä¼šä½¿ç”¨è¯¥å€¼ã€‚
+	Form è¡¨å•çš„åŒæ­¥æäº¤é—®é¢˜
+		å®šä¹‰ï¼šé€šè¿‡ç‚¹å‡» submit æŒ‰é’®è§¦å‘è¡¨å•çš„æäº¤æ“ä½œï¼Œä»Žè€Œä½¿é¡µé¢è·³è½¬åˆ° action URL çš„è¡Œä¸ºï¼Œå«åšè¡¨å•çš„åŒæ­¥æäº¤é—®é¢˜ã€‚
+		ç¼ºç‚¹ï¼š
+			1ã€é¡µé¢ä¼šå‘ç”Ÿè·³è½¬ã€‚
+			2ã€ä¹‹å‰é¡µé¢çš„çŠ¶æ€å’Œæ•°æ®ä¼šä¸¢å¤±ã€‚
+		è§£å†³æ–¹æ¡ˆï¼šè¡¨å•åªè´Ÿè´£é‡‡é›†æ•°æ®ï¼Œç„¶åŽç”¨ Ajax å°†æ•°æ®æäº¤åˆ°æœåŠ¡å™¨ã€‚
 			document.getElementById('#form').addEventListener('submit', (e) => {
 				e.preventDefault()
-				// »ñÈ¡±íµ¥Êý¾Ý£¬Ê¹ÓÃ Ajax ·¢ËÍÇëÇó¡£
+				// èŽ·å–è¡¨å•æ•°æ®ï¼Œä½¿ç”¨ Ajax å‘é€è¯·æ±‚ã€‚
 				......
 				this.reset()
 			})
 XHL Level2
-	¾É°æ XHL ¶ÔÏóµÄÈ±µã
-		1¡¢Ö»Ö§³ÖÎÄ±¾Êý¾ÝµÄ´«Êä£¬ÎÞ·¨ÓÃÀ´ÉÏ´«ºÍÏÂÔØÎÄ¼þ¡£
-		2¡¢´«ËÍºÍ½ÓÊÕÊý¾ÝÊ±£¬Ã»ÓÐ½ø¶ÈÐÅÏ¢£¬Ö»ÄÜÌáÊ¾ÓÐÃ»ÓÐÍê³É¡£
-	ÐÂ°æ XHL ¶ÔÏóµÄÓÅµã
-		1¡¢¿ÉÒÔÉèÖÃ HTTP ÇëÇóµÄÊ±ÏÞ£¬³¬Ê±¼´Ê§°Ü¡£
-		2¡¢¿ÉÒÔÊ¹ÓÃ FormData ¶ÔÏóÀ´¹ÜÀí±íµ¥Êý¾Ý¡£
-		3¡¢¿ÉÒÔÉÏ´«ºÍÏÂÔØÎÄ¼þ¡£
-		4¡¢¿ÉÒÔ»ñµÃÊý¾Ý´«ÊäµÄ½ø¶ÈÐÅÏ¢¡£
-	ÉèÖÃ HTTP ÇëÇóÊ±ÏÞ
+	æ—§ç‰ˆ XHL å¯¹è±¡çš„ç¼ºç‚¹
+		1ã€åªæ”¯æŒæ–‡æœ¬æ•°æ®çš„ä¼ è¾“ï¼Œæ— æ³•ç”¨æ¥ä¸Šä¼ å’Œä¸‹è½½æ–‡ä»¶ã€‚
+		2ã€ä¼ é€å’ŒæŽ¥æ”¶æ•°æ®æ—¶ï¼Œæ²¡æœ‰è¿›åº¦ä¿¡æ¯ï¼Œåªèƒ½æç¤ºæœ‰æ²¡æœ‰å®Œæˆã€‚
+	æ–°ç‰ˆ XHL å¯¹è±¡çš„ä¼˜ç‚¹
+		1ã€å¯ä»¥è®¾ç½® HTTP è¯·æ±‚çš„æ—¶é™ï¼Œè¶…æ—¶å³å¤±è´¥ã€‚
+		2ã€å¯ä»¥ä½¿ç”¨ FormData å¯¹è±¡æ¥ç®¡ç†è¡¨å•æ•°æ®ã€‚
+		3ã€å¯ä»¥ä¸Šä¼ å’Œä¸‹è½½æ–‡ä»¶ã€‚
+		4ã€å¯ä»¥èŽ·å¾—æ•°æ®ä¼ è¾“çš„è¿›åº¦ä¿¡æ¯ã€‚
+	è®¾ç½® HTTP è¯·æ±‚æ—¶é™
 		var xhr = new XMLHttpRequest()
 		xhr.timeout = 3000
-		xhr.ontimeout = function() { alert('ÇëÇó³¬Ê±£¡') }
-	FormData ¶ÔÏóµÄÓ¦ÓÃ
-		Ê¾ÀýÒ»£º
+		xhr.ontimeout = function() { alert('è¯·æ±‚è¶…æ—¶ï¼') }
+	FormData å¯¹è±¡çš„åº”ç”¨
+		ç¤ºä¾‹ä¸€ï¼š
 			var formData = new FormData()
 			formData.append('key1', value1)
 			formData.append('key2', value2)
@@ -270,7 +270,7 @@ XHL Level2
 					console.log(xhr.responseText)
 				}
 			}
-		Ê¾Àý¶þ£º
+		ç¤ºä¾‹äºŒï¼š
 			var form = document.querySelector('#form')
 			form.addEventListener('submit', (e) => {
 				e.preventDefault()
@@ -289,45 +289,45 @@ XHL Level2
 
 
 Axios
-	Axios Í¨¹ý Promise ÊµÏÖÁË¶Ô Ajax µÄ·â×°£¬ÊÇÒ»¸ö×¨×¢ÓÚÍøÂçÊý¾ÝÇëÇóµÄ JS ¿â¡£
-	Axios Óï·¨
-		get ÇëÇó
+	Axios é€šè¿‡ Promise å®žçŽ°äº†å¯¹ Ajax çš„å°è£…ï¼Œæ˜¯ä¸€ä¸ªä¸“æ³¨äºŽç½‘ç»œæ•°æ®è¯·æ±‚çš„ JS åº“ã€‚
+	Axios è¯­æ³•
+		get è¯·æ±‚
 			axios.get('url', {params: null})
 			.then(res => {
 				var result = res.data
 				console.log(result)
 			})
 			.catch(error => { console.log(error) })
-		post ÇëÇó
+		post è¯·æ±‚
 			axios.post('url', null)
 			.then(res => {
 				var result = res.data
 				console.log(result)
 			})
 			.catch(error => { console.log(error) })
-		axios ÇëÇó
+		axios è¯·æ±‚
 			axios({
 				method: '',
 				url: '',
-				data: null,				// GET ÇëÇó²ÎÊý¡£
-				params: null,				// POST ÇëÇó²ÎÊý¡£
+				data: null,				// GET è¯·æ±‚å‚æ•°ã€‚
+				params: null,				// POST è¯·æ±‚å‚æ•°ã€‚
 			})
 			.then(res => {
 				var result = res.data
 				console.log(result)
 			})
 			.catch(error => { console.log(error) })
-	Axios ÊµÕ½
+	Axios å®žæˆ˜
 		npm install axios
 		import axios from 'axios'
-		// ´´½¨Ò»¸ö Axios ÊµÀý¡£
+		// åˆ›å»ºä¸€ä¸ª Axios å®žä¾‹ã€‚
 		const instance = axios.create({
 			// npm run dev ==> /dev-api   npm run build ==> /prod-api
 			baseURL: process.env.VUE_APP_BASE_API,
-			// ÇëÇóµÄ³¬Ê±Ê±¼ä¡£
+			// è¯·æ±‚çš„è¶…æ—¶æ—¶é—´ã€‚
 			timeout: 10000
 		})
-		// ÇëÇó¹¤¾ßº¯Êý¡£
+		// è¯·æ±‚å·¥å…·å‡½æ•°ã€‚
 		export default (url, method, submitData) => {
 			return instance({
 				url,
@@ -338,70 +338,70 @@ Axios
 
 
 
-Í¬Ô´ºÍ¿çÓò
-	Í¬Ô´£ºÈç¹ûÇëÇó·½ÓëÏìÓ¦·½µÄÐ­Òé¡¢ÓòÃû¡¢¶Ë¿ÚºÅ¶¼ÏàÍ¬£¬ÔòÇëÇó·½ÓëÏìÓ¦·½¾ßÓÐÏàÍ¬µÄÔ´¡£
-	¿çÓò£º¿çÓò¼´·ÇÍ¬Ô´¡£
-		ä¯ÀÀÆ÷ÔÊÐí·¢Æð¿çÓòÇëÇó£¬µ«ÊÇ¿çÓòÇëÇó»ØÀ´µÄÊý¾Ý»á±»ä¯ÀÀÆ÷À¹½Ø£¬¶øÎÞ·¨±»ÇëÇó·½»ñÈ¡µ½¡£
-	¿çÓòµÄ½â¾ö·½°¸
+åŒæºå’Œè·¨åŸŸ
+	åŒæºï¼šå¦‚æžœè¯·æ±‚æ–¹ä¸Žå“åº”æ–¹çš„åè®®ã€åŸŸåã€ç«¯å£å·éƒ½ç›¸åŒï¼Œåˆ™è¯·æ±‚æ–¹ä¸Žå“åº”æ–¹å…·æœ‰ç›¸åŒçš„æºã€‚
+	è·¨åŸŸï¼šè·¨åŸŸå³éžåŒæºã€‚
+		æµè§ˆå™¨å…è®¸å‘èµ·è·¨åŸŸè¯·æ±‚ï¼Œä½†æ˜¯è·¨åŸŸè¯·æ±‚å›žæ¥çš„æ•°æ®ä¼šè¢«æµè§ˆå™¨æ‹¦æˆªï¼Œè€Œæ— æ³•è¢«è¯·æ±‚æ–¹èŽ·å–åˆ°ã€‚
+	è·¨åŸŸçš„è§£å†³æ–¹æ¡ˆ
 		JSONP
-			ÓÅµã£º³öÏÖµÄÔç£¬¼æÈÝÐÔºÃ¡£
-			È±µã£ºÖ»Ö§³Ö get ÇëÇó£¬²»Ö§³Ö post ÇëÇó¡£
+			ä¼˜ç‚¹ï¼šå‡ºçŽ°çš„æ—©ï¼Œå…¼å®¹æ€§å¥½ã€‚
+			ç¼ºç‚¹ï¼šåªæ”¯æŒ get è¯·æ±‚ï¼Œä¸æ”¯æŒ post è¯·æ±‚ã€‚
 		CORS
-			ÓÅµã£ºËüÊÇ W3C µÄ±ê×¼£¬ÊôÓÚ¿çÓò Ajax ÇëÇóµÄ¸ù±¾½â¾ö·½°¸¡£
-			È±µã£º³öÏÖµÄ½ÏÍí£¬¼æÈÝÐÔ²»ºÃ¡£
-		´úÀí·þÎñÆ÷
-			ÓÅµã£º²»»á³öÏÖ CORS ÖÐµÄä¯ÀÀÆ÷¼æÈÝÐÔÎÊÌâ¡£
-			È±µã£ºÐèÒª¶îÍâ²¿ÊðÒ»Ì¨´úÀí·þÎñÆ÷¡£
+			ä¼˜ç‚¹ï¼šå®ƒæ˜¯ W3C çš„æ ‡å‡†ï¼Œå±žäºŽè·¨åŸŸ Ajax è¯·æ±‚çš„æ ¹æœ¬è§£å†³æ–¹æ¡ˆã€‚
+			ç¼ºç‚¹ï¼šå‡ºçŽ°çš„è¾ƒæ™šï¼Œå…¼å®¹æ€§ä¸å¥½ã€‚
+		ä»£ç†æœåŠ¡å™¨
+			ä¼˜ç‚¹ï¼šä¸ä¼šå‡ºçŽ° CORS ä¸­çš„æµè§ˆå™¨å…¼å®¹æ€§é—®é¢˜ã€‚
+			ç¼ºç‚¹ï¼šéœ€è¦é¢å¤–éƒ¨ç½²ä¸€å°ä»£ç†æœåŠ¡å™¨ã€‚
 	JSONP
-		<script> ±êÇ©²»ÊÜä¯ÀÀÆ÷Í¬Ô´²ßÂÔµÄÓ°Ïì£¬¿ÉÒÔÍ¨¹ý <script> ±êÇ©µÄ src ÊôÐÔ£¬À´ÇëÇóÓëÇëÇó·½·ÇÍ¬Ô´µÄ×ÊÔ´¡£
-		×¢Òâ£ºJSONP ºÍ Ajax Ö®¼äÃ»ÓÐÈÎºÎ¹ØÏµ£¬ÒòÎª JSONP ¸ù±¾¾ÍÃ»ÓÐÓÃµ½ XHR Õâ¸ö¶ÔÏó¡£
-		Ô­Àí£º
-			1¡¢¶¨ÒåÒ»¸ö»Øµ÷º¯Êý¡£
+		<script> æ ‡ç­¾ä¸å—æµè§ˆå™¨åŒæºç­–ç•¥çš„å½±å“ï¼Œå¯ä»¥é€šè¿‡ <script> æ ‡ç­¾çš„ src å±žæ€§ï¼Œæ¥è¯·æ±‚ä¸Žè¯·æ±‚æ–¹éžåŒæºçš„èµ„æºã€‚
+		æ³¨æ„ï¼šJSONP å’Œ Ajax ä¹‹é—´æ²¡æœ‰ä»»ä½•å…³ç³»ï¼Œå› ä¸º JSONP æ ¹æœ¬å°±æ²¡æœ‰ç”¨åˆ° XHR è¿™ä¸ªå¯¹è±¡ã€‚
+		åŽŸç†ï¼š
+			1ã€å®šä¹‰ä¸€ä¸ªå›žè°ƒå‡½æ•°ã€‚
 				<script>
 					function callbackxxxxxx(data) {
 						console.log(data)
 					}
 				</script>
-			2¡¢Í¨¹ý <script> ±êÇ©µÄ src ÊôÐÔ£¬À´ÇëÇóÓëÇëÇó·½·ÇÍ¬Ô´µÄ×ÊÔ´¡£
+			2ã€é€šè¿‡ <script> æ ‡ç­¾çš„ src å±žæ€§ï¼Œæ¥è¯·æ±‚ä¸Žè¯·æ±‚æ–¹éžåŒæºçš„èµ„æºã€‚
 				<script src="URL?callback=callbackxxxxxx&param=value"></script>
-			3¡¢·þÎñÆ÷ÏìÓ¦ JS ½Å±¾×ÊÔ´¸øÇëÇó·½£¬ÇëÇó·½ÔËÐÐÕâ¸ö JS ½Å±¾×ÊÔ´£¬JS ½Å±¾»áµ÷ÓÃÇëÇó·½µÄ callbackxxxxxx º¯Êý£¬²¢ÎªÆä´«Èë data Êµ²Î¡£ÖÁ´ËÇëÇó·½»ñµÃÁËÏëÒªµÄÊý¾Ý£¨×ÊÔ´£©¡£
-	CORS£¨´Ó Express ¸´ÖÆ¶øÀ´£©
-		CORS ÓÉÒ»ÏµÁÐµÄ HTTP ÏìÓ¦Í·×Ö¶Î×é³É£¬ÕâÐ© HTTP ÏìÓ¦Í·×Ö¶Î¾ö¶¨ÁËä¯ÀÀÆ÷ÊÇ·ñÀ¹½Ø¿çÓòÇëÇóÏìÓ¦»ØÀ´µÄ×ÊÔ´¡£
-		Ê¹ÓÃ²½Öè£º
-			1¡¢ÔÚÏîÄ¿Ëù´¦µÄÄ¿Â¼ÖÐÖ´ÐÐÈçÏÂÃüÁî°²×°ÖÐ¼ä¼þ¡£
+			3ã€æœåŠ¡å™¨å“åº” JS è„šæœ¬èµ„æºç»™è¯·æ±‚æ–¹ï¼Œè¯·æ±‚æ–¹è¿è¡Œè¿™ä¸ª JS è„šæœ¬èµ„æºï¼ŒJS è„šæœ¬ä¼šè°ƒç”¨è¯·æ±‚æ–¹çš„ callbackxxxxxx å‡½æ•°ï¼Œå¹¶ä¸ºå…¶ä¼ å…¥ data å®žå‚ã€‚è‡³æ­¤è¯·æ±‚æ–¹èŽ·å¾—äº†æƒ³è¦çš„æ•°æ®ï¼ˆèµ„æºï¼‰ã€‚
+	CORSï¼ˆä»Ž Express å¤åˆ¶è€Œæ¥ï¼‰
+		CORS ç”±ä¸€ç³»åˆ—çš„ HTTP å“åº”å¤´å­—æ®µç»„æˆï¼Œè¿™äº› HTTP å“åº”å¤´å­—æ®µå†³å®šäº†æµè§ˆå™¨æ˜¯å¦æ‹¦æˆªè·¨åŸŸè¯·æ±‚å“åº”å›žæ¥çš„èµ„æºã€‚
+		ä½¿ç”¨æ­¥éª¤ï¼š
+			1ã€åœ¨é¡¹ç›®æ‰€å¤„çš„ç›®å½•ä¸­æ‰§è¡Œå¦‚ä¸‹å‘½ä»¤å®‰è£…ä¸­é—´ä»¶ã€‚
 				npm install cors
-			2¡¢Ê¹ÓÃ require() ·½·¨µ¼ÈëÖÐ¼ä¼þ¡£
+			2ã€ä½¿ç”¨ require() æ–¹æ³•å¯¼å…¥ä¸­é—´ä»¶ã€‚
 				const cors = require('cors')
-			3¡¢ÔÚÂ·ÓÉÖ®Ç°Ê¹ÓÃ app.use() ·½·¨×¢²áÖÐ¼ä¼þ¡£
+			3ã€åœ¨è·¯ç”±ä¹‹å‰ä½¿ç”¨ app.use() æ–¹æ³•æ³¨å†Œä¸­é—´ä»¶ã€‚
 				app.use(cors())
-			×¢Òâ£º
-				Èç¹û Express ÏîÄ¿ÖÐÅäÖÃÁË CORS ÖÐ¼ä¼þ£¬ÎªÁË·ÀÖ¹³åÍ»±ØÐëÔÚ CORS ÖÐ¼ä¼þÖ®Ç°ÉùÃ÷ JSONP ½Ó¿Ú¡£
-				ÒòÎª Express ÏîÄ¿ÖÐÅäÖÃÁË CORS ÖÐ¼ä¼þÖ®ºó¹ÒÔØµÄ½Ó¿Ú£¬¶¼»á±»´¦Àí³ÉÊÇ¿ªÆôÁË CORS ×ÊÔ´¹²ÏíµÄ½Ó¿Ú¡£
-		HTTP ÏìÓ¦Í·×Ö¶Î
+			æ³¨æ„ï¼š
+				å¦‚æžœ Express é¡¹ç›®ä¸­é…ç½®äº† CORS ä¸­é—´ä»¶ï¼Œä¸ºäº†é˜²æ­¢å†²çªå¿…é¡»åœ¨ CORS ä¸­é—´ä»¶ä¹‹å‰å£°æ˜Ž JSONP æŽ¥å£ã€‚
+				å› ä¸º Express é¡¹ç›®ä¸­é…ç½®äº† CORS ä¸­é—´ä»¶ä¹‹åŽæŒ‚è½½çš„æŽ¥å£ï¼Œéƒ½ä¼šè¢«å¤„ç†æˆæ˜¯å¼€å¯äº† CORS èµ„æºå…±äº«çš„æŽ¥å£ã€‚
+		HTTP å“åº”å¤´å­—æ®µ
 			Access-Control-Allow-Origin
-				·þÎñÆ÷¿ÉÒÔÍ¨¹ý¸Ã×Ö¶Î¸æËß¿Í»§¶ËµÄä¯ÀÀÆ÷£¬¶ÔÄÄÐ©ÍâÓò URL ¿çÓòÇëÇóµÄÏìÓ¦ÏûÏ¢½øÐÐ·ÅÐÐ¡£
+				æœåŠ¡å™¨å¯ä»¥é€šè¿‡è¯¥å­—æ®µå‘Šè¯‰å®¢æˆ·ç«¯çš„æµè§ˆå™¨ï¼Œå¯¹å“ªäº›å¤–åŸŸ URL è·¨åŸŸè¯·æ±‚çš„å“åº”æ¶ˆæ¯è¿›è¡Œæ”¾è¡Œã€‚
 				res.setHeader('Access-Control-Allow-Origin', 'URL' | '*')
-					URL£º±íÊ¾¶ÔÖ¸¶¨µÄÍâÓò URL ¿çÓòÇëÇóµÄÏìÓ¦ÏûÏ¢½øÐÐ·ÅÐÐ¡£
-					*£º±íÊ¾¶ÔËùÓÐµÄÍâÓò URL ¿çÓòÇëÇóµÄÏìÓ¦ÏûÏ¢½øÐÐ·ÅÐÐ¡£
+					URLï¼šè¡¨ç¤ºå¯¹æŒ‡å®šçš„å¤–åŸŸ URL è·¨åŸŸè¯·æ±‚çš„å“åº”æ¶ˆæ¯è¿›è¡Œæ”¾è¡Œã€‚
+					*ï¼šè¡¨ç¤ºå¯¹æ‰€æœ‰çš„å¤–åŸŸ URL è·¨åŸŸè¯·æ±‚çš„å“åº”æ¶ˆæ¯è¿›è¡Œæ”¾è¡Œã€‚
 			Access-Control-Request-Headers
-				·þÎñÆ÷¿ÉÒÔÍ¨¹ý¸Ã×Ö¶Î¸æËß¿Í»§¶ËµÄä¯ÀÀÆ÷£¬ÏìÓ¦ÏûÏ¢µÄÏìÓ¦Í·ÖÐ°üº¬ÁËÆÕÍ¨ÏìÓ¦Í·×Ö¶ÎÖ®ÍâµÄÄÄÐ©ÌØÊâ×Ö¶Î¡£
+				æœåŠ¡å™¨å¯ä»¥é€šè¿‡è¯¥å­—æ®µå‘Šè¯‰å®¢æˆ·ç«¯çš„æµè§ˆå™¨ï¼Œå“åº”æ¶ˆæ¯çš„å“åº”å¤´ä¸­åŒ…å«äº†æ™®é€šå“åº”å¤´å­—æ®µä¹‹å¤–çš„å“ªäº›ç‰¹æ®Šå­—æ®µã€‚
 				res.setHeader('Access-Control-Request-Headers', 'Content-Type, X-Custom-Header')
 			Access-Control-Request-Method
-				Ä¬ÈÏÇé¿öÏÂ CORS ½öÖ§³Ö¿Í»§¶Ë·¢ÆðµÄ GET¡¢POST¡¢HEAD ÀàÐÍµÄ¿çÓòÇëÇó¡£Èç¹û¿Í»§¶ËÐèÒª·¢ÆðÆäËûÀàÐÍµÄ¿çÓòÇëÇó£¬ÔòÐèÒªÔÚ·þÎñÆ÷Í¨¹ý¸Ã×Ö¶ÎÀ´½øÐÐÉèÖÃ¡£
+				é»˜è®¤æƒ…å†µä¸‹ CORS ä»…æ”¯æŒå®¢æˆ·ç«¯å‘èµ·çš„ GETã€POSTã€HEAD ç±»åž‹çš„è·¨åŸŸè¯·æ±‚ã€‚å¦‚æžœå®¢æˆ·ç«¯éœ€è¦å‘èµ·å…¶ä»–ç±»åž‹çš„è·¨åŸŸè¯·æ±‚ï¼Œåˆ™éœ€è¦åœ¨æœåŠ¡å™¨é€šè¿‡è¯¥å­—æ®µæ¥è¿›è¡Œè®¾ç½®ã€‚
 				res.setHeader('Access-Control-Request-Method', 'GET, POST, DELETE, HEAD' | '*')
-		×¢ÒâÊÂÏî£º
-			1¡¢CORS Ö÷ÒªÔÚ·þÎñÆ÷½øÐÐÅäÖÃ£¬¿Í»§¶ËÎÞÐè×öÈÎºÎ¶îÍâµÄÅäÖÃ¡£
-			2¡¢CORS ÔÚä¯ÀÀÆ÷ÖÐÓÐ¼æÈÝÐÔÎÊÌâ£¬Ö»ÓÐÖ§³Ö¡°XHR Level2¡±µÄä¯ÀÀÆ÷¡££¨ÀýÈç£ºIE10+¡¢Chrome4+¡¢FireFox3.5+ µÈ¡££©
-			3¡¢CORS ¿çÓò±Ê¼ÇÏê½â¼û£ºhttp://www.ruanyifeng.com/blog/2016/04/cors.html ¡£
+		æ³¨æ„äº‹é¡¹ï¼š
+			1ã€CORS ä¸»è¦åœ¨æœåŠ¡å™¨è¿›è¡Œé…ç½®ï¼Œå®¢æˆ·ç«¯æ— éœ€åšä»»ä½•é¢å¤–çš„é…ç½®ã€‚
+			2ã€CORS åœ¨æµè§ˆå™¨ä¸­æœ‰å…¼å®¹æ€§é—®é¢˜ï¼Œåªæœ‰æ”¯æŒâ€œXHR Level2â€çš„æµè§ˆå™¨ã€‚ï¼ˆä¾‹å¦‚ï¼šIE10+ã€Chrome4+ã€FireFox3.5+ ç­‰ã€‚ï¼‰
+			3ã€CORS è·¨åŸŸç¬”è®°è¯¦è§£è§ï¼šhttp://www.ruanyifeng.com/blog/2016/04/cors.html ã€‚
 
 
 
-·À¶¶ºÍ½ÚÁ÷
-	·À¶¶
-		·À¶¶£¨debounce£©£ºµ±Ä³Ò»ÊÂ¼þ±»´¥·¢ºó£¬ÑÓ³Ù n ÃëÔÙÖ´ÐÐ»Øµ÷Âß¼­£»Èç¹ûÔÚÕâ n ÃëÄÚ£¬¸ÃÊÂ¼þÓÖ±»´¥·¢ÁË£¬ÔòÈ¡ÏûÖ´ÐÐ¸ÃÊÂ¼þÖ®Ç°µÄ»Øµ÷Âß¼­¡£
-		Ó¦ÓÃ£ºËÑË÷¿òÁ¬ÐøÊäÈëÎÄ±¾¡£
-		ÊµÏÖ
-			// ËÑË÷¿òÊäÈëµÄ·À¶¶°¸Àý¡£
+é˜²æŠ–å’ŒèŠ‚æµ
+	é˜²æŠ–
+		é˜²æŠ–ï¼ˆdebounceï¼‰ï¼šå½“æŸä¸€äº‹ä»¶è¢«è§¦å‘åŽï¼Œå»¶è¿Ÿ n ç§’å†æ‰§è¡Œå›žè°ƒé€»è¾‘ï¼›å¦‚æžœåœ¨è¿™ n ç§’å†…ï¼Œè¯¥äº‹ä»¶åˆè¢«è§¦å‘äº†ï¼Œåˆ™å–æ¶ˆæ‰§è¡Œè¯¥äº‹ä»¶ä¹‹å‰çš„å›žè°ƒé€»è¾‘ã€‚
+		åº”ç”¨ï¼šæœç´¢æ¡†è¿žç»­è¾“å…¥æ–‡æœ¬ã€‚
+		å®žçŽ°
+			// æœç´¢æ¡†è¾“å…¥çš„é˜²æŠ–æ¡ˆä¾‹ã€‚
 			var data = {}
 			var timer = null
 			function debounceFun(param) {
@@ -413,15 +413,15 @@ Axios
 				clearTimeout(timer)
 				debounceFun(data)
 			})	
-	½ÚÁ÷
-		½ÚÁ÷£¨throttle£©£ºÈç¹ûÄ³Ò»ÊÂ¼þ±»ÓÐÐ§µÄ´¥·¢ÁË£¬ÄÇÃ´ÔÚ½ÓÏÂÀ´µÄÒ»¶ÎÊ±¼äÄÚ£¬Õâ¸öÊÂ¼þÔÙ´Î±»´¥·¢Ê±½«²»»áÈ¥Ö´ÐÐ»Øµ÷Âß¼­¡£
-		Ô­Àí£º
-			1¡¢½ÚÁ÷·§µÄÆðÊ¼×´Ì¬Îª¿Õ¡£
-			2¡¢½ÚÁ÷·§Îª¿ÕÊ±£¬ÊÂ¼þ¿ÉÒÔ±»ÓÐÐ§µÄ´¥·¢£»½ÚÁ÷·§Îª·Ç¿ÕÊ±£¬ÊÂ¼þµÄ´¥·¢½«²»»áÈ¥Ö´ÐÐ»Øµ÷Âß¼­¡£
-			3¡¢ÊÂ¼þ±»ÓÐÐ§µÄ´¥·¢ºó£¬Á¢¼´½«½ÚÁ÷·§ÖÃÎª·Ç¿Õ£»¾­¹ýÒ»¶¨µÄÊ±¼ä¼ä¸ôºó£¬ÔÙ½«½ÚÁ÷·§ÖØÖÃÎª¿Õ¡£
-		Ó¦ÓÃ£ºÊó±êÁ¬ÐøµÄµã»÷»òÒÆ¶¯¡£
-		ÊµÏÖ
-			// Êó±ê¸úËæµÄ½ÚÁ÷°¸Àý¡£
+	èŠ‚æµ
+		èŠ‚æµï¼ˆthrottleï¼‰ï¼šå¦‚æžœæŸä¸€äº‹ä»¶è¢«æœ‰æ•ˆçš„è§¦å‘äº†ï¼Œé‚£ä¹ˆåœ¨æŽ¥ä¸‹æ¥çš„ä¸€æ®µæ—¶é—´å†…ï¼Œè¿™ä¸ªäº‹ä»¶å†æ¬¡è¢«è§¦å‘æ—¶å°†ä¸ä¼šåŽ»æ‰§è¡Œå›žè°ƒé€»è¾‘ã€‚
+		åŽŸç†ï¼š
+			1ã€èŠ‚æµé˜€çš„èµ·å§‹çŠ¶æ€ä¸ºç©ºã€‚
+			2ã€èŠ‚æµé˜€ä¸ºç©ºæ—¶ï¼Œäº‹ä»¶å¯ä»¥è¢«æœ‰æ•ˆçš„è§¦å‘ï¼›èŠ‚æµé˜€ä¸ºéžç©ºæ—¶ï¼Œäº‹ä»¶çš„è§¦å‘å°†ä¸ä¼šåŽ»æ‰§è¡Œå›žè°ƒé€»è¾‘ã€‚
+			3ã€äº‹ä»¶è¢«æœ‰æ•ˆçš„è§¦å‘åŽï¼Œç«‹å³å°†èŠ‚æµé˜€ç½®ä¸ºéžç©ºï¼›ç»è¿‡ä¸€å®šçš„æ—¶é—´é—´éš”åŽï¼Œå†å°†èŠ‚æµé˜€é‡ç½®ä¸ºç©ºã€‚
+		åº”ç”¨ï¼šé¼ æ ‡è¿žç»­çš„ç‚¹å‡»æˆ–ç§»åŠ¨ã€‚
+		å®žçŽ°
+			// é¼ æ ‡è·Ÿéšçš„èŠ‚æµæ¡ˆä¾‹ã€‚
 			var data = {}
 			var timer = null
 			function throttleFun(param) {
@@ -430,7 +430,7 @@ Axios
 					timer = null
 				}, 16)
 			}
-			document.querySelector('Ñ¡ÔñÆ÷').addEventListener('mousemove', () => {
+			document.querySelector('é€‰æ‹©å™¨').addEventListener('mousemove', () => {
 				if(timer) { return }
 				throttleFun(data)		
 			})

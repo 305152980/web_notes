@@ -431,14 +431,17 @@ Vue 组件通信
 				1、单种可能数据类型的校验；
 					可以直接为组件的 prop 自定义属性指定单种可能数据类型的校验。
 						export default {
-							 props: {
+							
+props: {
 								//支持的 8 种基础类型的校验。
 								propA: String,		// 字符串类型
-								 propB: Number,		// 数字类型
+								
+propB: Number,		// 数字类型
 								propC: Boolean,		// 布尔类型
 								propD: Array,		// 数组类型
 								propE: Object,		// 对象类型
-								 propF: Date,		// 日期类型 
+								
+propF: Date,		// 日期类型
 								propG: Function,	// 函数类型
 								propH: Symbol		// 符号类型
 							}
@@ -446,14 +449,16 @@ Vue 组件通信
 				2、多种可能数据类型的校验；
 					如果某个 prop 自定义属性的类型可能为多种，可以通过数组的形式为其指定多种可能数据类型的校验。
 						export default {
-							 props: {
+							
+props: {
 								prop: [ String, Number ]
 							}
 						}
 				3、是否为必须项；
 					如果组件的某个 prop 自定义属性是必须项，则可以通过如下的方式进行设置。
 						export default {
-							 props: {
+							
+props: {
 								prop: {
 									type: [ String, Number ],
 									// 当前属性的值是必须项，如果使用者没有给定 prop 自定义属性的值，则终端会进行警告提示。
@@ -464,7 +469,8 @@ Vue 组件通信
 				4、设置属性默认值；
 					在封装组件时，可以为某个 prop 自定义属性指定默认值。
 						export default {
-							 props: {
+							
+props: {
 								prop: {
 									type: [ String, Number ],
 									required: false,
@@ -475,7 +481,8 @@ Vue 组件通信
 				5、自定义属性的校验函数。
 					在封装组件时，可以为 prop 自定义属性指定自定义校验函数。
 						export default {
-							 props: {
+							
+props: {
 								prop: {
 									// "prop 自定义属性的值"可以通过形参 value 进行接收。
 									validator(value) {
@@ -516,11 +523,13 @@ Vue 组件通信
 			<!-- 父组件中的代码 -->
 			<my-counter v-model:activeNumber="activeNum"></my-counter>
 			data() {
-		 		return { activeNum: 0 }
+		
+		return { activeNum: 0 }
 			}
 			// 子组件中的代码
 			export default {
-					 props: ['activeNumber'],
+					
+props: ['activeNumber'],
 					emits: ['update:activeNumber'],
 					methods: {
 						onBtnClick() {
@@ -779,7 +788,8 @@ Vue 计算属性
 			<input type="text" v-model.number="count" />
 			<p>{{ count }}乘以 2 的值为：{{ plus }}</p>
 			data() {
-			 	return { count: 1 }
+			
+	return { count: 1 }
 			},
 			computed: {
 				plus() {
@@ -799,7 +809,8 @@ Vue 监听器
 	基本用法
 		export default {
 			data() {
-			 	return { username: '' }
+			
+	return { username: '' }
 			},
 			watch: {
 				username(newVal, oldVal) {
@@ -811,7 +822,8 @@ Vue 监听器
 		默认情况下，在页面初次加载完毕后组件不会调用监听器。如果想让监听器在页面初次加载完毕后立即被调用，则需要使用监听器的 immediate 属性。
 			export default {
 				data() {
-				 	return { username: '' }
+				
+	return { username: '' }
 				},
 				watch: {
 					username: {
@@ -826,7 +838,8 @@ Vue 监听器
 		默认情况下，监听器无法监听对象属性值的变化，如果想要对其进行监听，需要为监听器添加 deep 属性。
 			export default {
 				data() {
-				 	return { 
+				
+	return { 
 						userInfo: { username: '' }
 					}
 				},
@@ -843,7 +856,8 @@ Vue 监听器
 		如果只想监听对象数据中单个属性值的变化，则可以按照如下方式定义监听器。
 			export default {
 				data() {
-				 	return { 
+				
+	return { 
 						userInfo: { username: '' }
 					}
 				},

@@ -1,194 +1,194 @@
-JS ���
-	��ɣ�ECMAScript + DOM + BOM��
-	ECMAScript��JS �﷨��
-	DOM��ҳ���ĵ�����ģ�͡�
-	BOM�����������ģ�͡�
-JS ע��
-	1������ע�ͣ�ctrl + /��
+JS 组成
+	组成：ECMAScript + DOM + BOM。
+	ECMAScript：JS 语法。
+	DOM：页面文档对象模型。
+	BOM：浏览器对象模型。
+JS 注释
+	1、单行注释：ctrl + /。
 		// xxx
-	2������ע�ͣ�shift + alt + a��
+	2、多行注释：shift + alt + a。
 		/* xxx */
-���뷽ʽ
-	1������ʽ JS��
-		<input type="button" value="�Ʋ���" onclick="alert('�����')">
-		ע�⣺
-			1�����Խ����л����� JS ����д�� HTML ��ǩ���¼������С�
-			2��HTML �ļ����Ƽ�ʹ��˫���ţ�JS �ļ����Ƽ�ʹ�õ����š�
-	2����Ƕʽ JS��
+引入方式
+	1、行内式 JS。
+		<input type="button" value="唐伯虎" onclick="alert('秋香姐')">
+		注意：
+			1、可以将单行或少量 JS 代码写在 HTML 标签的事件属性中。
+			2、HTML 文件中推荐使用双引号，JS 文件中推荐使用单引号。
+	2、内嵌式 JS。
 		<script>
-			alert('ɳĮ����')
+			alert('沙漠骆驼')
 		</script>
-	3���ⲿʽ JS��
+	3、外部式 JS。
 		<script src="my.js"></script>
 
 
 
-��ʶ��zhi�������ؼ��ֺͱ�����
-	��ʶ�������������ԡ������Ͳ��������ơ���ʶ�������ǹؼ��ֻ����֡�
-	�ؼ��֣�JS Դ�����Ѿ�ʹ���˵����ơ�
-	�����֣�JS Ԥ���Ĺؼ��֡�
-����
-	����������
+标识（zhi）符、关键字和保留字
+	标识符：变量、属性、函数和参数的名称。标识符不能是关键字或保留字。
+	关键字：JS 源码中已经使用了的名称。
+	保留字：JS 预留的关键字。
+变量
+	声明变量。
 		var age
-	������ֵ��
+	变量赋值。
 		age = 10
-	������ʼ������������ + ������ֵ��
+	变量初始化：声明变量 + 变量赋值。
 		var age = 10
-	ע�⣺������δ��ֵ�ı�����ֵΪ undefined��
-���������淶
-	1������ĸ�����֡��»��ߺ���Ԫ������ɡ�
-	2���ϸ����ִ�Сд��
-	3�����������ֿ�ͷ��
-	4�������ǹؼ��ֺͱ����֡�
-	5����ѭС�շ���������
-	6�����������������塣
-�����
-	���������
-		+��-��*��/��%
-	��ֵ�����
-		=��+=��-=��*=��/=��%=
-	�����ݼ������
-		++num��--num��num++��num--
-	�Ƚ������
-		>��<��>=��<=��==��!=��===��!==
-		ע�⣺>��<��>=��<=��==��!= �ж��������������͵���ʽת����
-	�߼������
-		&&��||��!
-	��������ȼ�
-		С���� > һԪ����� > ��������� > ��ϵ����� > �е������ > �߼��������&& > ||�� > ��ֵ����� > ���������
-������
-	ȫ��������
-	�ֲ������� <==> ����������
-	�鼶������ <==> ������������
-		ע�⣺JS �� ES6 ֮ǰû�п鼶�������� ES6 ֮����п鼶������
-	ȫ�ֱ���
-		ע�⣺û��������ֱ�Ӹ�ֵ�ı�������ȫ�ֱ�����
-	�ֲ�����
-Ԥ����
-	JS ������ JS ��������� var ������ function ������������������ǰ���������ǰ�档
-	ע�⣺Ԥ��������ִ�ж� var �����ĸ�ֵ�����Ͷ� function �����ĵ��ò�����
-�ϸ�ģʽ
-	�����ϸ�ģʽ
-		1��Ϊ�ű������ϸ�ģʽ��
+	注意：声明但未赋值的变量其值为 undefined。
+变量命名规范
+	1、由字母、数字、下划线和美元符号组成。
+	2、严格区分大小写。
+	3、不能以数字开头。
+	4、不能是关键字和保留字。
+	5、遵循小驼峰命名法。
+	6、变量名必须有意义。
+运算符
+	算数运算符
+		+、-、*、/、%
+	赋值运算符
+		=、+=、-=、*=、/=、%=
+	递增递减运算符
+		++num、--num、num++、num--
+	比较运算符
+		>、<、>=、<=、==、!=、===、!==
+		注意：>、<、>=、<=、==、!= 中都可能有数据类型的隐式转换。
+	逻辑运算符
+		&&、||、!
+	运算符优先级
+		小括号 > 一元运算符 > 算数运算符 > 关系运算符 > 判等运算符 > 逻辑运算符（&& > ||） > 赋值运算符 > 逗号运算符
+作用域
+	全局作用域
+	局部作用域 <==> 函数作用域
+	块级作用域 <==> 大括号作用域
+		注意：JS 在 ES6 之前没有块级作用域，在 ES6 之后才有块级作用域。
+	全局变量
+		注意：没有声明就直接赋值的变量属于全局变量。
+	局部变量
+预解析
+	JS 引擎会把 JS 里面的所有 var 变量和 function 函数的声明提升到当前作用域的最前面。
+	注意：预解析不会执行对 var 变量的赋值操作和对 function 函数的调用操作。
+严格模式
+	开启严格模式
+		1、为脚本开启严格模式。
 			<script>
 				"use strict"
 				......
 			</script>
-		2��Ϊ���������ϸ�ģʽ��
+		2、为函数开启严格模式。
 			function funName() {
 				"use strict"
 				......
 			}
-	�ϸ�ģʽ�ı仯
-		�����Ĺ涨��
-			1������������������ʹ�á�
-			2�������� delete ɾ���Ѿ������õı�����
-		this ��ָ��
-			ȫ��������ĺ����� this ָ����� undefined�������Ƿ��ϸ�ģʽ�µ� window ����
-		�����Ĺ涨��
-			1�����캯������ʹ�� new ���á�
-			2���������������β����ظ���
-			3���������ڷǺ����Ĵ����������������
-���̿���
-	˳��ṹ
-	��֧�ṹ
-		��Ԫ����ʽ
-			��������ʽ ? ����ʽ1 : ����ʽ2
+	严格模式的变化
+		变量的规定。
+			1、变量必须先声明再使用。
+			2、不能用 delete 删除已经声明好的变量。
+		this 的指向。
+			全局作用域的函数中 this 指向的是 undefined，不再是非严格模式下的 window 对象。
+		函数的规定。
+			1、构造函数必须使用 new 调用。
+			2、不允许函数的形参名重复。
+			3、不允许在非函数的代码块内声明函数。
+流程控制
+	顺序结构
+	分支结构
+		三元表达式
+			条件表达式 ? 表达式1 : 表达式2
 		if
-			1��if��
-				if(��������ʽ) {
-					// ִ�����
+			1、if。
+				if(条件表达式) {
+					// 执行语句
 				}
-			2��if...else��
-				if(��������ʽ) {
-					// ִ�����1
+			2、if...else。
+				if(条件表达式) {
+					// 执行语句1
 				} else {
-					// ִ�����2
+					// 执行语句2
 				}
-			3��if...else if...else��
-				if(��������ʽ1) {
-					// ִ�����1
-				} else if(��������ʽ2) {
-					// ִ�����2
+			3、if...else if...else。
+				if(条件表达式1) {
+					// 执行语句1
+				} else if(条件表达式2) {
+					// 执行语句2
 				} else {
-					// ִ�����3
+					// 执行语句3
 				}
 		switch
-			switch(��������ʽ) {
+			switch(条件表达式) {
 				case value1:
-					// ִ�����1
+					// 执行语句1
 					break
 				case value2:
-					// ִ�����2
+					// 执行语句2
 					break
 				......
 				default:
-					// ִ�����N
+					// 执行语句N
 			}
-			ע�⣺��������ʽ�ķ���ֵȫ���� valueX ֵʱ���Ż�ִ�� valueX ֵ���Ӧ����䡣
-	ѭ���ṹ
+			注意：条件表达式的返回值全等于 valueX 值时，才会执行 valueX 值后对应的语句。
+	循环结构
 		for
-			for(��ʼ������;  ��������ʽ; ��������ʽ) {
-				// ѭ����
+			for(初始化变量;  条件表达式; 操作表达式) {
+				// 循环体
 			}
 		while
-			while(��������ʽ) {
-				// ѭ����
+			while(条件表达式) {
+				// 循环体
 			}
 		do...while
 			do {
-				// ѭ����
-			} while(��������ʽ)
-		ע�⣺��continue �ؼ�������������������ѭ����break �ؼ�������������������ѭ����
-��������
-	����������
+				// 循环体
+			} while(条件表达式)
+		注意：：continue 关键字用于立即跳出本次循环；break 关键字用于立即跳出整个循环。
+数据类型
+	简单数据类型
 		Number
-			����������С�����˽�����ǰ��� 0��ʮ��������ǰ��� 0x��
-			Number.MAX_VALUE��Number.MIN_VALUE��Infinity��-Infinity��NaN��
+			包含整数和小数。八进制数前面加 0，十六进制数前面加 0x。
+			Number.MAX_VALUE、Number.MIN_VALUE、Infinity、-Infinity、NaN。
 		String
 		Boolean
-			true �� false��
-			����ֵ�����У�true <==> 1��false <==> 0��
+			true 和 false。
+			在数值运算中：true <==> 1，false <==> 0。
 		Undefined
-			var value					// ������δ��ֵ�ı�������ֵΪ undefined��
-			console.log('���' + value)			// ���undefined
+			var value					// 声明但未赋值的变量，其值为 undefined。
+			console.log('你好' + value)			// 你好undefined
 			console.log(11 + value)				// NaN
 			console.log(true + value)			// NaN
 		Null
-			���ĳ�����Ժ����洢�����������ݣ���ʱ�ֲ���Ҫ��ֵ�����ȿɸ�ֵΪ null��
+			如果某变量以后打算存储对象类型数据，暂时又不需要赋值，则先可赋值为 null。
 			var value = null
-			console.log('���' + value)			// ���null
+			console.log('你好' + value)			// 你好null
 			console.log(11 + value)				// 11
 			console.log(true + value)			// 1	
-	������������
-		ͨ�� new �ؼ��ִ����Ķ����� Object��Array��Data �ȡ�
+	复杂数据类型
+		通过 new 关键字创建的对象。如 Object、Array、Data 等。
 	typeof
-		���ã�������ȡ�������������͡�
-		Ӧ�ã�
+		作用：用来获取变量的数据类型。
+		应用：
 			var value = null
 			console.log(typeof value)		// object
-	��������ת��
-		��ֵת��Ϊ�ַ���
+	数据类型转换
+		数值转换为字符串
 			1.toString()
 			String(1)
-			1 + ''					// �κ����͵����ݺ��ַ���ƴ�ӵĽ����Ϊ�ַ�����
-		�ַ���ת��Ϊ��ֵ
+			1 + ''					// 任何类型的数据和字符串拼接的结果都为字符串。
+		字符串转换为数值
 			parseInt('78')
-			parseInt('78.81')			// ȡ�� 78��
+			parseInt('78.81')			// 取整 78。
 			parseInt('78px')			// 78
 			parseFloat('78.81')
 			Number('78')
 			'78' - 0 | '78' / '1'
-		������������ת��Ϊ������
-			Boolean(value)				�����պͷ񶨵�ֵ�ᱻת��Ϊ false���磺''��0��NaN��null��undefined�������ֵ���ᱻת��Ϊ true��
-	�жϱ����Ƿ�Ϊ��
-		�жϱ����Ƿ�Ϊ null || undefined��
+		其它数据类型转换为布尔型
+			Boolean(value)				代表空和否定的值会被转换为 false。如：''、0、NaN、null、undefined。其余的值都会被转换为 true。
+	判断变量是否为空
+		判断变量是否为 null || undefined。
 			value == null
-		�жϱ����Ƿ�Ϊ ''��
+		判断变量是否为 ''。
 			value === ''
-		�жϱ����Ƿ�Ϊ []��
+		判断变量是否为 []。
 			value intanceof Array && value.length === 0
-		�ж϶����Ƿ�Ϊ {}��
+		判断对象是否为 {}。
 			function isEmpty(obj) {
 				for(var key in obj) {
 					if(obj.hasOwnProperty(key)) {
@@ -197,7 +197,7 @@ JS ע��
 				}
 				return true
 			}
-	�жϱ��������黹�Ƕ���
+	判断变量是数组还是对象。
 		instanceof
 			function getType(value) {
 				if(value instanceof Array) {
@@ -208,10 +208,10 @@ JS ע��
 					return 'no Array, also no Object.'
 				}
 			}
-			ע�⣺
-				1��Array ���͵��жϱ������ Object ���͵��ж�֮ǰ��
-				2��Array ������ Object ���͵��������ͣ����� Array ����Ҳ�� Object ���͡�
-		���캯��
+			注意：
+				1、Array 类型的判断必须放在 Object 类型的判断之前。
+				2、Array 类型是 Object 类型的派生类型，所以 Array 类型也是 Object 类型。
+		构造函数
 			function getType(value) {
 				var constructor = value.__proto__.constructor
 				if(constructor === Array) {
@@ -224,7 +224,7 @@ JS ע��
 			}
 		Array.isArray()
 			function getType(value) {
-				// ���ݵͰ汾���������
+				// 兼容低版本的浏览器。
 				if(!Array.isArray) {
 					Array.isArray = function(param) {
 						return Object.prototype.toString.call(param) === '[object Array]'
@@ -239,144 +239,144 @@ JS ע��
 
 
 
-�ַ���
-	������ʽ��
-		1����������
+字符串
+	创建方式：
+		1、字面量。
 			var str = 'hello word'				// 'hello word'
-		2��String()��
+		2、String()。
 			var str = String('hello word')			// 'hello word'
-		3��new String()��
+		3、new String()。
 			var str = new String('hello word')		// { 'hello word' }
-		����ǰ���ִ����ı��������Ƚϵ�ʱ�򣬱Ƚϵ��Ǳ����ľ���ֵ�������ִ����ı��������Ƚϵ�ʱ�򣬱Ƚϵ��Ǳ��������á�
-	var str = 'andy' �ĵײ�ԭ����
-		var temp = new String('andy')				// ������ʱ������
-		var str = temp						// ��ֵ���ַ�������
-		temp = null						// ������ʱ������
-	�ַ��� API
-		��ȡָ���Ӵ���λ�á�
-			var index = str.indexOf(value, [startIndex])	˳������ַ���������ָ�����Ӵ����ַ������״γ��ֵ�λ�á����û���ҵ�ƥ����Ӵ��򷵻� -1��
-			var index = str.lastIndexOf(value, [startIndex])��������ַ���������ָ�����Ӵ����ַ��������һ�γ��ֵ�λ�á����û���ҵ�ƥ����Ӵ��򷵻� -1��
-		��ȡָ��λ�õ��ַ���
+		区别：前两种创建的变量在做比较的时候，比较的是变量的具体值；第三种创建的变量在做比较的时候，比较的是变量的引用。
+	var str = 'andy' 的底层原理：
+		var temp = new String('andy')				// 生成临时变量。
+		var str = temp						// 赋值给字符变量。
+		temp = null						// 销毁临时变量。
+	字符串 API
+		获取指定子串的位置。
+			var index = str.indexOf(value, [startIndex])	顺序遍历字符串，返回指定的子串在字符串中首次出现的位置。如果没有找到匹配的子串则返回 -1。
+			var index = str.lastIndexOf(value, [startIndex])逆序遍历字符串，返回指定的子串在字符串中最后一次出现的位置。如果没有找到匹配的子串则返回 -1。
+		获取指定位置的字符。
 			var value = str.charAt(index)
 			var value = str[index]
-			var value = str.charCodeAt(index)		�����ַ��� index λ���ַ��� ASII ֵ��
-		ƴ�ӽ�ȡ�滻��
-			var newStr = str.concat(str1, str2, ..., strN)	�÷����᷵��һ�����ַ���������ı�ԭ�ַ�����
-			var newStr = str.substr(startIndex, length)	�÷����᷵��һ�����ַ���������ı�ԭ�ַ�����
-			var newStr = str.slice(startIndex, endIndex)	�÷����᷵��һ�����ַ���������ı�ԭ�ַ�����
-			var newStr = str.substring(startIndex, endIndex)�÷����᷵��һ�����ַ���������ı�ԭ�ַ�����
-			var newStr = str.replace(oldSubStr, newSubStr)	�÷������滻ԭ�ַ����е�һ����ƥ�䵽���Ӵ�������ֵΪһ�����ַ���������ı�ԭ�ַ�����
-		�����ַ��� API��
-			var flag = str.starsWith(subStr)		��ѯָ���Ӵ��Ƿ���ԭ�ַ����Ŀ�ͷ�����ز���ֵ��
-			var flag = str.endsWith(subStr)			��ѯָ���Ӵ��Ƿ���ԭ�ַ����Ľ�β�����ز���ֵ��
-			var upperStr = str.toUpperCase()		�÷����᷵��һ��ȫ��д�����ַ���������ı�ԭ�ַ�����
-			var lowerStr = str.toLowerCase()		�÷����᷵��һ��ȫСд�����ַ���������ı�ԭ�ַ�����
-			var newStr = str.trim()				�÷����᷵��һ��ɾ����ԭ�ַ���ͷβ�հ׷������ַ���������ı�ԭ�ַ������հ׷��������ո�����Ʊ��������з��ȡ�
-			var newArr = str.split('�ָ���')		�÷����᷵��һ�����ַ����ָ���ɵ��Ӵ����飬����ı�ԭ�ַ�����
-����
-	��������
-		1����������
+			var value = str.charCodeAt(index)		返回字符串 index 位置字符的 ASII 值。
+		拼接截取替换。
+			var newStr = str.concat(str1, str2, ..., strN)	该方法会返回一个新字符串，不会改变原字符串。
+			var newStr = str.substr(startIndex, length)	该方法会返回一个新字符串，不会改变原字符串。
+			var newStr = str.slice(startIndex, endIndex)	该方法会返回一个新字符串，不会改变原字符串。
+			var newStr = str.substring(startIndex, endIndex)该方法会返回一个新字符串，不会改变原字符串。
+			var newStr = str.replace(oldSubStr, newSubStr)	该方法会替换原字符串中第一个被匹配到的子串，返回值为一个新字符串，不会改变原字符串。
+		其他字符串 API。
+			var flag = str.starsWith(subStr)		查询指定子串是否在原字符串的开头，返回布尔值。
+			var flag = str.endsWith(subStr)			查询指定子串是否在原字符串的结尾，返回布尔值。
+			var upperStr = str.toUpperCase()		该方法会返回一个全大写的新字符串，不会改变原字符串。
+			var lowerStr = str.toLowerCase()		该方法会返回一个全小写的新字符串，不会改变原字符串。
+			var newStr = str.trim()				该方法会返回一个删除了原字符串头尾空白符的新字符串，不会改变原字符串。空白符包括：空格符、制表符、换行符等。
+			var newArr = str.split('分隔符')		该方法会返回一个由字符串分割而成的子串数组，不会改变原字符串。
+数组
+	创建数组
+		1、字面量。
 			var arr = []
 			var arr = [1, '2', 3, '4']
-		2��new Array()��
+		2、new Array()。
 			var arr = new Array()				// []
 			var arr = new Array(2)				// [null, null]
 			var arr = new Array(2, 3)			// [2, 3]
-		ע�⣺JS �����п��Դ���������͵����ݡ�
-	���� API
-		����ɾ��Ԫ��
-			arr.push(...items)				����ĩβ����һ������Ԫ�ء�
-			arr.pop()					ɾ����������һ��Ԫ�ء�
-			arr.unshift(...items)				���鿪ͷ����һ������Ԫ�ء�
-			arr.shift()					ɾ������ĵ�һ��Ԫ�ء�
-		��ȡ��������
-			var newArr = arr1.concat(arr2)			�÷����᷵��һ�������飬������ı�ԭ���顣
-			var newArr = arr.slice(startIndex, endIndex)	�÷����᷵��һ�������飬������ı�ԭ���顣���������ԭ����� startIndex �� endIndex������������Ԫ�ء�
-			arr.splice(index, howmany, item1, ....., itemN)	�÷�����ֱ�Ӳ���ԭ���顣
+		注意：JS 数组中可以存放任意类型的数据。
+	数组 API
+		增加删除元素
+			arr.push(...items)				数组末尾添加一个或多个元素。
+			arr.pop()					删除数组的最后一个元素。
+			arr.unshift(...items)				数组开头添加一个或多个元素。
+			arr.shift()					删除数组的第一个元素。
+		截取连接数组
+			var newArr = arr1.concat(arr2)			该方法会返回一个新数组，而不会改变原数组。
+			var newArr = arr.slice(startIndex, endIndex)	该方法会返回一个新数组，而不会改变原数组。新数组包含原数组从 startIndex 到 endIndex（不包含）的元素。
+			arr.splice(index, howmany, item1, ....., itemN)	该方法会直接操作原数组。
 				var arr = [1, 2, 3, 4, 5, 6, 7, 8]
-				arr.splice(2, 3)			// ɾ����arr Ϊ [1, 2, 6, 7, 8]��
-				arr.splice(5, 0, 'a', 'b', 'c')		// ���롣arr Ϊ [1, 2, 3, 4, 5, 'a', 'b', 'c', 6, 7, 8]��
-				arr.splice(1, 2, 'a', 'b')		// �滻��arr Ϊ [1, 'a', 'b', 4, 5, 6, 7, 8]��
-		��ȡԪ���±�
-			var index = arr.indexOf(value)			˳����ң����������е�һ��ֵΪ value ��Ԫ�ص��±ꡣ�������������Ԫ�ص�ֵ����Ϊ value �򷵻� -1��
-			var index = arr.lastIndexOf(value)		������ң��������������һ��ֵΪ value ��Ԫ�ص��±ꡣ�������������Ԫ�ص�ֵ����Ϊ value �򷵻� -1��
-		����Ԫ������
-			arr.reverse()					���鷭ת���÷�����ֱ�Ӳ���ԭ���顣
-			arr.sort([function()])				ð�����򣬸÷�����ֱ�Ӳ���ԭ���顣
+				arr.splice(2, 3)			// 删除。arr 为 [1, 2, 6, 7, 8]。
+				arr.splice(5, 0, 'a', 'b', 'c')		// 插入。arr 为 [1, 2, 3, 4, 5, 'a', 'b', 'c', 6, 7, 8]。
+				arr.splice(1, 2, 'a', 'b')		// 替换。arr 为 [1, 'a', 'b', 4, 5, 6, 7, 8]。
+		获取元素下标
+			var index = arr.indexOf(value)			顺序查找，返回数组中第一个值为 value 的元素的下标。如果数组中所有元素的值都不为 value 则返回 -1。
+			var index = arr.lastIndexOf(value)		逆序查找，返回数组中最后一个值为 value 的元素的下标。如果数组中所有元素的值都不为 value 则返回 -1。
+		数组元素排序
+			arr.reverse()					数组翻转，该方法会直接操作原数组。
+			arr.sort([function()])				冒泡排序，该方法会直接操作原数组。
 				arr.sort(function(a, b) {
-					return a - b			// a - b Ϊ�������С�b - a Ϊ�������С�
+					return a - b			// a - b 为升序排列。b - a 为降序排列。
 				})
-		����ת�ַ���
+		数组转字符串
 			var str = arr.toString()			[1, 2, 3, 4] ==> '1,2,3,4'
-			var str = arr.join('�ָ���')
+			var str = arr.join('分隔符')
 		Array.from(object, function(currentValue))
-			���ã�ͨ��ӵ�� length ���ԵĶ����ɵ����Ķ���������һ�����顣
-			������	
-				object					����ġ��������������ԭ����
-				function(currentValue)			��ѡ�ġ�ԭ�����е�ÿ�����Ի�Ԫ�ض��ᱻ�ú����������ú�����Ҫ����һ��ֵ��������Ϊ newArr[index] ��ֵ��			
-			ʾ����
-				var newArr = Array.from(arrLike)	// arrLike α���顣
+			作用：通过拥有 length 属性的对象或可迭代的对象来返回一个数组。
+			参数：	
+				object					必需的。生成数组所需的原对象。
+				function(currentValue)			可选的。原对象中的每个属性或元素都会被该函数处理。该函数需要返回一个值，用来作为 newArr[index] 的值。			
+			示例：
+				var newArr = Array.from(arrLike)	// arrLike 伪数组。
 				var newArr = Array.from(arrLike, currentValue => currentValue * 2)
 		arr.includes(value, startIndex)
-			���ã���ѯ�������Ƿ����ָ����ֵ������������� true�����򷵻� false��
-			������
-				value					����ġ���Ҫ���ҵ�Ԫ��ֵ��
-				startIndex				��ѡ�ġ��Ӹ���������ʼ���� value��
-			ʾ����var flag = arr.includes(2, 1)
+			作用：查询数组中是否包含指定的值。如果包含返回 true，否则返回 false。
+			参数：
+				value					必需的。需要查找的元素值。
+				startIndex				可选的。从该索引处开始查找 value。
+			示例：var flag = arr.includes(2, 1)
 		arr.forEach(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬��������Ԫ�������Ӧ�Ĳ�����
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺��������е� return ����� forEach ������ѭ���������Ӱ�졣
-			����ֵ��undefined��
-			ʾ����
+			作用：循环遍历 arr 数组，依据数组元素完成相应的操作。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：这个函数中的 return 不会对 forEach 函数的循环遍历造成影响。
+			返回值：undefined。
+			示例：
 				arr.forEach(function(currentValue, index, currentArr) {
 					currentArr[index] += 20
 				})
 		arr.filter(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬��ɶ�����Ĺ��˲�����
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ������ֵ������ʾ��Ӧ��Ԫ�������������Ƿ񱻱�����
-			����ֵ������һ�������顣����������˷�������������Ԫ�ء����û�з���������Ԫ���򷵻ؿ����顣
-			ʾ����
+			作用：循环遍历 arr 数组，完成对数组的过滤操作。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个布尔值，来表示对应的元素在新数组中是否被保留。
+			返回值：返回一个新数组。新数组包含了符合条件的所有元素。如果没有符合条件的元素则返回空数组。
+			示例：
 				var newArr = arr.filter(function(currentValue, index, currentArr) {
 					return currentValue >= 20
 				})
 		arr.map(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬��ɶ������ӳ�������
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ��ֵ��������Ϊ newArr[index] ��ֵ��
-			����ֵ������һ�������顣�������е�Ԫ��Ϊԭʼ����Ԫ�ر� function �����������ֵ��
-			ʾ����
+			作用：循环遍历 arr 数组，完成对数组的映射操作。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个值，用来作为 newArr[index] 的值。
+			返回值：返回一个新数组。新数组中的元素为原始数组元素被 function 函数处理后的值。
+			示例：
 				var newArr = arr.map(function(currentValue, index, currentArr) {
 					return currentValue + 20
 				})
 		arr.reduce(function(total, currentValue, index, currentArr), initialValue)
-			���ã�ѭ������ arr ���飬��ɶ������ͳ�Ʋ�����
-			������
-				function(total, currentValue, index, currentArr)����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					total					����ġ�
-											function �����״ε���ʱ��total = initialValue ? initialValue : array[0]��
-											function �������״ε���ʱ��total = function �����ϴε��õķ���ֵ��
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				initialValue					��ѡ�ġ�����ͳ�Ʋ����ĳ�ʼֵ��
-				ע�⣺�ú�����Ҫ����һ��ֵ��������Ϊ�´ε��øú���ʱ��������� total ʵ�Σ�����������Ϊ reduce ����ִ�����ʱ���ܷ���ֵ��
-			����ֵ������ͳ������õ��Ľ��ֵ��
-			ʾ����
-				// �Ƽ�������д����
+			作用：循环遍历 arr 数组，完成对数组的统计操作。
+			参数：
+				function(total, currentValue, index, currentArr)必需的。数组中的每个元素都会被该函数处理。
+					total					必需的。
+											function 函数首次调用时：total = initialValue ? initialValue : array[0]；
+											function 函数非首次调用时：total = function 函数上次调用的返回值。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				initialValue					可选的。数组统计操作的初始值。
+				注意：该函数需要返回一个值，用来作为下次调用该函数时函数所需的 total 实参，或者用来作为 reduce 函数执行完毕时的总返回值。
+			返回值：返回统计数组得到的结果值。
+			示例：
+				// 推荐用这种写法。
 				var total = arr.reduce(function(total, currentValue, index, currentArr) {
 									console.log(total, currentValue, index)
 									return total + currentValue
@@ -386,107 +386,107 @@ JS ע��
 									return total + currentValue
 								})
 		arr.some(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬��ѯ�����Ƿ��������ָ��������Ԫ�ء�
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ������ֵ���������ֵΪ true�������ֹ some ������ִ�У������� some ��������һ�� true ֵ��
-				�������ֵһֱΪ false����ô some �����ķ���ֵҲ���� false��
-			����ֵ������һ������ֵ�����������������ָ��������Ԫ�ط��� true�����򷵻� false��
-			ʾ����
+			作用：循环遍历 arr 数组，查询数组是否包含满足指定条件的元素。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个布尔值。如果返回值为 true，则会终止 some 函数的执行，并且让 some 函数返回一个 true 值；
+				如果返回值一直为 false，那么 some 函数的返回值也会是 false。
+			返回值：返回一个布尔值。如果数组中有满足指定条件的元素返回 true，否则返回 false。
+			示例：
 				var flag = arr.some(function(currentValue, index, currentArr) {
 					return currentValue >= 20
 				})
 		arr.every(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬��ѯ�������Ƿ����е�Ԫ�ض�����ָ����������
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ������ֵ���������ֵΪ false�������ֹ every ������ִ�У������� every ��������һ�� false ֵ��
-				�������ֵһֱΪ true����ô every �����ķ���ֵҲ���� true��
-			����ֵ������һ������ֵ��������������е�Ԫ�ض�����ָ������������ true�����򷵻� false��
-			ʾ����
+			作用：循环遍历 arr 数组，查询数组中是否所有的元素都满足指定的条件。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个布尔值。如果返回值为 false，则会终止 every 函数的执行，并且让 every 函数返回一个 false 值；
+				如果返回值一直为 true，那么 every 函数的返回值也会是 true。
+			返回值：返回一个布尔值。如果数组中所有的元素都满足指定的条件返回 true，否则返回 false。
+			示例：
 				var flag = arr.every(function(currentValue, index, currentArr) {
 					return currentValue >= 20
 				})
 		arr.find(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬���ص�һ������ָ��������Ԫ�ء�
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ������ֵ���������ֵΪ true�������ֹ find ������ִ�У������� find �������� arr[index] Ԫ�ص�������
-				�������ֵһֱΪ false����ô find �����ķ���ֵ���� undefined��
-			����ֵ�����ص�һ������ָ��������Ԫ�ء��������Ԫ�ض�������ָ���������ͷ��� undefined��
-				ע�⣺���ص�������Ԫ�ص�����������������Ԫ�صĿ�������
-			ʾ����
+			作用：循环遍历 arr 数组，返回第一个满足指定条件的元素。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个布尔值。如果返回值为 true，则会终止 find 函数的执行，并且让 find 函数返回 arr[index] 元素的索引；
+				如果返回值一直为 false，那么 find 函数的返回值会是 undefined。
+			返回值：返回第一个满足指定条件的元素。如果所有元素都不满足指定的条件就返回 undefined。
+				注意：返回的是数组元素的索引，而不是数组元素的拷贝对象。
+			示例：
 				var tarItem = arr.find(function(currentValue, index, currentArr) {
 					return currentValue >= 20
 				})
 		arr.findIndex(function(currentValue, index, currentArr))
-			���ã�ѭ������ arr ���飬���ص�һ������ָ��������Ԫ���������е��±ꡣ
-			������
-				function(currentValue, index, currentArr)	����ġ������е�ÿ��Ԫ�ض��ᱻ�ú���������				
-					currentValue				����ġ���ǰԪ�ص�ֵ��
-					index					��ѡ�ġ���ǰԪ�ص�����ֵ��
-					currentArr				��ѡ�ġ���ǰԪ���������������
-				ע�⣺�ú�����Ҫ����һ������ֵ���������ֵΪ true�������ֹ findIndex ������ִ�У������� findIndex �������� index ֵ��
-				�������ֵһֱΪ false����ô findIndex �����ķ���ֵ���� -1��
-			����ֵ�����ص�һ������ָ��������Ԫ���������е��±ꡣ�������Ԫ�ض�������ָ�������ͷ��� -1��
-			ʾ����
+			作用：循环遍历 arr 数组，返回第一个满足指定条件的元素在数组中的下标。
+			参数：
+				function(currentValue, index, currentArr)	必需的。数组中的每个元素都会被该函数处理。				
+					currentValue				必需的。当前元素的值。
+					index					可选的。当前元素的索引值。
+					currentArr				可选的。当前元素所属的数组对象。
+				注意：该函数需要返回一个布尔值。如果返回值为 true，则会终止 findIndex 函数的执行，并且让 findIndex 函数返回 index 值；
+				如果返回值一直为 false，那么 findIndex 函数的返回值会是 -1。
+			返回值：返回第一个满足指定条件的元素在数组中的下标。如果所有元素都不满足指定条件就返回 -1。
+			示例：
 				var index = arr.findIndex(function(currentValue, index, currentArr) {
 					return currentValue >= 20
 				})
-����
-	û���ظ�Ԫ�صġ����顱��
+集合
+	没有重复元素的“数组”。
 		var set = new Set()
 		var set = new Set([1, 2, 3])
-	���� API
-		set.add(value)						����ĳ��ֵ������ԭ���ϡ�
-		set.delete(value)					ɾ��ĳ��ֵ������һ������ֵ����ʾɾ���Ƿ�ɹ���
-		set.has(value)						��ѯ�����Ƿ����ĳ��ֵ������һ������ֵ��
-		set.clear()						������ϵ�����Ԫ�أ�û�з���ֵ��
-	������set.forEach(item => console.log(item))
-	Ӧ�ã�����ȥ�ء�
+	集合 API
+		set.add(value)						添加某个值，返回原集合。
+		set.delete(value)					删除某个值，返回一个布尔值，表示删除是否成功。
+		set.has(value)						查询集合是否包含某个值，返回一个布尔值。
+		set.clear()						清除集合的所有元素，没有返回值。
+	遍历：set.forEach(item => console.log(item))
+	应用：数组去重。
 		// const newArr = [...new Set(oldArr)]
 		const newArr = Array.from(new Set(oldArr))
-����
-	��������
-		1������������
+函数
+	函数定义
+		1、命名函数。
 			function fun() {}
-			ע�⣺���ַ������ں�����������
-		2������������
+			注意：此种方法存在函数的提升。
+		2、匿名函数。
 			var fun = function() {}
-			ע�⣺���ַ��������ں�����������ֻ���ڱ�����������
-		3�����캯�����������ã�
+			注意：此种方法不存在函数的提升，只存在变量的提升。
+		3、构造函数。（不常用）
 			var fun =  new Function('parms1', 'parms2', ..., 'funBody')
-	��������
-		1����ͨ������
+	函数调用
+		1、普通函数。
 			fun()
-		2�����󷽷���
+		2、对象方法。
 			obj.fun()
-		3�����캯����
+		3、构造函数。
 			new Fun()
-		4��DOM ����󶨵��¼��� DOM ������á�
-	this ָ��
-		1���е����ߵĺ����������ڲ��� this ָ�����ĵ����ߡ�
-		2���޵����ߵĺ����������ڲ��� this ָ�� window ����
-		3��DOM ����󶨵��¼��������ڲ��� this ָ�� DOM ����
-		4���ص������������ڲ��� this һ��ָ�� window ����
-		5����ͷ�����������ڲ��� this �̳��Զ����ͷ����ʱ�������������е� this��
-	�޸� this ָ��
+		4、DOM 对象绑定的事件由 DOM 对象调用。
+	this 指向
+		1、有调用者的函数：函数内部的 this 指向它的调用者。
+		2、无调用者的函数：函数内部的 this 指向 window 对象。
+		3、DOM 对象绑定的事件：函数内部的 this 指向 DOM 对象。
+		4、回调函数：函数内部的 this 一般指向 window 对象。
+		5、箭头函数：函数内部的 this 继承自定义箭头函数时所处的上下文中的 this。
+	修改 this 指向
 		fun.call(thisParams, ...paramsArr)
-			���ã��޸ĺ����е� this ָ��Ȼ���ٵ��ú�����
-			������
-				thisParams				����ġ���ǰ������ this ��Ҫָ��Ķ���
-				...paramsArr				��ѡ�ġ�fun ������Ҫ�Ĳ�����
-			����ֵ������ԭ����������ִ�к�Ľ����
-			����ʵ�֣�
+			作用：修改函数中的 this 指向，然后再调用函数。
+			参数：
+				thisParams				必需的。当前函数中 this 将要指向的对象。
+				...paramsArr				可选的。fun 函数需要的参数。
+			返回值：返回原函数被调用执行后的结果。
+			代码实现：
 				Function.prototype.myCall = function(thisParams, ...paramsArr) {
 					thisParams = thisParams || window
 					thisParams.funct = this
@@ -494,12 +494,12 @@ JS ע��
 				}
 				var result = fun.myCall(thisObj, parms1, parms2)
 		fun.apply(thisParams, paramsArr)
-			���ã��޸ĺ����е� this ָ��Ȼ���ٵ��ú�����
-			������
-				thisParams				����ġ���ǰ������ this ��Ҫָ��Ķ���
-				paramsArr				��ѡ�ġ�fun ������Ҫ�Ĳ�����ɵ����顣
-			����ֵ������ԭ����������ִ�к�Ľ����
-			����ʵ�֣�
+			作用：修改函数中的 this 指向，然后再调用函数。
+			参数：
+				thisParams				必需的。当前函数中 this 将要指向的对象。
+				paramsArr				可选的。fun 函数需要的参数组成的数组。
+			返回值：返回原函数被调用执行后的结果。
+			代码实现：
 				Function.prototype.myApply = function(thisParams, paramsArr) {
 					thisParams = thisParams || window
 					thisParams.funct = this
@@ -507,12 +507,12 @@ JS ע��
 				}
 				var result = fun.myApply(thisObj, [parms1, parms2])
 		fun.bind(thisParams, ...paramsArr)
-			���ã��޸ĺ����е� this ָ�򣬷���ԭ������ copy��
-			������
-				thisParams				����ġ���ǰ������ this ��Ҫָ��Ķ���
-				...paramsArr				��ѡ�ġ�fun ������Ҫ�Ĳ�����
-			����ֵ��һ��ԭ������ copy��
-			����ʵ�֣�
+			作用：修改函数中的 this 指向，返回原函数的 copy。
+			参数：
+				thisParams				必需的。当前函数中 this 将要指向的对象。
+				...paramsArr				可选的。fun 函数需要的参数。
+			返回值：一个原函数的 copy。
+			代码实现：
 				Function.prototype.myBind = function(thisParams, ...paramsArr) {
 					var funct = this
 					return function() {
@@ -520,25 +520,25 @@ JS ע��
 					}
 				}
 				var result = fun.myBind(thisObj, parms1, parms2)()
-	���캯��
-		���캯������ͨ����������
-			1�����캯���ĺ�������һ����ĸͨ����Ҫ��д��
-			2�����캯��ͨ����Ҫʹ�� new �ؼ��������е��á�
-			3�����캯���ĺ������ڿ���ʹ�� this ����ָԤ���ɵ�ʵ������
-			4�����캯����ִ�й�������ͨ�����ǲ�һ���ġ�
-		new ��������ִ�й���
-			ע�����±ʼ��е� Person Ϊ���캯����
-			1������һ���ն���var tempObj = {}��
-			2��������ն����ԭ��ָ���캯����ԭ�ͣ�tempObj.__proto__ = Person.prototype��
-			3�������캯���е� this ָ������ն��󣬲�ִ�й��캯���еĴ��룺Person.call(tempObj)��
-			4��������캯��û�з���ֵ����Ĭ�Ϸ��� this���� return tempObj��
-		new ��������ʵ��ԭ��
+	构造函数
+		构造函数与普通函数的区别
+			1、构造函数的函数名第一个字母通常需要大写。
+			2、构造函数通常需要使用 new 关键字来进行调用。
+			3、构造函数的函数体内可以使用 this 来代指预生成的实例对象。
+			4、构造函数的执行过程与普通函数是不一样的。
+		new 操作符的执行过程
+			注：以下笔记中的 Person 为构造函数。
+			1、创建一个空对象：var tempObj = {}。
+			2、将这个空对象的原型指向构造函数的原型：tempObj.__proto__ = Person.prototype。
+			3、将构造函数中的 this 指向这个空对象，并执行构造函数中的代码：Person.call(tempObj)。
+			4、如果构造函数没有返回值，则默认返回 this，即 return tempObj。
+		new 操作符的实现原理
 			function Person(name, sex) {
 				this.name = name
 				this.sex = sex
 			}
 			Person.prototype.getInfo = function() {
-				console.log('name��' + this.name + '��sex��' + this.sex + '��')
+				console.log('name：' + this.name + '，sex：' + this.sex + '。')
 			}
 			function New(constructor, ...paramsArr) {
 				var tempObj = {}
@@ -548,48 +548,48 @@ JS ע��
 			}
 			var person = New(Person, 'zhangsan', 'nan')
 			console.log('person: ' + person)
-		���캯���ļ̳У����·� ES5 ���ࡣ
-	����ִ�к�����(function() {})() | (function() {}())��
-	��ͷ����
-		�ص㣺
-			1�������ͷ�����ĺ�����ֻ��һ����룬�Ҵ����ִ�н�����Ƿ���ֵ�������ʡ�԰���������Ĵ����š�
-			2�������ͷ�������β�ֻ��һ���������ʡ�԰����βε�С���š�
-			3����ͷ�����ڲ��� this �̳��Զ����ͷ����ʱ�������������е� this��
-		ʾ����
+		构造函数的继承：见下方 ES5 的类。
+	立即执行函数：(function() {})() | (function() {}())。
+	箭头函数
+		特点：
+			1、如果箭头函数的函数体只有一句代码，且代码的执行结果就是返回值，则可以省略包裹函数体的大括号。
+			2、如果箭头函数的形参只有一个，则可以省略包裹形参的小括号。
+			3、箭头函数内部的 this 继承自定义箭头函数时所处的上下文中的 this。
+		示例：
 			const fun = () => {}
 			fun()
-	�հ�����
-		���壺���һ�������ڲ������ܹ��������ⲿ���ʵ��Ķ�����Ӻ�������˺����Ĵ���ξ��γ��˱հ���
-		��ȱ�㣺
-			�ŵ㣺
-				1���������ڴ���ά�����������档
-				2������ʵ�ֺ����ڲ��߼��ķ�װ��
-			ȱ�㣺�հ�������һ�㺯����Ҫ���ĸ�����ڴ棬�õĲ��û����ܻ�����ڴ��й¶��
-		Ӧ�ã�
-			1�����ڴ���ά�����������档
+	闭包函数
+		定义：如果一个函数内部存在能够被函数外部访问到的对象或子函数，则此函数的代码段就形成了闭包。
+		优缺点：
+			优点：
+				1、可以在内存中维护变量并缓存。
+				2、可以实现函数内部逻辑的封装。
+			缺点：闭包函数比一般函数需要消耗更多的内存，用的不好还可能会造成内存的泄露。
+		应用：
+			1、在内存中维护变量并缓存。
 				var cacheData = (function() {
 					var cacheObj = {}
 					return { 
 						getResult: function(id) {
-							// �����������ֵ����ֵ����Ч��
+							// 如果缓存中有值并且值还有效。
 							if (id in cacheObj && ......) {
-								return '�õ��Ľ��Ϊ��' + cache[id] + '��'
+								return '得到的结果为：' + cache[id] + '。'
 							}
 							cache[id] = getResultPort(id)
-							return '�õ��Ľ��Ϊ��' + cache[id] + '��'
+							return '得到的结果为：' + cache[id] + '。'
 						}
 					}
 				})()
 				function getResultPort(id) {
-					console.log("����һ���ǳ���ʱ������")
+					console.log("这是一个非常耗时的任务。")
 					return id
 				}
 				console.log(cacheData.getResult(23))
 				console.log(cacheData.getResult(23))
 				console.log(cacheData.getResult(24))
-			2��ʵ�ֺ����ڲ��߼��ķ�װ��
+			2、实现函数内部逻辑的封装。
 				var stack = (function() {
-					// ʹ������ģ��ջ�ṹ��
+					// 使用数组模拟栈结构。
 					var arr = []
 					return {
 						push: function(value) {
@@ -608,98 +608,98 @@ JS ע��
 				console.log(stack.size())		// 2
 				console.log(stack.pop())		// def
 				console.log(stack.size())		// 1
-����
-	��������
-		1����������
+对象
+	创建对象
+		1、字面量。
 			var star = {
-				name: '���»�',
+				name: '刘德华',
 				sing: function(songName) {
 					console.log(songName)
 				}
 			}
-		2��new Object��
+		2、new Object。
 			var star = new Object()
-			star.name = '���»�'
+			star.name = '刘德华'
 			star.sing = function(songName) {
 					console.log(songName)
 				}
-		3�����캯����
+		3、构造函数。
 			function Star(name) {
 				this.name = name
 			}
 			Star.prototype.sing = function(songName) {
 				console.log(songName)
 			}
-	ʹ�ö���obj.name | obj['name'] | obj.sing()
-	��������
-		for...in ����������߶���ı���������
-		ʾ����
+	使用对象：obj.name | obj['name'] | obj.sing()
+	遍历对象
+		for...in 用于数组或者对象的遍历操作。
+		示例：
 			for(var k in obj) {
-				console.log(k)				// k ���յ��Ƕ������������
+				console.log(k)				// k 接收的是对象的属性名。
 				console.log(obj[k])
 			}
-	��ǳ����
-		ǳ����
+	深浅拷贝
+		浅拷贝
 			Object.assign(target, ...sources)
-				���ã���Դ��������п�ö������ǳ������Ŀ������ϣ�������������ͬ����ʵ�и��ǲ�����
-				������
-					target				����ġ�Ŀ�����
-					...sources			����ġ�Դ����
-				����ֵ�����������Ŀ�����
-				ʾ����
+				作用：将源对象的所有可枚举属性浅拷贝到目标对象上，对两对象间的相同属性实行覆盖操作。
+				参数：
+					target				必需的。目标对象。
+					...sources			必需的。源对象。
+				返回值：被处理后的目标对象。
+				示例：
 					const target = { a: 1, b: 2 }
 					const source = { b: 4, c: 5 }
 					Object.assign(target, source)
 					console.log(target)		// { a: 1, b: 4, c: 5 }
-				ע�⣺
-					1���˷����޷�ʵ�ֶԺ�������Ŀ�����
-					2����������г���ѭ�����ã��˷������׳��쳣��
-					3���������Ŀ������ԭ�ͻ�ָ�� Object��Ŀ�����ԭ�е�ԭ������ϵ�ᱻ�ƻ���
-		���
+				注意：
+					1、此方法无法实现对函数对象的拷贝。
+					2、如果对象中出现循环引用，此方法会抛出异常。
+					3、处理后的目标对象的原型会指向 Object，目标对象原有的原型链关系会被破坏。
+		深拷贝
 			var newObj = JSON.parse(JSON.stringify(obj))
-	���� API
-		�ж�������ʵ���Ļ���ԭ�͵�
-			prop in obj					��ѯʵ����ԭ�����Ƿ��� prop ���ԡ����� true �У�false û�С�
-			obj.hasOwnProperty('prop')			��ѯʵ�����Ƿ��� prop ���ԡ����� true �У�false û�С�
+	对象 API
+		判断属性是实例的还是原型的
+			prop in obj					查询实例或原型中是否有 prop 属性。返回 true 有，false 没有。
+			obj.hasOwnProperty('prop')			查询实例中是否有 prop 属性。返回 true 有，false 没有。
 		Object.keys(obj)
-			���ã���ȡ�������еĿ�ö�����ԡ�����һ������������ɵ��ַ������顣
-			ʾ����var propsArr = Object.keys(obj)
+			作用：获取对象所有的可枚举属性。返回一个由属性名组成的字符串数组。
+			示例：var propsArr = Object.keys(obj)
 		delete
-			���ã�ɾ�������е�ĳ�����ԡ����ɾ���ɹ������� true�����ɾ��ʧ�ܣ����� false��
-			ʾ����delete obj.prop
-			ע�⣺delete ֻ��ɾ���������������ԣ�����ɾ������ԭ�����ϵ����ԡ�
+			作用：删除对象中的某个属性。如果删除成功，返回 true；如果删除失败，返回 false。
+			示例：delete obj.prop
+			注意：delete 只能删除对象自身的属性，不能删除对象原型链上的属性。
 		Object.defineProperty(obj, prop, descriptor)
-			���ã��������������Ի��޸Ķ����ԭ�����ԡ�
-			������
-				obj				����ġ�Ŀ�����
-				prop				����ġ���Ҫ��������޸ĵ����ԡ�
-				descriptor			����ġ���������޸ĵ����Ե���������
+			作用：定义对象的新属性或修改对象的原有属性。
+			参数：
+				obj				必需的。目标对象。
+				prop				必需的。需要被定义或修改的属性。
+				descriptor			必需的。被定义或修改的属性的描述符。
 					{
-						configurable: true,		�����Ե��������Ƿ��������޸ĺ͸������Ƿ���Ա��Ӷ�����ɾ����Ĭ��ֵΪ false��
-						enumerable: true,		�������Ƿ�Ϊö�����ԡ�Ĭ��ֵΪ false��
-						writable: true,			�����Ե�ֵ��Ҳ��������� value ֵ���Ƿ���Ա���ֵ�����޸ġ�Ĭ��ֵΪ false��
-						value: '',			�����Զ�Ӧ��ֵ��Ĭ��ֵΪ undefined��
-						get: get(),			�����Ա�����ʱ�����ĺ��������磺get() { return this.prop }��
-						set: set()			�����Ա�д��ʱ�����ĺ��������磺set(newValue) { this.prop = newValue }��
+						configurable: true,		该属性的描述符是否允许被修改和该属性是否可以被从对象中删除。默认值为 false。
+						enumerable: true,		该属性是否为枚举属性。默认值为 false。
+						writable: true,			该属性的值，也就是下面的 value 值，是否可以被赋值运算修改。默认值为 false。
+						value: '',			该属性对应的值。默认值为 undefined。
+						get: get(),			该属性被访问时触发的函数。例如：get() { return this.prop }。
+						set: set()			该属性被写入时触发的函数。例如：set(newValue) { this.prop = newValue }。
 					}
-			����ֵ��ԭ��������á�
+			返回值：原对象的引用。
 		Object.create(proto, [propertiesObject])
-			���ã�����һ������
-			������
-				proto				����ġ�Ԥ���������ԭ�͡����Ϊֵ null��������ԭ��Ϊ undefined����ô����Ҳ����̳� Object.prototype �ϵķ�����
-				propertiesObject		��ѡ�ġ�Ԥ������������������������ļ��ϡ�
+			作用：创建一个对象。
+			参数：
+				proto				必需的。预创建对象的原型。如果为值 null，则对象的原型为 undefined，那么对象也不会继承 Object.prototype 上的方法。
+				propertiesObject		可选的。预创建对象的所有属性描述符的集合。
 					{ 
-						������: {
-							configurable: true,	�����Ե��������Ƿ��������޸ĺ͸������Ƿ���Ա��Ӷ�����ɾ����Ĭ��ֵΪ false��
-							enumerable: true,	�������Ƿ�Ϊö�����ԡ�Ĭ��ֵΪ false��
-							writable: true,		�����Ե�ֵ��Ҳ��������� value ֵ���Ƿ���Ա���ֵ�����޸ġ�Ĭ��ֵΪ false��
-							value: ''		�����Զ�Ӧ��ֵ��Ĭ��ֵΪ undefined��
+						属性名: {
+							configurable: true,	该属性的描述符是否允许被修改和该属性是否可以被从对象中删除。默认值为 false。
+							enumerable: true,	该属性是否为枚举属性。默认值为 false。
+							writable: true,		该属性的值，也就是下面的 value 值，是否可以被赋值运算修改。默认值为 false。
+							value: ''		该属性对应的值。默认值为 undefined。
 						},
 						......
 					}
-			����ֵ��һ������ָ��ԭ�ͺ����ԵĶ���
-			ʵ��ԭ��
-				Object.create = function(proto��propertiesObject) {
+			返回值：一个带着指定原型和属性的对象。
+			实现原理
+				Object.create = function(proto，propertiesObject) {
 					var newObj = {}
 					newObj.__proto__ = proto
 					if(propertiesObject) {
@@ -709,13 +709,13 @@ JS ע��
 					}
 					return newObj
 				}
-			Ӧ�ó��������캯���ļ̳С�
+			应用场景：构造函数的继承。
 				function Person(name, age) {
 					this.name = name
 					this.age = age
 				}
 				Person.prototype.getInfo = function() {
-					console.log('name��' + this.name + '��age��' + this.age + '��')
+					console.log('name：' + this.name + '，age：' + this.age + '。')
 				}
 				function Student(name, age, school) {
 					Person.call(this, name, age)
@@ -725,100 +725,100 @@ JS ע��
 				// Student.prototype.constructor = Student
 				Student.prototype.proto === Person.prototype
 				Student.prototype.getInfo = function() {
-					console.log('name��' + this.name + '��age��' + this.age + '��school��' + this.school + '��')
+					console.log('name：' + this.name + '，age：' + this.age + '，school：' + this.school + '。')
 				}
-				var student = new Student('zhangsan', '18', '����')
+				var student = new Student('zhangsan', '18', '北大')
 				console.log('student: ' + student)
-���ö���
-	JS �����Ϊ���֣��Զ���������ö������������
-	Math ����
-		Math ������һ�����캯��������Ҫ new �����ã�����ֱ��ʹ���������Ժͷ�����
+内置对象
+	JS 对象分为三种：自定义对象、内置对象、浏览器对象。
+	Math 对象
+		Math 对象不是一个构造函数，不需要 new 来调用，可以直接使用它的属性和方法。
 		Math.PI
 		Math.max()
 		Math.min()
-		Math.floor()						// ����ȡ��
-		Math.ceil()						// ����ȡ��
-		Math.round()						// ��������ȡ��
-			ע�⣺Math.round(-1.5) �ķ���ֵ�� -1����Ϊ JS �� .5 ����������ȡֵ��
-		Math.abs()						// ȡ����ֵ
-		Math.random()						// ����һ����Χ [0,1) �ĸ���α�������
-	Date ����
-		Date ������һ�����캯��������ʹ�� new �����á�
-			1�����û�в��������ص�ǰ��ϵͳʱ�䡣
+		Math.floor()						// 向下取整
+		Math.ceil()						// 向上取整
+		Math.round()						// 四舍五入取整
+			注意：Math.round(-1.5) 的返回值是 -1，因为 JS 中 .5 都是往大了取值。
+		Math.abs()						// 取绝对值
+		Math.random()						// 返回一个范围 [0,1) 的浮点伪随机数。
+	Date 对象
+		Date 对象是一个构造函数，必须使用 new 来调用。
+			1、如果没有参数，返回当前的系统时间。
 				var time = new Date()
-			2������в��������ظ�����ʱ�䡣
+			2、如果有参数，返回给定的时间。
 				var time = new Date(2019, 10, 01)
 				var time = new Date('2019-10-1 8:8:8')
 				var time = new Date('2019/10/1')
-		���ڸ�ʽ��
+		日期格式化
 			var time = new Date()
 			var year = time.getFullYear()
-			var month = time.getMonth()			// �����·ݡ�0 ~ 11��
-			var date = time.getDate()			// ���ؼ��š�
-			var day = time.getDay()				// �������� 0 ������ 6��
-			var hours = time.getHours()			// ���ص�ǰСʱ��
-			var minutes = time.getMinutes()			// ���ص�ǰ���ӡ�
-			var seconds = time.getSeconds()			// ���ص�ǰ�롣
-		�ܺ�������ʱ�����
+			var month = time.getMonth()			// 返回月份。0 ~ 11。
+			var date = time.getDate()			// 返回几号。
+			var day = time.getDay()				// 返回周日 0 到周六 6。
+			var hours = time.getHours()			// 返回当前小时。
+			var minutes = time.getMinutes()			// 返回当前分钟。
+			var seconds = time.getSeconds()			// 返回当前秒。
+		总毫秒数（时间戳）
 			var timestamp = new Date().valueof()	
 			var timestamp = new Date().getTime()
 			var timestamp = +new Date()
 			var timestamp = Date.now()
-ES6 �����﷨
-	�ؼ���
+ES6 新增语法
+	关键字
 		let
-			1��let ���������ڱ�����������
-			2������ڴ����������� let ��������� let ����ֻ�ڴ������������á�
-			3��let ����������ʱ�����������ԡ�
+			1、let 变量不存在变量的提升。
+			2、如果在大括号内声明 let 变量，则该 let 变量只在大括号内起作用。
+			3、let 变量具有暂时性死区的特性。
 				var num = 10
 				if(true) {
 					console.log(num)		// undefined
 					let num = 20
 				}
 		const
-			1��const ���������ڱ�����������
-			2��const ����������ʱ���븳��ʼֵ��
-			3������ڴ����������� const ��������� const ����ֻ�ڴ������������á�
-		var������ڴ����������� var �������� var �����ڴ�������Ҳ�������ã���Ϊ�� ES6 ֮ǰû�п鼶������Ķ��塣
-		ע�⣺let��const ===> �鼶������var ===> ����������
-	�⹹��ֵ
-		����⹹
-			var [a, b, c] = [1, 2, 3]			// ͬʱ��������������
-			var [a, b, c, d] = [1, 2, 3]			// d ֵΪ undefined��
-		����⹹
-			var { name, age } = { name: 'zhangsan', age: 20 }			// ͬʱ��������������
-			var { name: myName, age: myAge } = { name: 'zhangsan', age: 20 }	// myName��myAge Ϊ��Ӧ���Եı�����
-	��չ�����
-		��չ��������Խ�����ת��Ϊ�ö��ŷָ��Ĳ������С���Ҫ������ʽΪ���ڸ�ֵ��������ұߺͺ�������ʱ����ʵ�ε���չ��
-		Ӧ�ã�
-			1������ʵ�ε���չ��
-				�ԡ�
-			2����ֵ��������ұߣ��ϲ����顣
+			1、const 常量不存在变量的提升。
+			2、const 常量在声明时必须赋初始值。
+			3、如果在大括号内声明 const 常量，则该 const 常量只在大括号内起作用。
+		var：如果在大括号内声明 var 常量，该 var 常量在大括号外也会起作用，因为在 ES6 之前没有块级作用域的定义。
+		注意：let、const ===> 块级作用域；var ===> 函数作用域。
+	解构赋值
+		数组解构
+			var [a, b, c] = [1, 2, 3]			// 同时定义三个变量。
+			var [a, b, c, d] = [1, 2, 3]			// d 值为 undefined。
+		对象解构
+			var { name, age } = { name: 'zhangsan', age: 20 }			// 同时定义两个变量。
+			var { name: myName, age: myAge } = { name: 'zhangsan', age: 20 }	// myName、myAge 为对应属性的别名。
+	扩展运算符
+		扩展运算符可以将数组转换为用逗号分隔的参数序列。主要表现形式为：在赋值运算符的右边和函数调用时数组实参的扩展。
+		应用：
+			1、函数实参的扩展。
+				略。
+			2、赋值运算符的右边：合并数组。
 				var arr1 = [1, 2, 3]
 				var arr2 = [4, 5, 6]
 				// arr1 = [...arr1, ...arr2]
 				arr1.push(...arr2)
-			3����ֵ��������ұߣ���α����ת��Ϊ�����顣
+			3、赋值运算符的右边：将伪数组转换为真数组。
 				var divs = [...document.getElementByTagName('div')]
-	ʣ�������
-		��ʣ����������ε�ʣ�������Զ�Ǹ����飬��ʹû��ֵ��Ҳ�ǿ����顣��Ҫ������ʽΪ���ڸ�ֵ���������ߺͺ�������ʱ����βεĹ��ɡ�
-		Ӧ�ã�
-			1�������βεĹ��ɡ�
+	剩余参数符
+		被剩余参数符修饰的剩余参数永远是个数组，即使没有值，也是空数组。主要表现形式为：在赋值运算符的左边和函数定义时多个形参的归纳。
+		应用：
+			1、函数形参的归纳。
 				function sum(...paramsArr) {
 					console.log(paramsArr)		// [10, 20, 30]
 				}
 				sum(10, 20, 30)
-			2����ֵ���������ߡ�
+			2、赋值运算符的左边。
 				var class = ['wangwu', 'zhangsan', 'lisi']
 				var [teacher, ...students] = class
 				console.log(teacher)			// 'wangwu'
 				console.log(students)			// ['zhangsan', 'lisi']
-	ģ���ַ���
-		ģ���ַ����п��Ի��С�
-		ģ���ַ����п��Խ���������
+	模板字符串
+		模板字符串中可以换行。
+		模板字符串中可以解析变量。
 			var name = `zhangsan`
 			var greetings = `hello, my name is ${name}.`
-		ģ���ַ����п��Ե��ú�����
+		模板字符串中可以调用函数。
 			const sayHello = function() {
 				return greetings
 			}
@@ -826,35 +826,35 @@ ES6 �����﷨
 
 
 
-��ĸ���
-	���ʣ�����һ�����캯�����ǹ��캯��������һ��д����
-	�ص㣺
-		1������ prototype ����ָ�����ԭ�͡�
-		2���ഴ���Ķ����� __proto__ ����ָ�����ԭ�͡�
-		3�����ԭ���� constructor ����ָ���౾����
-	JS ��Ա���ʹ���
-		������һ����������Ի򷽷�ʱ�����Ȳ����������������������������û�оͲ������ԭ�ͣ�������ԭ�ͻ�û�о�˳��ԭ�����������ԭ�͵�ԭ�͡�
-		ע�⣺
-			һ������ĸ������͵����ԣ����Ķ�д����ѭ JS ��Ա�ķ��ʹ���
-			һ������ļ����͵����ԣ����Ķ�ȡ��ѭ JS ��Ա�ķ��ʹ���д������ѭ�ͽ�ԭ�򣨼�ֱ��д�뵽����ʵ�����У���
-	class �﷨
-		��̬���ԣ����ϵ����ԡ�
+类的概述
+	本质：就是一个构造函数，是构造函数的另外一种写法。
+	特点：
+		1、类有 prototype 属性指向类的原型。
+		2、类创建的对象有 __proto__ 属性指向类的原型。
+		3、类的原型有 constructor 属性指向类本身。
+	JS 成员访问规则
+		当访问一个对象的属性或方法时，首先查找这个对象的自身，如果对象自身没有就查找类的原型；如果类的原型还没有就顺着原型链查找类的原型的原型。
+		注意：
+			一个对象的复杂类型的属性，它的读写都遵循 JS 成员的访问规则。
+			一个对象的简单类型的属性，它的读取遵循 JS 成员的访问规则，写入则遵循就近原则（即直接写入到对象实例当中）。
+	class 语法
+		静态属性：类上的属性。
 			class Example {
 				static a = 2
 			}
 			console.log(Example.a)
-		��̬���������ϵķ�����
+		静态方法：类上的方法。
 			class Example{
 				static sum(a, b) {
 					console.log(a + b)
 				}
 			}
 			Example.sum(1, 2)
-		�������ԣ����ԭ���ϵ����ԡ�
+		公共属性：类的原型上的属性。
 			class Example{}
 			Example.prototype.a = 2
 			console.log(Example.prototype.a)
-		ԭ�ͷ��������ԭ���ϵķ�����
+		原型方法：类的原型上的方法。
 			class Example {
 				sum(a, b) {
 					console.log(a + b)
@@ -863,16 +863,16 @@ ES6 �����﷨
 			// Example.prototype.sum(1, 2)
 			let exam = new Example()
 			exam.sum(1, 2)
-		ʵ�����ԣ�ʵ���ϵ����ԡ�
+		实例属性：实例上的属性。
 			class Example {
-				a = 2 // �������������
+				a = 2 // 这是特殊情况。
 				constructor(b) {
 					this.b = b
 				}
 			}
 			let exam = new Example()
 			console.log(exam.a, exam.b)
-		ʵ��������ʵ���ϵķ�����
+		实例方法：实例上的方法。
 			class Example {
 				constructor() {
 					this.sum = (a, b) => { console.log(a + b) }
@@ -880,17 +880,17 @@ ES6 �����﷨
 			}
 			let exam = new Example()
 			exam.sum(1, 2)
-		�����﷨��
-			1�����ʵ��������ͨ�� new �ؼ��֡�
-			2����ļ̳б���ͨ�� extends �ؼ��֡�class Child extends Father { ...... }
-			3������ constructor() �б�����ø���Ĺ��캯�� super()�����ұ�������ں���������С�constructor() { super() }
-			4����� super ��Ϊ��������ͨ�����У�ָ�����ԭ�ͣ��ھ�̬�����У�ָ���ࡣ
-			5�����з�������Ҫ function �ؼ��֡�
-			6���� ES6 �У���û�н��к������������Ա����ȶ����࣬Ȼ�����ͨ������ʵ��������
-			7����͹��캯������� this ָ�򱻴�����ʵ��������ͨ��������� this ָ����ͨ�����ĵ����ߡ�
-ES5 ����
-	��Ķ���
-		��һ��
+		其他语法：
+			1、类的实例化必须通过 new 关键字。
+			2、类的继承必须通过 extends 关键字。class Child extends Father { ...... }
+			3、子类 constructor() 中必须调用父类的构造函数 super()，并且必须出现在函数体的首行。constructor() { super() }
+			4、如果 super 作为对象：在普通方法中，指向父类的原型；在静态方法中，指向父类。
+			5、类中方法不需要 function 关键字。
+			6、在 ES6 中，类没有进行函数提升，所以必须先定义类，然后才能通过类来实例化对象。
+			7、类和构造函数里面的 this 指向被创建的实例对象，普通方法里面的 this 指向普通方法的调用者。
+ES5 的类
+	类的定义
+		法一：
 			function ClassName(prop1, prop2, ......, propN) {
 				this.prop1 = prop1
 				this.prop2 = prop2
@@ -900,7 +900,7 @@ ES5 ����
 			ClassName.prototype.funName = function(value1, value2, ......, valueN) {
 				.......
 			}
-		������
+		法二：
 			function ClassName(prop1, prop2, ......, propN) {
 				this.prop1 = prop1
 				this.prop2 = prop2
@@ -916,9 +916,9 @@ ES5 ����
 				.......
 				}
 			}
-	����ʵ��
+	创建实例
 		var obj = new ClassName(prop1, prop2, ......, propN)
-	��ļ̳�
+	类的继承
 		function Father(prop1, prop2, ......, propM) { 
 			this.prop1 = prop1
 			this.prop2 = prop2
@@ -939,8 +939,8 @@ ES5 ����
 		Son.prototype.funName = function(value1, value2, ......, valueN) {
 				......
 			}
-ES6 ����
-	��Ķ���
+ES6 的类
+	类的定义
 		 class ClassName { 
 			constructor(prop1, prop2, ......, propN) {
 				this.prop1 = prop1
@@ -952,9 +952,9 @@ ES6 ����
 				.......
 			}
 		 }
-	����ʵ��
+	创建实例
 		var obj = new ClassName(prop1, prop2, ......, propN)
-	��ļ̳�
+	类的继承
 		class Father { 
 			constructor(prop1, prop2, ......, propM) {
 				this.prop1 = prop1
@@ -979,317 +979,317 @@ ES6 ����
 
 
 
-DOM �ĵ�����ģ��
-	document �ĵ�����
-		document ����Ӻζ���
-			HTML DOM �п���ʹ�� BOM �е� window ��������ȡ document ����
-			��ȡ��ʽ��
-				1��window.document��
-				2��document��
-		document �ĵ���������ã���ȡ element ����
-			document.getElementById('value')			����Ԫ�ص� id ���Ի�ȡԪ�ض���
-			document.getElementsByTagName('value')			����Ԫ�صı�ǩ����ȡԪ�ض���					����ֵΪα���顣
-				fatherElement.getElementsByTagName('value')		��ȡָ����Ԫ���¶�Ӧ��ǩ������Ԫ�ض���		����ֵΪα���顣
-			document.getElementsByClassName('value')		����Ԫ�� class ���Ի�ȡԪ�ض���				����ֵΪα���顣��H5 ������
-			document.querySelector('ѡ����')			����ָ��ѡ�������ص�һ��Ԫ�ض���				��H5 ������
-				fatherElement.querySelector('ѡ����')			��ȡָ����Ԫ���¶�Ӧѡ�����ĵ�һ����Ԫ�ض���		��H5 ������
-			document.querySelectorAll('ѡ����')			����ָ��ѡ�����������е�Ԫ�ض���				����ֵΪα���顣��H5 ������
-			document.body						��ȡ body Ԫ�ء�
-			document.documentElement				��ȡ html Ԫ�ء�
-			ע�⣺��Щ�������Ƕ�̬��ȡ element ���󣬷��صĽ��ֻ��һ��ָ����Щ element ���������ֵ��������Щ element ����Ҳ����ζ�Ų���ҳ����ĵ�����
-	element Ԫ�ض���
-		element ����Ӻζ���
-			һ��ͨ�� document ��������ȡ��
-		element Ԫ�ض�������ã�����Ԫ�ص�������� <==> ����ҳ����ĵ�����
-			element.innerText = 'value'				����/��ȡԪ�����ݡ���ʶ�� html ��ǩ���Ǳ�׼����ȡʱ��ȥ���ո�ͻ��С�
-			element.innerHtml = 'value'				����/��ȡԪ�����ݡ�ʶ�� html ��ǩ����׼����ȡʱ�ᱣ���ո�ͻ��С�
-			element.������ = '����ֵ'				����/��ȡԪ�ء����á�����ֵ��
-			element.getAttribute('������')				��ȡԪ������ֵ��
-			element.setAttribute('������','����ֵ')			����Ԫ������ֵ��
-			element.removeAttribute('������')			ɾ��Ԫ�����ԡ�
-			element.style.xxx = 'value'				����/��ȡԪ��������ʽ��
-			element.className = 'value'				����/��ȡԪ������������ʱ�Ḳ��ԭ�ȵ�������
-			element.classList.add('value1', ......, 'valueN')	ΪԪ������һ������������
-			element.classList.remove('value1', ......, 'valueN')	ΪԪ���Ƴ�һ������������
-			element.classList.contains('value')			��ѯԪ���Ƿ���ĳ��������return true or false��
-	node �ڵ����
-		node �ڵ�����Ϸ��� element Ԫ�أ�һ��ͨ�� document ��������ȡ��
-		node �ڵ���������nodeType��nodeName��nodeValue �����������ԡ�
-			nodeType��element_node(1)��attribute_node(2)��text_node(3)��......
-		���ýڵ��ι�ϵ��ȡ�ڵ����
-			node.parentNode						��ȡ node ����ĸ��ڵ㡣
-			node.childNodes						��ȡ node �������е��ӽڵ㡣					��ֹ��Ԫ�ؽڵ㡣
-			node.firstChild						��ȡ node ����ĵ�һ���ӽڵ㡣					��ֹ��Ԫ�ؽڵ㡣
-			node.lastChild						��ȡ node ��������һ���ӽڵ㡣				��ֹ��Ԫ�ؽڵ㡣
-			node.previousSibling					��ȡ node �������һ���ֵܽڵ㡣				��ֹ��Ԫ�ؽڵ㡣
-			node.nextSibling					��ȡ node �������һ���ֵܽڵ㡣				��ֹ��Ԫ�ؽڵ㡣
-			node.children						��ȡ node �������е���Ԫ�ؽڵ㡣�ص㡣
-			node.firstElementChild					��ȡ node ����ĵ�һ����Ԫ�ؽڵ㡣				IE9 ���ϡ�
-			node.lastElementChild					��ȡ node ��������һ����Ԫ�ؽڵ㡣				IE9 ���ϡ�
-			node.previousElementSibling				��ȡ node �������һ���ֵ�Ԫ�ؽڵ㡣				IE9 ���ϡ�
-			node.nextElementSibling					��ȡ node �������һ���ֵ�Ԫ�ؽڵ㡣				IE9 ���ϡ�
-		���������ӡ�ɾ�������ƽڵ����
-			document.createElement('��ǩ��')			����Ԫ�ؽڵ㡣
-			node.appendChild(childNode)				�� node ������ӽڵ��б�ĩβ�����ӽڵ㡣
-			node.insertBefore(childNode, targetNode)		�� node �����ӽڵ��б���ָ���ӽڵ�ǰ�������ӽڵ㡣
-			node.removeChild(targetNode)				�� node �����ӽڵ��б���ɾ��ָ�����ӽڵ㡣
-			node.cloneNode(true/false)				���� node �����һ������������Ĭ��ֵ��false��true�������false��ǳ������
-			ע�⣺������ createElement �� innerText �����ӽڵ��Ч�����⡣
-	DOM �¼�
-		�¼���Ҫ��
-			�¼�Դ���¼����͡��¼������߼���
-		ע���¼�
-			��ͳע���¼�
+DOM 文档对象模型
+	document 文档对象
+		document 对象从何而来
+			HTML DOM 中可以使用 BOM 中的 window 对象来获取 document 对象。
+			获取方式：
+				1、window.document。
+				2、document。
+		document 文档对象的作用：获取 element 对象。
+			document.getElementById('value')			根据元素的 id 属性获取元素对象。
+			document.getElementsByTagName('value')			根据元素的标签名获取元素对象。					返回值为伪数组。
+				fatherElement.getElementsByTagName('value')		获取指定父元素下对应标签名的子元素对象。		返回值为伪数组。
+			document.getElementsByClassName('value')		根据元素 class 属性获取元素对象。				返回值为伪数组。（H5 新增）
+			document.querySelector('选择器')			根据指定选择器返回第一个元素对象。				（H5 新增）
+				fatherElement.querySelector('选择器')			获取指定父元素下对应选择器的第一个子元素对象。		（H5 新增）
+			document.querySelectorAll('选择器')			根据指定选择器返回所有的元素对象。				返回值为伪数组。（H5 新增）
+			document.body						获取 body 元素。
+			document.documentElement				获取 html 元素。
+			注意：这些方法都是动态获取 element 对象，返回的结果只是一个指向这些 element 对象的索引值，操作这些 element 对象也就意味着操作页面的文档流。
+	element 元素对象
+		element 对象从何而来
+			一般通过 document 对象来获取。
+		element 元素对象的作用：操作元素的类和属性 <==> 操作页面的文档流。
+			element.innerText = 'value'				设置/获取元素内容。不识别 html 标签，非标准，读取时会去除空格和换行。
+			element.innerHtml = 'value'				设置/获取元素内容。识别 html 标签，标准，读取时会保留空格和换行。
+			element.属性名 = '属性值'				设置/获取元素“内置”属性值。
+			element.getAttribute('属性名')				获取元素属性值。
+			element.setAttribute('属性名','属性值')			设置元素属性值。
+			element.removeAttribute('属性名')			删除元素属性。
+			element.style.xxx = 'value'				设置/获取元素行内样式。
+			element.className = 'value'				设置/获取元素类名，设置时会覆盖原先的类名。
+			element.classList.add('value1', ......, 'valueN')	为元素添加一个或多个类名。
+			element.classList.remove('value1', ......, 'valueN')	为元素移除一个或多个类名。
+			element.classList.contains('value')			查询元素是否含有某个类名。return true or false。
+	node 节点操作
+		node 节点就是上方的 element 元素，一般通过 document 对象来获取。
+		node 节点对象包括：nodeType、nodeName、nodeValue 三个基本属性。
+			nodeType：element_node(1)、attribute_node(2)、text_node(3)、......
+		利用节点层次关系获取节点对象
+			node.parentNode						获取 node 对象的父节点。
+			node.childNodes						获取 node 对象所有的子节点。					不止有元素节点。
+			node.firstChild						获取 node 对象的第一个子节点。					不止有元素节点。
+			node.lastChild						获取 node 对象的最后一个子节点。				不止有元素节点。
+			node.previousSibling					获取 node 对象的上一个兄弟节点。				不止有元素节点。
+			node.nextSibling					获取 node 对象的下一个兄弟节点。				不止有元素节点。
+			node.children						获取 node 对象所有的子元素节点。重点。
+			node.firstElementChild					获取 node 对象的第一个子元素节点。				IE9 以上。
+			node.lastElementChild					获取 node 对象的最后一个子元素节点。				IE9 以上。
+			node.previousElementSibling				获取 node 对象的上一个兄弟元素节点。				IE9 以上。
+			node.nextElementSibling					获取 node 对象的下一个兄弟元素节点。				IE9 以上。
+		创建、添加、删除、复制节点对象
+			document.createElement('标签名')			创建元素节点。
+			node.appendChild(childNode)				向 node 对象的子节点列表末尾添加子节点。
+			node.insertBefore(childNode, targetNode)		向 node 对象子节点列表的指定子节点前面添加子节点。
+			node.removeChild(targetNode)				从 node 对象子节点列表中删除指定的子节点。
+			node.cloneNode(true/false)				返回 node 对象的一个副本。参数默认值：false。true：深拷贝；false：浅拷贝。
+			注意：面试题 createElement 与 innerText 生成子节点的效率问题。
+	DOM 事件
+		事件三要素
+			事件源、事件类型、事件处理逻辑。
+		注册事件
+			传统注册事件
 				targetElement.onEventType = function() {}
-					targetElement				ע���¼���Ŀ�����
-					onEventType				�� on ���¼����͡��磺onclick��
-				�ص㣺��ע���¼��ķ�����ͬһ��Ԫ�ص�ͬһ���¼�ֻ��ע��һ����������������ע��Ĵ��������Ḳ��ǰ��ע��Ĵ���������
-			��������ע���¼�
-				targetElement.addEventListener('eventType', listener[, useCapture])						// IE9 ���ϡ�
-					targetElement				ע���¼���Ŀ�����
-					eventType				���� on ���¼����͡��磺click��
-					listener				�¼����������ĺ�������
-					useCapture				���¼��Ĵ����׶Ρ�Ĭ��ֵ��false��true������׶Σ�false��ð�ݽ׶Ρ�
-				targetElement.attschEvent('eventType', listener)								// IE6 ~ 8��
-					targetElement				ע���¼���Ŀ�����
-					eventType				���� on ���¼����͡��磺click
-					listener				�¼����������ĺ�������
-				�ص㣺��ע���¼��ķ�����ͬһ��Ԫ��ͬһ���¼�����ע���������������¼�����ʱ������������ע��˳������ִ�С�
-		����¼�
-			��ͳ����¼�
+					targetElement				注册事件的目标对象。
+					onEventType				带 on 的事件类型。如：onclick。
+				特点：此注册事件的方法，同一个元素的同一个事件只能注册一个处理函数，后面注册的处理函数会覆盖前面注册的处理函数。
+			方法监听注册事件
+				targetElement.addEventListener('eventType', listener[, useCapture])						// IE9 以上。
+					targetElement				注册事件的目标对象。
+					eventType				不带 on 的事件类型。如：click。
+					listener				事件处理函数的函数名。
+					useCapture				该事件的传播阶段。默认值：false。true：捕获阶段；false：冒泡阶段。
+				targetElement.attschEvent('eventType', listener)								// IE6 ~ 8。
+					targetElement				注册事件的目标对象。
+					eventType				不带 on 的事件类型。如：click
+					listener				事件处理函数的函数名。
+				特点：此注册事件的方法，同一个元素同一个事件可以注册多个处理函数。事件触发时各处理函数按注册顺序依次执行。
+		解绑事件
+			传统解绑事件
 				targetElement.onEventType = null
-			������������¼�
-				targetElement.removeEventListener('eventType', listener[, useCapture])						// IE9 ���ϡ�
-				targetElement.detachEvent('eventType', listener)								// IE6 ~ 8��
-		�¼�����
-			�¼�����Ļ�ȡ
+			方法监听解绑事件
+				targetElement.removeEventListener('eventType', listener[, useCapture])						// IE9 以上。
+				targetElement.detachEvent('eventType', listener)								// IE6 ~ 8。
+		事件对象
+			事件对象的获取
 				targetElement.onEventType = function(e) {
-					// ���� IE6 ~ 8��
+					// 兼容 IE6 ~ 8。
 					console.log(e || window.event)	
 				}
 				targetElement.addEventListener('eventType', function(e) { console.log(e) }[, useCapture])
-				targetElement.attschEvent('eventType', listener) ��������������о���
-			�¼���������Ժͷ���
-				e.currentTarget					���ذ��¼��� DOM ���������� this ��ͬ���� this û�м��������⡣	IE9 ���ϡ�
-				e.target					���ش����¼��� DOM ����
-				e.srcElement					���ش����¼��� DOM ����					IE6 ~ 8��
-				e.type						���ز��� on ���¼����͡�
-				e.preventDefault()				��ֹ�¼�Ĭ����Ϊ���磺�����Ӳ���ת�����ύ��ť���ύ��
-				e.returnValue					��ֹ�¼�Ĭ����Ϊ���磺�����Ӳ���ת�����ύ��ť���ύ��		IE6 ~ 8��
-				e.stopPropagation()				��ֹ�¼�ð�ݴ�����
-				e.cancelBubble					��ֹ�¼�ð�ݴ�����						IE6 ~ 8��
-		�¼���������
-			����׶Σ��¼��� DOM ����ڵ㿪ʼ�������´���������Ԫ�صĹ��̡�
-			��ǰ�׶Ρ�
-			ð�ݽ׶Σ��¼��ɾ���Ԫ�ؿ�ʼ�������ϴ����� DOM ����ڵ�Ĺ��̡�
-			ע�⣺
-				1���¼��в��񴫲���û��ð�ݴ������¼���ð�ݴ�����û�в��񴫲���
-				2����Щ�¼���û��ð�ݴ����ģ�onblur��onfocus��onmouseenter��onmouseleave��
-		�¼�ί��
-			ԭ��������ÿ���ӽڵ��ϵ��������¼����������������丸�ڵ��������¼���������Ȼ�������¼�ð�ݵ�ԭ��ȥӰ��ÿ���ӽڵ㡣
-			�ŵ㣺������ DOM �����Ĵ���������˳�������ܡ�
-		�����¼�����
-			����¼�
-				onclick					�����¼���
-				ondblclick				˫���¼���
-			�����¼�
-				onblur					ʧȥ�����¼���
-				onfocus					��ý����¼���
-			����¼�
-				onmousedown				��갴�������¼���
-				onmouseup				��갴�������¼���
-				onmousemove				������ƶ��¼���
-				onmouseover				���������¼�����ð�ݡ�
-				onmouseout				������뿪�¼�����ð�ݡ�
-				onmouseenter				���������¼�������ð�ݡ�
-				onmouseleave				������뿪�¼�������ð�ݡ�
-				contextmenu				����Ҽ������˵��¼���
-					e.pageX					����������ĵ���ҳ��� X ���ꡣ					IE9 ���ϡ�
-					e.pageY					����������ĵ���ҳ��� Y ���ꡣ					IE9 ���ϡ�
-					e.clientX				�����������������ڿ�������� X ���ꡣ
-					e.clientY				�����������������ڿ�������� Y ���ꡣ
-					e.screenX				��������ڵ�����Ļ�� X ���ꡣ
-					e.screenY				��������ڵ�����Ļ�� Y ���ꡣ
-			�����¼�
-				onkeydown				���̰��������¼�����������֮���һֱ������
-				onkeypress				���̰��������¼�����������֮���һֱ������ע�⣺���¼���ʶ���ܰ������磺ctrl��shift����ͷ�ȡ�
-				onkeyup					���̰��������¼���ֻ�ڰ�������ʱ����һ�Ρ�
-				ע�⣺
-					�����¼���ִ��˳��onkeydown��onkeypress��onkeyup��
-					onkeydown��onkeyup ��������ĸ����ΪСд��onkeypress ��������ĸ�Ĵ�Сд��
-					e.keyCode�����ظð����� ASCII ��ֵ��
-			�����¼�
+				targetElement.attschEvent('eventType', listener) 此种情况不再做研究。
+			事件对象的属性和方法
+				e.currentTarget					返回绑定事件的 DOM 对象。作用与 this 相同，但 this 没有兼容性问题。	IE9 以上。
+				e.target					返回触发事件的 DOM 对象。
+				e.srcElement					返回触发事件的 DOM 对象。					IE6 ~ 8。
+				e.type						返回不带 on 的事件类型。
+				e.preventDefault()				阻止事件默认行为。如：让链接不跳转或者提交按钮不提交。
+				e.returnValue					阻止事件默认行为。如：让链接不跳转或者提交按钮不提交。		IE6 ~ 8。
+				e.stopPropagation()				阻止事件冒泡传播。
+				e.cancelBubble					阻止事件冒泡传播。						IE6 ~ 8。
+		事件传播过程
+			捕获阶段：事件由 DOM 顶层节点开始，逐级向下传播到具体元素的过程。
+			当前阶段。
+			冒泡阶段：事件由具体元素开始，逐级向上传播到 DOM 顶层节点的过程。
+			注意：
+				1、事件有捕获传播则没有冒泡传播，事件有冒泡传播则没有捕获传播。
+				2、有些事件是没有冒泡传播的：onblur、onfocus、onmouseenter、onmouseleave。
+		事件委托
+			原理：不在每个子节点上单独设置事件监听器，而是在其父节点上设置事件监听器，然后利用事件冒泡的原理去影响每个子节点。
+			优点：减少了 DOM 操作的次数，提高了程序的性能。
+		常见事件类型
+			点击事件
+				onclick					单击事件。
+				ondblclick				双击事件。
+			焦点事件
+				onblur					失去焦点事件。
+				onfocus					获得焦点事件。
+			鼠标事件
+				onmousedown				鼠标按键按下事件。
+				onmouseup				鼠标按键弹起事件。
+				onmousemove				鼠标光标移动事件。
+				onmouseover				鼠标光标进入事件。会冒泡。
+				onmouseout				鼠标光标离开事件。会冒泡。
+				onmouseenter				鼠标光标进入事件。不会冒泡。
+				onmouseleave				鼠标光标离开事件。不会冒泡。
+				contextmenu				鼠标右键弹出菜单事件。
+					e.pageX					返回鼠标在文档流页面的 X 坐标。					IE9 以上。
+					e.pageY					返回鼠标在文档流页面的 Y 坐标。					IE9 以上。
+					e.clientX				返回鼠标在浏览器窗口可视区域的 X 坐标。
+					e.clientY				返回鼠标在浏览器窗口可视区域的 Y 坐标。
+					e.screenX				返回鼠标在电脑屏幕的 X 坐标。
+					e.screenY				返回鼠标在电脑屏幕的 Y 坐标。
+			键盘事件
+				onkeydown				键盘按键按下事件。按键按下之后会一直触发。
+				onkeypress				键盘按键按下事件。按键按下之后会一直触发。注意：此事件不识别功能按键。如：ctrl、shift、箭头等。
+				onkeyup					键盘按键弹起事件。只在按键弹起时触发一次。
+				注意：
+					三个事件的执行顺序：onkeydown、onkeypress、onkeyup。
+					onkeydown、onkeyup 将所有字母都视为小写；onkeypress 会区分字母的大小写。
+					e.keyCode：返回该按键的 ASCII 码值。
+			窗口事件
 				window.onresize = function() {}
 				window.addEventListener('resize', function() {}[, useCapture])
-					window.innerWidth			��ǰ��Ļ�Ŀ��ȡ�
-					window.innerHeight			��ǰ��Ļ�ĸ߶ȡ�
-			ҳ������¼�
-				onload�����ĵ����ݣ�����ͼ�񡢽ű��ļ���CSS �ļ��ȣ���ȫ���غ󴥷����¼���
+					window.innerWidth			当前屏幕的宽度。
+					window.innerHeight			当前屏幕的高度。
+			页面加载事件
+				onload：当文档内容（包括图像、脚本文件、CSS 文件等）完全加载后触发该事件。
 					window.onload = function() {}
 					window.addEventListener('load', function() {}[, useCapture])
-				DOMContentLoaded������ DOM ������ɺ󴥷����¼���								IE9 ���ϡ�
+				DOMContentLoaded：仅在 DOM 加载完成后触发该事件。								IE9 以上。
 					window.addEventListener('DOMContentLoaded', function() {}[, useCapture])
-			�����¼�
-				onsubmit				������ȷ�ϰ�ť������¼����¼��������� false������ֹ�������ύ�����������ʾ�����������ύ������
-					ʾ����
+			表单事件
+				onsubmit				表单的确认按钮被点击事件。事件方法返回 false，会阻止表单的提交操作，否则表示允许表单的提交操作。
+					示例：
 						// document.getElementById("form").onsubmit = function() { return flag }
 						<form action="#" id="form" onsubmit="return submitForm()"></form>
 						<script> function submitForm() { return flag } </ script>
-				onreset					���������ð�ť������¼���
-BOM ���������ģ��
+				onreset					表单的重置按钮被点击事件。
+BOM 浏览器对象模型
 	window 
-		window ��ҳ��Ķ�������
-		window ��������ˣ�document��history��location��navigator��screen �����ԡ�
-		������ȫ���������еı����ͺ��������Ϊ window ��������Ժͷ�����
+		window 是页面的顶级对象。
+		window 对象包含了：document、history、location、navigator、screen 等属性。
+		定义在全局作用域中的变量和函数都会成为 window 对象的属性和方法。
 	history
-		history ���ڲ���ҳ���ǰ������ˡ�
-			history.back()						����һҳ��
-			history.forward()					ǰ��һҳ��
-			history.go(n)						����/ǰ�� n ҳ������Ϊǰ��������Ϊ���ˡ�
+		history 用于操作页面的前进与后退。
+			history.back()						后退一页。
+			history.forward()					前进一页。
+			history.go(n)						后退/前进 n 页。正数为前进，负数为后退。
 	location
-		location �������ڻ�ȡ�����ô��ڵ� URL�����ҿ������ڽ�����ȡ���� URL��
-		URL ��һ���﷨��ʽ
+		location 对象用于获取或设置窗口的 URL，并且可以用于解析获取到的 URL。
+		URL 的一般语法格式
 			protocol://host[:port]/path/[?query]#fragment
 			http://www.itcast.cn/index.html?name=andy&age=18#link
-				protocol					ͨ��Э�顣�磺http��ftp��maito �ȡ�
-				host						������������
-				port						�˿ں�
-				path						·����ͨ��������ʾ�����ϵ�ĳ��Ŀ¼���ļ��ĵ�ַ��
-				query						����
-				fragment					ê�㣨Ƭ�Σ�
-		location ��������Ժͷ���
-			location.href						��ȡ���������� URL��
-			location.host						����������
-			location.port						���ض˿ںš�
-			location.pathname					����·����
-			location.search						���ز�����
-			location.hash						����ê�㡣
-			location.assign()					��תҳ�档�� location.href һ����
-			location.replace()					�滻��ǰҳ�档����¼ҳ����ʷ�����ܺ���ҳ�档
-			location.reload()					���¼��ص�ǰҳ�档�൱�� F5 ˢ�¡��������Ϊ true����Ϊ Ctrl + F5 ǿ��ˢ�¡�
+				protocol					通信协议。如：http、ftp、maito 等。
+				host						域名（主机）
+				port						端口号
+				path						路径。通常用来表示主机上的某个目录或文件的地址。
+				query						参数
+				fragment					锚点（片段）
+		location 对象的属性和方法
+			location.href						获取或设置整个 URL。
+			location.host						返回域名。
+			location.port						返回端口号。
+			location.pathname					返回路径。
+			location.search						返回参数。
+			location.hash						返回锚点。
+			location.assign()					跳转页面。跟 location.href 一样。
+			location.replace()					替换当前页面。不记录页面历史，不能后退页面。
+			location.reload()					重新加载当前页面。相当于 F5 刷新。如果参数为 true，则为 Ctrl + F5 强制刷新。
 	navigator
-		navigator ���ڼ�¼������������Ϣ���磺userAgent ���ԡ�
+		navigator 用于记录浏览器的相关信息。如：userAgent 属性。
 			if(......) {
-				window.location.href = ''			// �ֻ�
+				window.location.href = ''			// 手机
 			} else {
-				window.location.href = ''			// ����
+				window.location.href = ''			// 电脑
 			}
-		ע�⣺
-			userAgent ������Ϊ�û���������� UA������һ�������ַ���ͷ��
-			userAgent ʹ�÷������ܹ�ʶ��ͻ�ʹ�õĲ���ϵͳ���汾��CPU ���͡���������汾���������Ⱦ���桢��������ԡ����������ȡ�
-	��ʱ��
-		var timeout = window.setTimeout(function() {}[, MS])		// Ĭ���ӳ�ʱ�� 0 ���롣ִ��һ�Ρ�	
+		注意：
+			userAgent 中文名为用户代理，简称 UA，它是一个特殊字符串头。
+			userAgent 使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。
+	定时器
+		var timeout = window.setTimeout(function() {}[, MS])		// 默认延迟时间 0 毫秒。执行一次。	
 			window.clearTimeout(timeout)
-		var interval = window.setInterval(function() {}[, MS])		// Ĭ���ӳ�ʱ�� 0 ���롣ѭ��ִ�С�
+		var interval = window.setInterval(function() {}[, MS])		// 默认延迟时间 0 毫秒。循环执行。
 			window.clearInterval(interval)
-	JS �������
-		ͬ������
-			�ֽзǺ�ʱ����ָ�� JS ���߳����Ŷ�ִ�е�����
-		�첽����
-			�ֽк�ʱ����ָ�� JS ���߳�ί�и� JS ��������ִ�е�����
-			���첽����ִ����Ϻ�JS ����������֪ͨ JS ���̵߳��ø��첽����Ļص�������
-		�������΢����
-			JS ���첽�����ֿ���ϸ��Ϊ�������΢����
-			������
-				1��Ajax ����
-				2��setTimeout()��setInterval()��
-				3���ļ�������
-				4��......
-			΢����
-				1��Promise.then()��Promise.catch() �� Promise.finally()��
-				2��process.nextTick()��
-				3��......
-		����ִ�л���
-			ͬ��������������ͬ��������У�΢������������΢������У����������������������С�
-			����ִ�е����ȼ���ͬ������ > ΢���� > ������
+	JS 任务机制
+		同步任务
+			又叫非耗时任务。指在 JS 主线程上排队执行的任务。
+		异步任务
+			又叫耗时任务。指由 JS 主线程委托给 JS 宿主环境执行的任务。
+			待异步任务执行完毕后，JS 宿主环境会通知 JS 主线程调用该异步任务的回调函数。
+		宏任务和微任务
+			JS 的异步任务又可以细分为宏任务和微任务。
+			宏任务
+				1、Ajax 请求。
+				2、setTimeout()、setInterval()。
+				3、文件操作。
+				4、......
+			微任务
+				1、Promise.then()、Promise.catch() 和 Promise.finally()。
+				2、process.nextTick()。
+				3、......
+		任务执行机制
+			同步任务依次推入同步任务队列；微任务依次推入微任务队列；宏任务依次推入宏任务队列。
+			任务执行的优先级：同步任务 > 微任务 > 宏任务。
 
 
 
-Ԫ��ƫ���� offset
-	���ã�
-		1����ȡԪ������ж�λ��Ԫ��֮���λ�ù�ϵ��
-		2����ȡԪ�������Ĵ�С��
-	ע�⣺
-		1��offset �����ķ���ֵ������λ��
-		2��offset ����ֻ�����ڶ�ֵ���������ڸ�ֵ��
-	�÷���
-		element.offsetParent					����Ԫ�ش��ж�λ�ĸ�Ԫ�ء������Ԫ�ض�û�ж�λ���򷵻� body Ԫ�ء�
-		element.offsetTop					����Ԫ������ڴ��ж�λ��Ԫ�ص��Ϸ�ƫ�����������Ԫ�ض�û�ж�λ���򷵻������ body Ԫ�صġ�
-		element.offsetLeft					����Ԫ������ڴ��ж�λ��Ԫ�ص���ƫ�����������Ԫ�ض�û�ж�λ���򷵻������ body Ԫ�صġ�
-		element.offsetWidth					����Ԫ�������Ŀ��ȣ������߿���ڱ߾ࣩ��
-		element.offsetHeight					����Ԫ�������ĸ߶ȣ������߿���ڱ߾ࣩ��
-Ԫ�ؿ����� client
-	���ã�
-		1����ȡԪ�ر߿�Ĵ�С��
-		2����ȡԪ�������Ĵ�С��
-	ע�⣺
-		1��client �����ķ���ֵ������λ��
-		2��client ����ֻ�����ڶ�ֵ���������ڸ�ֵ��
-	�÷���
-		element.clientTop					����Ԫ���ϱ߿�Ĵ�С��
-		element.clientLeft					����Ԫ����߿�Ĵ�С��
-		element.clientWidth					����Ԫ�������Ŀ��ȣ������ڱ߾࣬�����߿򣩡�
-		element.clientHeight					����Ԫ�������ĸ߶ȣ������ڱ߾࣬�����߿򣩡�
-Ԫ�ع��� scroll
-	���ã�
-		1����ȡ������Ԫ�ع����ľ���
-		2����ȡԪ�ؿɹ����ľ��롣
-	ע�⣺
-		1��scroll �����ķ���ֵ������λ��
-		2��Ԫ�ع���������ʱ�ᴥ��Ԫ�ص� onscroll �¼���
-		3����ȡҳ��Ĺ����ľ��룺
-			document.body.scrollTop				// �ȸ�
+元素偏移量 offset
+	作用：
+		1、获取元素与带有定位父元素之间的位置关系。
+		2、获取元素自身的大小。
+	注意：
+		1、offset 方法的返回值不带单位。
+		2、offset 方法只能用于读值，不能用于赋值。
+	用法：
+		element.offsetParent					返回元素带有定位的父元素。如果父元素都没有定位，则返回 body 元素。
+		element.offsetTop					返回元素相对于带有定位父元素的上方偏移量。如果父元素都没有定位，则返回相对于 body 元素的。
+		element.offsetLeft					返回元素相对于带有定位父元素的左方偏移量。如果父元素都没有定位，则返回相对于 body 元素的。
+		element.offsetWidth					返回元素自身的宽度（包括边框和内边距）。
+		element.offsetHeight					返回元素自身的高度（包括边框和内边距）。
+元素可视区 client
+	作用：
+		1、获取元素边框的大小。
+		2、获取元素自身的大小。
+	注意：
+		1、client 方法的返回值不带单位。
+		2、client 方法只能用于读值，不能用于赋值。
+	用法：
+		element.clientTop					返回元素上边框的大小。
+		element.clientLeft					返回元素左边框的大小。
+		element.clientWidth					返回元素自身的宽度（包括内边距，不含边框）。
+		element.clientHeight					返回元素自身的高度（包括内边距，不含边框）。
+元素滚动 scroll
+	作用：
+		1、获取或设置元素滚动的距离
+		2、获取元素可滚动的距离。
+	注意：
+		1、scroll 方法的返回值不带单位。
+		2、元素滚动条滚动时会触发元素的 onscroll 事件。
+		3、获取页面的滚动的距离：
+			document.body.scrollTop				// 谷歌
 			document.documentElement.scrollTop
-			window.pageYoffset				IE9 ���ϡ�
-		4������ҳ��Ĺ������룺window.scroll(x, y)��
-	�÷���
-		element.scrollTop					���û��ȡԪ���Ϲ��ľ��룬���Ͼ����롣
-		element.scrollLeft					���û��ȡԪ������ľ��룬��������롣
-		element.scrollWidth					��ȡԪ�ؿɹ������ܿ��ȣ���Ԫ�������Ŀ��ȣ������ڱ߾࣬�����߿򣩡�
-		element.scrollHeight					��ȡԪ�ؿɹ������ܸ߶ȣ���Ԫ�������ĸ߶ȣ������ڱ߾࣬�����߿򣩡�
-Ԫ�ض���
-	ʵ��ԭ����ͨ����ʱ�����ϵ��ƶ����ӵ�λ�á�
-	������װ��
-		function animate(obj, targetSite, callBack) {			// obj����������targetSite���յ�λ�á�
+			window.pageYoffset				IE9 以上。
+		4、设置页面的滚动距离：window.scroll(x, y)。
+	用法：
+		element.scrollTop					设置或获取元素上滚的距离，即上卷距离。
+		element.scrollLeft					设置或获取元素左滚的距离，即左卷距离。
+		element.scrollWidth					获取元素可滚动的总宽度，即元素自身的宽度（包括内边距，不含边框）。
+		element.scrollHeight					获取元素可滚动的总高度，即元素自身的高度（包括内边距，不含边框）。
+元素动画
+	实现原理：通过定时器不断地移动盒子的位置。
+	函数封装：
+		function animate(obj, targetSite, callBack) {			// obj：动画对象；targetSite：终点位置。
 			clearInterval(obj.timer)
 			obj.time = setInterval(function() {
 				if(obj.offsetLeft === targetSite) {
 					clearInterval(obj.timer)
 					if(callBack) { callBack }
 				}
-				// obj.style.left = obj.offsetLeft + 1 + 'px'	// ���ٶ�����
+				// obj.style.left = obj.offsetLeft + 1 + 'px'	// 匀速动画。
 				var step = (targetSite - obj.offsetLeft) / 10
 				step = step > 0 ? Math.ceil(step) : Math.floor(step)
-				obj.style.left = obj.offsetLeft + step + 'px'	// ����������
+				obj.style.left = obj.offsetLeft + step + 'px'	// 缓动动画。
 			}, 25)
 		}
-�ƶ��� touch �¼�
-	�÷���
-		touchstart						��ָ������Ԫ��ʱ�������¼���
-		touchmove						��ָ��Ԫ�����ƶ�ʱ�������¼���
-		touchsend						��ָ�뿪Ԫ��ʱ�������¼���
-	�¼���������
-		e.changedTouches					�¼����漰��������ָ����Ϣ�б���
-		e.touches						���ڴ�����Ļ��������ָ����Ϣ�б���
-		e.targetTouches						���ڴ���Ԫ�ص�������ָ����Ϣ�б���
-���ش洢
+移动端 touch 事件
+	用法：
+		touchstart						手指触摸到元素时触发此事件。
+		touchmove						手指在元素上移动时触发此事件。
+		touchsend						手指离开元素时触发此事件。
+	事件对象属性
+		e.changedTouches					事件中涉及的所有手指的信息列表。
+		e.touches						正在触摸屏幕的所有手指的信息列表。
+		e.targetTouches						正在触摸元素的所有手指的信息列表。
+本地存储
 	window.sessionStorage
-		�ص㣺
-			1����������Ϊ��������ڵĴ���رա�
-			2���������������ͬһ�������¹������ݡ�
-			3���Լ�ֵ�Ե���ʽ�洢���ݡ�
-		������
-			sessionStorage.setItem(key, value)		�洢����
-			sessionStorage.getItem(key, value)		��ȡ����
-			sessionStorage.removeItem(key)			ɾ������
-			sessionStorage.clear()				ɾ����������
+		特点：
+			1、生命周期为浏览器窗口的打开与关闭。
+			2、可以在浏览器的同一个窗口下共享数据。
+			3、以键值对的形式存储数据。
+		方法：
+			sessionStorage.setItem(key, value)		存储数据
+			sessionStorage.getItem(key, value)		获取数据
+			sessionStorage.removeItem(key)			删除数据
+			sessionStorage.clear()				删除所有数据
 	window.localStorage
-		�ص㣺
-			1���洢������������Ч����������ڹرպ�Ҳ�������Ч�������ֶ�ɾ�����ݡ�
-			2��������ͬһ������Ķര��֮�乲�����ݡ�
-			3���Լ�ֵ�Ե���ʽ�洢���ݡ�
-		������
-			localStorage.setItem(key, value)		�洢����
-			localStorage.getItem(key, value)		��ȡ����
-			localStorage.removeItem(key)			ɾ������
-			localStorage.clear()				ɾ����������
+		特点：
+			1、存储的数据永久生效，浏览器窗口关闭后也会继续生效，除非手动删除数据。
+			2、可以在同一浏览器的多窗口之间共享数据。
+			3、以键值对的形式存储数据。
+		方法：
+			localStorage.setItem(key, value)		存储数据
+			localStorage.getItem(key, value)		获取数据
+			localStorage.removeItem(key)			删除数据
+			localStorage.clear()				删除所有数据

@@ -1,54 +1,54 @@
-�����˽��ǰ׺
-	-moz-������ firefox �����˽�����ԡ�
-	-ms-������ ie �����˽�����ԡ�
-	-webkit-������ safari �� chrome �����˽�����ԡ�
-	-o-������ opera �����˽�����ԡ�
-	ʾ����
+浏览器私有前缀
+	-moz-：代表 firefox 浏览器私有属性。
+	-ms-：代表 ie 浏览器私有属性。
+	-webkit-：代表 safari 、 chrome 浏览器私有属性。
+	-o-：代表 opera 浏览器私有属性。
+	示例：
 		-moz-border-radius: 10px;
 		-webkit-border-radius: 10px;
 		-o-border-radius: 10px;
 		border-radius: 10px;
-������ʽ�ʼ�
-	outline: none | 0;						/* ȥ�� input ���ȡ����ʱ����ɫ�߿��ߡ� */
-	text-decoration: none;						/* ȥ�� a ��ǩ���»��ߡ� */
-	input::placeholder { color: red; }				/* �޸� placeholder �����������ɫ�� */
-	resize: none;							/* �� textarea �ı����޷�����ק�� */
-	vertical-align: baseline | top | middle | bottom;		/* �޸� img ��ǩ���ı�֮��Ķ��뷽ʽ�� */
-	overflow: visible | hidden | auto | scroll;			/* Ԫ�����ʱ���ӵ���ʾģʽ�� */
+基本样式笔记
+	outline: none | 0;						/* 去掉 input 框获取焦点时的蓝色边框线。 */
+	text-decoration: none;						/* 去掉 a 标签的下划线。 */
+	input::placeholder { color: red; }				/* 修改 placeholder 里面的字体颜色。 */
+	resize: none;							/* 让 textarea 文本域无法被拖拽。 */
+	vertical-align: baseline | top | middle | bottom;		/* 修改 img 标签与文本之间的对齐方式。 */
+	overflow: visible | hidden | auto | scroll;			/* 元素溢出时盒子的显示模式。 */
 	cursor: default | pointer | move | text | not-allowed;
-	display: none | block						/* Ԫ������|��ʾ��Ԫ�����غ���ռ��ԭ����λ�á������� JS һ��ʹ�á� */
-	visibility: hiddden | visible;					/* Ԫ������|��ʾ��Ԫ�����غ����ռ��ԭ����λ�á��������ʱ��ʹ�á� */
-	img { filter: blur(5px); }					/* ��ֵԽ��ͼƬԽģ���� */
+	display: none | block						/* 元素隐藏|显示。元素隐藏后不再占有原来的位置。常搭配 JS 一起使用。 */
+	visibility: hiddden | visible;					/* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
+	img { filter: blur(5px); }					/* 数值越大，图片越模糊。 */
 	width | height: calc(100% - 30px);				/* + - * / */
-�����������
-	�ı���ʾ��ʽ white-space��
-		normal��ʹ�������Ĭ����ʾ��ʽ��
-		nowrap��ǿ���ı�һ������ʾ��
-	�ı����з�ʽ word-break��
-		normal��ʹ�������Ĭ�ϻ��з�ʽ��
-		break-all�������ڵ����ڻ��С�
-		keep-all��ֻ�����ڰ�ǡ��ո�����ַ������С�
-		ע�⣺��������Ҫ���ڴ���Ӣ�ĵ��ʡ�
-	�������ʱ����ʾ��ʽ text-overflow��
-		clip������ʾʡ�Ժţ����Ǽ򵥵Ĳ��С�
-		ellipsis�����ı����ʱ��ʾʡ�Ժű�ǡ�
-	�����������ʡ�Ժ���ʾ��
+溢出文字隐藏
+	文本显示方式 white-space。
+		normal：使用浏览器默认显示方式。
+		nowrap：强制文本一行内显示。
+	文本换行方式 word-break。
+		normal：使用浏览器默认换行方式。
+		break-all：允许在单词内换行。
+		keep-all：只允许在半角、空格或连字符处换行。
+		注意：该属性主要用于处理英文单词。
+	文字溢出时的显示方式 text-overflow。
+		clip：不显示省略号，而是简单的裁切。
+		ellipsis：当文本溢出时显示省略号标记。
+	单行文字溢出省略号显示。
 		{
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
-	�����������ʡ�Ժ���ʾ��
+	多行文字溢出省略号显示。
 		{
 			overflow: hidden;
 			text-overflow: ellipsis;
-			display: -webkit-box;				/* ������������ģ�͵���ʾģʽ�� */
-			-webkit-line-clamp: 2;				/* ���ƿ�Ԫ�����ı���ʾ�������� */
-			-webkit-line-orient: vertical;			/* ���������ж������Ԫ�ص����з�ʽ�� */
+			display: -webkit-box;				/* 弹性伸缩盒子模型的显示模式。 */
+			-webkit-line-clamp: 2;				/* 限制块元素内文本显示的行数。 */
+			-webkit-line-orient: vertical;			/* 设置伸缩盒对象的子元素的排列方式。 */
 		}
-		ע�⣺����нϴ�ļ��������⣬������ webkit �ں˵���������ƶ��˻��߹ȸ�������������ӵĸ߶���������ֵ��и������ã��������ֵ��и�����Ϻ��ӵĸ߶������á�
-���Ӿ���
-	1����������º���ˮƽ��ֱ���е�ͨ��д����
+		注意：这个有较大的兼容性问题，适用于 webkit 内核的浏览器（移动端或者谷歌浏览器）。盒子的高度需配合文字的行高来设置，或者文字的行高需配合盒子的高度来设置。
+盒子居中
+	1、各种情况下盒子水平垂直居中的通用写法。
 		.fu {
 			position: relative;
 			.zi {
@@ -60,55 +60,55 @@
 				transform: translate(-50%, -50%);
 			}
 		}
-	2��δ�ѱ�鼶���ӵ�ˮƽ���С�
+	2、未脱标块级盒子的水平居中。
 		{ margin: 0 auto; }
-	3�����ڿ���Ӻ����ѱ�鼶���ӡ�
-		ˮƽ���У�
+	3、行内块盒子和已脱标块级盒子。
+		水平居中：
 			{ text-align: center; }
-		��ֱ���У�
+		垂直居中：
 			{
-				line-height: xpx;			/* �и�����Ϊ�����ӵĸ߶ȡ� */
+				line-height: xpx;			/* 行高设置为父盒子的高度。 */
 				vertical-align: middle;
 			}		
 BFC
-	BFC ��һ��������Ⱦ����ֻ�п鼶���Ӳ������� BFC�����ú����ڲ��Ĳ��ֲ���Ӱ�쵽�ⲿ�������ӵ���ʽ��
-	�������� BFC �������
-		1��float ��Ϊ none��
-		2��position Ϊ absolute �� fixed��
-		3��display Ϊ inline-block �� flex��
-		4��overflow ��Ϊ visible��
-	BFC ��Ҫ��;��
-		1�������Ԫ�ظ������¸����Ӹ߶����ݵ����⡣
-		2�����������߾�ĺϲ����������⡣
-������ʽ��
+	BFC 是一个独立渲染区域，只有块级盒子才能设置 BFC。它让盒子内部的布局不会影响到外部其他盒子的样式。
+	常见触发 BFC 的情况：
+		1、float 不为 none。
+		2、position 为 absolute 或 fixed。
+		3、display 为 inline-block 或 flex。
+		4、overflow 不为 visible。
+	BFC 主要用途：
+		1、解决子元素浮动导致父盒子高度塌陷的问题。
+		2、解决盒子外边距的合并和塌陷问题。
+常用样式表
 	* {
 		padding: 0;
 		margin: 0;
 	}
 	em,
 	i {
-		font-style: normal;					/* б���ֲ�����б�� */
+		font-style: normal;					/* 斜体字不再倾斜。 */
 	}
 	li {
-		list-style: none;					/* ȥ�� li Ԫ��ǰ��ĵ㡣 */
+		list-style: none;					/* 去掉 li 元素前面的点。 */
 	}
 	img {
-		border: 0;						/* ���ݵͰ汾������� */
+		border: 0;						/* 兼容低版本浏览器。 */
 		vertical-aligh: middle;	
 	}
 	button {
-		cursor: pointer;					/* ��긲����С�֡� */
+		cursor: pointer;					/* 鼠标覆盖有小手。 */
 	}
 	a {
 		color: #666;
-		text-decoration: none;					/* ������ȥ���»��ߡ� */
+		text-decoration: none;					/* 超链接去掉下划线。 */
 	}
 	a:hover {
 		color: #c81623;
 	}
 	input {
-		border: 0;						/* ȥ�� input �����Դ��ı߿� */
-		outline: none;						/* ȥ�� input �򼤻�ʱ����ɫ�߿� */
+		border: 0;						/* 去掉 input 框本身自带的边框。 */
+		outline: none;						/* 去掉 input 框激活时的蓝色边框。 */
 	}
 	body { 
 		font: 12px/1.5 'Microsoft YaHei';
@@ -132,19 +132,19 @@ BFC
 
 <h></h>									<!-- 1 ~ 7 -->
 <p></p>
-<strong></strong>							<!-- ����Ӵ� -->
-<em></em>								<!-- ������б -->
-<del></del>								<!-- ����ɾ���� -->
-<ins></ins>								<!-- �����»��� -->
+<strong></strong>							<!-- 字体加粗 -->
+<em></em>								<!-- 字体倾斜 -->
+<del></del>								<!-- 字体删除线 -->
+<ins></ins>								<!-- 字体下划线 -->
 <br />
 <img src="" alt=""></img>
-<a href="#" target="_self | _blank"></a>				<!-- target Ĭ��ֵ��_self��href="javascript:void(0); | javascript:;" ��˼Ϊ�������ӵ���ת���ܡ� -->
+<a href="#" target="_self | _blank"></a>				<!-- target 默认值：_self。href="javascript:void(0); | javascript:;" 意思为禁用链接的跳转功能。 -->
 <link rel="stylesheet" type="text/css" herf=""></link>
 /	./	../
 &nbsp; &lt; &gt;
 =========================================================================================================================================================================================
-<table style="boeder-collapse: collspse;">				<!-- thead �� tbody ��ǩ���п��ޡ�ϸ�߱߿�boeder-collapse: collspse; | margin-left: -1px; -->
-	<thead>								<!-- thead �б����� tr�� -->
+<table style="boeder-collapse: collspse;">				<!-- thead 和 tbody 标签可有可无。细线边框：boeder-collapse: collspse; | margin-left: -1px; -->
+	<thead>								<!-- thead 中必须有 tr。 -->
 		<tr>
 			<th></th>
 		</tr>
@@ -169,19 +169,19 @@ BFC
 	<dd></dd>
 </dl>
 =========================================================================================================================================================================================
-<form action="�����ַ" method="get | post">
-	<input type="text | password" placeholder="������ֵ..." name="" value=""></input>				
+<form action="请求地址" method="get | post">
+	<input type="text | password" placeholder="请输入值..." name="" value=""></input>				
 	<input type="radio | checkbox" checked="checked" name="" value="">xxx</input>
-						<!-- ����ѡ���У����û�� value ���ԣ��򴫵���˵��� xxx �ı�ֵ������� value ���ԣ��򴫵���˵��� value ֵ�� -->
-	<label for="sex">��</label><input id="sex" type="radio" name="sex" value="��"></input>			
+						<!-- 单复选框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->
+	<label for="sex">男</label><input id="sex" type="radio" name="sex" value="男"></input>			
 	<select name="">
-		<option value="">xxx</option>	<!-- �������У����û�� value ���ԣ��򴫵���˵��� xxx �ı�ֵ������� value ���ԣ��򴫵���˵��� value ֵ�� -->	
+		<option value="">xxx</option>	<!-- 下拉框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->	
 		<option selected="selected" value="">xxx</option>
 	</select>			
-	<textarea placeholder="������Ϣ..." name="" value=""></textarea>
+	<textarea placeholder="描述信息..." name="" value=""></textarea>
 	<input type="file" multiple="multiple"></input>
 	<input type="submit | reset | button" value="">xxx</input>
-						<!-- ��ť�У����û�� value ���ԣ���ҳ����ʾ���� xxx �ı�ֵ������� value ���ԣ���ҳ����ʾ���� value ֵ�� -->
+						<!-- 按钮中，如果没有 value 属性，则页面显示的是 xxx 文本值；如果有 value 属性，则页面显示的是 value 值。 -->
 </form>
 
 
@@ -191,65 +191,65 @@ BFC
 
 
 font-style: normal | italic;
-font-weight: normal | bold | 100 ~ 900;					/* 400 = nomal��700 = bold */
+font-weight: normal | bold | 100 ~ 900;					/* 400 = nomal；700 = bold */
 font-size: 14px;
-line-height: 14px;							/* line-height = ���� height ʱ���������ִ�ֱ���У�Ҳ���Լ�������ں����ڿ�Ԫ�ش�ֱ���С� */
+line-height: 14px;							/* line-height = 盒子 height 时，单行文字垂直居中，也可以间接让行内和行内块元素垂直居中。 */
 font-family: Arial "Microsoft YaHei";
-font: font-style font-weight font-size/line-height font-family;		/* ������ֵ֮����˳��Ҫ��font-size �� font-family Ϊ��������ֵ�� */
+font: font-style font-weight font-size/line-height font-family;		/* 各属性值之间有顺序要求。font-size 和 font-family 为必须属性值。 */
 color: red | #ffffff | rgb(0, 0, 225);
-text-align: center | right | left;					/* center �������ı������ں����ڿ�Ԫ��ˮƽ���ж��롣 */
-text-indent: 2em;							/* ���� 2 �ַ��� */
-text-decoration: none | underline;					/* ������ȥ�� a ��ǩ���»��ߡ� */
-text-shadow: h-shadow v-shaow blur color;				/* ������ֵ֮����˳��Ҫ��h-shadow �� v-shaow Ϊ��������ֵ��blur Ϊ��Ӱ����ʵ�� */
+text-align: center | right | left;					/* center 可以让文本、行内和行内块元素水平居中对齐。 */
+text-indent: 2em;							/* 缩进 2 字符。 */
+text-decoration: none | underline;					/* 常用来去掉 a 标签的下划线。 */
+text-shadow: h-shadow v-shaow blur color;				/* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。 */
 	eg: text-shadow: 2px 2px 2px reba(0, 0, 0, 0.3);
 =========================================================================================================================================================================================
 background-color: transparent | red;
 background-img: none | url();
 background-repeat: repeat | no-repeat | repeat-x | repeat-y;
-background-attachment: scroll | fixed;					/* scroll������������fixed�������̶��� */
+background-attachment: scroll | fixed;					/* scroll：背景滚动；fixed：背景固定。 */
 background-position: center | top | right | left | bottom center | top | right | left | bottom;
-									/* ��������ֵ֮��û��˳��Ҫ��������е�һ��ֵ��ʡ�ԣ���Ĭ����Ϊ center�� */
+									/* 两个属性值之间没有顺序要求。如果其中的一个值被省略，则默认其为 center。 */
 background-position: center | top | right | left | bottom | 20px center | top | right | left | bottom | 50px;
-									/* ��������ֵ (x, y) ֮����˳��Ҫ�󡣴���д�����Ƽ�ʡ�����е�һ��ֵ�� */
+									/* 两个属性值 (x, y) 之间有顺序要求。此种写法不推荐省略其中的一个值。 */
 background: background-color background-img background-repeat background-attachment background-position;
-									/* ������ֵ֮��û��˳��Ҫ�� */
-background-size: 300px 300px;						/* ����ͼƬ�Ĵ�С��ֻ��һ��ֵʱ���߶ȵȱ������졣 */
-	��λ��px | % | cover | contain
-		% ������ڸ����ӵĵ�λ��
-		cover ���ߵȱ������죬����ͼƬ����ȫ���Ǹ����ӣ������в��ֱ���ͼƬ��ʾ��������
-		contain ���ߵȱ������죬������ͼƬ���������������ʱ�Ͳ��������ˣ���ʱ�����ӿ����в��ֿհ�����δ��������
-background: rgba(0, 0, 0, 0.3);						/* ������͸����alpha ȡֵ��ΧΪ 0 ~ 1��H5 ������ */
-background: linear-gradient(��ʼ����, ��ɫ1, ��ɫ2, ...);		/* ������ɫ���䡣��ֵ�������������˽��ǰ׺�� */
+									/* 各属性值之间没有顺序要求。 */
+background-size: 300px 300px;						/* 背景图片的大小。只有一个值时，高度等比例拉伸。 */
+	单位：px | % | cover | contain
+		% 是相对于父盒子的单位。
+		cover 宽高等比例拉伸，背景图片会完全覆盖父盒子，可能有部分背景图片显示不出来。
+		contain 宽高等比例拉伸，当背景图片宽或高铺满父盒子时就不再拉伸了，此时父盒子可能有部分空白区域未被铺满。
+background: rgba(0, 0, 0, 0.3);						/* 背景半透明。alpha 取值范围为 0 ~ 1。H5 新增。 */
+background: linear-gradient(起始方向, 颜色1, 颜色2, ...);		/* 背景颜色渐变。其值必须添加浏览器私有前缀。 */
 	eg: background: -webkit-linear-gradient(left top, red, blue);
 =========================================================================================================================================================================================
-border: 1px none | solid | dotted | dashed #fff;			/* ������ֵ֮��û��˳��Ҫ�� */
+border: 1px none | solid | dotted | dashed #fff;			/* 各属性值之间没有顺序要求。 */
 border-top | right | bottom | left: 1px none | solid | dotted | dashed #fff;
 border-radius: 5px | 50%;
-padding: 15px;								/* ����ֵ������ ���ҡ�����ֵ���� ���� �¡��ĸ�ֵ���� �� �� �� */ 
+padding: 15px;								/* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
 padding-top | right | bottom | left: 15px; 
-margin: 15px;								/* ����ֵ������ ���ҡ�����ֵ���� ���� �¡��ĸ�ֵ���� �� �� �� */ 
+margin: 15px;								/* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
 margin-top | right | bottom | left: 15px; 
 box-sizing: content-box | border-box;
-	��ͨ���Ӵ�С = ���ݴ�С����������ֵ�� + �ڱ߾��С + �߿����
-	C3 ���Ӵ�С = ��������ֵ
-border-shadow: h-shadow v-shaow blur spread color inset;		/* ������ֵ֮����˳��Ҫ��h-shadow �� v-shaow Ϊ��������ֵ��blur Ϊ��Ӱ����ʵ��spread Ϊ��Ӱ�ĳߴ硣 */
+	普通盒子大小 = 内容大小（宽高属性值） + 内边距大小 + 边框宽度
+	C3 盒子大小 = 宽高属性值
+border-shadow: h-shadow v-shaow blur spread color inset;		/* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。spread 为阴影的尺寸。 */
 	eg: border-shadow: 2px 2px 2px 2px reba(0, 0, 0, 0.3) (inset);
-�߿�ͼƬ��
-	border-image-source						/* ���ڱ߿��ͼƬ��·���� */
-	border-image-slice						/* ͼƬ�߿�����ƫ�Ƶľ��롣������λ�� */
-	border-image-width						/* ͼƬ�߿�Ŀ��ȡ�����λ�� */
-	border-image-repeat						/* ͼƬ�߿��Ƿ�ƽ�̣�repeat����������round�������죨stretch����Ĭ�����졣 */
-margin: auto;  <=>  margin: 0 auto;					/* �����ÿ鼶����ˮƽ���ж��롣��Ҫ��1�������ѱ꣬2�����������п��ȣ��̳еĿ��Ȳ��С��� */ 
-ע�⣺��ֱ���������ڿ�Ԫ����߾��ϲ���ȡ���ߵĴ�ֵ������ֱ������Ƕ�׿�Ԫ������߾�����ݡ�
-	��ֱ��߾�ϲ��Ľ��������
-		1��ֻΪ���е�һ����Ԫ��������߾ࡣ
-		2�������е�һ����Ԫ�����ó����ڿ�Ԫ�ء����� BFC��
-		3�����±ߵĿ�Ԫ�����ö�λ�򸡶������� BFC��
-	��ֱ����߾����ݵĽ��������
-		1��Ϊ������Ԫ�ض����ϱ߿�
-		2��Ϊ������Ԫ�ض������ڱ߾ࡣ
-		3��Ϊ������Ԫ������ overflow: hidden; ������ BFC��
-		4���ѱ�ĸ����Ӽ���Ԫ�ز���������߾����ݵ����⡣���� BFC��
+边框图片：
+	border-image-source						/* 用在边框的图片的路径。 */
+	border-image-slice						/* 图片边框向内偏移的距离。不带单位。 */
+	border-image-width						/* 图片边框的宽度。带单位。 */
+	border-image-repeat						/* 图片边框是否平铺（repeat）、铺满（round）或拉伸（stretch）。默认拉伸。 */
+margin: auto;  <=>  margin: 0 auto;					/* 可以让块级盒子水平居中对齐。（要求：1、不能脱标，2、必须自身有宽度，继承的宽度不行。） */ 
+注意：垂直方向上相邻块元素外边距会合并（取两者的大值），垂直方向上嵌套块元素上外边距会塌陷。
+	垂直外边距合并的解决方案：
+		1、只为其中的一个块元素添加外边距。
+		2、给其中的一个块元素设置成行内块元素。触发 BFC。
+		3、给下边的块元素设置定位或浮动。触发 BFC。
+	垂直上外边距塌陷的解决方案：
+		1、为父级块元素定义上边框。
+		2、为父级块元素定义上内边距。
+		3、为父级块元素添加 overflow: hidden; 。触发 BFC。
+		4、脱标的父或子级块元素不会有上外边距塌陷的问题。触发 BFC。
 
 
 
@@ -257,35 +257,35 @@ margin: auto;  <=>  margin: 0 auto;					/* �����ÿ鼶����ˮƽ���ж��롣��Ҫ��1
 
 
 
-��Ԫ��
+块元素
 	<h> | <p> | <div> | <ul> | <ol> | <li>
-	��ռһ�У�Ĭ�Ͽ����븸Ԫ����ͬ��������Է��κ����͵�Ԫ�ء�������Ŀ�Ԫ���ڲ��ܷſ�Ԫ�ء�
-����Ԫ��
+	独占一行，默认宽度与父元素相同，里面可以放任何类型的元素。文字类的块元素内不能放块元素。
+行内元素
 	<a> | <strong> | <b> | <em> | <i> | <del> | <s> | <ins> | <u> | <span>
-	����ռһ�У������ڼ�����ɴ��뻻�������϶��Ĭ�Ͽ���ΪԪ�����ݱ���������ֱ�����ÿ��߻���Ч������ֻ�ܷ��ı�������������Ԫ�ء�
-	ע�⣺����Ԫ�ؾ���ֻ����������߾࣬������������߾ࡣ
-���ڿ�Ԫ��
+	不独占一行，但相邻间会有由代码换行引起缝隙，默认宽度为元素内容本身，对其直接设置宽高会无效，里面只能放文本或者其他行内元素。
+	注意：行内元素尽量只设置左右外边距，不设置上下外边距。
+行内块元素
 	img | input | td
-	����ռһ�У������ڼ�����ɴ��뻻�������϶��Ĭ�Ͽ���ΪԪ�����ݱ���������ֱ�����ÿ��߻���Ч��
-display: block | inline | inline-block;					/* ��Ҫ��������Ԫ��ת��Ϊ���ڿ�Ԫ�أ�Ҳ��������Ԫ�ص���ʾ�����ء� */
+	不独占一行，但相邻间会有由代码换行引起缝隙，默认宽度为元素内容本身，对其直接设置宽高会无效。
+display: block | inline | inline-block;					/* 主要用于行内元素转换为行内块元素，也可以用于元素的显示与隐藏。 */
 =========================================================================================================================================================================================
-���������ã�
-	������Ԫ�ؾ��������׼���ĸ�Ԫ�ء���׼����Ԫ�ظ������򲼾֣�������Ԫ�ظ�����򲼾֡�
-	ע�⣺�������������ʵ�����ֻ���Ч���ġ�
-�������ԣ�
-	1������Ԫ�ػ������׼����
-	2������Ԫ�ػ���һ������ʾ������Ԫ�ػᶥ�����롣
-	3������Ԫ�ػ�������ڿ�Ԫ�ص����ԣ���������Ԫ�ؼ䲻���з�϶��
-	ע�⣺����Ԫ��ֻ��Ӱ����Ӻ���ı�׼��������Ӱ�����ǰ��ı�׼����
-������������ã�
-	���ڸ�����׼�������ںܶ�����²��������ø߶ȣ����������Ӻ����ֲ���ſ������ӣ��������֮�󸸼���׼�����ӻ���ݸ������Ӻ��ӵĸ߶��Զ������߶ȡ�
-��������ķ�����
-	1�������ǩ����
-		�ڸ������ӱ�ǩ����ĩβ����һ���鼶��ǩ��
+浮动的作用：
+	浮动的元素经常搭配标准流的父元素。标准流父元素负责纵向布局，浮动子元素负责横向布局。
+	注意：浮动最初是用来实现文字环绕效果的。
+浮动特性：
+	1、浮动元素会脱离标准流。
+	2、浮动元素会在一行内显示，并且元素会顶部对齐。
+	3、浮动元素会具有行内块元素的特性，并且相邻元素间不会有缝隙。
+	注意：浮动元素只会影响盒子后面的标准流，不会影响盒子前面的标准流。
+清除浮动的作用：
+	由于父级标准流盒子在很多情况下不方便设置高度，但浮动的子盒子又不会撑开父盒子，清除浮动之后父级标准流盒子会根据浮动的子盒子的高度自动检测出高度。
+清除浮动的方法：
+	1、额外标签法。
+		在浮动盒子标签的最末尾添加一个块级标签。
 		eg: <div style="clear: both;"></div>
-	2����������׼���������� overflow ���ԡ����� BFC��
+	2、给父级标准流盒子添加 overflow 属性。触发 BFC。
 		overflow: visible | hidden | auto | scroll;
-	3����������׼���������� after αԪ�ء�
+	3、给父级标准流盒子添加 after 伪元素。
 		.clearfix:after {
 			content: "";
 			display: block;
@@ -293,10 +293,10 @@ display: block | inline | inline-block;					/* ��Ҫ��������Ԫ��ת��Ϊ���ڿ�Ԫ�أ
 			clear: both;
 			visibility: hidden;
 		}
-		.clearfix {						/* IE6��7ר�С� */					
+		.clearfix {						/* IE6、7专有。 */					
 			*zoom: 1;					
 		}
-	4����������׼����������˫αԪ�ء�
+	4、给父级标准流盒子添加双伪元素。
 		.clearfix:before,.clearfix:after {
 			content: "";
 			display: table;
@@ -304,47 +304,47 @@ display: block | inline | inline-block;					/* ��Ҫ��������Ԫ��ת��Ϊ���ڿ�Ԫ�أ
 		.clearfix:after {
 			clear: both;
 		}
-		.clearfix {						/* IE6��7ר�С� */
+		.clearfix {						/* IE6、7专有。 */
 			*zoom: 1;
 		}
 =========================================================================================================================================================================================
-��λ��
+定位：
 	position: static | relative | absolute | fixed | sticky;
 	left | right: 3px | 50%;
 	top | bottom: -5px | 50%;
 	z-index: 1 | -1;
-��λ�����ã�
-	ʹĳ��Ԫ�ؿ����ں����ڲ������ƶ�������ѹס�����ĺ��ӡ�
-��̬��λ��
-	position ��Ĭ��ֵ��
-��Զ�λ��
-	1�����������ԭ����λ���ƶ���
-	2��Ԫ�ز��ѱꡣ��������ռ��ԭ�ȵ�λ�ã��ƶ�֮���Ԫ�ػ���ѹס������Ԫ�ء�
-���Զ�λ��
-	1���������Ԫ��û�ж�λ����û������Ԫ�أ�������������ĵ���Ϊ��׼���ƶ���
-	2���������Ԫ���У���ԡ����ԡ��̶�����λ���������һ���ж�λ������Ԫ��Ϊ��׼���ƶ���
-	3��Ԫ���ѱ꣬��ռ��ԭ�ȵ�λ�á�
-�̶���λ��
-	1��Ԫ����������Ŀ�����Ϊ��׼���ƶ���
-	2��Ԫ���ѱ꣬��ռ��ԭ�ȵ�λ�á�
-	3����Ҫʹ�ó������������ҳ�����ʱԪ�ص�λ�ñ��ֲ��䡣
-	ע�⣺�̶���λ���û�з�λ���ԣ�����ԭ�ȵ�λ��Ư��������
-ճ�Զ�λ��
-	1��Ԫ����������Ŀ�����Ϊ��׼���ƶ���
-	2��Ԫ�ز��ѱ꣬����ռ��ԭ�ȵ�λ�á�
-	3��ճ�Զ�λ�������� top��left��right��bottom �е�����һ�����Բ���Ч��
-	4��ճ�Զ�λ����ҳ��Ĺ�������ʹ�ã������ԽϲIE �������֧�֡�
-	ע�⣺ճ�Զ�λ����Զ�λ�͹̶���λ�Ľ���塣
-z-index��
-	1����ֵΪ������ֵԽ�󣬺���Խ���ϡ�
-	2���������ֵ��ȣ�������߾��ϡ�
-	3��ֻ�ж�λ�ĺ��Ӳ��д����ԡ�
-���Զ�λ���̶���λ�͸��������ԣ�
-	1�����ں����ڿ�Ԫ�ؿ���ֱ�����ÿ�������ֵ��
-	2���鼶Ԫ�صĿ���ֵĬ��Ϊ���ݵĿ���ֵ��
-	3��Ԫ���Ѿ��ѱ꣬���ᴥ����߾�ϲ������⡣
-	4��margin: 0 auto; ʧЧ��
-	ע�⣺����Ԫ��ֻ��ѹס����ı�׼�����ӣ�����ѹס�����׼������������ֺ�ͼƬ����λ���ѹסȫ����
+定位的作用：
+	使某个元素可以在盒子内部自由移动，并且压住其他的盒子。
+静态定位：
+	position 的默认值。
+相对定位：
+	1、相对于自身原来的位置移动。
+	2、元素不脱标。不仅继续占有原先的位置，移动之后的元素还会压住其他的元素。
+绝对定位：
+	1、如果祖先元素没有定位或者没有祖先元素，则以浏览器的文档流为基准来移动。
+	2、如果祖先元素有（相对、绝对、固定）定位，则以最近一级有定位的祖先元素为基准来移动。
+	3、元素脱标，不占有原先的位置。
+固定定位：
+	1、元素以浏览器的可视区为基准来移动。
+	2、元素脱标，不占有原先的位置。
+	3、主要使用场景：在浏览器页面滚动时元素的位置保持不变。
+	注意：固定定位如果没有方位属性，则在原先的位置漂浮起来。
+粘性定位：
+	1、元素以浏览器的可视区为基准来移动。
+	2、元素不脱标，继续占有原先的位置。
+	3、粘性定位必须添加 top、left、right、bottom 中的至少一个属性才有效。
+	4、粘性定位常跟页面的滚动搭配使用，兼容性较差，IE 浏览器不支持。
+	注意：粘性定位是相对定位和固定定位的结合体。
+z-index：
+	1、数值为整数，值越大，盒子越靠上。
+	2、如果属性值相等，则后来者居上。
+	3、只有定位的盒子才有此属性。
+绝对定位、固定定位和浮动的特性：
+	1、行内和行内块元素可以直接设置宽高属性值。
+	2、块级元素的宽高值默认为内容的宽高值。
+	3、元素已经脱标，不会触发外边距合并的问题。
+	4、margin: 0 auto; 失效。
+	注意：浮动元素只会压住下面的标准流盒子，不会压住下面标准流盒子里的文字和图片。定位则会压住全部。
 
 
 
@@ -352,51 +352,51 @@ z-index��
 
 
 
-�̳��ԣ���Ԫ�ؿ��Լ̳и�Ԫ�ص�ĳЩ��ʽ����text-��front-��line- �Լ� color �����Կ��Լ̳С���
-	eg: body { font: 12px/1.5 'Microsoft YaHei'; }			/* �иߵļ̳� */
-���ȼ���
-	�̳л��� *			0, 0, 0, 0
-	Ԫ��ѡ����			0, 0, 0, 1
-	�ࡢα�ࡢ����ѡ����		0, 0, 1, 0
-	ID ѡ����			0, 1, 0, 0
-	������ʽ			1, 0, 0, 0
-	!important			�����
-	ע�⣺����ѡ�����У�Ȩ��ֻ����ӣ����ɽ�λ��
-����ѡ������
-	*						ͨ���ѡ����
-	xxx						��ǩѡ����
-	.xxx						��ѡ����
-	#xxx						ID ѡ����
-	.xxx #xxx					���ѡ����
-	.xxx>#xxx					��Ԫ��ѡ����
-	.xxx,#xxx					����ѡ����
-	div.xxx						����ѡ����
-	a:hover | input:focus				α��ѡ����
-		a:link					��ʼ����״̬
-		a:visited				�����ʹ���״̬
-		a:hover					���������״̬
-		a:active				���ڱ����ʵ�״̬
-����ѡ�����������佻��ѡ����ʹ�ã�Ҳ���Ե���ʹ�á�
-	E[att]						ѡ����� att ���Ե� E ����Ԫ��
-	E[att="val"]					ѡ����� att ����������ֵ���� val �� E ����Ԫ��
-	E[att^="val"]					ѡ����� att ����������ֵ�� val ��ͷ�� E ����Ԫ��
-	E[att$="val"]					ѡ����� att ����������ֵ�� val ��β�� E ����Ԫ��
-	E[att*="val"]					ѡ����� att ����������ֵ���� val �� E ����Ԫ��
-�ṹα��ѡ��������������ѡ����ʹ�ã�Ҳ���Ե���ʹ�á�
-	E:first-child					ƥ�丸Ԫ���еĵ�һ����Ԫ�أ��Ҹ���Ԫ�ص����ͱ���Ϊ E
-	E:last-child					ƥ�丸Ԫ���е����һ����Ԫ�أ��Ҹ���Ԫ�ص����ͱ���Ϊ E
-	E:nth-child(n)					ƥ�丸Ԫ���еĵ� n ����Ԫ�أ��Ҹ���Ԫ�ص����ͱ���Ϊ E
-	E:first-of-type					ƥ�丸Ԫ��������Ϊ E �ĵ�һ����Ԫ��
-	E:last-of-type					ƥ�丸Ԫ��������Ϊ E �����һ����Ԫ��
-	E:nth-of-type(n)				ƥ�丸Ԫ��������Ϊ E �ĵ� n ����Ԫ��
-	ע�⣺n ���������֡���ʽ�͹ؼ��֡���������֣���ֵ�� 1 ��ʼ������ǹ�ʽ����ֵ�� 0 ��ʼ������ǹؼ��֣��� even ָż����odd ָ������
-αԪ��ѡ������������佻��ѡ����һ��ʹ�á�
-	1���﷨��element::before {}��
-	2��before �� after ������ content ���ԡ�
-	3��before ��Ԫ��ǰ�洴��αԪ�أ�after ��Ԫ�غ��洴��αԪ�ء�
-	4��before �� after ��������һ������Ԫ�ء�
-	5���´��������Ԫ�����ĵ��������Ҳ����ģ����Գ�ΪαԪ�ء�
-	6��αԪ��ѡ�����ͱ�ǩѡ����Ȩ��һ����
+继承性：子元素可以继承父元素的某些样式。（text-，front-，line- 以及 color 等属性可以继承。）
+	eg: body { font: 12px/1.5 'Microsoft YaHei'; }			/* 行高的继承 */
+优先级：
+	继承或者 *			0, 0, 0, 0
+	元素选择器			0, 0, 0, 1
+	类、伪类、属性选择器		0, 0, 1, 0
+	ID 选择器			0, 1, 0, 0
+	行内样式			1, 0, 0, 0
+	!important			无穷大
+	注意：复合选择器中，权重只可相加，不可进位。
+基础选择器：
+	*						通配符选择器
+	xxx						标签选择器
+	.xxx						类选择器
+	#xxx						ID 选择器
+	.xxx #xxx					后代选择器
+	.xxx>#xxx					子元素选择器
+	.xxx,#xxx					并集选择器
+	div.xxx						交集选择器
+	a:hover | input:focus				伪类选择器
+		a:link					初始化的状态
+		a:visited				被访问过的状态
+		a:hover					鼠标悬浮的状态
+		a:active				正在被访问的状态
+属性选择器：常搭配交集选择器使用，也可以单独使用。
+	E[att]						选择具有 att 属性的 E 类型元素
+	E[att="val"]					选择具有 att 属性且属性值等于 val 的 E 类型元素
+	E[att^="val"]					选择具有 att 属性且属性值以 val 开头的 E 类型元素
+	E[att$="val"]					选择具有 att 属性且属性值以 val 结尾的 E 类型元素
+	E[att*="val"]					选择具有 att 属性且属性值包含 val 的 E 类型元素
+结构伪类选择器：常搭配后代选择器使用，也可以单独使用。
+	E:first-child					匹配父元素中的第一个子元素，且该子元素的类型必须为 E
+	E:last-child					匹配父元素中的最后一个子元素，且该子元素的类型必须为 E
+	E:nth-child(n)					匹配父元素中的第 n 个子元素，且该子元素的类型必须为 E
+	E:first-of-type					匹配父元素中类型为 E 的第一个子元素
+	E:last-of-type					匹配父元素中类型为 E 的最后一个子元素
+	E:nth-of-type(n)				匹配父元素中类型为 E 的第 n 个子元素
+	注意：n 可以是数字、公式和关键字。如果是数字，则值从 1 开始；如果是公式，则值从 0 开始；如果是关键字，则 even 指偶数，odd 指奇数。
+伪元素选择器：必须搭配交集选择器一起使用。
+	1、语法：element::before {}。
+	2、before 和 after 必须有 content 属性。
+	3、before 在元素前面创建伪元素，after 在元素后面创建伪元素。
+	4、before 和 after 创建的是一个行内元素。
+	5、新创建的这个元素在文档树中是找不到的，所以称为伪元素。
+	6、伪元素选择器和标签选择器权重一样。
 
 
 
@@ -404,50 +404,50 @@ z-index��
 
 
 
-<header></header>							<!-- ͷ����ǩ -->
-<nav></nav>								<!-- ������ǩ -->
-<artical></artical>							<!-- ���ݱ�ǩ -->
-<section></section>							<!-- �����ĵ�ĳ������ -->
-<aside></aside>								<!-- �������ǩ -->
-<footer></footer>							<!-- β����ǩ -->
+<header></header>							<!-- 头部标签 -->
+<nav></nav>								<!-- 导航标签 -->
+<artical></artical>							<!-- 内容标签 -->
+<section></section>							<!-- 定义文档某个区域 -->
+<aside></aside>								<!-- 侧边栏标签 -->
+<footer></footer>							<!-- 尾部标签 -->
 <video src="movie.mp4" width="320" height="240" controls="controls"></video>
 <video width="320" height="240" controls="controls">
 	<source src="movie.mp4" type="video/mp4">
 	<source src="movie.ogg" type="video/ogg">
-	�����������֧�� video ��ǩ��
+	您的浏览器不支持 video 标签。
 </video>
 <audio src="horse.mp3" controls="controls"></audio>
 <audio controls="controls">
 	<source src="horse.mp3" type="audio/mpeg">
 	<source src="horse.ogg" type="audio/ogg">
-	�����������֧�� audio ��ǩ��
+	您的浏览器不支持 audio 标签。
 </audio>
-HTML5 ������ input ������
-	<input type="email | url | date | time | month | week | number | tel | search | color" placeholder="������ֵ..." name="" value=""></input>
-									<!-- ��Ҫ��;�������û�������ı���ʽ�� -->
-HTML5 �����ı���������
-	required="required"						<!-- ����������ݲ���Ϊ�ա� -->
-	placeholder="��ʾ�ı�"						<!-- ���������ʾ��Ϣ�� -->
-	autofocus="autofocus"						<!-- ҳ��������ʱ���������Զ���ȡ���㡣 -->
-	autocomplete="on | off"						<!-- �����������Զ���ȫ��on ΪĬ��ֵ���������� name ���ԣ�ͬʱ�ύ�ɹ�����Ϊ��Ϣ��ȫ�����ֵһ����Ϊ off�� -->
-	multiple="multiple"						<!-- ���Զ�ѡ�ļ������ύ�� -->
+HTML5 新增的 input 框类型
+	<input type="email | url | date | time | month | week | number | tel | search | color" placeholder="请输入值..." name="" value=""></input>
+									<!-- 主要用途：限制用户输入的文本格式。 -->
+HTML5 新增的表单项属性
+	required="required"						<!-- 表单项的内容不能为空。 -->
+	placeholder="提示文本"						<!-- 表单项的提示信息。 -->
+	autofocus="autofocus"						<!-- 页面加载完成时，表单项自动获取焦点。 -->
+	autocomplete="on | off"						<!-- 表单项内容自动补全。on 为默认值。条件：有 name 属性，同时提交成功过。为信息安全起见，值一般设为 off。 -->
+	multiple="multiple"						<!-- 可以多选文件进行提交。 -->
 =========================================================================================================================================================================================
 transition
-	transition: Ҫ���ɵ����� ���ѵ�ʱ�� �˶��������� ��ʱ��ʼ;	/* ʱ��ĵ�λ���� s��ǰ����ֵΪ�����˭�����ɸ�˭�ӡ� */
-		eg: transition: width 1s, height 1s;			/* һ��Ԫ�ؿ������Ӷ�����ɣ�ÿ������֮�����ö��Ÿ����� */
-	ע�⣺
-		1���������Զ���Ҫ���� <==> transition: all 1s;��
-		2��transition ������ :hover ����ʹ�á�
+	transition: 要过渡的属性 花费的时间 运动曲线类型 何时开始;	/* 时间的单位都是 s。前两个值为必输项。谁做过渡给谁加。 */
+		eg: transition: width 1s, height 1s;			/* 一个元素可以添加多个过渡，每个过渡之间需用逗号隔开。 */
+	注意：
+		1、所有属性都需要过渡 <==> transition: all 1s;。
+		2、transition 经常和 :hover 搭配使用。
 2D transform
 	translate
 		transform: translate(100px | 50%, 100px | 50%);
 		transform: translateX(100px | 50%);
 		transform: translateY(100px | 50%);
-		ע�⣺
-			1��translate �еİٷֱȵ�λ�����������Ԫ�صĿ��ߡ�
-			2��translate ������ŵ��ǲ���Ӱ�쵽����Ԫ�ص�λ�á�
-			3��translate ������Ԫ��û��Ч����
-		����ˮƽ��ֱ���У�
+		注意：
+			1、translate 中的百分比单位是相对于自身元素的宽高。
+			2、translate 的最大优点是不会影响到其他元素的位置。
+			3、translate 对行内元素没有效果。
+		盒子水平垂直居中：
 			.fu {
 				position: relative;
 				.zi {
@@ -462,24 +462,24 @@ transition
 	rotate
 		transform: rotate(45deg);
 		transform-origin: X Y;
-		ע�⣺
-			1��Ĭ����ת�����ĵ���Ԫ�ص����ĵ㣨50% 50%����
-			2���Ƕ�Ϊ��ʱ��˳ʱ����ת���Ƕ�Ϊ��ʱ����ʱ����ת��
-			3��X �� Y �ĵ�λ���������ػ��߰ٷֱȣ�X �� Y Ҳ�����Ƿ�λ���ʣ�top bottom left right center����
+		注意：
+			1、默认旋转的中心点是元素的中心点（50% 50%）。
+			2、角度为正时，顺时针旋转；角度为负时，逆时针旋转。
+			3、X 和 Y 的单位可以是像素或者百分比，X 和 Y 也可以是方位名词（top bottom left right center）。
 	scale
 		transform: scale(x, y);
 		transform-origin: X Y;
-		ע�⣺
-			1��x �� y ֵΪ 1 ʱ�൱��û�����š�
-			2��scale ������ŵ��ǲ���Ӱ�쵽����Ԫ�ص�λ�ã����ҿ����������ŵ����ĵ㡣
-	�ۺ�д��
+		注意：
+			1、x 和 y 值为 1 时相当于没有缩放。
+			2、scale 的最大优点是不会影响到其他元素的位置，而且可以设置缩放的中心点。
+	综合写法
 		transform: translate() scale() rotate();
-		ע�⣺˳��ı��Ӱ��ת�����Ч����
+		注意：顺序改变会影响转换后的效果。
 =========================================================================================================================================================================================
-������
-	�﷨��
-		1�����嶯����
-			@keyframes �������� {
+动画：
+	语法：
+		1、定义动画。
+			@keyframes 动画名称 {
 				0% | from {
 					width: 100px;
 				}
@@ -487,23 +487,23 @@ transition
 					width: 200px;
 				}
 			}
-		2�����ö�����
-			animation-name: ��������;
-			animation-duration: 1s;				/* ����ʱ�� */
-	�����������ԣ�
-		@keyframes�����嶯��������ġ�
-		animation-name�����ö���������ġ�
-		animation-duration���������һ�����������ѵ�ʱ�䡣Ĭ��ֵ�� 0s������ġ�
-		animation-timing-function�������ٶ����ߵ����͡�Ĭ��ֵ�� ease��
-		animation-delay��������ʼ���ӳ�ʱ�䡣Ĭ��ֵ�� 0s��
-		animation-interation-count�������������ŵĴ�����Ĭ��ֵ�� 1������ infinite��
-		animation-direction����������һ�������Ƿ����򲥷š�Ĭ��ֵ�� normal������ alternate��
-		animation-fill-mode�������������״̬��Ĭ��ֵ�� backwards������ forwards��
-		animation-pay-state�����ö��������л���ͣ״̬��Ĭ��ֵ�� running������ paused�����������긲���¼�һ��ʹ�á�
-		animation������ animation-pay-state ���ԣ����ж������Եļ�д��
-	������д��
-		animation: name duration timing-function delay interation-count direction fill-mode;		/* ������ֵ֮����˳��Ҫ�� */
-		ע�⣺һ��Ԫ�ؿ������Ӷ��������ÿ������֮���ö��Ÿ�����
+		2、调用动画。
+			animation-name: 动画名称;
+			animation-duration: 1s;				/* 持续时间 */
+	动画常用属性：
+		@keyframes：定义动画。必须的。
+		animation-name：调用动画。必须的。
+		animation-duration：动画完成一个周期所花费的时间。默认值是 0s。必须的。
+		animation-timing-function：动画速度曲线的类型。默认值是 ease。
+		animation-delay：动画开始的延迟时间。默认值是 0s。
+		animation-interation-count：动画连续播放的次数。默认值是 1。还有 infinite。
+		animation-direction：动画在下一周期内是否逆向播放。默认值是 normal。还有 alternate。
+		animation-fill-mode：动画结束后的状态。默认值是 backwards。还有 forwards。
+		animation-pay-state：设置动画的运行或暂停状态。默认值是 running。还有 paused。经常配合鼠标覆盖事件一起使用。
+		animation：除了 animation-pay-state 属性，所有动画属性的简写。
+	动画简写：
+		animation: name duration timing-function delay interation-count direction fill-mode;		/* 各属性值之间有顺序要求。 */
+		注意：一个元素可以添加多个动画，每个动画之间用逗号隔开。
 
 
 
@@ -512,146 +512,146 @@ transition
 
 
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0">
-	width			�������õ��� viewport ���ȡ�
-	user-scalable		�û��Ƿ�������š�yes �� no��1 �� 0����
-	initial-scale		��ʼ���űȡ����� 0 �����֡�
-	maximum-scale		������űȡ����� 0 �����֡�
-	minimum-scale		��С���űȡ����� 0 �����֡�
-��ʽ����
-	�����ǿ��ȰٷֱȼӸ������֡�
+	width			宽度设置的是 viewport 宽度。
+	user-scalable		用户是否可以缩放。yes 或 no（1 或 0）。
+	initial-scale		初始缩放比。大于 0 的数字。
+	maximum-scale		最大缩放比。大于 0 的数字。
+	minimum-scale		最小缩放比。大于 0 的数字。
+流式布局
+	本质是宽度百分比加浮动布局。
 	max-width: 980px;
 	min-width: 320px;
 =========================================================================================================================================================================================
-flex ����
-	�������� = ���Բ��� = �����в��� = ���Ժв��� = flex ����
-	ע�⣺���±ʼ����� flex-direction: row; Ϊ��׼����¼�ġ�
-	�������������ԣ�
-		display: ���õ��Ժ���ģʽ��
+flex 布局
+	伸缩布局 = 弹性布局 = 伸缩盒布局 = 弹性盒布局 = flex 布局
+	注意：以下笔记是以 flex-direction: row; 为基准来记录的。
+	常见父盒子属性：
+		display: 设置弹性盒子模式。
 			display: flex;
-		flex-direction: ���õ��Ժ��ӵ����᷽��
+		flex-direction: 设置弹性盒子的主轴方向。
 			flex-direction: row | row-reverse | column | column-reverse;
-		flex-wrap: �������᷽�����Ӻ����Ƿ��С�
-			nowrap			Ĭ��ֵ�������С�
-			wrap			��Ҫ��ʱ���С�
-		flex-flow: flex-direction �� flex-wrap ���Եĸ������ԡ�Ĭ��ֵ��row nowrap��
-		justify-content: �������᷽�����Ӻ��ӵ����з�ʽ��
-			flex-start		Ĭ��ֵ�������᷽����ʼλ�ÿ�ʼ���С�
-			flex-end		�����᷽��ĩβλ�ÿ�ʼ���С�
-			center			�������Ͼ������С�
-			space-between		�����᷽���ϣ���������ÿ���Ӻ��ӣ��׸��Ӻ��ӷ�������㣬ĩβ�Ӻ��ӷ������յ㡣
-			space-around		�����᷽���ϣ���������ÿ���Ӻ��ӣ�ÿ���Ӻ��ӵ����һ����·�����ͬ�Ŀռ䡣
-			space-evenly		�����᷽���ϣ���������ÿ���Ӻ��ӣ���ÿ���Ӻ���֮�� && ��β�Ӻ����븸����֮�䡱�ļ������ȡ�
-		align-content: ���ò��᷽����������֮������з�ʽ��
-			stretch			Ĭ��ֵ���ڲ��᷽���ϵ�ʣ��ռ�ᱻ������ƽ�֡�
-			flex-start		���дӲ��᷽����ʼλ�ÿ�ʼ���С�
-			flex-end		���дӲ��᷽��ĩβλ�ÿ�ʼ���С�
-			center			�����ڲ����Ͼ������С�
-			space-between		�ڲ��᷽���ϣ��������и��У����з�������㣬β�з������յ㡣
-			space-around		�ڲ��᷽���ϣ��������и��У����е����һ����·�����ͬ�Ŀռ䡣
-		align-items: ���ò��᷽�����Ӻ����ڶ�Ӧ���е����з�ʽ��
-			stretch			Ĭ��ֵ������Ӻ���û�����ÿ�������ԣ����Ӻ��ӵĿ���߶Ȼᱻ��������Ӧ�иߣ�
-						����Ӻ��������ÿ�������ԣ����Ӻ����ڶ�Ӧ�еĲ����ϰ� flex-start ��ʽ�������С�
-			flex-start		�Ӻ���λ�ڶ�Ӧ�еĲ����ϵĿ�ͷ��
-			flex-end		�Ӻ���λ�ڶ�Ӧ�еĲ����ϵĽ�β��
-			center			�Ӻ���λ�ڶ�Ӧ�еĲ����ϵ����ġ�
-			ע�⣺�Ӻ��ӵ� align-self ���Կ���д�����ӵ� align-items ���ԡ�
-	�����Ӻ������ԣ�
-		flex-grow����ÿ���У������᷽���ϡ������ӵ���ͨ����߶� - �����Ӻ��ӵ� C3 ����߶�֮�͡��Ĳ�ֵ���������Ӻ������� flex-grow ֵ�ı�������������Ӻ��ӡ�Ĭ��ֵΪ 0��
-			flex-grow: 0;					/* �Ӻ��Ӳ��ᷢ�����͡� */
+		flex-wrap: 设置主轴方向上子盒子是否换行。
+			nowrap			默认值。不换行。
+			wrap			必要的时候换行。
+		flex-flow: flex-direction 和 flex-wrap 属性的复合属性。默认值：row nowrap。
+		justify-content: 设置主轴方向上子盒子的排列方式。
+			flex-start		默认值。从主轴方向起始位置开始排列。
+			flex-end		从主轴方向末尾位置开始排列。
+			center			在主轴上居中排列。
+			space-between		在主轴方向上，均匀排列每个子盒子，首个子盒子放置于起点，末尾子盒子放置于终点。
+			space-around		在主轴方向上，均匀排列每个子盒子，每个子盒子的左右或上下分配相同的空间。
+			space-evenly		在主轴方向上，均匀排列每个子盒子，“每个子盒子之间 && 首尾子盒子与父盒子之间”的间隔都相等。
+		align-content: 设置侧轴方向上行与行之间的排列方式。
+			stretch			默认值。在侧轴方向上的剩余空间会被所有行平分。
+			flex-start		各行从侧轴方向起始位置开始排列。
+			flex-end		各行从侧轴方向末尾位置开始排列。
+			center			各行在侧轴上居中排列。
+			space-between		在侧轴方向上，均匀排列各行，首行放置于起点，尾行放置于终点。
+			space-around		在侧轴方向上，均匀排列各行，各行的左右或上下分配相同的空间。
+		align-items: 设置侧轴方向上子盒子在对应行中的排列方式。
+			stretch			默认值。如果子盒子没有设置宽或高属性，则子盒子的宽或高度会被拉伸以适应行高；
+						如果子盒子有设置宽或高属性，则子盒子在对应行的侧轴上按 flex-start 方式进行排列。
+			flex-start		子盒子位于对应行的侧轴上的开头。
+			flex-end		子盒子位于对应行的侧轴上的结尾。
+			center			子盒子位于对应行的侧轴上的中心。
+			注意：子盒子的 align-self 属性可重写父盒子的 align-items 属性。
+	常见子盒子属性：
+		flex-grow：在每行中，把主轴方向上“父盒子的普通宽或高度 - 各个子盒子的 C3 宽或高度之和”的差值，按各个子盒子自身 flex-grow 值的比例分配给各个子盒子。默认值为 0。
+			flex-grow: 0;					/* 子盒子不会发生膨胀。 */
 			flex-grow: 1;
 			flex-grow: 20%;	
-		flex-shrink����ÿ���У������᷽���ϡ������Ӻ��ӵ� C3 ����߶�֮�� - �����ӵ���ͨ����߶ȡ��Ĳ�ֵ���������Ӻ������� flex-shrink ֵ�ı�������������Ӻ��ӡ�Ĭ��ֵΪ 1��
-			flex-shrink: 0;					/* �Ӻ��Ӳ��ᷢ�������� */
-		flex-basis���������᷽�����Ӻ�������ʱ�Ļ�׼ֵ��
-			auto			Ĭ��ֵ����ֵ�����Ӻ��������Ŀ��������ֵ������Ӻ���û��ָ�������ԣ�����ֵ�������Ӻ��ӵ�������������
-						flex-basis = width/height ? width/height : ���ݡ�
-			number			��������
-		flex: flex-grow��flex-shrink �� flex-basis ���Եļ�д���ԡ�Ĭ��ֵΪ 0 1 auto��
-		align-self: ���ò��᷽�����Ӻ����ڶ�Ӧ���е����з�ʽ��
-			auto			Ĭ��ֵ���Ӻ��Ӽ̳и����ӵ� align-items ���ԡ�
-			stretch			����Ӻ���û�����ÿ�������ԣ����Ӻ��ӵĿ���߶Ȼᱻ��������Ӧ�иߣ�
-						����Ӻ��������ÿ�������ԣ����Ӻ����ڶ�Ӧ�еĲ����ϰ� flex-start ��ʽ�������С�
-			flex-start		�Ӻ���λ�ڶ�Ӧ�еĲ����ϵĿ�ͷ��
-			flex-end		�Ӻ���λ�ڶ�Ӧ�еĲ����ϵĽ�β��
-			center			�Ӻ���λ�ڶ�Ӧ�еĲ����ϵ����ġ�
-		order: �����Ӻ��������᷽���ϵ�����˳��ֵԽСԽ��ǰ��Ĭ��ֵΪ 0��
-	ע�⣺ʣ��ռ� = �����ӵ����ݿ��� - �Ӻ��ӵ���߾� - �Ӻ��ӵı߿� - �Ӻ��ӵ��ڱ߾� - �Ӻ��ӵ����ݿ��ߡ�
+		flex-shrink：在每行中，把主轴方向上“各个子盒子的 C3 宽或高度之和 - 父盒子的普通宽或高度”的差值，按各个子盒子自身 flex-shrink 值的比例分配给各个子盒子。默认值为 1。
+			flex-shrink: 0;					/* 子盒子不会发生收缩。 */
+		flex-basis：设置主轴方向上子盒子伸缩时的基准值。
+			auto			默认值。数值等于子盒子自身的宽或高属性值。如果子盒子没有指定该属性，则其值将根据子盒子的内容来决定。
+						flex-basis = width/height ? width/height : 内容。
+			number			正整数。
+		flex: flex-grow、flex-shrink 和 flex-basis 属性的简写属性。默认值为 0 1 auto。
+		align-self: 设置侧轴方向上子盒子在对应行中的排列方式。
+			auto			默认值。子盒子继承父盒子的 align-items 属性。
+			stretch			如果子盒子没有设置宽或高属性，则子盒子的宽或高度会被拉伸以适应行高；
+						如果子盒子有设置宽或高属性，则子盒子在对应行的侧轴上按 flex-start 方式进行排列。
+			flex-start		子盒子位于对应行的侧轴上的开头。
+			flex-end		子盒子位于对应行的侧轴上的结尾。
+			center			子盒子位于对应行的侧轴上的中心。
+		order: 设置子盒子在主轴方向上的排列顺序，值越小越靠前。默认值为 0。
+	注意：剩余空间 = 父盒子的内容宽高 - 子盒子的外边距 - 子盒子的边框 - 子盒子的内边距 - 子盒子的内容宽高。
 =========================================================================================================================================================================================
-ý���ѯ + less + rem
-	ý���ѯ
-		�﷨��
+媒体查询 + less + rem
+	媒体查询
+		语法：
 			@media mediatyoe and | not | only (media feature) {
 				/* css_code */
 			}
-			mediatyoe��ý�����͡�
-				all�������豸��
-				print����ӡ����
-				screen�����ԡ�ƽ�塢�ֻ���
-			and | not | only���ؼ��֡�
-			media feature��ý�����ԣ���ҪС���Ű�����
-				width����������豸��ҳ��ɼ�����Ŀ��ȡ�
-				min-width����������豸��ҳ����С�ɼ�����Ŀ��ȡ�
-				max-width����������豸��ҳ�����ɼ�����Ŀ��ȡ�
-		������Դ��
+			mediatyoe：媒体类型。
+				all：所有设备。
+				print：打印机。
+				screen：电脑、平板、手机。
+			and | not | only：关键字。
+			media feature：媒体特性，需要小括号包裹。
+				width：定义输出设备中页面可见区域的宽度。
+				min-width：定义输出设备中页面最小可见区域的宽度。
+				max-width：定义输出设备中页面最大可见区域的宽度。
+		引入资源：
 			<link rel="stylesheet" media="mediatype and|not|only (media feature)" href="mystylesheet.css">
 	less
-		������
-			�﷨��
-				@������: ֵ;
-			�����淶��
-				1��������@Ϊǰ׺��
-				2�����ܰ��������ַ���
-				3�����������ֿ�ͷ��
-				4����Сд���С�
-		���룺
-			less �ļ���Ҫ������� css �ļ�֮������� html ҳ��ʹ�á�
-		Ƕ�ף�
-			1����Ԫ�ص���ʽ����ֱ��д����Ԫ�����档
-			2��������������α���αԪ��ѡ��������������ǰ����� & ���š�
-		���㣺
-			1��+��-��*��/��
-			2����������Ҹ���һ���ո�
-			3��������ͬ��λ��ֵ�����㣬����ĵ�λ���һ��ֵ�ĵ�λ��ͬ��
-			4����������������ֵֻ��һ��ֵ�е�λ�������ĵ�λ�������ֵ�ĵ�λ��
+		变量：
+			语法：
+				@变量名: 值;
+			命名规范：
+				1、必须以@为前缀。
+				2、不能包含特殊字符。
+				3、不能以数字开头。
+				4、大小写敏感。
+		编译：
+			less 文件需要被编译成 css 文件之后才能在 html 页面使用。
+		嵌套：
+			1、子元素的样式可以直接写到父元素里面。
+			2、如遇见交集、伪类和伪元素选择器，则需在其前面加上 & 符号。
+		运算：
+			1、+、-、*、/。
+			2、运算符左右各有一个空格。
+			3、两个不同单位的值做运算，结果的单位与第一个值的单位相同。
+			4、如果做运算的两个值只有一个值有单位，则结果的单位就是这个值的单位。
 	rem
-		em�������Ԫ�ص������СΪ xpx������Ԫ���е� yem = yxpx��
-		rem�������Ԫ�أ�html���������СΪ xpx�����Ԫ���е� yem = yxpx��
-	�����÷�
-		��Ƹ峣���ߴ���ȡ�
-			һ������£�������һ�׻�������Ч��ͼ��Ӧ�󲿷ֵ���Ļ�����ڻ����� 750px Ϊ׼��
-		��̬���� html ��ǩ font-size ֵ��С��
-			1���������Ļ����Ϊ 15 �ȷݣ�Ҳ������ 10 �ȷݻ����� 20 �ȷݣ���
-			2���� 320px �豸�ϣ�html ��ǩ�������СΪ 320 / 15 = 21.33px��
-			3���� 750px �豸�ϣ�html ��ǩ�������СΪ 750 / 15 = 50px��
-			4��ҳ��Ԫ�صĴ�С������ rem ��λ��
-flexible.js + less + rem��
-	ԭ����
-		�ѵ�ǰ�豸�Ŀ��Ȼ���Ϊ 10 �ȷݡ�
-	������Դ��
+		em：如果父元素的字体大小为 xpx，则子元素中的 yem = yxpx。
+		rem：如果根元素（html）的字体大小为 xpx，则各元素中的 yem = yxpx。
+	具体用法
+		设计稿常见尺寸宽度。
+			一般情况下，我们以一套或者两套效果图适应大部分的屏幕。现在基本以 750px 为准。
+		动态设置 html 标签 font-size 值大小。
+			1、假设把屏幕划分为 15 等份（也可以是 10 等份或者是 20 等份）。
+			2、在 320px 设备上，html 标签的字体大小为 320 / 15 = 21.33px。
+			3、在 750px 设备上，html 标签的字体大小为 750 / 15 = 50px。
+			4、页面元素的大小属性用 rem 单位。
+flexible.js + less + rem。
+	原理：
+		把当前设备的宽度划分为 10 等份。
+	引入资源：
 		<script src="flexible.js"></script>
-	ע�⣻����� ý���ѯ + less + rem���г��������� flexible.js + less + rem��
+	注意；相对于 媒体查询 + less + rem，市场更倾向于 flexible.js + less + rem。
 =========================================================================================================================================================================================
-Bootstrap ��Ӧʽ����
-	ԭ����
-		�ڲ�ͬ��Ļ�£�ͨ��ý���ѯ���ı䲼�������Ĵ�С�������ı䲼����������Ԫ�صĴ�С�����з�ʽ��
-		�����ǿ��ȰٷֱȼӸ������֣�����ʽ���֡�
-		Bootstrap ��������������ʽ��
+Bootstrap 响应式开发
+	原理：
+		在不同屏幕下，通过媒体查询来改变布局容器的大小，进而改变布局容器中子元素的大小和排列方式。
+		本质是宽度百分比加浮动布局，即流式布局。
+		Bootstrap 以类名来控制样式。
 	Bootstrap
-		��������
-			Bootstrap ��ҪΪҳ�����ݺ�դ��ϵͳ����һ������ .container ����� .container-fluid ��Ĳ���������
+		布局容器
+			Bootstrap 需要为页面内容和栅格系统包裹一个含有 .container 类或者 .container-fluid 类的布局容器。
 		.container
-			1����Ӧʽ�����������̶����ȡ�
-			2��������>= 1200px��	�̶�Ϊ 1170px	.col-lg-��
-			3��������>= 992px��	�̶�Ϊ 970px	.col-md-��
-			3��С����>= 768px��	�̶�Ϊ 750px	.col-sm-��
-			4����С����< 768px��	����Ϊ100%	.col-xs-��
+			1、响应式布局容器。固定宽度。
+			2、大屏（>= 1200px）	固定为 1170px	.col-lg-。
+			3、中屏（>= 992px）	固定为 970px	.col-md-。
+			3、小屏（>= 768px）	固定为 750px	.col-sm-。
+			4、超小屏（< 768px）	宽度为100%	.col-xs-。
 		.container-fluid
-			1����ʽ�����������ٷְٿ��ȡ�
-			2��ռ��ȫ���ӿڵ�������
-			3���ʺϵ������ƶ��˿�����
-	դ��ϵͳ�����ݲ���һ�� 12 �ȷ��С�
-		��Ƕ��
-			��Ƕ�׵�ʱ����ü�һ���У���������ȡ����Ԫ�أ���������Ԫ�أ��� padding ֵ�����Ҹ߶��Զ��͸���һ���ߡ�
+			1、流式布局容器。百分百宽度。
+			2、占据全部视口的容器。
+			3、适合单独做移动端开发。
+	栅格系统：内容部分一行 12 等份列。
+		列嵌套
+			列嵌套的时候最好加一个行，这样可以取消父元素（包括容器元素）的 padding 值，并且高度自动和父级一样高。
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-3 col-sm-6">1</div>
@@ -665,10 +665,10 @@ Bootstrap ��Ӧʽ����
 						<div class="col-lg-3 col-sm-6">4</div>
 					</div>
 				</div>
-		��ƫ��
-			ʹ�� .col-md-offset-* ����Խ������Ҳ�ƫ�ơ�ʵ����Ϊ��ǰԪ��������������߾ࡣ��* Ϊ 1 �� 12 ����ֵ����
-		������
-			ʹ�� .col-md-pull-* ��� .col-md-push-* �����ʵ���е����������������ơ���* Ϊ 1 �� 12 ����ֵ����
-		Ԫ�ص���ʾ������
-			ֻ��ĳ����Ļ����ʾ��.visible-xs .visible-sm .visible-md .visible-lg��
-			ֻ��ĳ����Ļ�����أ�.hidden-xs .hidden-sm .hidden-md .hidden-lg��
+		列偏移
+			使用 .col-md-offset-* 类可以将列向右侧偏移。实际是为当前元素增加了左侧的外边距。（* 为 1 到 12 整数值。）
+		列排序
+			使用 .col-md-pull-* 类和 .col-md-push-* 类可以实现列的左右排序。左拉右推。（* 为 1 到 12 整数值。）
+		元素的显示和隐藏
+			只在某种屏幕下显示：.visible-xs .visible-sm .visible-md .visible-lg。
+			只在某种屏幕下隐藏：.hidden-xs .hidden-sm .hidden-md .hidden-lg。

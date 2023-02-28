@@ -1,4 +1,4 @@
-1¡¢Òş²Ø´¹Ö±¹ö¶¯Ìõ£¬Í¬Ê±ÔÊĞí´¹Ö±¹ö¶¯¡£
+1ã€éšè—å‚ç›´æ»šåŠ¨æ¡ï¼ŒåŒæ—¶å…è®¸å‚ç›´æ»šåŠ¨ã€‚
 	.demo::-webkit-scrollbar {
 		display: none; // Chrome Safari
 	}
@@ -11,7 +11,7 @@
 
 
 
-2¡¢ĞŞ¸Ä¹ö¶¯ÌõÑùÊ½¡£
+2ã€ä¿®æ”¹æ»šåŠ¨æ¡æ ·å¼ã€‚
 	.content {}
 	.content::-webkit-scrollbar {
 		width: 10px;
@@ -22,8 +22,8 @@
 
 
 
-3¡¢vue ÊµÏÖÑéÖ¤Âë 60s µ¹¼ÆÊ±¡£
-	<span v-show="show" @click="getCode">»ñÈ¡ÑéÖ¤Âë</span>
+3ã€vue å®ç°éªŒè¯ç  60s å€’è®¡æ—¶ã€‚
+	<span v-show="show" @click="getCode">è·å–éªŒè¯ç </span>
 	<span v-show="!show" class="count">{{ count }}s</span>
 	data() {
 		return {
@@ -53,30 +53,30 @@
 
 
 
-4¡¢¶¯»­º¯Êı¡£
-	function animate(obj, targetSite, callBack) { // obj£º¶¯»­¶ÔÏó£»targetSite£ºÖÕµãÎ»ÖÃ¡£
+4ã€åŠ¨ç”»å‡½æ•°ã€‚
+	function animate(obj, targetSite, callBack) { // objï¼šåŠ¨ç”»å¯¹è±¡ï¼›targetSiteï¼šç»ˆç‚¹ä½ç½®ã€‚
 		clearInterval(obj.timer)
 		obj.time = setInterval(function() {
 			if(obj.offsetLeft === targetSite) {
 				clearInterval(obj.timer)
 				if(callBack) { callBack }
 			}
-			// obj.style.left = obj.offsetLeft + 1 + 'px' // ÔÈËÙ¶¯»­¡£
+			// obj.style.left = obj.offsetLeft + 1 + 'px' // åŒ€é€ŸåŠ¨ç”»ã€‚
 			var step = (targetSite - obj.offsetLeft) / 10
 			step = step > 0 ? Math.ceil(step) : Math.floor(step)
-			obj.style.left = obj.offsetLeft + step + 'px' // »º¶¯¶¯»­¡£
+			obj.style.left = obj.offsetLeft + step + 'px' // ç¼“åŠ¨åŠ¨ç”»ã€‚
 		}, 25)
 	}
 
 
 
-5¡¢×Ö·û´®ÄæĞòÊä³ö¡£
-	·¨Ò»£º
+5ã€å­—ç¬¦ä¸²é€†åºè¾“å‡ºã€‚
+	æ³•ä¸€ï¼š
 		function strReverse(str) {
 			// return str.split('').reverse().join('')
 			return Array.from(str).reverse().join('')
 		}
-	·¨¶ş£º
+	æ³•äºŒï¼š
 		function strReverse(str) {
 			var result = ''
 			for(var i = str.length - 1; i >= 0; i--) {
@@ -87,8 +87,8 @@
 
 
 
-6¡¢Í³¼Æ×Ö·û´®ÖĞ³öÏÖ´ÎÊı×î¶àµÄ×Ö·û£¬²¢¼ÇÂ¼ËüµÄ´ÎÊı¡£
-	·¨Ò»£º
+6ã€ç»Ÿè®¡å­—ç¬¦ä¸²ä¸­å‡ºç°æ¬¡æ•°æœ€å¤šçš„å­—ç¬¦ï¼Œå¹¶è®°å½•å®ƒçš„æ¬¡æ•°ã€‚
+	æ³•ä¸€ï¼š
 		function getMaxCount(str) {
 			var max = 0
 			var maxChar = []
@@ -104,11 +104,11 @@
 				}
 				i = str.lastIndexOf(char)
 			}
-			return '³öÏÖ´ÎÊı×î¶àµÄ×Ö·ûÊÇ' + maxChar + '£¬´ÎÊıÎª' + max + '¡£'
+			return 'å‡ºç°æ¬¡æ•°æœ€å¤šçš„å­—ç¬¦æ˜¯' + maxChar + 'ï¼Œæ¬¡æ•°ä¸º' + max + 'ã€‚'
 		}
-	·¨¶ş£º
+	æ³•äºŒï¼š
 		function getMaxCount(str) {
-			// ´´½¨Ò»¸ö obj ¶ÔÏó¡£ÊôĞÔ£º³öÏÖµÄ×Ö·û£»ÊôĞÔÖµ£º¸Ã×Ö·û³öÏÖµÄ´ÎÊı¡£
+			// åˆ›å»ºä¸€ä¸ª obj å¯¹è±¡ã€‚å±æ€§ï¼šå‡ºç°çš„å­—ç¬¦ï¼›å±æ€§å€¼ï¼šè¯¥å­—ç¬¦å‡ºç°çš„æ¬¡æ•°ã€‚
 			var obj = {}
 			var char
 			for(var i = 0; i < str.length; i++) {
@@ -119,7 +119,7 @@
 					obj[char] = 1
 				}
 			}
-			// ±éÀú obj ¶ÔÏóµÄÊôĞÔ¡£
+			// éå† obj å¯¹è±¡çš„å±æ€§ã€‚
 			var max = 0
 			var maxChar = []
 			for(var k in obj) {
@@ -130,12 +130,12 @@
 					maxChar.push(k)
 				}
 			}
-			return '³öÏÖ´ÎÊı×î¶àµÄ×Ö·ûÊÇ' + maxChar + '£¬´ÎÊıÎª' + max + '¡£'
+			return 'å‡ºç°æ¬¡æ•°æœ€å¤šçš„å­—ç¬¦æ˜¯' + maxChar + 'ï¼Œæ¬¡æ•°ä¸º' + max + 'ã€‚'
 		}
 
 
 
-7¡¢Í³¼ÆÊı×éÖĞÃ¿¸öÔªËØ³öÏÖµÄ´ÎÊı¡£
+7ã€ç»Ÿè®¡æ•°ç»„ä¸­æ¯ä¸ªå…ƒç´ å‡ºç°çš„æ¬¡æ•°ã€‚
 	function getItemCount(arr) {
 		arr.reduce(function(count, item) {
 				if (item in count) {
