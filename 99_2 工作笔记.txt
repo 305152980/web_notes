@@ -14,24 +14,3 @@
 	height: 100vh; // 高度为可视屏的 100%。
 }
 </style>
-
-
-Vue 组件名称
-	组件 components 注册时，如果使用 PascalCase 大驼峰命名法；使用组件时，组件标签名既可以使用大驼峰命名法，也可以使用短横线命名法。
-	组件 components 注册时，如果使用 kebab-case 短横线命名法；使用组件时，组件标签名只能使用短横线命名法。
-
-
-
-Vue props 属性名称
-	子组件的 props 属性，如果使用 camelCase 小驼峰命名法；父组件的组件标签名既可以使用小驼峰命名法，也可以使用短横线命名法。
-	子组件的 props 属性，如果使用 kebab-case 短横线命名法；父组件的组件标签名只能使用短横线命名法。
-
-
-
-Vue 行内 :style 样式
-	<div :style="{ color: active, fontSize: fsize + 'px', 'background-color': bgcolor }">{{ user.name }}</div>	
-	此种情况下 CSS 属性的名称，可以使用不带引号的 camelCase 小驼峰命名法，也可以使用带引号的 kebab-case 短横线命名法。
-
-
-
-

@@ -23,11 +23,11 @@ SPA 单页面应用
 				解决方案：SSR 服务器端渲染。
 	如何快速创建 Vue 的 SPA 项目
 		Vue 官方提供了两种快速创建工程化的 SPA 项目方式：
-			1、基于 vite 创建 SPA 项目；
-			2、基于 vue-cli 创建 SPA 项目。
+			1、基于 Vite 创建 SPA 项目；
+			2、基于 Vue CLI 创建 SPA 项目。
 		两者的对比：
-			比较的分类			vite			vue-cli
-			支持的 Vue 版本			仅支持 vue3.x		支持 vue3.x 和 vue2.x
+			比较的分类			Vite			Vue CLI
+			支持的 Vue 版本			仅支持 Vue3.x		支持 Vue3.x 和 Vue2.x
 			是否基于 Webpack		否			是
 			运行速度			快			较慢
 			功能完整度			小而巧（逐渐完善）	大而全
@@ -39,8 +39,8 @@ Vue 简介
 	什么是 Vue
 		官方给出的概念：Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的前端框架。
 		构建用户界面
-			在传统的 Web 前端开发中，是基于 jQuery + 模板引擎 的方式来构建用户界面的。
-			使用 Vue 构建用户界面，解决了 jQuery + 模板引擎 方式的诸多痛点，极大的提高了前端开发的效率和体验。
+			在传统的 Web 前端开发中，是基于“jQuery + 模板引擎”的方式来构建用户界面的。
+			使用 Vue 构建用户界面，解决了“jQuery + 模板引擎”方式的诸多痛点，极大的提高了前端开发的效率和体验。
 		框架
 			官方给 Vue 的定位是前端框架，因为它提供了构建用户界面的一整套解决方案（俗称 Vue 全家桶）：
 				1、vue（核心库）
@@ -48,8 +48,8 @@ Vue 简介
 				3、vuex（状态管理方案）
 				4、vue 组件库（快速搭建页面 UI 效果的方案）
 			以及辅助 vue 项目开发的一系列工具：
-				1、vue-cli（npm 全局包：一键生成工程化的 Vue 项目 - 基于 webpack、大而全。）
-				2、vite（npm 全局包：一键生成工程化的 Vue 项目 - 小而巧。）
+				1、Vue CLI（npm 全局包：一键生成工程化的 Vue 项目 - 基于 Webpack、大而全。）
+				2、Vite（npm 全局包：一键生成工程化的 Vue 项目 - 小而巧。）
 				3、vue-devtools（浏览器插件：辅助调试的工具。）
 				4、vetur（VSCode 插件：提供语法高亮和智能提示。）
 	Vue 的特性
@@ -72,7 +72,7 @@ Vue 简介
 	Vue 的版本
 		当前，Vue 共有 3 个大版本，其中：
 			2.x 版本的 Vue 是目前企业级项目开发中的主流版本。
-			3.x 版本的 Vue 于 2020-09-19 发布，生态还不完善，尚未在企业级项目开发中普及和推广。
+			3.x 版本的 Vue 于 2020-09-19 发布，生态还不完善，尚未在企业级项目开发中普及和推广。（至 2022 年末 Vue3.x 已完全成熟。）
 			1.x 版本的 Vue 几乎被淘汰，不再建议学习与使用。
 		总结：
 			3.x 版本的 Vue 是未来企业级项目开发的趋势。
@@ -81,7 +81,7 @@ Vue 简介
 			Vue2.x 中绝大多数的 API 与特性，在 Vue3.x 中同样支持。同时 Vue3.x 中还新增了 Vue3.x 所特有的功能，并废弃了某些 Vue2.x 中旧的功能。
 			新增的功能有：组合式 API、多根节点组件、更好的 TypeScript 支持等。
 			废弃的旧功能有：过滤器、不再支持 $on，$off 和 $once 实例方法等。
-	Vue 的基本使用：
+	Vue 的基本使用
 		使用步骤：
 			1、在页面中导入 vue.js 的 script 脚本文件；
 			2、在页面中声明一个将要被 Vue 所控制的 DOM 区域；
@@ -350,11 +350,11 @@ Vue 组件
 				被局部注册的组件，只能在当前注册范围内使用；如果某些组件只在特定的情况下被用到，推荐进行局部注册。
 			全局注册组件
 				在 main.js 文件中对组件进行全局注册。
-					// 1、导入 Swiper 组件。
-					import Swiper from "./components/MySwiper.js";
-					const app = createApp(App);
-					// 2、调用 app 实例的 component() 方法，进行全局注册 MySearch 组件。
-					app.component('MySearch', Swiper);
+					import Vue from 'vue';
+					// 1、导入 MySearch 组件。
+					import MySearch from "./components/MySearch.js";
+					// 2、调用 Vue.component 方法来全局注册组件。第一个参数是组件名称，第二个参数是组件对象。
+					Vue.component('MySearch', MySearch);
 			局部注册组件
 				在引用该组件的文件中对该组件进行局部注册。
 					<script>
@@ -370,12 +370,12 @@ Vue 组件
 		使用被注册的组件
 			被注册的组件可以直接在模板结构中以标签的形式进行使用。
 				<template>
-					<my-swiper></my-swiper>
+					<MySearch></MySearch>
 				</template>
 		组件注册时名称的写法
 			在进行组件的注册时，定义组件名称的方式有两种：
-				1、使用 kebab-case 命名法，即短横线命名法，例如：my-swiper 和 my-search；
-				2、使用 PascalCase 命名法，即大驼峰命名法，例如：MySwiper 和 MySearch。
+				1、使用 kebab-case 命名法，即短横线命名法，例如：my-search；
+				2、使用 PascalCase 命名法，即大驼峰命名法，例如：MySearch。
 			短横线命名法的特点：在使用组件时，组件的名称只能是短横线名称。
 			大驼峰命名法的特点：在使用组件时，组件的名称既可以是大驼峰名称，也可以是短横线名称。
 			注意：在实际开发中，推荐使用大驼峰命名法，因为它的适用性更强。
@@ -431,17 +431,14 @@ Vue 组件通信
 				1、单种可能数据类型的校验；
 					可以直接为组件的 prop 自定义属性指定单种可能数据类型的校验。
 						export default {
-							
-props: {
+							props: {
 								//支持的 8 种基础类型的校验。
 								propA: String,		// 字符串类型
-								
-propB: Number,		// 数字类型
+								propB: Number,		// 数字类型
 								propC: Boolean,		// 布尔类型
 								propD: Array,		// 数组类型
 								propE: Object,		// 对象类型
-								
-propF: Date,		// 日期类型
+								propF: Date,		// 日期类型
 								propG: Function,	// 函数类型
 								propH: Symbol		// 符号类型
 							}
@@ -449,16 +446,14 @@ propF: Date,		// 日期类型
 				2、多种可能数据类型的校验；
 					如果某个 prop 自定义属性的类型可能为多种，可以通过数组的形式为其指定多种可能数据类型的校验。
 						export default {
-							
-props: {
+							props: {
 								prop: [ String, Number ]
 							}
 						}
 				3、是否为必须项；
 					如果组件的某个 prop 自定义属性是必须项，则可以通过如下的方式进行设置。
-						export default {
-							
-props: {
+						export default {						
+							props: {
 								prop: {
 									type: [ String, Number ],
 									// 当前属性的值是必须项，如果使用者没有给定 prop 自定义属性的值，则终端会进行警告提示。
@@ -468,9 +463,8 @@ props: {
 						}
 				4、设置属性默认值；
 					在封装组件时，可以为某个 prop 自定义属性指定默认值。
-						export default {
-							
-props: {
+						export default {				
+							props: {
 								prop: {
 									type: [ String, Number ],
 									required: false,
@@ -480,9 +474,8 @@ props: {
 						}
 				5、自定义属性的校验函数。
 					在封装组件时，可以为 prop 自定义属性指定自定义校验函数。
-						export default {
-							
-props: {
+						export default {						
+							props: {
 								prop: {
 									// "prop 自定义属性的值"可以通过形参 value 进行接收。
 									validator(value) {
@@ -523,13 +516,11 @@ props: {
 			<!-- 父组件中的代码 -->
 			<my-counter v-model:activeNumber="activeNum"></my-counter>
 			data() {
-		
-		return { activeNum: 0 }
+				return { activeNum: 0 }
 			}
 			// 子组件中的代码
 			export default {
-					
-props: ['activeNumber'],
+					props: ['activeNumber'],
 					emits: ['update:activeNumber'],
 					methods: {
 						onBtnClick() {
@@ -550,7 +541,9 @@ props: ['activeNumber'],
 		3、在数据接收方，调用 bus.on('事件名称', 自定义事件) 方法注册一个自定义事件；
 			import bus from './eventBus.js'
 			export default {
-				data() { return { count1: 0 } },
+				data() { 
+					return { count1: 0 }
+				},
 				created() {
 					bus.on('countChange', count => {
 						this.count1 = count;
@@ -560,7 +553,9 @@ props: ['activeNumber'],
 		4、在数据发送方，调用 bus.emit('事件名称', 要发送的数据) 方法触发这个自定义事件。
 			import bus from './eventBus.js'
 			export default {
-				data() { return { count2: 0 } },
+				data() { 
+					return { count2: 0 }
+				},
 				methods: {
 					addCount() {
 						this.count2++;
@@ -572,8 +567,12 @@ props: ['activeNumber'],
 		非响应式传值
 			祖父组件可以通过 provide 节点向其子孙组件共享数据。
 				export default {
-					data() { return { color: 'red' } },
-					provide() { return { color: this.color } }
+					data() { 
+						return { color: 'red' }
+					},
+					provide() {
+						return { color: this.color }
+					}
 				}
 			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。
 				<template>
@@ -587,9 +586,13 @@ props: ['activeNumber'],
 				// 从 Vue 中按需导入 computed 函数。
 				import { computed } from 'vue'
 				export default {
-					data() { return { color: 'red' } },
+					data() {
+						return { color: 'red' }
+					},
 					// 使用 computed 函数，将共享的数据包装为响应式数据。
-					provide() { return { color: computed(() => this.color) } }
+					provide() {
+						return { color: computed(() => this.color) }
+					}
 				}
 			子孙组件可以通过 inject 节点接收祖父组件共享过来的数据。
 				<template>
@@ -624,9 +627,7 @@ props: ['activeNumber'],
 		state
 			作用：存储共享“状态数据”。相当于服务器中的 dao 层。
 			定义数据的格式：
-				state: {
-					count: 0	
-				}
+				state: { count: 0 }
 			页面中的使用方式：
 				1、在组件模板中使用；
 					<div>{{ $store.state.count }}</div>
@@ -654,7 +655,8 @@ props: ['activeNumber'],
 			定义数据的格式：
 				// 参数是 Store 的实例对象。必须要有返回值。
 				getters: {
-					countFilter: state => state.count += 100
+					countFilter: state => state.count += 100,
+					directChildStateAccess: state => state.child.someStateValue // 模块中的用法。
 				}
 			页面中的使用方式：
 				1、在组件模板中使用；
@@ -678,25 +680,25 @@ props: ['activeNumber'],
 				mutaitions: {
 					// 开发中约定 mutaitions 中的方法名需大写。
 					// 参数 state 是 state 对象，参数 params 是 mutaitions 方法被调用时传递过来的参数。
-					Add_COUNT(state, params) {
+					ADD_COUNT(state, params) {
 						state.count += params;
 					}
 				}
 			页面中的使用方式：
 				1、在组件模板中使用；
-					<div @click='$store.commit('Add_COUNT', 1)'>同步 +1</div>
+					<div @click='$store.commit('ADD_COUNT', 1)'>同步 + 1</div>
 				2、在组件脚本中使用；
-					this.$store.commit('Add_COUNT', 1)
+					this.$store.commit('ADD_COUNT', 1)
 				3、借助辅助函数来使用。
 					第一步：导入 mapMutaitions。
 						import { mapMutaitions } from 'vuex';
 					第二步：采用数组形式引入 mutaitions 的方法。
-						// 这里的 Add_COUNT_ALIAS 可采用小驼峰写法。
-						mapMutaitions({ Add_COUNT_ALIAS: 'Add_COUNT' })
-						// mapMutaitions(['Add_COUNT'])
+						// 这里的 ADD_COUNT_ALIAS 可采用小驼峰写法。
+						mapMutaitions({ ADD_COUNT_ALIAS: 'ADD_COUNT' })
+						// mapMutaitions(['ADD_COUNT'])
 					第三步：利用延展运算符将引入的方法映射到方法属性中。
 						methods: {
-							...mapMutaitions({ Add_COUNT_ALIAS: 'Add_COUNT' })
+							...mapMutaitions({ ADD_COUNT_ALIAS: 'ADD_COUNT' })
 						}
 					...接下来当作方法使用即可；方法调用时需传递 params 参数，否则会异常。
 		actions
@@ -707,13 +709,13 @@ props: ['activeNumber'],
 					// 可以通过 context.commit('fnName', params) 来调用 mutaitions 的方法，也可以通过 context.dispatch('fnName', params) 来调  actions 的方法。
 					addCount(context, params) {
 						setTimeout(function() {
-							context.commit('Add_COUNT', params);
+							context.commit('ADD_COUNT', params);
 						}, 1000);
 					}
 				}
 			页面中的使用方式：
 				1、在组件模板中使用；
-					<div @click='$store.dispatch('addCount', 1)'>异步 +1</div>
+					<div @click='$store.dispatch('addCount', 1)'>异步 + 1</div>
 				2、在组件脚本中使用；
 					this.$store.dispatch('addCount', 1)
 				3、借助辅助函数来使用。
@@ -738,12 +740,12 @@ props: ['activeNumber'],
 				computed: {
 					...mapGetters('moduleName', { countFilterAlias: 'countFilter' })
 				}
-			mapMutaitions
-				this.$store.commit('moduleName/Add_COUNT', 1)
+			mutaitions
+				this.$store.commit('moduleName/ADD_COUNT', 1)
 				methods: {
-					...mapMutaitions('moduleName', { Add_COUNT_ALIAS: 'Add_COUNT' })
+					...mapMutaitions('moduleName', { ADD_COUNT_ALIAS: 'ADD_COUNT' })
 				}
-			mapActions
+			actions
 				this.$store.dispatch('moduleName/addCount', 1)
 				methods: {
 					...mapActions('moduleName', { addCountAlias: 'addCount'})
@@ -782,14 +784,13 @@ Vue 过滤器
 	过滤器的兼容性
 		过滤器仅在 Vue2.x 和 Vue1.x 中受支持，在 Vue3.x 的版本中剔除了过滤器相关的功能。
 Vue 计算属性
-	Vue 计算属性本质上是  JS 函数，它可以实时监听所依赖数据的变化，并返回一个计算后的新值供组件使用。
+	Vue 计算属性本质上是 JS 函数，它可以实时监听所依赖数据的变化，并返回一个计算后的新值供组件使用。
 	声明计算属性
 		计算属性需要以函数的形式声明到组件的 computed 节点中。
 			<input type="text" v-model.number="count" />
 			<p>{{ count }}乘以 2 的值为：{{ plus }}</p>
 			data() {
-			
-	return { count: 1 }
+				return { count: 1 }
 			},
 			computed: {
 				plus() {
@@ -809,8 +810,7 @@ Vue 监听器
 	基本用法
 		export default {
 			data() {
-			
-	return { username: '' }
+				return { username: '' }
 			},
 			watch: {
 				username(newVal, oldVal) {
@@ -822,8 +822,7 @@ Vue 监听器
 		默认情况下，在页面初次加载完毕后组件不会调用监听器。如果想让监听器在页面初次加载完毕后立即被调用，则需要使用监听器的 immediate 属性。
 			export default {
 				data() {
-				
-	return { username: '' }
+					return { username: '' }
 				},
 				watch: {
 					username: {
@@ -838,8 +837,7 @@ Vue 监听器
 		默认情况下，监听器无法监听对象属性值的变化，如果想要对其进行监听，需要为监听器添加 deep 属性。
 			export default {
 				data() {
-				
-	return { 
+					return { 
 						userInfo: { username: '' }
 					}
 				},
@@ -856,8 +854,7 @@ Vue 监听器
 		如果只想监听对象数据中单个属性值的变化，则可以按照如下方式定义监听器。
 			export default {
 				data() {
-				
-	return { 
+					return { 
 						userInfo: { username: '' }
 					}
 				},
@@ -865,8 +862,7 @@ Vue 监听器
 					'userInfo.username': {
 						handler(newVal, oldVal) {
 							// 处理逻辑
-						},
-						deep: true
+						}
 					}
 				}
 			}
@@ -931,45 +927,44 @@ Vue 插槽
 					<template v-slot:default="{ info }">{{ info }}</template>
 				</sub-com>
 			</template>
-Vue 自定义指令(vue 3.x 版本)
+Vue 自定义指令
 	版本差异：
-		在 vue2.x 的项目中使用自定义指令时: mounted 应改为 bind、updated 应改为 update。
+		在 vue3.x 的项目中使用自定义指令时：bind 应改为 mounted、update 应改为 updated。
 	私有自定义指令
-		在每个 Vue 组件中，可以在 directives 节点下声明私有自定义指令。
-			<!-- 在使用自定义指令时，需要加上 v- 前缀。 -->
-			<input v-focus />
-			// 声明自定义指令，指令的名字是 focus。
-			directives: {
-				focus: {
-					// 当绑定指令的元素被插入到 DOM 中时会自动触发 mounted 函数。
-					mounted(el) {
-						// el 是绑定指令的 DOM 元素。
-						el.focus();
-					}
-				}
+		directives: {
+			'my-directive': {
+				bind(el, binding, vnode) {
+					// 这里是当指令绑定到元素时的逻辑。
+				},
+				inserted(el, binding, vnode) {
+					// 当元素插入父节点时触发。
+				},
+				update(el, binding, vnode, oldVnode) {
+					// 当绑定值更新时触发。
+				},
+				// ... 其他生命周期钩子如 unbind 等。
 			}
+		}
 	全局自定义指令
-		全局自定义指令需要通过“单页面应用程序的实例对象”进行声明。
+		Vue.directive('my-directive', {
+			// 同上，定义指令的逻辑。
+		});
+	使用自定义指令
+		<div v-my-directive="value"></div>
+	bind 和 update 函数
+		bind 函数只会在“绑定指令的元素”第一次被插入到 DOM 时被调用，update 函数会在每次 DOM 更新完成后再次被调用。
 			<input v-focus />
-			app.directive('focus', {
-				mounted(el) {
-					el.focus();
-				}
-			});
-	updated 函数
-		mounted 函数只会在“绑定指令的元素”第一次被插入到 DOM 时被调用，updated 函数会在每次 DOM 更新完成后再次被调用。
-			<input v-focus />
-			app.directive('focus', {
-				mounted(el) {
+			Vue.directive('focus', {
+				bind(el, binding, vnode) {
 					el.focus();
 				},
-				updated(el) {
+				update(el, binding, vnode) {
 					el.focus();
 				}
 			});
-			注意：如果 mounted 和 updated 函数中的逻辑完全相同，则自定义指令可以简写成如下格式：
-				app.directive('focus', {
-					el => {
+			注意：如果 bind 和 update 函数中的逻辑完全相同，则自定义指令可以简写成如下格式：
+				Vue.directive('focus', {
+					(el, binding, vnode) => {
 						el.focus();
 					}
 				});
@@ -978,13 +973,13 @@ Vue 自定义指令(vue 3.x 版本)
 			<!-- 使用自定义指令。 -->
 			<input v-color="'red'" />
 			// 定义自定义指令。
-			app.directive('color', {
-				(el, binding) => {
+			Vue.directive('color', {
+				(el, binding, vnode) => {
 					// binding.value 就是通过“等号”为自定义指令绑定的值。
 					el.style.coor = binding.value;
 				}
 			});
-Vue 路由（vue-router 4.x 版本）
+Vue 路由（vue-router 3.x 版本）
 	vue-router 版本
 		前后版本使用差别较小。
 		vue-router 目前有 3.x 和 4.x 的版本。其中：vue-router 3.x 只能结合 vue2.x 进行使用，vue-router 4.x 只能结合 vue3.x 进行使用。
@@ -1038,69 +1033,72 @@ Vue 路由（vue-router 4.x 版本）
 					<!-- 声明路由占位符 -->
 					<router-view></router-view>
 				</template>
-			4、创建路由模块；
-				在项目中创建 router.js 路由模块，模块中按照如下 4 个步骤创建并获得路由的实例对象：
-					1、从 vue-router 中按需导入两个方法；
-						// createRouter 方法用于创建路由的实例对象。
-						// createWebHashHistory 方法用于指定路由的 hash 模式。
-						import { createRouter, createWebHashHistory } from 'vue-router';
-					2、导入需要使用路由控制的组件；
-					3、创建路由的实例对象；
-						const router = createRouter({
-							history: createWebHashHistory(),
-							routes: []
-						});
-					4、向外共享路由的实例对象。
-						export default router
+			4、在 router.js 中创建路由模块；
+				import Vue from 'vue'
+				import VueRouter from 'vue-router'
+				// 全局注册 VueRouter 路由模块。
+				Vue.use(VueRouter)
+				const createRouter = () =>
+					new VueRouter({
+						// 开启 history 模式需要服务端的支持。
+						// mode: 'history',
+						routes: []
+					})
+				// 创建一个 VueRouter 实例。
+				const router = createRouter()
+				export default router
 			5、在 main.js 中导入并挂载路由模块。
-				import router from './router';
+				import router from './router.js';
 				app.use(router);
 	vue-router 高级
 		重定向路由
-			重定向路由指的是：在访问地址 A 的时候，强制跳转到地址 C ，从而展示特定的组件页面。
+			重定向路由指的是：在访问地址 A 的时候，强制跳转到地址 C，从而展示特定的组件页面。
 			通过路由规则的 redirect 属性指定一个新的路由地址可以很方便地设置重定向路由。
-				const router = createRouter({
-					history: createWebHashHistory(),
-					routes: [
-						{ path: '/', redirect: '/login' },
-						{ path: '/login', component: Login }
-					]
-				});
+				const createRouter = () =>
+					new VueRouter({
+						// mode: 'history',
+						routes: [
+							{ path: '/', redirect: '/login' },
+							{ path: '/login', component: Login }
+						]
+					})
 		嵌套路由
 			通过路由实现组件的嵌套展示，叫做嵌套路由，也叫做父子路由。用法如下：
 				1、声明子路由链接和占位符；
 				2、在父路由规则中，通过 children 属性嵌套声明子路由规则。
-					const router = createRouter({
-						history: createWebHashHistory(),
-						routes: [
-							{
-							      path: "/home",
-							      redirect: "/home/users",
-							      component: Home,
-							      children: [
-									{ path: "users || /home/users", component: Users },
-									{ path: "rights", component: Rights },
-									{ path: "goods", component: Goods }
-							      ]
-							}
-						]
-					});
+					const createRouter = () =>
+						new VueRouter({
+							// mode: 'history',
+							routes: [
+								{
+									path: "/home",
+									redirect: "/home/users",
+									component: Home,
+									children: [
+										{ path: "users", component: Users },
+										{ path: "rights", component: Rights },
+										{ path: "goods", component: Goods }
+									]
+								}
+							]
+						})
 				注意：路由中的开头斜线代表的是根路径。
 		命名路由
 			通过 name 属性为路由规则定义名称的方式，叫做命名路由。
-				const router = createRouter({
-					history: createWebHashHistory(),
-					routes: [
-						{ path: '/login', component: Login, name: 'login' }
-					]
-				});
+				const createRouter = () =>
+					new VueRouter({
+						// mode: 'history',
+						routes: [
+							{ path: '/login', component: Login, name: 'login' }
+						]
+					})
 			注意：命名路由的 name 值不能重复，必须保证唯一性。
 			使用命名路由实现声明式导航
 				<router-link :to="{ name: 'mov', params: { id: 3 } }">go to movie</router-link>
 			使用命名路由实现编程式导航
 				this.$router.push({ name: 'mov', params: { id: 3 } });
 		动态路由
-			const router = createRouter({});
+			const router = createRouter();
 			router.addRoutes([{}, {}]);
 		路由导航与传参
 			组件中的路由导航与传参
@@ -1124,17 +1122,21 @@ Vue 路由（vue-router 4.x 版本）
 			路由模块中的 params 传参
 				路由模块中的 params 传参也叫动态路由。
 				路由模块中
-					const router = createRouter({
-						history: createWebHashHistory(),
-						routes: [{ path: "/user/:userId", component: User }]
-					});
+					const createRouter = () =>
+						new VueRouter({
+							// mode: 'history',
+							routes: [
+								{ path: "/user/:userId", component: User }
+							]
+						})
 				对应组件中
 					传递参数
 						<router-link to="/user/123">User</router-link>
 						<router-link :to="`/user/${userId}`">User</router-link>
+						this.$router.push({ path: '/user', params: { userId: 123 }});
 					接收参数
 						$route 接收路由参数
-							$route.params.参数名
+							this.$route.params.userId
 						props 接收路由参数
 							// 首先在定义路由规则时声明 props: true。
 							{ path: "/user/:userId", component: User, props: true }
@@ -1146,7 +1148,7 @@ Vue 路由（vue-router 4.x 版本）
 			全局路由导航守卫
 				全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
 					// 创建路由实例对象。
-					const router = createRouter({ ...... });
+					const router = createRouter();
 					// 全局前置路由导航守卫。
 					router.beforeEach((to, from, next) => {
 					  next();
@@ -1166,22 +1168,24 @@ Vue 路由（vue-router 4.x 版本）
 				进入路由组件时调用 beforeRouteEnter 钩子。
 					beforeRouteEnter(to, from, next) { next(); }
 				离开路由组件时调用 afterRouteEnter 钩子。
-					afterRouteEnter(to, from, next) { next(); }
+					afterRouteEnter(to, from) {}
 				注意：这个使用的少，用到时建议去查看官方文档。
 		路由元信息
 			定义路由的时候可以配置 meta 字段：
-				const router = new VueRouter({
-					routes: [{
-						path: '/foo',
-						component: Foo,
-						children: [{
-							path: 'bar',
-							component: Bar,
-							// a meta field
-							meta: { requiresAuth: true }
+				const createRouter = () =>
+					new VueRouter({
+						// mode: 'history',
+						routes: [{
+							path: '/foo',
+							component: Foo,
+							children: [{
+								path: '/foo/bar',
+								component: Bar,
+								// a meta field
+								meta: { requiresAuth: true }
+							}]
 						}]
-					}]
-				})
+					})
 		路由激活样式
 			方式一：使用默认的高亮 class 类。
 				被激活的路由链接默认会应用 router-link-active 类，开发者可以使用此类名选择器为激活的路由链接设置高亮的样式。
@@ -1193,14 +1197,15 @@ Vue 路由（vue-router 4.x 版本）
 					}
 			方式二：自定义路由的高亮 class 类。
 				在创建路由的实例对象时，开发者可以基于 linkActiveClass 属性自定义路由链接被激活时所应用的类。
-					const router = createRouter({
-						history: createWebHashHistory(),
-						// 默认的路由激活类名会被覆盖。
-						linkActiveClass: 'router-active',
-						routes: []
-					});
+					const createRouter = () =>
+						new VueRouter({
+							// 默认的路由激活类名会被覆盖。
+							linkActiveClass: 'router-active',
+							// mode: 'history',
+							routes: []
+						})
 Vue 高级
-	vue-cli 中已经默认配置了 @ 代表 src 目录
+	Vue CLI 中已经默认配置了 @ 代表 src 目录
 	ref
 		简介
 			每个 Vue 的组件实例上都包含一个 $refs 对象，里面存储着对应 DOM 元素或子组件的引用。默认情况下 $refs 指向一个空对象。
@@ -1252,6 +1257,10 @@ Vue 高级
 		用法：
 			删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。
 			这个方法主要用于避开 Vue 不能检测到响应式对象的 property 被删除的限制，但是你应该很少会使用它。
+		附：Vue 修改数组
+			直接用索引值 arr[idx] = xxx 方式修改数组是不会被 Vue 监测到的。
+			使用 push pop shift unshift splice sort reverse 这几种方法修改数组是能够被 Vue 监测到的。
+			其他详情见 https://cn.vuejs.org/v2/guide/list.html#%E6%95%B0%E7%BB%84%E6%9B%B4%E6%96%B0%E6%A3%80%E6%B5%8B
 	vm.$on(event, callback)
 		参数：
 			{string} event

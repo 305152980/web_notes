@@ -9,17 +9,17 @@
 		-o-border-radius: 10px;
 		border-radius: 10px;
 基本样式笔记
-	outline: none | 0;						/* 去掉 input 框获取焦点时的蓝色边框线。 */
-	text-decoration: none;						/* 去掉 a 标签的下划线。 */
-	input::placeholder { color: red; }				/* 修改 placeholder 里面的字体颜色。 */
-	resize: none;							/* 让 textarea 文本域无法被拖拽。 */
-	vertical-align: baseline | top | middle | bottom;		/* 修改 img 标签与文本之间的对齐方式。 */
-	overflow: visible | hidden | auto | scroll;			/* 元素溢出时盒子的显示模式。 */
+	outline: none | 0;        /* 去掉 input 框获取焦点时的蓝色边框线。 */
+	text-decoration: none;        /* 去掉 a 标签的下划线。 */
+	input::placeholder { color: red; }        /* 修改 placeholder 里面的字体颜色。 */
+	resize: none;        /* 让 textarea 文本域无法被拖拽。 */
+	vertical-align: baseline | top | middle | bottom;        /* 修改 img 标签与文本之间的对齐方式。 */
+	overflow: visible | hidden | auto | scroll;        /* 元素溢出时盒子的显示模式。 */
 	cursor: default | pointer | move | text | not-allowed;
-	display: none | block						/* 元素隐藏|显示。元素隐藏后不再占有原来的位置。常搭配 JS 一起使用。 */
-	visibility: hiddden | visible;					/* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
-	img { filter: blur(5px); }					/* 数值越大，图片越模糊。 */
-	width | height: calc(100% - 30px);				/* + - * / */
+	display: none | block;        /* 元素隐藏|显示。元素隐藏后不再占有原来的位置。常搭配 JS 一起使用。 */
+	visibility: hiddden | visible;        /* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
+	img { filter: blur(5px); }        /* 数值越大，图片越模糊。 */
+	width | height: calc(100% - 30px);        /* + - * / */
 溢出文字隐藏
 	文本显示方式 white-space。
 		normal：使用浏览器默认显示方式。
@@ -42,9 +42,9 @@
 		{
 			overflow: hidden;
 			text-overflow: ellipsis;
-			display: -webkit-box;				/* 弹性伸缩盒子模型的显示模式。 */
-			-webkit-line-clamp: 2;				/* 限制块元素内文本显示的行数。 */
-			-webkit-line-orient: vertical;			/* 设置伸缩盒对象的子元素的排列方式。 */
+			display: -webkit-box;        /* 弹性伸缩盒子模型的显示模式。 */
+			-webkit-line-clamp: 2;        /* 限制块元素内文本显示的行数。 */
+			-webkit-line-orient: vertical;        /* 设置伸缩盒对象的子元素的排列方式。 */
 		}
 		注意：这个有较大的兼容性问题，适用于 webkit 内核的浏览器（移动端或者谷歌浏览器）。盒子的高度需配合文字的行高来设置，或者文字的行高需配合盒子的高度来设置。
 盒子居中
@@ -67,7 +67,7 @@
 			{ text-align: center; }
 		垂直居中：
 			{
-				line-height: xpx;			/* 行高设置为父盒子的高度。 */
+				line-height: xpx;        /* 行高设置为父盒子的高度。 */
 				vertical-align: middle;
 			}		
 BFC
@@ -87,28 +87,28 @@ BFC
 	}
 	em,
 	i {
-		font-style: normal;					/* 斜体字不再倾斜。 */
+		font-style: normal;        /* 斜体字不再倾斜。 */
 	}
 	li {
-		list-style: none;					/* 去掉 li 元素前面的点。 */
+		list-style: none;        /* 去掉 li 元素前面的点。 */
 	}
 	img {
-		border: 0;						/* 兼容低版本浏览器。 */
+		border: 0;        /* 兼容低版本浏览器。 */
 		vertical-aligh: middle;	
 	}
 	button {
-		cursor: pointer;					/* 鼠标覆盖有小手。 */
+		cursor: pointer;        /* 鼠标覆盖有小手。 */
 	}
 	a {
 		color: #666;
-		text-decoration: none;					/* 超链接去掉下划线。 */
+		text-decoration: none;        /* 超链接去掉下划线。 */
 	}
 	a:hover {
 		color: #c81623;
 	}
 	input {
-		border: 0;						/* 去掉 input 框本身自带的边框。 */
-		outline: none;						/* 去掉 input 框激活时的蓝色边框。 */
+		border: 0;        /* 去掉 input 框本身自带的边框。 */
+		outline: none;        /* 去掉 input 框激活时的蓝色边框。 */
 	}
 	body { 
 		font: 12px/1.5 'Microsoft YaHei';
@@ -130,21 +130,21 @@ BFC
 
 
 
-<h></h>									<!-- 1 ~ 7 -->
+<h></h>        <!-- 1 ~ 7 -->
 <p></p>
-<strong></strong>							<!-- 字体加粗 -->
-<em></em>								<!-- 字体倾斜 -->
-<del></del>								<!-- 字体删除线 -->
-<ins></ins>								<!-- 字体下划线 -->
+<strong></strong>        <!-- 字体加粗 -->
+<em></em>        <!-- 字体倾斜 -->
+<del></del>        <!-- 字体删除线 -->
+<ins></ins>        <!-- 字体下划线 -->
 <br />
 <img src="" alt=""></img>
-<a href="#" target="_self | _blank"></a>				<!-- target 默认值：_self。href="javascript:void(0); | javascript:;" 意思为禁用链接的跳转功能。 -->
+<a href="#" target="_self | _blank"></a>        <!-- target 默认值：_self。href="javascript:void(0); | javascript:;" 意思为禁用链接的跳转功能。 -->
 <link rel="stylesheet" type="text/css" herf=""></link>
 /	./	../
 &nbsp; &lt; &gt;
 =========================================================================================================================================================================================
-<table style="boeder-collapse: collspse;">				<!-- thead 和 tbody 标签可有可无。细线边框：boeder-collapse: collspse; | margin-left: -1px; -->
-	<thead>								<!-- thead 中必须有 tr。 -->
+<table style="boeder-collapse: collspse;">        <!-- thead 和 tbody 标签可有可无。细线边框：boeder-collapse: collspse; | margin-left: -1px; -->
+	<thead>        <!-- thead 中必须有 tr。 -->
 		<tr>
 			<th></th>
 		</tr>
@@ -171,17 +171,15 @@ BFC
 =========================================================================================================================================================================================
 <form action="请求地址" method="get | post">
 	<input type="text | password" placeholder="请输入值..." name="" value=""></input>				
-	<input type="radio | checkbox" checked="checked" name="" value="">xxx</input>
-						<!-- 单复选框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->
+	<input type="radio | checkbox" checked="checked" name="" value="">xxx</input>        <!-- 单复选框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->
 	<label for="sex">男</label><input id="sex" type="radio" name="sex" value="男"></input>			
 	<select name="">
-		<option value="">xxx</option>	<!-- 下拉框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->	
+		<option value="">xxx</option>        <!-- 下拉框中，如果没有 value 属性，则传到后端的是 xxx 文本值；如果有 value 属性，则传到后端的是 value 值。 -->	
 		<option selected="selected" value="">xxx</option>
 	</select>			
 	<textarea placeholder="描述信息..." name="" value=""></textarea>
 	<input type="file" multiple="multiple"></input>
-	<input type="submit | reset | button" value="">xxx</input>
-						<!-- 按钮中，如果没有 value 属性，则页面显示的是 xxx 文本值；如果有 value 属性，则页面显示的是 value 值。 -->
+	<input type="submit | reset | button" value="">xxx</input>        <!-- 按钮中，如果没有 value 属性，则页面显示的是 xxx 文本值；如果有 value 属性，则页面显示的是 value 值。 -->
 </form>
 
 
@@ -191,55 +189,52 @@ BFC
 
 
 font-style: normal | italic;
-font-weight: normal | bold | 100 ~ 900;					/* 400 = nomal；700 = bold */
+font-weight: normal | bold | 100 ~ 900;        /* 400 = nomal；700 = bold */
 font-size: 14px;
-line-height: 14px;							/* line-height = 盒子 height 时，单行文字垂直居中，也可以间接让行内和行内块元素垂直居中。 */
+line-height: 14px;        /* line-height = 盒子 height 时，单行文字垂直居中，也可以间接让行内和行内块元素垂直居中。 */
 font-family: Arial "Microsoft YaHei";
-font: font-style font-weight font-size/line-height font-family;		/* 各属性值之间有顺序要求。font-size 和 font-family 为必须属性值。 */
+font: font-style font-weight font-size/line-height font-family;        /* 各属性值之间有顺序要求。font-size 和 font-family 为必须属性值。 */
 color: red | #ffffff | rgb(0, 0, 225);
-text-align: center | right | left;					/* center 可以让文本、行内和行内块元素水平居中对齐。 */
-text-indent: 2em;							/* 缩进 2 字符。 */
-text-decoration: none | underline;					/* 常用来去掉 a 标签的下划线。 */
-text-shadow: h-shadow v-shaow blur color;				/* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。 */
+text-align: center | right | left;        /* center 可以让文本、行内和行内块元素水平居中对齐。 */
+text-indent: 2em;        /* 缩进 2 字符。 */
+text-decoration: none | underline;        /* 常用来去掉 a 标签的下划线。 */
+text-shadow: h-shadow v-shaow blur color;        /* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。 */
 	eg: text-shadow: 2px 2px 2px reba(0, 0, 0, 0.3);
 =========================================================================================================================================================================================
 background-color: transparent | red;
 background-img: none | url();
 background-repeat: repeat | no-repeat | repeat-x | repeat-y;
-background-attachment: scroll | fixed;					/* scroll：背景滚动；fixed：背景固定。 */
-background-position: center | top | right | left | bottom center | top | right | left | bottom;
-									/* 两个属性值之间没有顺序要求。如果其中的一个值被省略，则默认其为 center。 */
-background-position: center | top | right | left | bottom | 20px center | top | right | left | bottom | 50px;
-									/* 两个属性值 (x, y) 之间有顺序要求。此种写法不推荐省略其中的一个值。 */
-background: background-color background-img background-repeat background-attachment background-position;
-									/* 各属性值之间没有顺序要求。 */
-background-size: 300px 300px;						/* 背景图片的大小。只有一个值时，高度等比例拉伸。 */
+background-attachment: scroll | fixed;        /* scroll：背景滚动；fixed：背景固定。 */
+background-position: center | top | right | left | bottom center | top | right | left | bottom;        /* 两个属性值之间没有顺序要求。如果其中的一个值被省略，则默认其为 center。 */
+background-position: center | top | right | left | bottom | 20px center | top | right | left | bottom | 50px;        /* 两个属性值 (x, y) 之间有顺序要求。此种写法不推荐省略其中的一个值。 */
+background: background-color background-img background-repeat background-attachment background-position;        /* 各属性值之间没有顺序要求。 */
+background-size: 300px 300px;        /* 背景图片的大小。只有一个值时，高度等比例拉伸。 */
 	单位：px | % | cover | contain
 		% 是相对于父盒子的单位。
 		cover 宽高等比例拉伸，背景图片会完全覆盖父盒子，可能有部分背景图片显示不出来。
 		contain 宽高等比例拉伸，当背景图片宽或高铺满父盒子时就不再拉伸了，此时父盒子可能有部分空白区域未被铺满。
-background: rgba(0, 0, 0, 0.3);						/* 背景半透明。alpha 取值范围为 0 ~ 1。H5 新增。 */
-background: linear-gradient(起始方向, 颜色1, 颜色2, ...);		/* 背景颜色渐变。其值必须添加浏览器私有前缀。 */
+background: rgba(0, 0, 0, 0.3);        /* 背景半透明。alpha 取值范围为 0 ~ 1。H5 新增。 */
+background: linear-gradient(起始方向, 颜色1, 颜色2, ...);        /* 背景颜色渐变。其值必须添加浏览器私有前缀。 */
 	eg: background: -webkit-linear-gradient(left top, red, blue);
 =========================================================================================================================================================================================
-border: 1px none | solid | dotted | dashed #fff;			/* 各属性值之间没有顺序要求。 */
+border: 1px none | solid | dotted | dashed #fff;        /* 各属性值之间没有顺序要求。 */
 border-top | right | bottom | left: 1px none | solid | dotted | dashed #fff;
 border-radius: 5px | 50%;
-padding: 15px;								/* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
+padding: 15px;        /* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
 padding-top | right | bottom | left: 15px; 
-margin: 15px;								/* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
+margin: 15px;        /* 两个值：上下 左右。三个值：上 左右 下。四个值：上 右 下 左。 */ 
 margin-top | right | bottom | left: 15px; 
 box-sizing: content-box | border-box;
 	普通盒子大小 = 内容大小（宽高属性值） + 内边距大小 + 边框宽度
 	C3 盒子大小 = 宽高属性值
-border-shadow: h-shadow v-shaow blur spread color inset;		/* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。spread 为阴影的尺寸。 */
+border-shadow: h-shadow v-shaow blur spread color inset;        /* 各属性值之间有顺序要求。h-shadow 和 v-shaow 为必须属性值。blur 为阴影的虚实。spread 为阴影的尺寸。 */
 	eg: border-shadow: 2px 2px 2px 2px reba(0, 0, 0, 0.3) (inset);
 边框图片：
-	border-image-source						/* 用在边框的图片的路径。 */
-	border-image-slice						/* 图片边框向内偏移的距离。不带单位。 */
-	border-image-width						/* 图片边框的宽度。带单位。 */
-	border-image-repeat						/* 图片边框是否平铺（repeat）、铺满（round）或拉伸（stretch）。默认拉伸。 */
-margin: auto;  <=>  margin: 0 auto;					/* 可以让块级盒子水平居中对齐。（要求：1、不能脱标，2、必须自身有宽度，继承的宽度不行。） */ 
+	border-image-source        /* 用在边框的图片的路径。 */
+	border-image-slice        /* 图片边框向内偏移的距离。不带单位。 */
+	border-image-width        /* 图片边框的宽度。带单位。 */
+	border-image-repeat        /* 图片边框是否平铺（repeat）、铺满（round）或拉伸（stretch）。默认拉伸。 */
+margin: auto;  <=>  margin: 0 auto;        /* 可以让块级盒子水平居中对齐。（要求：1、不能脱标，2、必须自身有宽度，继承的宽度不行。） */ 
 注意：垂直方向上相邻块元素外边距会合并（取两者的大值），垂直方向上嵌套块元素上外边距会塌陷。
 	垂直外边距合并的解决方案：
 		1、只为其中的一个块元素添加外边距。
@@ -267,7 +262,7 @@ margin: auto;  <=>  margin: 0 auto;					/* 可以让块级盒子水平居中对�
 行内块元素
 	img | input | td
 	不独占一行，但相邻间会有由代码换行引起缝隙，默认宽度为元素内容本身，对其直接设置宽高会无效。
-display: block | inline | inline-block;					/* 主要用于行内元素转换为行内块元素，也可以用于元素的显示与隐藏。 */
+display: block | inline | inline-block;        /* 主要用于行内元素转换为行内块元素，也可以用于元素的显示与隐藏。 */
 =========================================================================================================================================================================================
 浮动的作用：
 	浮动的元素经常搭配标准流的父元素。标准流父元素负责纵向布局，浮动子元素负责横向布局。
@@ -293,7 +288,7 @@ display: block | inline | inline-block;					/* 主要用于行内元素转换为
 			clear: both;
 			visibility: hidden;
 		}
-		.clearfix {						/* IE6、7专有。 */					
+		.clearfix {        /* IE6、7专有。 */					
 			*zoom: 1;					
 		}
 	4、给父级标准流盒子添加双伪元素。
@@ -304,7 +299,7 @@ display: block | inline | inline-block;					/* 主要用于行内元素转换为
 		.clearfix:after {
 			clear: both;
 		}
-		.clearfix {						/* IE6、7专有。 */
+		.clearfix {        /* IE6、7专有。 */
 			*zoom: 1;
 		}
 =========================================================================================================================================================================================
@@ -523,59 +518,65 @@ transition
 	min-width: 320px;
 =========================================================================================================================================================================================
 flex 布局
-	伸缩布局 = 弹性布局 = 伸缩盒布局 = 弹性盒布局 = flex 布局
-	注意：以下笔记是以 flex-direction: row; 为基准来记录的。
+	注意：
+		以下笔记是以 flex-direction: row; 为基准来记录的。
+		剩余空间 = 父盒子的“宽”度 - 父盒子的“左右”内边距之和 - 各个子盒子的“宽”度之和 - 各个子盒子的“左右”边框和外边距之和。
 	常见父盒子属性：
 		display: 设置弹性盒子模式。
 			display: flex;
 		flex-direction: 设置弹性盒子的主轴方向。
 			flex-direction: row | row-reverse | column | column-reverse;
-		flex-wrap: 设置主轴方向上子盒子是否换行。
-			nowrap			默认值。不换行。
-			wrap			必要的时候换行。
-		flex-flow: flex-direction 和 flex-wrap 属性的复合属性。默认值：row nowrap。
-		justify-content: 设置主轴方向上子盒子的排列方式。
+		flex-wrap: 设置主轴方向上的子盒子是否换“行”。
+			nowrap			默认值。不换“行”。
+			wrap			必要的时候换“行”。
+		flex-flow: flex-direction 和 flex-wrap 属性的复合属性。
+			默认值：row nowrap。
+		justify-content: 设置主轴方向上的子盒子的排列方式。
 			flex-start		默认值。从主轴方向起始位置开始排列。
 			flex-end		从主轴方向末尾位置开始排列。
 			center			在主轴上居中排列。
-			space-between		在主轴方向上，均匀排列每个子盒子，首个子盒子放置于起点，末尾子盒子放置于终点。
-			space-around		在主轴方向上，均匀排列每个子盒子，每个子盒子的左右或上下分配相同的空间。
-			space-evenly		在主轴方向上，均匀排列每个子盒子，“每个子盒子之间 && 首尾子盒子与父盒子之间”的间隔都相等。
-		align-content: 设置侧轴方向上行与行之间的排列方式。
-			stretch			默认值。在侧轴方向上的剩余空间会被所有行平分。
-			flex-start		各行从侧轴方向起始位置开始排列。
-			flex-end		各行从侧轴方向末尾位置开始排列。
-			center			各行在侧轴上居中排列。
-			space-between		在侧轴方向上，均匀排列各行，首行放置于起点，尾行放置于终点。
-			space-around		在侧轴方向上，均匀排列各行，各行的左右或上下分配相同的空间。
-		align-items: 设置侧轴方向上子盒子在对应行中的排列方式。
-			stretch			默认值。如果子盒子没有设置宽或高属性，则子盒子的宽或高度会被拉伸以适应行高；
-						如果子盒子有设置宽或高属性，则子盒子在对应行的侧轴上按 flex-start 方式进行排列。
-			flex-start		子盒子位于对应行的侧轴上的开头。
-			flex-end		子盒子位于对应行的侧轴上的结尾。
-			center			子盒子位于对应行的侧轴上的中心。
-			注意：子盒子的 align-self 属性可重写父盒子的 align-items 属性。
+			space-between		在主轴方向上，均匀排列每个子盒子，效果见百度。
+			space-around		在主轴方向上，均匀排列每个子盒子，效果见百度。
+			space-evenly		在主轴方向上，均匀排列每个子盒子，效果见百度。
+		align-content: 设置侧轴方向上“行”的排列方式。
+			stretch			默认值。侧轴方向上的剩余空间会被所有“行”平分。
+			flex-start		各“行”从侧轴方向起始位置开始排列。
+			flex-end		各“行”从侧轴方向末尾位置开始排列。
+			center			各“行”在侧轴上居中排列。
+			space-between		在侧轴方向上，均匀排列各“行”，效果见百度。
+			space-around		在侧轴方向上，均匀排列各“行”，效果见百度。
+		align-items: 设置侧轴方向上子盒子在对应“行”中的排列方式。
+			stretch			默认值。如果子盒子没有设置“高”属性，则子盒子的“高”度会被拉伸以适应“行”高；
+						如果子盒子有设置“高”属性，则子盒子在本“行”中按 flex-start 方式进行排列。
+			flex-start		在侧轴方向上，子盒子位于对应“行”的开头。
+			flex-end		在侧轴方向上，子盒子位于对应“行”的结尾。
+			center			在侧轴方向上，子盒子位于对应“行”的中心。
+			注意：子盒子的 align-self 属性可覆盖父盒子的 align-items 属性。
 	常见子盒子属性：
-		flex-grow：在每行中，把主轴方向上“父盒子的普通宽或高度 - 各个子盒子的 C3 宽或高度之和”的差值，按各个子盒子自身 flex-grow 值的比例分配给各个子盒子。默认值为 0。
+		flex-grow：在主轴方向上的每一“行”中，把(父盒子的“宽”度 - 父盒子的“左右”内边距之和 - 各个子盒子的“宽”度之和 - 各个子盒子的“左右”边框和外边距之和)的差值，按各个子盒子自身 flex-grow 值的比例分配给各个子盒子的内容部分。默认值为 0。
 			flex-grow: 0;					/* 子盒子不会发生膨胀。 */
 			flex-grow: 1;
 			flex-grow: 20%;	
-		flex-shrink：在每行中，把主轴方向上“各个子盒子的 C3 宽或高度之和 - 父盒子的普通宽或高度”的差值，按各个子盒子自身 flex-shrink 值的比例分配给各个子盒子。默认值为 1。
+		flex-shrink：在主轴方向上的每一“行”中，把(父盒子的“宽”度 - 父盒子的“左右”内边距之和 - 各个子盒子的“宽”度之和 - 各个子盒子的“左右”边框和外边距之和)的差值，按各个子盒子自身 flex-shrink 值的比例分配给各个子盒子的内容部分。默认值为 1。
 			flex-shrink: 0;					/* 子盒子不会发生收缩。 */
 		flex-basis：设置主轴方向上子盒子伸缩时的基准值。
-			auto			默认值。数值等于子盒子自身的宽或高属性值。如果子盒子没有指定该属性，则其值将根据子盒子的内容来决定。
-						flex-basis = width/height ? width/height : 内容。
+			注解：flex-basis 指定了子盒子在主轴方向上的初始大小。如果不使用 box-sizing 改变子盒子的盒模型的话，那么这个属性就决定了子盒子的内容盒（content-box）的尺寸。
+			auto			默认值。数值等于子盒子的内容盒（content-box）的尺寸。
 			number			正整数。
-		flex: flex-grow、flex-shrink 和 flex-basis 属性的简写属性。默认值为 0 1 auto。
-		align-self: 设置侧轴方向上子盒子在对应行中的排列方式。
-			auto			默认值。子盒子继承父盒子的 align-items 属性。
-			stretch			如果子盒子没有设置宽或高属性，则子盒子的宽或高度会被拉伸以适应行高；
-						如果子盒子有设置宽或高属性，则子盒子在对应行的侧轴上按 flex-start 方式进行排列。
-			flex-start		子盒子位于对应行的侧轴上的开头。
-			flex-end		子盒子位于对应行的侧轴上的结尾。
-			center			子盒子位于对应行的侧轴上的中心。
-		order: 设置子盒子在主轴方向上的排列顺序，值越小越靠前。默认值为 0。
-	注意：剩余空间 = 父盒子的内容宽高 - 子盒子的外边距 - 子盒子的边框 - 子盒子的内边距 - 子盒子的内容宽高。
+		flex: flex-grow、flex-shrink 和 flex-basis 属性的复合属性。
+			默认值：0 1 auto。后面两个值为可选值。
+		align-self: 设置侧轴方向上子盒子在对应“行”中的排列方式。
+			auto			默认值。子盒子继承父盒子的 align-items 属性值。
+			stretch			如果子盒子没有设置“高”属性，则子盒子的“高”度会被拉伸以适应“行”高；
+						如果子盒子有设置“高”属性，则子盒子在本“行”中按 flex-start 方式进行排列。
+			flex-start		在侧轴方向上，子盒子位于对应“行”的开头。
+			flex-end		在侧轴方向上，子盒子位于对应“行”的结尾。
+			center			在侧轴方向上，子盒子位于对应“行”的中心。
+		order: 设置子盒子在主轴方向上的排列顺序，值越小越靠前。
+			默认值：0。
+=========================================================================================================================================================================================
+grid 布局
+	略。
 =========================================================================================================================================================================================
 媒体查询 + less + rem
 	媒体查询
