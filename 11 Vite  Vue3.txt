@@ -87,7 +87,7 @@ Vue3
 					attrs: 对象。包含组件外部传递过来，但没有在组件内部声明接收的属性，相当于 this.$attrs。
 					slots: 对象。包含组件接收到的插槽内容，相当于 this.$slots。
 					emit: 对象。包含组件接收到的自定义事件，相当于 this.$emit。
-						注意：vue3.x 中的自定义事件需要在组件中声明接收。
+					注意：vue3.x 中的自定义事件需要在组件中声明接收。
 			注意
 				1、因为 setup 函数的 props 参数是响应式的，所以对它不能使用 ES6 解构，这样会消除 prop 参数的响应性；
 				1、setup 函数可以返回普通 JS 对象供模板使用；setup 函数也可以返回渲染函数直接替换掉模板结构，这个在函数式组件中广泛被使用；
@@ -115,8 +115,8 @@ Vue3
 				</script>
 			注意：
 				1、接收的数据可以是：简单数据类型数据、也可以是复杂数据类型数据（对象和数组）；
-				2、简单数据类型数据的响应式是依靠 defineProperty 方法实现的单层响应式；
-				3、复杂数据类型数据（对象和数组）的响应式是依靠 reactive 函数实现的深层响应式。
+				2、简单数据类型数据的响应式是依靠 defineProperty() 方法实现的单层响应式；
+				3、复杂数据类型数据（对象和数组）的响应式是依靠 defineProperty() 方法 + reactive 函数实现的深层响应式。
 					注意：reactive 函数是对 Proxy() 方法的封装。
 			应用
 				接收接口返回值的时候经常用到 ref 函数，因为返回值的数据类型可能不确定。
@@ -124,7 +124,7 @@ Vue3
 					data.value = res.data;
 		reactive 函数
 			简介
-				接受一个复杂数据类型数据（对象和数组）并返回一个深层响应式的复杂数据类型数据（对象和数组）。
+				接受一个复杂数据类型数据（对象和数组）并返回一个深层响应式的复杂数据类型数据（对象和数组）。（如果传的参数不是数组或对象，那么这个方法会抛出错误。）
 			用法
 				<template>
 					<div>{{reactValue}}</div>
@@ -146,67 +146,90 @@ Vue3
 						}
 					}
 				</script>
-		ref 函数和 reactive 函数对比
-			从接收数据的数据类型角度对比：
-				ref 函数可以接收简单数据类型数据和复杂数据类型数据（对象和数组）。
-				reactive 函数不能接收简单数据类型数据，只能接收复杂数据类型数据（对象和数组）。
-			从实现响应式数据原理角度对比：
-				ref 函数是通过 defineProperty 方法实现的单层响应式（数据劫持）。
-				reactive 函数是通过 Proxy 方法实现的深层响应式（数据代理）, 并通过 Reflect 对象来操作目标“对象/数组”的“属性/元素”（反射）。
-			从响应式数据使用角度对比：
-				ref 函数返回的响应式数据在操作数据时需要使用 .value。
-				reactive 函数返回的响应式数据可以直接操作数据的属性或元素。
+		shallowRef 函数
+			ref 函数的浅层作用形式。
+			示例：
+				const state = shallowRef({ count: 1 });
+				// 不会触发更改。
+				state.value.count = 2;
+				// 会触发更改。
+				state.value = { count: 2 };
+		shallowReactive 函数
+			reactive 函数的浅层作用形式。
+			示例：
+				const state = shallowReactive({
+						foo: 1,
+						nested: {
+							bar: 2
+						}
+					});
+				// 更改状态自身的属性是响应式的。
+				state.foo++;
+				// ...但下层嵌套对象不会被转为响应式。
+				isReactive(state.nested); // false
+				// 不是响应式的。
+				state.nested.bar++;
+		readonly 函数
+			接受一个对象 (不论是响应式还是普通的) 或是一个 ref，返回一个原值的只读代理。
+			示例：
+				const original = reactive({ count: 0 });
+				const copy = readonly(original);
+				watchEffect(() => {
+					// 用来做响应性追踪。
+					console.log(copy.count);
+				});
+				// 更改源属性会触发其依赖的侦听器。
+				original.count++;
+				// 更改该只读副本将会失败，并会得到一个警告。
+				copy.count++; // warning!
+		shallowReadonly 函数
+			readonly 函数的浅层作用形式。
+			示例：
+				const state = shallowReadonly({
+						foo: 1,
+						nested: {
+							bar: 2
+						}
+					});
+					// 更改状态自身的属性会失败。
+					state.foo++;
+					// ...但可以更改下层嵌套对象。
+					isReadonly(state.nested); // false
+					// 这是可以通过的。
+					state.nested.bar++;
+		toRaw 函数
+			toRaw 函数可以返回由 reactive 函数、readonly 函数、shallowReactive 函数或者 shallowReadonly 函数创建的代理对应的原始对象。
+			示例：
+				const foo = {};
+				const reactiveFoo = reactive(foo);
+				console.log(toRaw(reactiveFoo) === foo); // true
 		toRef 函数
 			作用：依赖源响应式对象的某个属性生成一个 ref 响应式数据，该 ref 响应式数据会保持对源响应式对象相对应属性的响应式连接。
 			用法
-				依赖 ref 定义的源响应式对象
-					const state = ref({
-						foo: 1,
-						bar: 2
-					});
-					const fooRef = toRef(state.value, 'foo');
-					state.value.foo++;
-					console.log(fooRef.value); // 2
-					fooRef.value++;
-					console.log(state.value.foo); // 3
-					return { fooRef }
-				依赖 reactive 定义的源响应式对象
-					const state = reactive({
-						foo: 1,
-						bar: 2
-					});
-					const fooRef = toRef(state, 'foo');
-					state.foo++;
-					console.log(fooRef.value); // 2
-					fooRef.value++;
-					console.log(state.foo); // 3
-					return { fooRef }
+				const state = reactive({
+					foo: 1,
+					bar: 2
+				});
+				const fooRef = toRef(state, 'foo');
+				state.foo++;
+				console.log(fooRef.value); // 2
+				fooRef.value++;
+				console.log(state.foo); // 3
+				return { fooRef }
 			应用：setup 函数返回值的解构。
 		toRefs 函数
 			作用：依赖源响应式对象生成一个普通对象，该普通对象的每个属性都是一个 ref 响应式数据，并且该属性会保持对源响应式对象相对应属性的响应式连接。
 			用法
-				依赖 ref 定义的源响应式对象
-					const state = ref({
-						foo: 1,
-						bar: 2
-					});
-					const stateAsRefs = toRefs(state.value);
-					state.value.foo++;
-					console.log(stateAsRefs.foo.value) // 2
-					stateAsRefs.foo.value++
-					console.log(state.value.foo) // 3
-					return { ...state.value }
-				依赖 reactive 定义的源响应式对象
-					const state = reactive({
-						foo: 1,
-						bar: 2
-					});
-					const stateAsRefs = toRefs(state);
-					state.foo++;
-					console.log(stateAsRefs.foo.value) // 2
-					stateAsRefs.foo.value++
-					console.log(state.foo) // 3
-					return { ...state }
+				const state = reactive({
+					foo: 1,
+					bar: 2
+				});
+				const stateAsRefs = toRefs(state);
+				state.foo++;
+				console.log(stateAsRefs.foo.value); // 2
+				stateAsRefs.foo.value++;
+				console.log(state.foo); // 3
+				return { ...stateAsRefs }
 			应用：setup 函数返回值的解构。
 		computed 函数
 			<script>
@@ -238,7 +261,7 @@ Vue3
 			</script>
 		watchEffect 函数
 			简介
-				立即执行传入的函数参数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数，相当于没有返回值的 computed 函数。
+				立即执行传入的函数参数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。
 			用法
 				<script>
 					import { ref, watchEffect } from 'vue';
@@ -253,124 +276,235 @@ Vue3
 					}
 				</script>
 		watch 函数
-			对 ref 定义的数据的监听
+			侦听一个或多个响应式数据源，并在数据源变化时调用所给的回调函数。
+			第一个参数是侦听器的源。这个来源可以是以下几种：
+				一个函数，返回一个值；
+				一个 ref；
+				一个响应式对象；
+				...或是由以上类型的值组成的数组。
+			第二个参数是在发生变化时要调用的回调函数。
+				这个回调函数接受三个参数：新值、旧值，以及一个用于注册副作用清理的回调函数。
+				该回调函数会在副作用下一次重新执行前调用，可以用来清除无效的副作用，例如等待中的异步请求。
+				当侦听多个来源时，回调函数接受两个数组，分别对应来源数组中的新值和旧值。
+			第三个可选的参数是一个对象，支持以下这些选项：
+				immediate：在侦听器创建时立即触发回调。第一次调用时旧值是 undefined。
+				deep：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考深层侦听器。
+				flush：调整回调函数的刷新时机。参考回调的刷新时机及 watchEffect 函数。
+				onTrack / onTrigger：调试侦听器的依赖。参考调试侦听器。
+				once：回调函数只会运行一次。侦听器将在回调函数首次运行后自动停止。 
+			与 watchEffect 函数相比，watch 函数使我们可以：
+				懒执行副作用；
+				更加明确是应该由哪个状态触发侦听器重新执行；
+				可以访问所侦听状态的前一个值和当前值。
+			对 ref 函数定义的数据的监听
 				1、单个简单数据类型数据的监听。
-					watch(valueName, (newValue, oldValue) => {
+					watch(simpleValue, (newValue, oldValue) => {
 						......
-					}, { immediate: true })	
-					注意：这里的 valueName 不能写成 valueName.value。
+					})
 				2、多个简单数据类型数据的监听。
-					watch([valueName1, valueName2], (newValue, oldValue) => {
+					watch([simpleValue1, simpleValue2], ([newValue1, newValue2], [oldValue1, oldValue2]) => {
 						......
-					}, { immediate: true })
-					注意：这里的 valueName 不能写成 valueName.value。
+					})
 				3、单个复杂数据类型数据（对象或数组）的监听。
-					// 写法一。
-					watch(objName, (newValue, oldValue) => {
+					watch(complexObject, (newValue, oldValue) => {
 						......
-					}, { immediate: true, deep: true })
-					// 写法二。
-					watch(objName.value, (newValue, oldValue) => {
-						......
-					}, { immediate: true})
-					注意：
-						1、此种情况下 oldValue 参数接收到的不是 objName 的旧值而是 objName 的新值；
-						2、写法二中 watch 函数强制开启了深度监听，此时 watch 函数的 deep 配置无效。
+					}, { deep: true })
+					注意：此种情况下 oldValue 参数接收到的不是 complexObject 的旧值而是 complexObject 的新值，除非 complexObject.value 被整个替换掉。
 				4、单个复杂数据类型数据（对象或数组）的某个属性或元素的监听。
-					watch(() => objName.value.prop, (newValue, oldValue) => {
+					watch(() => complexObject.value.prop, (newValue, oldValue) => {
 						......
-					}, { immediate: true })
-					注意：
-						1、objName.value.prop 也可以是 objName.value.objProp.prop 这样的多层取值；
-						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
-						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
-				5、单个复杂数据类型数据（对象或数组）的某些属性或元素的监听。
-					watch([() => objName.value.prop1, () => objName.value.prop2], (newValue, oldValue) => {
+					})
+					注意：complexObject.value.prop 也可以是 complexObject.value.objProp.prop 这样的多层取值。
+				5、多个复杂数据类型数据（对象或数组）的某些属性或元素的监听。
+					watch([() => complexObject.value.prop1, () => complexObject.value.prop2], ([newValue1, newValue2], [oldValue1, oldValue2]) => {
 						......
-					}, { immediate: true })	
-					注意：
-						1、objName.value.prop 也可以是 objName.value.objProp.prop 这样的多层取值；
-						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
-						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
-			对 reactive 定义的数据的监听
+					})	
+					注意：complexObject.value.prop 也可以是 complexObject.value.objProp.prop 这样的多层取值。
+			对 reactive 函数定义的数据的监听
 				1、单个复杂数据类型数据（对象或数组）的监听。
-					watch(objName, (newValue, oldValue) => {
+					watch(complexObject, (newValue, oldValue) => {
 						......
-					}, { immediate: true })
+					})
 					注意：
-						1、此种情况下 oldValue 参数接收到的不是 objName 的旧值而是 objName 的新值；
+						1、此种情况下 oldValue 参数接收到的不是 complexObject 的旧值而是 complexObject 的新值；
 						2、此种情况下 watch 函数强制开启了深度监听，此种情况下 watch 函数的 deep 配置无效。
 				2、单个复杂数据类型数据（对象或数组）的某个属性或元素的监听。
-					watch(() => objName.prop, (newValue, oldValue) => {
+					watch(() => complexObject.prop, (newValue, oldValue) => {
 						......
-					}, { immediate: true })
+					})
 					注意：
-						1、objName.prop 也可以是 objName.objProp.prop 这样的多层取值；
-						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
-						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
+						1、complexObject.prop 也可以是 complexObject.objProp.prop 这样的多层取值；
+						2、此种情况下需要手动开启 watch 函数的深度监听。
 				3、单个复杂数据类型数据（对象或数组）的某些属性或元素的监听。
-					watch([() => objName.prop1, () => objName.prop2], (newValue, oldValue) => {
+					watch([() => complexObject.prop1, () => complexObject.prop2], (newValue, oldValue) => {
 						......
-					}, { immediate: true })	
+					})	
 					注意：
-						1、objName.prop 也可以是 objName.objProp.prop 这样的多层取值；
-						2、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 oldValue 参数接收到的不是 “属性或元素” 的旧值而是 “属性或元素” 的新值；
-						3、此种情况下，如果 “属性或元素” 不是简单数据类型数据，那么 watch 函数的深度监听需要手动配置 deep 来开启。
-	其它 Composition API
-	Vue 自定义指令
-		版本差异：
-			在 vue2.x 的项目中使用自定义指令时: mounted 应改为 bind、updated 应改为 update。
-		私有自定义指令
-			在每个 Vue 组件中，可以在 directives 节点下声明私有自定义指令。
-				<!-- 在使用自定义指令时，需要加上 v- 前缀。 -->
-				<input v-focus />
-				// 声明自定义指令，指令的名字是 focus。
-				directives: {
-					focus: {
-						// 当绑定指令的元素被插入到 DOM 中时会自动触发 mounted 函数。
-						mounted(el) {
-							// el 是绑定指令的 DOM 元素。
-							el.focus();
+						1、complexObject.prop 也可以是 complexObject.objProp.prop 这样的多层取值；
+						2、此种情况下需要手动开启 watch 函数的深度监听。	
+	ref 属性
+		作用
+			ref 被用来给 DOM 元素或子组件注册引用信息。引用信息将会被注册在父组件的 $refs 对象上。
+			如果在 DOM 元素上使用，引用指向的就是该 DOM 元素；如果在子组件上使用，引用指向的就是该子组件实例。
+		用法
+			1、引用单个 DOM 元素或组件实例。
+				<template> 
+					<div ref="root">This is a root element</div>
+				</template>
+				<script>
+					import { ref, onMounted } from 'vue';
+					export default {
+						setup () {
+							const root = ref(null);
+							onMounted(() => {
+								// DOM 元素将在初始渲染后分配给 ref。
+								console.log(root.value);
+							});
+							return { root }
+						}
+					}
+				</script>
+			2、引用 v-for 遍历的 DOM 元素或组件实例。
+				<template>
+					<div v-for="(item, i) in list" :ref="el => { if(el) divs[i] = el }">
+						{{ item }}
+					</div>
+				</template>
+				<script>
+					import { ref, reactive, onBeforeUpdate } from 'vue';
+					export default {
+						setup () {
+							const list = reactive([1, 2, 3]);
+							const divs = ref([]);
+							// 确保在每次更新之前重置 ref。
+							onBeforeUpdate(() => {
+								divs.value = [];
+							});
+							return { list, divs }
+						}
+					}
+				</script>
+	组件通讯
+		父向子单项传值
+			父组件中的代码
+				<Son :valueName="valName"></Son>
+				setup() {
+					const valName = ref(0);
+					return { valName }
+				}
+			子组件中的代码
+				props: {
+					valueName: {
+						type: Number,
+						default: 0
+					}
+				}
+				setup(props) {
+					console.log(props.valueName);
+					return { props }
+				}
+		子向父单项传值
+			父组件中的代码
+				<Son @funcName="fnName"></Son>
+				setup() {
+					const fnName = param => {
+						......
+					};
+					return { fnName }
+				}
+			子组件中的代码
+				setup(props, { emit }) {
+					......
+					emit('funcName', value);
+				}
+	自定义指令
+		具体用法
+			在 <script setup> 中，任何以 v 开头的驼峰式命名的变量都可以被用作一个自定义指令。
+				<script setup>
+				// 在模板中启用 v-focus。
+				const vFocus = {
+					mounted: (el) => el.focus()
+				}
+				</script>
+			在没有使用 <script setup> 的情况下，自定义指令需要通过 directives 选项注册：
+				export default {
+					setup() {
+						/*...*/
+					},
+					directives: {
+						// 在模板中启用 v-focus。
+						focus: {
+							/* ... */
 						}
 					}
 				}
-		全局自定义指令
-			全局自定义指令需要通过“单页面应用程序的实例对象”进行声明。
-				<input v-focus />
+			将一个自定义指令全局注册到应用层级也是一种常见的做法：
+				const app = createApp({})
+				// 使 v-focus 在所有组件中都可用。
 				app.directive('focus', {
-					mounted(el) {
-						el.focus();
-					}
-				});
-		updated 函数
-			mounted 函数只会在“绑定指令的元素”第一次被插入到 DOM 时被调用，updated 函数会在每次 DOM 更新完成后再次被调用。
-				<input v-focus />
-				app.directive('focus', {
-					mounted(el) {
-						el.focus();
-					},
-					updated(el) {
-						el.focus();
-					}
-				});
-				注意：如果 mounted 和 updated 函数中的逻辑完全相同，则自定义指令可以简写成如下格式：
-					app.directive('focus', {
-						el => {
-							el.focus();
-						}
-					});
-		自定义指令的参数
-			在绑定自定义指令时，可以通过“等号”的形式为指令绑定具体的参数值。
-				<!-- 使用自定义指令。 -->
-				<input v-color="'red'" />
-				// 定义自定义指令。
-				app.directive('color', {
-					(el, binding) => {
-						// binding.value 就是通过“等号”为自定义指令绑定的值。
-						el.style.coor = binding.value;
-					}
-				});
-	Vue 路由（vue-router 4.x 版本）
+					/* ... */
+				})
+			注：
+				只有当所需功能只能通过直接的 DOM 操作来实现时，才应该使用自定义指令。
+				其他情况下应该尽可能地使用 v-bind 这样的内置指令来声明式地使用模板，这样更高效，也对服务端渲染更友好。
+		指令钩子
+			一个指令的定义对象可以提供几种钩子函数 (都是可选的)：
+				const myDirective = {
+					// 在绑定元素的 attribute 前或事件监听器应用前调用。
+					created(el, binding, vnode, prevVnode) {},
+					// 在元素被插入到 DOM 前调用。
+					beforeMount(el, binding, vnode, prevVnode) {},
+					// 在绑定元素的父组件及他自己的所有子节点都挂载完成后调用。
+					mounted(el, binding, vnode, prevVnode) {},
+					// 绑定元素的父组件更新前调用。
+					beforeUpdate(el, binding, vnode, prevVnode) {},
+					// 在绑定元素的父组件及他自己的所有子节点都更新后调用。
+					updated(el, binding, vnode, prevVnode) {},
+					// 绑定元素的父组件卸载前调用。
+					beforeUnmount(el, binding, vnode, prevVnode) {},
+					// 绑定元素的父组件卸载后调用。
+					unmounted(el, binding, vnode, prevVnode) {}
+				}
+		钩子参数
+			指令的钩子会传递以下几种参数：
+				el：指令绑定到的元素。这可以用于直接操作 DOM。
+				binding：一个对象，包含以下属性。
+					value：传递给指令的值。例如在 v-my-directive="1 + 1" 中，值是 2。
+					oldValue：之前的值，仅在 beforeUpdate 和 updated 中可用。无论值是否更改，它都可用。
+					arg：传递给指令的参数 (如果有的话)。例如在 v-my-directive:foo 中，参数是 "foo"。
+					modifiers：一个包含修饰符的对象 (如果有的话)。例如在 v-my-directive.foo.bar 中，修饰符对象是 { foo: true, bar: true }。
+					instance：使用该指令的组件实例。
+					dir：指令的定义对象。
+				vnode：代表绑定元素的底层 VNode。
+				prevVnode：代表之前的渲染中指令所绑定元素的 VNode。仅在 beforeUpdate 和 updated 钩子中可用。
+			和内置指令类似，自定义指令的参数也可以是动态的。举例来说：
+				<!-- 这里指令的参数会基于组件的 arg 数据属性响应式地更新。 -->
+				<div v-example:[arg]="value"></div>
+			注：除了 el 外，其他参数都是只读的，不要更改它们。若你需要在不同的钩子间共享信息，推荐通过元素的 dataset attribute 实现。
+		简化形式
+			对于自定义指令来说，一个很常见的情况是仅仅需要在 mounted 和 updated 上实现相同的行为，除此之外并不需要其他钩子。
+			这种情况下我们可以直接用一个函数来定义指令，如下所示：
+				<div v-color="color"></div>
+				app.directive('color', (el, binding) => {
+					// 这会在 `mounted` 和 `updated` 时都调用。
+					el.style.color = binding.value
+				})
+		对象字面量
+			如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。别忘了，指令也可以接收任何合法的 JavaScript 表达式。
+				<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+				app.directive('demo', (el, binding) => {
+					console.log(binding.value.color) // => "white"
+					console.log(binding.value.text) // => "hello!"
+				})
+		在组件上使用
+			当在组件上使用自定义指令时，它会始终应用于组件的根节点，和透传 attributes 类似。
+				<MyComponent v-demo="test" />
+				<!-- MyComponent 的模板。 -->
+				<div> <!-- v-demo 指令会被应用在此处。 -->
+					<span>My component content</span>
+				</div>
+			需要注意的是组件可能含有多个根节点。当应用到一个多根组件时，指令将会被忽略且抛出一个警告。和 attribute 不同，指令不能通过 v-bind="$attrs" 来传递给一个不同的元素。总的来说，不推荐在组件上使用自定义指令。
+	路由（vue-router 4.x 版本）
 		vue-router 版本
 			前后版本使用差别较小。
 			vue-router 目前有 3.x 和 4.x 的版本。其中：vue-router 3.x 只能结合 vue2.x 进行使用，vue-router 4.x 只能结合 vue3.x 进行使用。
@@ -412,35 +546,33 @@ Vue3
 							}
 						}
 					}
-		vue-router 基础
-			使用步骤
-				1、在项目中安装 vue-router；
-					npm install vue-router@next -S
-				2、定义需要路由的组件；
-				3、声明路由链接和占位符；
-					<template>
-						<!-- 声明路由链接 -->
-						<router-link to="......"></router-link>
-						<!-- 声明路由占位符 -->
-						<router-view></router-view>
-					</template>
-				4、创建路由模块；
-					在项目中创建 router.js 路由模块，模块中按照如下 4 个步骤创建并获得路由的实例对象：
-						1、从 vue-router 中按需导入两个方法；
-							// createRouter 方法用于创建路由的实例对象。
-							// createWebHashHistory 方法用于指定路由的 hash 模式。
-							import { createRouter, createWebHashHistory } from 'vue-router';
-						2、导入需要使用路由控制的组件；
-						3、创建路由的实例对象；
-							const router = createRouter({
-								history: createWebHashHistory(),
-								routes: []
-							});
-						4、向外共享路由的实例对象。
-							export default router
-				5、在 main.js 中导入并挂载路由模块。
-					import router from './router';
-					app.use(router);
+		vue-router 用法
+			1、在项目中安装 vue-router；
+				npm install vue-router@next -S
+			2、定义需要路由的组件；
+			3、声明路由链接和占位符；
+				<template>
+					<!-- 声明路由链接 -->
+					<router-link to="......"></router-link>
+					<!-- 声明路由占位符 -->
+					<router-view></router-view>
+				</template>
+			4、在 router.js 中创建路由模块；
+				1、从 vue-router 中按需导入两个方法；
+					// createRouter 方法用于创建路由的实例对象。
+					// createWebHashHistory 方法用于指定路由的 hash 模式。
+					import { createRouter, createWebHashHistory } from 'vue-router';
+				2、导入需要使用路由控制的组件；
+				3、创建路由的实例对象；
+					const router = createRouter({
+						history: createWebHashHistory(),
+						routes: []
+					});
+				4、向外共享路由的实例对象。
+					export default router
+			5、在 main.js 中导入并挂载路由模块。
+				import router from './router.js';
+				app.use(router);
 		vue-router 高级
 			重定向路由
 				重定向路由指的是：在访问地址 A 的时候，强制跳转到地址 C ，从而展示特定的组件页面。
@@ -482,9 +614,9 @@ Vue3
 					});
 				注意：命名路由的 name 值不能重复，必须保证唯一性。
 				使用命名路由实现声明式导航
-					<router-link :to="{ name: 'mov', params: { id: 3 } }">go to movie</router-link>
+					<router-link :to="{ name: 'mov' }">go to movie</router-link>
 				使用命名路由实现编程式导航
-					this.$router.push({ name: 'mov', params: { id: 3 } });
+					this.$router.push({ name: 'mov' });
 			动态路由
 				const router = createRouter({});
 				router.addRoutes([{}, {}]);
@@ -512,15 +644,18 @@ Vue3
 					路由模块中
 						const router = createRouter({
 							history: createWebHashHistory(),
-							routes: [{ path: "/user/:userId", component: User }]
+							routes: [
+								{ path: "/user/:userId", component: User }
+							]
 						});
 					对应组件中
 						传递参数
 							<router-link to="/user/123">User</router-link>
 							<router-link :to="`/user/${userId}`">User</router-link>
+							this.$router.push({ path: '/user', params: { userId: 123 }});
 						接收参数
 							$route 接收路由参数
-								$route.params.参数名
+								this.$route.params.userId
 							props 接收路由参数
 								// 首先在定义路由规则时声明 props: true。
 								{ path: "/user/:userId", component: User, props: true }
@@ -532,7 +667,7 @@ Vue3
 				全局路由导航守卫
 					全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
 						// 创建路由实例对象。
-						const router = createRouter({ ...... });
+						const router = createRouter({});
 						// 全局前置路由导航守卫。
 						router.beforeEach((to, from, next) => {
 						  next();
@@ -552,7 +687,7 @@ Vue3
 					进入路由组件时调用 beforeRouteEnter 钩子。
 						beforeRouteEnter(to, from, next) { next(); }
 					离开路由组件时调用 afterRouteEnter 钩子。
-						afterRouteEnter(to, from, next) { next(); }
+						afterRouteEnter(to, from) {}
 					注意：这个使用的少，用到时建议去查看官方文档。
 			路由元信息
 				定义路由的时候可以配置 meta 字段：
@@ -561,13 +696,13 @@ Vue3
 							path: '/foo',
 							component: Foo,
 							children: [{
-								path: 'bar',
+								path: '/foo/bar',
 								component: Bar,
 								// a meta field
 								meta: { requiresAuth: true }
 							}]
 						}]
-					})
+					});
 			路由激活样式
 				方式一：使用默认的高亮 class 类。
 					被激活的路由链接默认会应用 router-link-active 类，开发者可以使用此类名选择器为激活的路由链接设置高亮的样式。
@@ -584,85 +719,4 @@ Vue3
 							// 默认的路由激活类名会被覆盖。
 							linkActiveClass: 'router-active',
 							routes: []
-						});		
-		
-
-		
-	ref 属性
-		作用
-			ref 被用来给 DOM 元素或子组件注册引用信息。引用信息将会被注册在父组件的 $refs 对象上。
-			如果在 DOM 元素上使用，引用指向的就是该 DOM 元素；如果在子组件上使用，引用指向的就是该子组件实例。
-		用法
-			1、引用单个 DOM 元素或组件实例。
-				<template> 
-					<div ref="root">This is a root element</div>
-				</template>
-				<script>
-					import { ref, onMounted } from 'vue';
-					export default {
-						setup() {
-							// const root = null;
-							const root = ref(null);
-							onMounted(() => {
-								// DOM 元素将在初始渲染后分配给 ref。
-								// console.log(root);
-								console.log(root.value);
-							});
-							return { root }
-						}
-					}
-				</script>
-			2、引用 v-for 遍历的 DOM 元素或组件实例。
-				<template>
-					<div v-for="(item, i) in list" :ref="el => { if(el) divs[i] = el }">
-						{{ item }}
-					</div>
-				</template>
-				<script>
-					import { ref, reactive, onBeforeUpdate } from 'vue';
-					export default {
-						setup() {
-							const list = reactive([1, 2, 3]);
-							// const divs = [];
-							const divs = ref([]);
-							// 确保在每次更新之前重置 ref。
-							onBeforeUpdate(() => {
-								// divs = [];
-								divs.value = [];
-							});
-							return { list, divs }
-						}
-					}
-				</script>
-	组件通讯
-		父向子单项传值
-			父组件中的代码
-				<Son :valueName="valName"></Son>
-				setup() {
-					const valName = ref(0);
-					return { valName }
-				}
-			子组件中的代码
-				props: {
-					valueName: {
-						type: Number,
-						default: 0
-					}
-				}
-				setup(props) {
-					console.log(props.valueName);
-				}
-		子向父单项传值
-			父组件中的代码
-				<Son @funcName="fnName"></Son>
-				setup() {
-					const fnName = param => {
-						......
-					};
-					return { fnName }
-				}
-			子组件中的代码
-				setup(props, { emit }) {
-					......
-					emit('funcName', value);
-				}
+						});
