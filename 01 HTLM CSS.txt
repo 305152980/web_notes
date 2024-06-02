@@ -17,7 +17,7 @@
 	overflow: visible | hidden | auto | scroll;        /* 元素溢出时盒子的显示模式。 */
 	cursor: default | pointer | move | text | not-allowed;
 	display: none | block;        /* 元素隐藏|显示。元素隐藏后不再占有原来的位置。常搭配 JS 一起使用。 */
-	visibility: hiddden | visible;        /* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
+	visibility: hidden | visible;        /* 元素隐藏|显示。元素隐藏后继续占有原来的位置。清除浮动时有使用。 */
 	img { filter: blur(5px); }        /* 数值越大，图片越模糊。 */
 	width | height: calc(100% - 30px);        /* + - * / */
 溢出文字隐藏
